@@ -1,1 +1,4 @@
-# Created by .ignore support plugin (hsz.mobi)
+dependency-reduced-pom.xml
+src/main/java/me/csed2/moneymanager/categories/
+src/main/resources/
+target/
