@@ -12,6 +12,6 @@ How to setup Maven (on IntelliJ):
 
 clean package compiles the entire program and runs the test. You can find the compiled jar under: /target/MoneyManagingApp-1.0-SNAPSHOT.jar (or something like this im guessing lmao)
 
-To run this, navigate to the /target folder with a console and type: java -jar <name>
+To run this, navigate to the /target folder with a console and type: java -jar (name of jar)
 
 surefire-report:report-only will generate a html report under /target/sites/surefire-report.html
