@@ -15,3 +15,5 @@ clean package compiles the entire program and runs the test. You can find the co
 To run this, navigate to the /target folder with a console and type: java -jar (name of jar)
 
 surefire-report:report-only will generate a html report under /target/sites/surefire-report.html. You can then open this in a browser to get a (prettier?) version of the xml file that contains the report under /target/surefire-reports/TestMoneyManager.text
+
+If you want to add a library, find the Maven code and just copy and paste it into the pom.xml under the <dependencies></dependencies> bit :)
