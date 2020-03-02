@@ -4,7 +4,7 @@ public class Main {
 
     public Main() {
         System.out.println("Hello world!");
-        int i = 0;
+        int i = 2;
     }
 
     /**
