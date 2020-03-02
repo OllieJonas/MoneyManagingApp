@@ -70,6 +70,8 @@
         <plugins>
 
             <!-- Builds an executable jar files with the dependencies included -->
+
+            <!-- Compile the project as Java 11 -->
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.5.1</version>
@@ -79,6 +81,7 @@
                 </configuration>
             </plugin>
 
+            <!-- Shade (add) all the appropriate dependencies to the jar -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
