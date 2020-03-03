@@ -1,5 +1,8 @@
 package me.csed2.moneymanager.main;
 
+import me.csed2.moneymanager.transactions.Transaction;
+import me.csed2.moneymanager.transactions.TransactionBuilder;
+
 public class Main {
 
     public Main() {
