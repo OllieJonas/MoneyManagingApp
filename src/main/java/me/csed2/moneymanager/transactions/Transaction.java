@@ -8,7 +8,7 @@ import me.csed2.moneymanager.categories.Category;
 import java.util.Calendar;
 
 /**
- * Category POJO.
+ * Transaction POJO.
  *
  * Note the use of Lombok generating the getters, setters and the constructor.
  *
