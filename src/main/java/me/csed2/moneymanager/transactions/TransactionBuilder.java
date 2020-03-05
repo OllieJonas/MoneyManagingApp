@@ -30,7 +30,7 @@ public class TransactionBuilder {
     /**
      * Date transaction occurred
      */
-    private Calendar date;
+    private String date;
 
     /**
      * How much the transaction cost
@@ -40,7 +40,7 @@ public class TransactionBuilder {
     /**
      * The category in which the transaction belongs
      */
-    private Category category;
+    private String category;
 
     /**
      * Any notes the user may have about the transaction
@@ -66,12 +66,12 @@ public class TransactionBuilder {
         return this;
     }
 
-    public TransactionBuilder withCategory(Category category) {
+    public TransactionBuilder withCategory(String category) {
         this.category = category;
         return this;
     }
 
-    public TransactionBuilder withDate(Calendar date) {
+    public TransactionBuilder withDate(String date) {
         this.date = date;
         return this;
     }

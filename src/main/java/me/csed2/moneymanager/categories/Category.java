@@ -3,8 +3,9 @@ package me.csed2.moneymanager.categories;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import me.csed2.moneymanager.transactions.Transaction;
 
-import java.util.Calendar;
+import java.util.List;
 
 /**
  * Category POJO.
@@ -32,11 +33,16 @@ public class Category {
     /**
      * Date of creation
      */
-    private Calendar created;
+    private String created;
 
     /**
      * The budget the user has set for this category
      */
     private int budget;
+
+    /**
+     * The list of all transactions
+     */
+    private List<Transaction> transactions;
 
 }

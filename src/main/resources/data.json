@@ -1,0 +1,19 @@
+[
+  {
+    "name":"Fun",
+    "id":1,
+    "created":"03/03/2020",
+    "budget":10000,
+    "transactions": [
+      {
+        "name":"Score",
+        "id":1,
+        "date":"03/03/2020",
+        "amount":100,
+        "category":"Fun",
+        "notes":["Test","Test2"],
+        "vendor":"SU Bath"
+      }
+    ]
+  }
+]
