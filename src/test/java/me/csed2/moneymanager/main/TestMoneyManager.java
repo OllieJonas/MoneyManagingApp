@@ -12,6 +12,5 @@ public class TestMoneyManager {
     public void helloWorldTest() {
         Main main = new Main();
          assertEquals(main.multiply(3, 2), 6);
-         // assertEquals(main.multiply(3,2), 7);
     }
 }

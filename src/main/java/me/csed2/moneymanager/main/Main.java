@@ -3,7 +3,7 @@ package me.csed2.moneymanager.main;
 public class Main {
 
     public Main() {
-
+        System.out.println("Hello world!");
     }
 
     /**
