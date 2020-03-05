@@ -1,10 +1,14 @@
 package me.csed2.moneymanager.command;
 
 import com.google.common.util.concurrent.*;
+import lombok.NonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
 
 import java.time.Duration;
 import java.util.concurrent.*;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -26,8 +30,6 @@ public class CommandDispatcher {
 
     private static CommandDispatcher instance;
 
-    public static final long DEFAULT_TIMEOUT = 10L;
-
     static {
         instance = new CommandDispatcher();
     }
@@ -39,44 +41,29 @@ public class CommandDispatcher {
      * @param <T> The return type of the command
      * @return The result of the command
      */
-    public <T> T dispatch(ICommand<T> command) {
+    public <T> T dispatchSync(ICommand<T> command) {
         return command.execute();
     }
 
     /**
-     * Dispatching an async command.
+     * Responsible for dispatching asynchronous commands.
      *
      * @param command The command you'd like to execute
-     * @param timeout How long until the request times out
-     * @param onSuccess The appropriate callback either on success or failure
+     * @param callback The results of this computation
+     * @param timeout The timeout
+     * @param timeUnit The unit of time for the timeout
      * @param <T> The return type of the command
-     *
-     * @return The result of the execution of the command.
-     *
      */
-    public final <T> CompletableFuture<T> dispatchAsync(ICommand<T> command, long timeout, TimeUnit timeUnit, BiConsumer<T, ? super Throwable> onSuccess, Supplier<T> onFailure) {
-        ScheduledExecutorService service = Executors.newSingleThreadScheduledExecutor(); // Create a new single thread
-        final CompletableFuture<T> future = new CompletableFuture<>(); // Submit the request
-        future.complete(command.execute());
-        future.whenComplete(onSuccess);
+    public final <T> ListenableFuture<T> dispatchAsync(ICommand<T> command, @NonNull FutureCallback<T> callback, long timeout, TimeUnit timeUnit) {
+        ListeningScheduledExecutorService service = MoreExecutors.listeningDecorator(Executors.newSingleThreadScheduledExecutor());
+        ListenableFuture<T> future = service.submit(command::execute);
 
-        service.schedule(() -> {
-            if (!future.isDone()) {
-                future.complete(onFailure.get());
-                future.cancel(true);
-            }
+        Futures.addCallback(future, callback, service);
 
-        }, timeout, timeUnit);
+        Futures.withTimeout(future, timeout, timeUnit, service);
+
         return future;
     }
-
-//    public <T> T dispatchAsync(ICommand<T> command, long timeout, TimeUnit timeUnit) throws ExecutionException, InterruptedException, TimeoutException {
-//        return dispatchAsync(command, timeout, timeUnit, null);
-//    }
-//
-//    public <T> T dispatchAsync(ICommand<T> command) throws ExecutionException, InterruptedException, TimeoutException {
-//        return dispatchAsync(command, DEFAULT_TIMEOUT, TimeUnit.SECONDS, null);
-//    }
 
     public static CommandDispatcher getInstance() {
         return instance;

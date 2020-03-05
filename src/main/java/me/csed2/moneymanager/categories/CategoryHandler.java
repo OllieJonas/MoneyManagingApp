@@ -1,90 +1,61 @@
 package me.csed2.moneymanager.categories;
 
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.ListenableFuture;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
-import me.csed2.moneymanager.main.Main;
+import me.csed2.moneymanager.categories.commands.LoadCategoriesCommand;
+import me.csed2.moneymanager.command.CommandCallback;
+import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.transactions.TransactionBuilder;
 
-import java.io.*;
-import java.lang.reflect.Type;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 public class CategoryHandler {
-
-    private Gson gson;
-
-    private URL fileUrl;
-
-    private JsonReader reader;
 
     private ArrayList<Category> categories;
 
     public CategoryHandler() {
-        this.gson = new Gson();
-        this.fileUrl = Main.class.getClassLoader().getResource("data.json");
         categories = new ArrayList<>();
+    }
+
+    public ListenableFuture<ArrayList<Category>> loadCategories() {
+        ListenableFuture<ArrayList<Category>> future = null;
         try {
-            if (fileUrl != null) {
-                reader = new JsonReader(new FileReader(fileUrl.getPath()));
-            }
+            future = CommandDispatcher.getInstance().dispatchAsync(new LoadCategoriesCommand("data.json"), new FutureCallback<>() {
 
-            // printExample();
-            loadCategories();
+                @Override
+                public void onSuccess(ArrayList<Category> result) {
+                    categories = result;
+                }
 
-            categories.add(new CategoryBuilder("Rent")
-                    .withId(2)
-                    .withCreationDate("03/03/2020")
-                    .withBudget(100)
-                    .addTransaction(new TransactionBuilder("Fresh")
-                            .withId(1)
-                            .withDate("03/03/2020")
-                            .withCategory("Rent")
-                            .withVendor("Fresh SU Bath")
-                            .withNotes("Test", "Test2")
-                            .build())
-                    .build());
+                @Override
+                public void onFailure(Throwable throwable) {
+                    System.out.println("Error: Unable to load categories!");
+                    throwable.printStackTrace();
+                }
+            }, 1000, TimeUnit.SECONDS);
 
-            System.out.println(categories.get(1).getName());
-
-            saveCategories();
-
-        } catch (IOException e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        return future;
     }
 
-    private void loadCategories() {
-        Type category = new TypeToken<ArrayList<Category>>(){}.getType();
-        categories = gson.fromJson(reader, category);
+    public ArrayList<Category> getCategories() {
+        return categories;
     }
 
-    private void saveCategories() {
-        String gsonString = gson.toJson(categories);
-        try {
-            System.out.println(fileUrl.getPath());
-            Path path = Paths.get(fileUrl.toURI());
-            File myFile = path.toFile();
-            if (myFile.delete()) {
-                myFile.createNewFile();
-                System.out.println("deleted");
-            }
-            FileOutputStream fOut = new FileOutputStream(myFile);
-            OutputStreamWriter myOutWriter =new OutputStreamWriter(fOut);
-            myOutWriter.append(gsonString);
-            myOutWriter.close();
-            fOut.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Prints an example entry for the data.json file.
+     * Used for showing the formatting required.
+     */
     private void printExample() {
         ArrayList<Category> categories = new ArrayList<>();
+        Gson gson = new Gson();
 
         Category category = new CategoryBuilder("Fun")
                 .withId(1)
@@ -104,6 +75,11 @@ public class CategoryHandler {
         System.out.println(gson.toJson(categories));
     }
 
+    /**
+     * Used for testing
+     *
+     * @param args null
+     */
     public static void main(String[] args) {
         new CategoryHandler();
     }

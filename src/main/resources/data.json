@@ -3,7 +3,7 @@
     "name":"Fun",
     "id":1,
     "created":"03/03/2020",
-    "budget":10000,
+    "budget": 10000,
     "transactions": [
       {
         "name":"Score",
@@ -13,6 +13,10 @@
         "category":"Fun",
         "notes":["Test","Test2"],
         "vendor":"SU Bath"
+      },
+      {
+        "name": "Food",
+        "id": 2
       }
     ]
   }
