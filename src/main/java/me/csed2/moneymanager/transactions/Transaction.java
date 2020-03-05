@@ -48,4 +48,6 @@ public class Transaction {
      * Any notes the user may have about the transaction
      */
     private String[] notes;
+
+    private String vendor;
 }

@@ -7,6 +7,11 @@ import java.util.Calendar;
 /**
  * Builder class for a transaction.
  *
+ * Example usage would be:
+ *
+ * Transaction trans = new TransactionBuilder("Score").withId(1).withDate(03/03/2020).withAmount(200)
+ * .withCategory(Category.FUN).withNotes("we do love to see this").withVendor("SU").build();
+ *
  * @author Ollie
  * @since 03/03/2020
  */
@@ -42,6 +47,11 @@ public class TransactionBuilder {
      */
     private String[] notes;
 
+    /**
+     * The name of the vendor
+     */
+    private String vendor;
+
     public TransactionBuilder(String name) {
         this.name = name;
     }
@@ -71,7 +81,12 @@ public class TransactionBuilder {
         return this;
     }
 
+    public TransactionBuilder withVendor(String vendor) {
+        this.vendor = vendor;
+        return this;
+    }
+
     public Transaction build() {
-        return new Transaction(name, id, date, amount, category, notes);
+        return new Transaction(name, id, date, amount, category, notes, vendor);
     }
 }
