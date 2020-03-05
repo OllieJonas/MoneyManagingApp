@@ -1,18 +1,15 @@
 package me.csed2.moneymanager.commands;
 
 import com.google.common.util.concurrent.FutureCallback;
-import me.csed2.moneymanager.command.CommandCallback;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.command.ICommand;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
 
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestCommand {
 

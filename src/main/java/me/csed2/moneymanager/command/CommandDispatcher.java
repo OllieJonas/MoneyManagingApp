@@ -52,6 +52,7 @@ public class CommandDispatcher {
      * @param callback The results of this computation
      * @param timeout The timeout
      * @param timeUnit The unit of time for the timeout
+     *
      * @param <T> The return type of the command
      */
     public final <T> ListenableFuture<T> dispatchAsync(ICommand<T> command, @NonNull FutureCallback<T> callback, long timeout, TimeUnit timeUnit) {

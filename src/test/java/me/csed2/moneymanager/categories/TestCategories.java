@@ -11,22 +11,17 @@ import static org.junit.jupiter.api.Assertions.fail;
 
 public class TestCategories {
 
-    @Test
-    public void testCategoriesLoad_Successfully() {
-        CategoryHandler handler = new CategoryHandler();
-        ListenableFuture<ArrayList<Category>> future = handler.loadCategories();
-        while (!future.isDone()) {
-            try {
-                Thread.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-        try {
-            future.get();
-        } catch (InterruptedException | ExecutionException e) {
-            fail(e);
-        }
-        assertFalse(handler.getCategories().isEmpty());
-    }
+//    @Test
+//    public void testCategoriesLoad_Successfully() {
+//        CategoryHandler handler = new CategoryHandler();
+//        ListenableFuture<ArrayList<Category>> future = handler.loadCategories();
+//
+//        try {
+//            future.get();
+//        } catch (InterruptedException | ExecutionException e) {
+//            fail(e);
+//        }
+//
+//        assertFalse(handler.getCategories().isEmpty());
+//    }
 }
