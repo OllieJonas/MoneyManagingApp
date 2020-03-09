@@ -7,7 +7,7 @@ public class ConsoleUtils {
 
     public static void clearConsole() {
         try {
-            String os = System.getProperty("os.name");
+            // String os = System.getProperty("os.name");
 
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -29,10 +29,13 @@ public class ConsoleUtils {
             System.out.print("\n");
 
         } else {
-
             System.out.print("\n");
             repeatPrint(border, times);
         }
+    }
+
+    public static void printBorder(BorderType borderType) {
+        printBorder(borderType, DEFAULT_BORDER, DEFAULT_TIMES);
     }
 
     public enum BorderType {

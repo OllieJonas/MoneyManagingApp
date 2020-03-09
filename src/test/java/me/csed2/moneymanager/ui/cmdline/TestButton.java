@@ -1,8 +1,7 @@
 package me.csed2.moneymanager.ui.cmdline;
 
 import me.csed2.moneymanager.main.User;
-import me.csed2.moneymanager.ui.Menu;
-import me.csed2.moneymanager.ui.Option;
+import me.csed2.moneymanager.ui.Button;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,8 +55,8 @@ public class TestButton {
         }
 
         @Override
-        public void addOptions() {
-            addOption(new Option("foo", user -> System.out.println("bar")));
+        public void addButtons() {
+            addButton(new Button("foo", user -> System.out.println("bar")));
         }
     }
 }

@@ -27,7 +27,7 @@ public class User {
     public void openMenu(Menu menu) {
         previousMenu = currentMenu;
         currentMenu = menu;
-        menu.open();
+        menu.print();
     }
 
     public synchronized void exit() {
