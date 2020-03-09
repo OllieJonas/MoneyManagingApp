@@ -1,10 +1,12 @@
 package me.csed2.moneymanager.ui.cmdline;
 
+import me.csed2.moneymanager.main.User;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class InputReader implements Runnable {
+public class InputReader extends Thread {
 
     private BufferedReader reader;
 
@@ -14,22 +16,25 @@ public class InputReader implements Runnable {
 
     @Override
     public void run() {
-        try {
-            while (reader.ready()) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    break;
+        while (!interrupted()) {
+            try {
+                while (reader.ready()) {
+                    try {
+                        sleep(10);
+                    } catch (InterruptedException e) {
+                        break;
+                    }
                 }
+
+                String input = reader.readLine();
+
+                InputProcessor.process(User.getInstance(), input);
+
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-
-            String input = reader.readLine();
-
-            new InputProcessor(input);
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        close();
     }
 
     public synchronized void close() {

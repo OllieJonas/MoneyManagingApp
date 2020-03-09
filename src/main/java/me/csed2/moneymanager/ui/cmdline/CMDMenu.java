@@ -1,28 +1,43 @@
 package me.csed2.moneymanager.ui.cmdline;
 
-import me.csed2.moneymanager.ui.IMenu;
-import me.csed2.moneymanager.ui.cmdline.option.Option;
+import me.csed2.moneymanager.main.User;
+import me.csed2.moneymanager.ui.Menu;
+import me.csed2.moneymanager.ui.Option;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
-public abstract class CMDMenu implements IMenu {
+public abstract class CMDMenu extends Menu {
 
-    private List<Option> options = new LinkedList<>();
+    private List<Option> options = new ArrayList<>();
+
+    public CMDMenu(Menu previousMenu) {
+        super(previousMenu);
+
+        addOptions();
+        addExitOption();
+        open();
+    }
+
+    public abstract void addOptions();
 
     protected void addOption(Option option) {
         options.add(option);
     }
 
-    protected void addOptions() {
-
+    @Override
+    public void open() {
+        for (int i = 1; i <= options.size(); i++) {
+            System.out.println(i + ": " + options.get(i - 1).getName());
+        }
     }
 
     @Override
-    public IMenu open() {
-        for (int i = 1; i <= options.size(); i++) {
-            System.out.println(i + ": " + options.get(i).getName());
-        }
-        return this;
+    public List<Option> getOptions() {
+        return options;
+    }
+
+    private void addExitOption() {
+        addOption(new Option("Exit the Application").attachButton(User::exit));
     }
 }

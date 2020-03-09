@@ -5,6 +5,7 @@ import me.csed2.moneymanager.ui.cmdline.menu.MainMenu;
 public class Main {
 
     public Main() {
+        new User();
         new MainMenu();
     }
 
@@ -22,7 +23,3 @@ public class Main {
         new Main();
     }
 }
-
-
-
-//I am testing this thing second try

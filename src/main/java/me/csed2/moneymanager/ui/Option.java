@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.ui.cmdline.option;
+package me.csed2.moneymanager.ui;
 
 import lombok.Getter;
 import me.csed2.moneymanager.main.User;
