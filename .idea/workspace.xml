@@ -2,22 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08364290-c790-4a44-9539-459ea2dced1f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/Menu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_joda_joda_money_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/diagram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/utils/ConsoleUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/utils/MoneyUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/me/csed2/moneymanager/ui/cmdline/TestButton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/MoneyManagingApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoneyManagingApp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/diagram.uml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/diagram.uml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/IMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/SubMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/SubMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/TransactionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/TransactionBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/IButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/IButton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/Option.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/SubMenu.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/CMDMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/CMDMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/InputProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/InputProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/InputReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/InputReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/menu/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/menu/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/option/IButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/IButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/option/Option.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/Option.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/utils/FutureUtils.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +87,7 @@
     <property name="Repository.Attach.JavaDocs" value="false" />
     <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="add_unversioned_files" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -234,9 +246,9 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.CategoryHandler" />
         <item itemvalue="JUnit.main.java.me.csed2.moneymanager in MoneyManagingApp" />
         <item itemvalue="Application.CommandDispatcher" />
-        <item itemvalue="Application.CategoryHandler" />
         <item itemvalue="Application.CommandDispatcher" />
       </list>
     </recent_temporary>
@@ -265,7 +277,7 @@
       <workItem from="1583420401774" duration="11165000" />
       <workItem from="1583433275038" duration="13744000" />
       <workItem from="1583714257894" duration="924000" />
-      <workItem from="1583715202273" duration="5932000" />
+      <workItem from="1583715202273" duration="11916000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1582808077680</created>
@@ -400,7 +412,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583718744812</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Finished adding basic implementation of Command Line menu">
+      <created>1583721174292</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1583721174292</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,7 +447,8 @@
     <MESSAGE value="Updated pom.xml to compile with JDK 1.9 as opposed to JDK 11" />
     <MESSAGE value="adding the .idea to git repository" />
     <MESSAGE value="Added CategoryRepository&#10;Started work on UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added CategoryRepository&#10;Started work on UI" />
+    <MESSAGE value="Finished adding basic implementation of Command Line menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished adding basic implementation of Command Line menu" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="672" key="#Project_Structure" timestamp="1582809727214">
@@ -439,14 +459,14 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="71" y="217" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583430452445" />
-    <state x="287" y="238" width="484" height="557" key="#com.intellij.ide.util.MemberChooser" timestamp="1583718406362">
+    <state x="287" y="238" width="484" height="557" key="#com.intellij.ide.util.MemberChooser" timestamp="1583721316585">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="287" y="238" width="484" height="557" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1583718406362" />
-    <state x="639" y="438" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1582810338250">
+    <state x="287" y="238" width="484" height="557" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1583721316585" />
+    <state x="639" y="438" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1583721327296">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="639" y="438" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582810338250" />
+    <state x="639" y="438" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583721327296" />
     <state x="738" y="363" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1583720920961">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -463,14 +483,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583720093261" />
-    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2" timestamp="1583718744483">
+    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2" timestamp="1583721174188">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1583718744483" />
-    <state x="743" y="263" width="432" height="506" key="FileChooserDialogImpl" timestamp="1583720430282">
+    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1583721174188" />
+    <state x="692" y="101" key="Diagram.Print.Preview.Dialog" timestamp="1583726945635">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="743" y="263" width="432" height="506" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1583720430282" />
+    <state x="692" y="101" key="Diagram.Print.Preview.Dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583726945635" />
+    <state x="743" y="263" width="432" height="506" key="FileChooserDialogImpl" timestamp="1583726958230">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="743" y="263" width="432" height="506" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1583726958230" />
     <state x="800" y="416" width="310" height="200" key="Github.ShareDialog" timestamp="1582804344501">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -479,34 +503,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="714" y="145" width="481" height="743" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582804353039" />
-    <state width="1878" height="327" key="GridCell.Tab.0.bottom" timestamp="1583720985353">
+    <state width="1878" height="327" key="GridCell.Tab.0.bottom" timestamp="1583727053860">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="327" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583720985353" />
-    <state width="1878" height="327" key="GridCell.Tab.0.center" timestamp="1583720985352">
+    <state width="1878" height="327" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583727053860" />
+    <state width="1878" height="327" key="GridCell.Tab.0.center" timestamp="1583727053859">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="327" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583720985352" />
-    <state width="1878" height="327" key="GridCell.Tab.0.left" timestamp="1583720985352">
+    <state width="1878" height="327" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583727053859" />
+    <state width="1878" height="327" key="GridCell.Tab.0.left" timestamp="1583727053858">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="327" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583720985352" />
-    <state width="1878" height="327" key="GridCell.Tab.0.right" timestamp="1583720985352">
+    <state width="1878" height="327" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583727053858" />
+    <state width="1878" height="327" key="GridCell.Tab.0.right" timestamp="1583727053859">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="327" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583720985352" />
+    <state width="1878" height="327" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583727053859" />
     <state x="666" y="229" width="578" height="575" key="MultipleFileMergeDialog" timestamp="1583430509630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="666" y="229" width="578" height="575" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583430509630" />
-    <state x="395" y="73" width="1024" height="840" key="SettingsEditor" timestamp="1583720487764">
+    <state x="395" y="73" width="1024" height="840" key="SettingsEditor" timestamp="1583724992472">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="395" y="73" width="1024" height="840" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1583720487764" />
-    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2" timestamp="1583718759046">
+    <state x="395" y="73" width="1024" height="840" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1583724992472" />
+    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2" timestamp="1583721176212">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1583718759046" />
+    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1583721176212" />
     <state x="678" y="411" width="553" height="225" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1582811456630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -531,9 +555,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="624" y="238" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583713245505" />
-    <state x="1103" y="228" width="672" height="678" key="search.everywhere.popup" timestamp="1583714433637">
+    <state x="1103" y="228" width="672" height="678" key="search.everywhere.popup" timestamp="1583726787093">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1103" y="228" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583714433637" />
+    <state x="1103" y="228" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583726787093" />
   </component>
 </project>

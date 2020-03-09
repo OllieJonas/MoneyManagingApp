@@ -1,22 +1,18 @@
 [
   {
-    "name":"Fun",
-    "id":1,
-    "created":"03/03/2020",
+    "name": "Fun",
+    "id": 1,
+    "created": "Mar 9, 2020, 3:25:03 AM",
     "budget": 10000,
-    "transactions": [
+    "transactions":  [
       {
         "name": "Score",
         "id": 1,
-        "date": "03/03/2020",
+        "date": "Mar 9, 2020, 3:22:39 AM",
         "amount": 100,
-        "category_id": 1,
-        "notes": ["shots", "shots shots shots"],
+        "categoryId": 1,
+        "notes": ["Test","Test2"],
         "vendor": "SU Bath"
-      },
-      {
-        "name": "Food",
-        "id": 2
       }
     ]
   }

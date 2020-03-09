@@ -24,6 +24,7 @@ public class CategoryRepository implements IRepository<Category, Integer> {
 
     public CategoryRepository() {
         this.categories = new ArrayList<>();
+        instance = this;
     }
 
     @Override

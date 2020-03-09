@@ -1,14 +1,23 @@
 package me.csed2.moneymanager.categories;
 
 import com.google.gson.Gson;
+import me.csed2.moneymanager.categories.commands.LoadCategoriesCommand;
+import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.transactions.TransactionBuilder;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CategoryHandler {
 
     public CategoryHandler() {
-        new CategoryRepository();
+        try {
+            System.out.println("loaded cats");
+            new CategoryRepository(CommandDispatcher.getInstance().dispatchSync(new LoadCategoriesCommand("data.json")));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -21,10 +30,10 @@ public class CategoryHandler {
 
         Category category = new CategoryBuilder("Fun")
                 .withId(1)
-                .withCreationDate("03/03/2020")
+                .withCreationDate(new Date())
                 .withBudget(10000)
                 .addTransaction(new TransactionBuilder("Score")
-                        .withDate("03/03/2020")
+                        .withDate(new Date())
                         .withAmount(100)
                         .withCategoryID(1)
                         .withNotes("Test", "Test2")

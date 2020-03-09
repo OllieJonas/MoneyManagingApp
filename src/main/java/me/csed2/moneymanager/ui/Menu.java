@@ -6,9 +6,8 @@ import java.util.List;
 
 public abstract class Menu {
 
-    public Menu(Menu menu) {
-        User.getInstance().setCurrentMenu(this);
-        User.getInstance().setPreviousMenu(menu);
+    public Menu() {
+
     }
 
     public abstract void open();

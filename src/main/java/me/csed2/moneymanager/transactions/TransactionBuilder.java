@@ -2,6 +2,9 @@ package me.csed2.moneymanager.transactions;
 
 import me.csed2.moneymanager.categories.CategoryRepository;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * Builder class for a transaction.
  *
@@ -23,7 +26,7 @@ public class TransactionBuilder {
     /**
      * Date transaction occurred
      */
-    private String date;
+    private Date date;
 
     /**
      * How much the transaction cost
@@ -51,7 +54,7 @@ public class TransactionBuilder {
         return this;
     }
 
-    public TransactionBuilder withDate(String date) {
+    public TransactionBuilder withDate(Date date) {
         this.date = date;
         return this;
     }
@@ -76,6 +79,10 @@ public class TransactionBuilder {
     }
 
     private int getIdFromCat() {
-        return CategoryRepository.getInstance().readById(categoryId).getTransactions().size() + 1;
+        return 1;
     }
+
+//    private int getIdFromCat() {
+//        return CategoryRepository.getInstance().readById(categoryId).getTransactions().size() + 1;
+//    }
 }

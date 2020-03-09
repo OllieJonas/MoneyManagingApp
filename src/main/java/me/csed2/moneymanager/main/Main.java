@@ -1,12 +1,14 @@
 package me.csed2.moneymanager.main;
 
+import me.csed2.moneymanager.categories.CategoryHandler;
 import me.csed2.moneymanager.ui.cmdline.menu.MainMenu;
 
 public class Main {
 
     public Main() {
         new User();
-        new MainMenu();
+        new CategoryHandler();
+        User.getInstance().openMenu(new MainMenu());
     }
 
     /**

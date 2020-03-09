@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 /**
  * Transaction POJO.
  *
@@ -29,7 +31,7 @@ public class Transaction {
     /**
      * Date transaction occurred
      */
-    private String date;
+    private Date date;
 
     /**
      * How much the transaction cost

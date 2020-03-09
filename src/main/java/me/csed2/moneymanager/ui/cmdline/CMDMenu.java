@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.ui.cmdline;
 
 import me.csed2.moneymanager.main.User;
+import me.csed2.moneymanager.ui.IButton;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.Option;
 
@@ -11,12 +12,9 @@ public abstract class CMDMenu extends Menu {
 
     private List<Option> options = new ArrayList<>();
 
-    public CMDMenu(Menu previousMenu) {
-        super(previousMenu);
-
+    public CMDMenu() {
         addOptions();
         addExitOption();
-        open();
     }
 
     public abstract void addOptions();
@@ -38,6 +36,6 @@ public abstract class CMDMenu extends Menu {
     }
 
     private void addExitOption() {
-        addOption(new Option("Exit the Application").attachButton(User::exit));
+        addOption(new Option("Exit the Application", User::exit));
     }
 }

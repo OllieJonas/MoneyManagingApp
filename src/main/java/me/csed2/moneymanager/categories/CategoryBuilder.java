@@ -3,6 +3,7 @@ package me.csed2.moneymanager.categories;
 import me.csed2.moneymanager.transactions.Transaction;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("unused")
@@ -21,7 +22,7 @@ public class CategoryBuilder {
     /**
      * Date of creation
      */
-    private String created;
+    private Date created;
 
     /**
      * The budget the user has set for this category
@@ -43,7 +44,7 @@ public class CategoryBuilder {
         return this;
     }
 
-    public CategoryBuilder withCreationDate(String date) {
+    public CategoryBuilder withCreationDate(Date date) {
         this.created = date;
         return this;
     }

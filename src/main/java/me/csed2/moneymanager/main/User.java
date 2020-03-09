@@ -24,7 +24,14 @@ public class User {
         instance = this;
     }
 
+    public void openMenu(Menu menu) {
+        previousMenu = currentMenu;
+        currentMenu = menu;
+        menu.open();
+    }
+
     public synchronized void exit() {
+        System.out.println("Exiting program...");
         reader.close();
         System.exit(0);
     }

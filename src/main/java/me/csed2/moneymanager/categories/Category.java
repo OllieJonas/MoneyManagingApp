@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.csed2.moneymanager.transactions.Transaction;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,7 +34,7 @@ public class Category {
     /**
      * Date of creation
      */
-    private String created;
+    private Date created;
 
     /**
      * The budget the user has set for this category
@@ -50,9 +51,9 @@ public class Category {
     }
 
     public String toFormattedString() {
-        return name + " -> "
-                + "id: " + id
-                + "created: " + created
-                + "budget: " + budget;
+        return "category: " + name + "  " + "\n  "
+                + " id: " + id + "\n  "
+                + " created: " + created + "\n  "
+                + " budget: " + budget;
     }
 }
