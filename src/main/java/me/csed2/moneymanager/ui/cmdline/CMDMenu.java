@@ -1,21 +1,17 @@
 package me.csed2.moneymanager.ui.cmdline;
 
 import me.csed2.moneymanager.main.User;
-import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.Button;
+import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.utils.ConsoleUtils;
 import me.csed2.moneymanager.utils.StringAlignUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * This abstract class is responsible for building a Command Line menu.
- *
- * To create a Command Line Menu, simply extend this class, override the addButtons(); method, then use the addOption();
- * method to add any new buttons.
- */
 public abstract class CMDMenu implements Menu {
+
+    private String name;
 
     /**
      * The list of buttons inside this menu
@@ -24,11 +20,16 @@ public abstract class CMDMenu implements Menu {
 
     /**
      * Constructor for CMDMenu. Responsible for adding the buttons to the list.
+     *
+     * @param name The name of the menu.
      */
-    public CMDMenu() {
+    public CMDMenu(String name) {
+        this.name = name;
+
         addButtons();
         addExitButton();
     }
+
 
     /**
      * Inherited below, add all buttons in the subclass in this method.
@@ -51,7 +52,11 @@ public abstract class CMDMenu implements Menu {
     public void print() {
         StringAlignUtils util = new StringAlignUtils(50, StringAlignUtils.Alignment.CENTRE);
 
-        ConsoleUtils.printBorder(ConsoleUtils.BorderType.TOP);
+        ConsoleUtils.printBorder(ConsoleUtils.BorderType.TOP, false);
+
+        System.out.println(util.format(name));
+
+        System.out.print("\n");
 
         for (int i = 1; i <= buttons.size(); i++) {
             String toPrint = i + ": " + buttons.get(i - 1).getName();
@@ -61,7 +66,6 @@ public abstract class CMDMenu implements Menu {
         ConsoleUtils.printBorder(ConsoleUtils.BorderType.BOTTOM);
     }
 
-    @Override
     public List<Button> getButtons() {
         return buttons;
     }
@@ -73,4 +77,5 @@ public abstract class CMDMenu implements Menu {
     public <T extends CMDMenu> void addBackButton(T parent, boolean clearConsole) {
         addButton(new Button("Go Back", user -> user.openMenu(parent), true, clearConsole));
     }
+
 }

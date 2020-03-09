@@ -5,6 +5,7 @@ import me.csed2.moneymanager.categories.commands.LoadCategoriesCommand;
 import me.csed2.moneymanager.categories.commands.SaveCategoriesCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.transactions.Transaction;
+import me.csed2.moneymanager.utils.ConsoleUtils;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -71,9 +72,13 @@ public class CategoryRepository implements IRepository<Category, Integer> {
     }
 
     public void print() {
+        ConsoleUtils.printBorder(ConsoleUtils.BorderType.TOP);
+
         for (Category category : categories) {
             System.out.println(category.toFormattedString());
         }
+
+        ConsoleUtils.printBorder(ConsoleUtils.BorderType.BOTTOM);
     }
 
     public List<Transaction> readByTransaction(Transaction transaction) {

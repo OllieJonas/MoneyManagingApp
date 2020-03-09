@@ -8,6 +8,9 @@ import java.io.InputStreamReader;
 
 /**
  * This class listens for any input typed into the console, then sends it through the InputProcessor.
+ *
+ * @author Ollie
+ * @since 08/03/2020
  */
 public class InputReader extends Thread {
 

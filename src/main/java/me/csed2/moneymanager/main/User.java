@@ -5,6 +5,10 @@ import lombok.Setter;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.InputReader;
 
+/**
+ * @author Ollie
+ * @since 08/03/2020
+ */
 public class User {
 
     private InputReader reader;

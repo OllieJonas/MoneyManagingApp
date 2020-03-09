@@ -1,10 +1,11 @@
 package me.csed2.moneymanager.ui;
 
-import java.util.List;
-
+/**
+ * Interface for a menu.
+ *
+ * @author Ollie
+ * @since 08/03/2020
+ */
 public interface Menu {
-
     void print();
-
-    List<Button> getButtons();
 }

@@ -1,8 +1,11 @@
 package me.csed2.moneymanager.main;
 
 import me.csed2.moneymanager.categories.CategoryHandler;
-import me.csed2.moneymanager.ui.cmdline.menu.MainMenu;
 
+/**
+ * @author Ollie
+ * @since 03/03/2020
+ */
 public class Main {
 
     public Main() {

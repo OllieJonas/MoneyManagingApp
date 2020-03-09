@@ -5,6 +5,9 @@ import me.csed2.moneymanager.main.User;
 
 /**
  * This class contains the implementation of an option for the command line (eg: 3. Exit the Application).
+ *
+ * @author Ollie
+ * @since 08/03/2020
  */
 public class Button {
 

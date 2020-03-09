@@ -4,6 +4,9 @@ import me.csed2.moneymanager.main.User;
 
 /**
  * This interface is a functional interface which is used to determine an action that is performed upon clicking this button.
+ *
+ * @author Ollie
+ * @since 08/03/2020
  */
 @FunctionalInterface
 public interface IAction {

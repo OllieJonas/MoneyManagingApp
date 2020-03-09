@@ -52,6 +52,7 @@ public class TestButton {
     private static class TestMenu extends CMDMenu {
 
         public TestMenu() {
+            super("Test");
         }
 
         @Override
