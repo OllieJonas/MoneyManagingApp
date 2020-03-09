@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="1056.1209302325574" y="1342.5">me.csed2.moneymanager.categories.commands.SaveCategoriesCommand</node>
+    <node x="1370.0162790697668" y="1061.0">me.csed2.moneymanager.main.Main</node>
+    <node x="1379.4959302325574" y="0.0">me.csed2.moneymanager.transactions.Transaction</node>
+    <node x="1512.5366279069763" y="1930.0">me.csed2.moneymanager.transactions.commands.AddTransactionCommand</node>
+    <node x="1418.1209302325574" y="1342.5">me.csed2.moneymanager.categories.commands.LoadCategoriesCommand</node>
+    <node x="123.48662790697654" y="1342.5">me.csed2.moneymanager.categories.commands.AddCategoryCommand</node>
+    <node x="1443.4866279069765" y="1499.0">me.csed2.moneymanager.categories.CategoryRepository</node>
+    <node x="660.9866279069764" y="1229.0">me.csed2.moneymanager.command.ICommand</node>
+    <node x="10.5" y="637.0">me.csed2.moneymanager.categories.CategoryBuilder</node>
+    <node x="480.1209302325575" y="1342.0">me.csed2.moneymanager.command.CommandDispatcher</node>
+    <node x="1408.2662790697668" y="893.0">me.csed2.moneymanager.categories.CategoryHandler</node>
+    <node x="1510.6375" y="308.5">me.csed2.moneymanager.transactions.TransactionBuilder</node>
+    <node x="1340.0162790697668" y="1229.0">me.csed2.moneymanager.categories.commands.CategoriesCommand</node>
+    <node x="1048.0084302325574" y="298.0">me.csed2.moneymanager.categories.Category</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="me.csed2.moneymanager.categories.commands.LoadCategoriesCommand" target="me.csed2.moneymanager.categories.Category">
+      <point x="93.375" y="-48.0" />
+      <point x="1635.9959302325574" y="1322.0" />
+      <point x="1627.1834302325574" y="1322.0" />
+      <point x="1627.1834302325574" y="607.0" />
+      <point x="1298.5084302325574" y="607.0" />
+      <point x="83.5" y="124.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.transactions.commands.AddTransactionCommand" target="me.csed2.moneymanager.command.ICommand">
+      <point x="-56.200000000000045" y="-48.0" />
+      <point x="1596.8366279069764" y="1900.0" />
+      <point x="469.6209302325575" y="1900.0" />
+      <point x="469.6209302325575" y="1322.0" />
+      <point x="694.8866279069765" y="1322.0" />
+      <point x="-22.59999999999991" y="26.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.transactions.commands.AddTransactionCommand" target="me.csed2.moneymanager.categories.CategoryRepository">
+      <point x="0.0" y="-48.0" />
+      <point x="1653.0366279069763" y="1910.0" />
+      <point x="1613.4866279069765" y="1910.0" />
+      <point x="0.0" y="190.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.CategoryHandler" target="me.csed2.moneymanager.categories.CategoryRepository">
+      <point x="41.25" y="59.0" />
+      <point x="1532.0162790697668" y="1036.0" />
+      <point x="1677.6209302325574" y="1036.0" />
+      <point x="1677.6209302325574" y="1459.0" />
+      <point x="1592.2366279069765" y="1459.0" />
+      <point x="-21.25" y="-190.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.commands.AddCategoryCommand" target="me.csed2.moneymanager.categories.CategoryBuilder">
+      <point x="-36.875" y="-48.0" />
+      <point x="234.11162790697654" y="1312.0" />
+      <point x="163.3125" y="1312.0" />
+      <point x="163.3125" y="868.0" />
+      <point x="205.5" y="868.0" />
+      <point x="0.0" y="103.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.Category" target="me.csed2.moneymanager.transactions.Transaction">
+      <point x="83.5" y="-124.5" />
+      <point x="1298.5084302325574" y="278.0" />
+      <point x="1515.9959302325574" y="278.0" />
+      <point x="-39.0" y="114.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.transactions.TransactionBuilder" target="me.csed2.moneymanager.categories.CategoryRepository">
+      <point x="68.5" y="114.0" />
+      <point x="1716.1375" y="617.0" />
+      <point x="1737.0421511627906" y="617.0" />
+      <point x="1737.0421511627906" y="1479.0" />
+      <point x="1719.7366279069765" y="1479.0" />
+      <point x="106.25" y="-190.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.CategoryHandler" target="me.csed2.moneymanager.transactions.TransactionBuilder">
+      <point x="55.0" y="-59.0" />
+      <point x="1545.7662790697668" y="868.0" />
+      <point x="1557.6412790697668" y="868.0" />
+      <point x="1557.6412790697668" y="617.0" />
+      <point x="1579.1375" y="617.0" />
+      <point x="-68.5" y="114.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.commands.LoadCategoriesCommand" target="me.csed2.moneymanager.command.ICommand">
+      <point x="-93.375" y="-48.0" />
+      <point x="1449.2459302325574" y="1302.0" />
+      <point x="762.6866279069765" y="1302.0" />
+      <point x="45.200000000000045" y="26.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.commands.CategoriesCommand" target="me.csed2.moneymanager.main.Main">
+      <point x="0.0" y="-26.5" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.commands.AddCategoryCommand" target="me.csed2.moneymanager.command.ICommand">
+      <point x="110.625" y="-48.0" />
+      <point x="381.61162790697654" y="1312.0" />
+      <point x="672.2866279069764" y="1312.0" />
+      <point x="-45.200000000000045" y="26.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.commands.SaveCategoriesCommand" target="me.csed2.moneymanager.command.ICommand">
+      <point x="-136.79999999999995" y="-48.0" />
+      <point x="1090.3209302325574" y="1312.0" />
+      <point x="740.0866279069763" y="1312.0" />
+      <point x="22.59999999999991" y="26.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.transactions.commands.AddTransactionCommand" target="me.csed2.moneymanager.transactions.Transaction">
+      <point x="112.40000000000009" y="-48.0" />
+      <point x="1765.4366279069764" y="1910.0" />
+      <point x="1885.5125" y="1910.0" />
+      <point x="1885.5125" y="248.0" />
+      <point x="1710.9959302325574" y="248.0" />
+      <point x="156.0" y="114.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.CategoryBuilder" target="me.csed2.moneymanager.transactions.Transaction">
+      <point x="-48.75" y="-103.0" />
+      <point x="156.75" y="567.0" />
+      <point x="64.77499999999986" y="567.0" />
+      <point x="64.77499999999986" y="258.0" />
+      <point x="1437.9959302325574" y="258.0" />
+      <point x="-117.0" y="114.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.CategoryBuilder" target="me.csed2.moneymanager.categories.Category">
+      <point x="146.25" y="-103.0" />
+      <point x="351.75" y="597.0" />
+      <point x="1131.5084302325574" y="597.0" />
+      <point x="-83.5" y="124.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.transactions.TransactionBuilder" target="me.csed2.moneymanager.transactions.Transaction">
+      <point x="68.5" y="-114.0" />
+      <point x="1716.1375" y="278.0" />
+      <point x="1593.9959302325574" y="278.0" />
+      <point x="39.0" y="114.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.commands.SaveCategoriesCommand" target="me.csed2.moneymanager.categories.Category">
+      <point x="0.0" y="-48.0" />
+      <point x="1227.1209302325574" y="1322.0" />
+      <point x="1220.5084302325574" y="1322.0" />
+      <point x="1220.5084302325574" y="617.0" />
+      <point x="1231.7084302325575" y="617.0" />
+      <point x="16.700000000000045" y="124.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.commands.LoadCategoriesCommand" target="me.csed2.moneymanager.categories.commands.CategoriesCommand">
+      <point x="31.125" y="-48.0" />
+      <point x="1573.7459302325574" y="1322.0" />
+      <point x="1531.6412790697668" y="1322.0" />
+      <point x="82.125" y="26.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.CategoryRepository" target="me.csed2.moneymanager.categories.Category">
+      <point x="21.25" y="-190.5" />
+      <point x="1634.7366279069765" y="1469.0" />
+      <point x="1688.6209302325574" y="1469.0" />
+      <point x="1688.6209302325574" y="597.0" />
+      <point x="1331.9084302325573" y="597.0" />
+      <point x="116.89999999999986" y="124.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.CategoryHandler" target="me.csed2.moneymanager.categories.CategoryBuilder">
+      <point x="-55.0" y="-59.0" />
+      <point x="1435.7662790697668" y="868.0" />
+      <point x="335.5" y="868.0" />
+      <point x="130.0" y="103.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.commands.AddCategoryCommand" target="me.csed2.moneymanager.categories.Category">
+      <point x="36.875" y="-48.0" />
+      <point x="307.86162790697654" y="1302.0" />
+      <point x="411.0" y="1302.0" />
+      <point x="411.0" y="607.0" />
+      <point x="1164.9084302325575" y="607.0" />
+      <point x="-50.10000000000002" y="124.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.CategoryRepository" target="me.csed2.moneymanager.categories.commands.SaveCategoriesCommand">
+      <point x="-106.25" y="-190.5" />
+      <point x="1507.2366279069765" y="1469.0" />
+      <point x="1227.1209302325574" y="1469.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.transactions.commands.AddTransactionCommand" target="me.csed2.moneymanager.categories.Category">
+      <point x="-112.40000000000009" y="-48.0" />
+      <point x="1540.6366279069762" y="1910.0" />
+      <point x="0.0" y="1910.0" />
+      <point x="0.0" y="577.0" />
+      <point x="1064.7084302325575" y="577.0" />
+      <point x="-150.29999999999995" y="124.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.command.CommandDispatcher" target="me.csed2.moneymanager.command.ICommand">
+      <point x="0.0" y="-48.5" />
+      <point x="758.1209302325575" y="1322.0" />
+      <point x="717.4866279069764" y="1322.0" />
+      <point x="0.0" y="26.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.CategoryRepository" target="me.csed2.moneymanager.categories.commands.LoadCategoriesCommand">
+      <point x="-63.75" y="-190.5" />
+      <point x="1549.7366279069765" y="1479.0" />
+      <point x="1542.6209302325574" y="1479.0" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.commands.SaveCategoriesCommand" target="me.csed2.moneymanager.categories.commands.CategoriesCommand">
+      <point x="68.39999999999998" y="-48.0" />
+      <point x="1295.5209302325575" y="1312.0" />
+      <point x="1367.3912790697668" y="1312.0" />
+      <point x="-82.125" y="26.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.CategoryRepository" target="me.csed2.moneymanager.transactions.Transaction">
+      <point x="148.75" y="-190.5" />
+      <point x="1762.2366279069765" y="1479.0" />
+      <point x="1795.1375" y="1479.0" />
+      <point x="1795.1375" y="268.0" />
+      <point x="1632.9959302325574" y="268.0" />
+      <point x="78.0" y="114.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.main.Main" target="me.csed2.moneymanager.categories.CategoryHandler">
+      <point x="0.0" y="-59.0" />
+      <point x="-41.25" y="59.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.CategoryHandler" target="me.csed2.moneymanager.categories.Category">
+      <point x="0.0" y="-59.0" />
+      <point x="1490.7662790697668" y="868.0" />
+      <point x="1500.9584302325575" y="868.0" />
+      <point x="1500.9584302325575" y="617.0" />
+      <point x="1265.1084302325573" y="617.0" />
+      <point x="50.09999999999991" y="124.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.CategoryRepository" target="me.csed2.moneymanager.command.CommandDispatcher">
+      <point x="-148.75" y="-190.5" />
+      <point x="1464.7366279069765" y="1479.0" />
+      <point x="758.1209302325575" y="1479.0" />
+      <point x="0.0" y="48.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8999999999999995" x="507.11111111111154" y="978.5555555555559" />
+  <SelectedNodes>
+    <node>me.csed2.moneymanager.transactions.TransactionBuilder</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+    <Category>Methods</Category>
+    <Category>Constructors</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

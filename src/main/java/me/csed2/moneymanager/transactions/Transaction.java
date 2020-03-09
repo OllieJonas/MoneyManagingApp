@@ -3,9 +3,6 @@ package me.csed2.moneymanager.transactions;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import me.csed2.moneymanager.categories.Category;
-
-import java.util.Calendar;
 
 /**
  * Transaction POJO.
@@ -42,7 +39,7 @@ public class Transaction {
     /**
      * The category in which the transaction belongs
      */
-    private String category;
+    private int categoryId;
 
     /**
      * Any notes the user may have about the transaction

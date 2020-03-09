@@ -1,8 +1,6 @@
 package me.csed2.moneymanager.transactions;
 
-import me.csed2.moneymanager.categories.Category;
-
-import java.util.Calendar;
+import me.csed2.moneymanager.categories.CategoryRepository;
 
 /**
  * Builder class for a transaction.
@@ -23,11 +21,6 @@ public class TransactionBuilder {
     private String name;
 
     /**
-     * Its associated ID
-     */
-    private int id = -1;
-
-    /**
      * Date transaction occurred
      */
     private String date;
@@ -36,11 +29,6 @@ public class TransactionBuilder {
      * How much the transaction cost
      */
     private int amount;
-
-    /**
-     * The category in which the transaction belongs
-     */
-    private String category;
 
     /**
      * Any notes the user may have about the transaction
@@ -52,13 +40,10 @@ public class TransactionBuilder {
      */
     private String vendor;
 
+    private int categoryId;
+
     public TransactionBuilder(String name) {
         this.name = name;
-    }
-
-    public TransactionBuilder withId(int id) {
-        this.id = id;
-        return this;
     }
 
     public TransactionBuilder withAmount(int amount) {
@@ -66,13 +51,13 @@ public class TransactionBuilder {
         return this;
     }
 
-    public TransactionBuilder withCategory(String category) {
-        this.category = category;
+    public TransactionBuilder withDate(String date) {
+        this.date = date;
         return this;
     }
 
-    public TransactionBuilder withDate(String date) {
-        this.date = date;
+    public TransactionBuilder withCategoryID(int categoryId) {
+        this.categoryId = categoryId;
         return this;
     }
 
@@ -87,6 +72,10 @@ public class TransactionBuilder {
     }
 
     public Transaction build() {
-        return new Transaction(name, id, date, amount, category, notes, vendor);
+        return new Transaction(name, getIdFromCat(), date, amount, categoryId, notes, vendor);
+    }
+
+    private int getIdFromCat() {
+        return CategoryRepository.getInstance().readById(categoryId).getTransactions().size() + 1;
     }
 }

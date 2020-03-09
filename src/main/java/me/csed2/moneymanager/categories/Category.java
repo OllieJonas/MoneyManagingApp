@@ -45,4 +45,14 @@ public class Category {
      */
     private List<Transaction> transactions;
 
+    public void addTransaction(Transaction transaction) {
+        transactions.add(transaction);
+    }
+
+    public String toFormattedString() {
+        return name + " -> "
+                + "id: " + id
+                + "created: " + created
+                + "budget: " + budget;
+    }
 }

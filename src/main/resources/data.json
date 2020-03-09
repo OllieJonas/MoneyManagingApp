@@ -6,13 +6,13 @@
     "budget": 10000,
     "transactions": [
       {
-        "name":"Score",
-        "id":1,
-        "date":"03/03/2020",
-        "amount":100,
-        "category":"Fun",
-        "notes":["Test","Test2"],
-        "vendor":"SU Bath"
+        "name": "Score",
+        "id": 1,
+        "date": "03/03/2020",
+        "amount": 100,
+        "category_id": 1,
+        "notes": ["shots", "shots shots shots"],
+        "vendor": "SU Bath"
       },
       {
         "name": "Food",

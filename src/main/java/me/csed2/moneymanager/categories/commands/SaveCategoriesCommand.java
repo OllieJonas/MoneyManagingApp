@@ -9,19 +9,19 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
+import java.util.List;
 
-public class SaveCategoriesCommand extends CategoriesCommand implements ICommand<Void> {
+public class SaveCategoriesCommand extends CategoriesCommand implements ICommand<Boolean> {
 
-    private ArrayList<Category> categories;
+    private List<Category> categories;
 
-    public SaveCategoriesCommand(String fileName, ArrayList<Category> categories) throws FileNotFoundException {
+    public SaveCategoriesCommand(String fileName, List<Category> categories) throws FileNotFoundException {
         super(fileName);
         this.categories = categories;
     }
 
     @Override
-    public Void execute() {
+    public Boolean execute() {
 
         String gsonString = gson.toJson(categories);
 
