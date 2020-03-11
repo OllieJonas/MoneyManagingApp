@@ -88,6 +88,9 @@ public abstract class Display implements Menu{
         for(Button b : buttons){
             JButton jButton = new JButton(counter + ": " + b.getName());
             jButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            jButton.addActionListener(ButtonListener.getInstance());
+            ButtonListener.getButtonsAndActions().put(jButton.getActionCommand(), b.getAction()); //Make a KV pair for the button's label and the action.
+
             panel.add(jButton);
             panel.add(Box.createRigidArea(new Dimension(0, 10))); //Create gap between buttons
             counter++;
