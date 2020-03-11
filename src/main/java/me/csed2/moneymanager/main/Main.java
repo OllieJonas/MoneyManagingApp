@@ -14,7 +14,6 @@ public class Main {
 
         new User();
         new CategoryHandler();
-        User.getInstance().openMenu(new MainMenu());
 
         //Testing Frame
         User.getInstance().openMenu(Display.DISPLAY_EXAMPLE);
