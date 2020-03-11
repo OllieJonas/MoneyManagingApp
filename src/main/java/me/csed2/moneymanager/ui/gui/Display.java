@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.ui.gui;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -8,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import me.csed2.moneymanager.ui.Menu;
+import me.csed2.moneymanager.ui.Button;
 
 public abstract class Display implements Menu{
 
@@ -16,23 +18,27 @@ public abstract class Display implements Menu{
 
     //Frame
     protected JFrame frame;
+    protected JPanel panel;
 
     //Frame information
     private int width, height;
     private String title;
 
+    //Buttons
+    private ArrayList<Button> buttons;
+
     public Display(int width, int height, String title){
         this.width = width;
         this.height = height;
         this.title = title;
-        initFrame();
-        initDisplay();
-    }
 
-    /**
-     * Initiate and place widgets on frame
-     */
-    public abstract void initDisplay();
+        initFrame(); //Create the Frame and Panel
+        addButtons(); //Called by Subclasses - add all buttons
+        placeButtons(); //Turn those buttons into JButtons
+
+
+        frame.pack();
+    }
 
     private void initFrame(){
         frame = new JFrame(title);
@@ -42,11 +48,55 @@ public abstract class Display implements Menu{
         frame.setResizable(false);
         frame.setLocationRelativeTo(null); //Center on screen
         frame.setVisible(false);
-        frame.setLayout(new FlowLayout()); //experiment with this later
+
+        panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        frame.add(panel);
+
+        addTitle(title);
+        buttons = new ArrayList<Button>();
+    }
+
+    /** Place a Title Label for this menu.
+     * @param title The string to display as the title.
+     */
+    protected void addTitle(String title){
+        JLabel labTitle = new JLabel(title);
+        labTitle.setAlignmentX(Component.CENTER_ALIGNMENT); //Place title in the middle
+        labTitle.setFont(new Font("TimesRoman", Font.BOLD, 20));
+        panel.add(labTitle);
+    }
+
+    protected abstract void addButtons();
+
+    /**
+     * Add a Button object to the buttons ArrayList.
+     * @param button The Button object to add.
+     */
+    protected void addButton(Button button){
+        buttons.add(button);
+    }
+
+    /**
+     * Take all Buttons in the buttons ArrayList, and turn them into JButtons to place on the display.
+     */
+    private void placeButtons(){
+
+        int counter = 1;
+
+        for(Button b : buttons){
+            JButton jButton = new JButton(counter + ": " + b.getName());
+            jButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+            panel.add(jButton);
+            panel.add(Box.createRigidArea(new Dimension(0, 10))); //Create gap between buttons
+            counter++;
+        }
     }
 
     public void print(){
         frame.setVisible(true);
     }
+
 
 }
