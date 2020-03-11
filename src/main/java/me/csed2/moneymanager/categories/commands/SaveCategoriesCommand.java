@@ -14,12 +14,12 @@ import java.util.List;
 
 public class SaveCategoriesCommand implements ICommand<Boolean> {
 
-    private Gson gson;
-    private URL fileUrl;
+    private final Gson gson;
+    private final URL fileUrl;
 
-    private List<Category> categories;
+    private final List<Category> categories;
 
-    public SaveCategoriesCommand(String fileName, List<Category> categories) throws FileNotFoundException {
+    public SaveCategoriesCommand(String fileName, List<Category> categories) {
         this.gson = new Gson();
         this.fileUrl = Main.class.getClassLoader().getResource(fileName);
 

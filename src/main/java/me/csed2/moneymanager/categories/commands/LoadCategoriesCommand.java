@@ -15,11 +15,12 @@ import java.util.ArrayList;
 
 public class LoadCategoriesCommand implements ICommand<ArrayList<Category>> {
 
-    private Gson gson;
+    private final Gson gson;
 
     private JsonReader reader;
 
     public LoadCategoriesCommand(String fileName) throws FileNotFoundException {
+
         this.gson = new Gson();
         URL fileUrl = Main.class.getClassLoader().getResource(fileName);
 

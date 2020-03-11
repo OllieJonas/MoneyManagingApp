@@ -34,6 +34,9 @@ public class Button {
     @Getter
     private final boolean clearConsole;
 
+    @Getter
+    private final boolean surroundWithSpaces;
+
     /**
      * Default constructor for Button. Contains all fields.
      *
@@ -41,12 +44,18 @@ public class Button {
      * @param action The action to be performed upon execution
      * @param showMenu Whether the menu should be shown after execution
      * @param clearConsole Whether the console should be cleared before execution
+     * @param surroundWithSpaces Whether when printing the result should be surrounded with spaces
      */
-    public Button(String name, IAction action, boolean showMenu, boolean clearConsole) {
+    public Button(String name, IAction action, boolean showMenu, boolean clearConsole, boolean surroundWithSpaces) {
         this.name = name;
         this.action = action;
         this.showMenu = showMenu;
         this.clearConsole = clearConsole;
+        this.surroundWithSpaces = surroundWithSpaces;
+    }
+
+    public Button(String name, IAction action, boolean showMenu, boolean surroundWithSpaces) {
+        this(name, action, showMenu, true, surroundWithSpaces);
     }
 
     /**
@@ -56,18 +65,11 @@ public class Button {
      * @param action The action to be performed upon execution
      */
     public Button(String name, IAction action) {
-        this(name, action, false, true);
+        this(name, action, false, true, true);
     }
 
-    /**
-     * Constructor that calls the main constructor with the value of ClearConsole being true.
-     *
-     * @param name The text to be printed out
-     * @param action The action to be performed
-     * @param showMenu Whether the menu should be shown after execution
-     */
-    public Button(String name, IAction action, boolean showMenu) {
-        this(name, action, showMenu, true);
+    public Button(String name, IAction action, boolean surroundWithSpaces) {
+        this(name, action, false, true, surroundWithSpaces);
     }
 
     /**

@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.ui.cmdline.step;
+package me.csed2.moneymanager.ui.cmdline.stage;
 
 import lombok.Getter;
 import me.csed2.moneymanager.main.User;
@@ -10,15 +10,16 @@ import java.util.List;
 /**
  * Abstract implementation of a step menu.
  */
-public abstract class StepMenu implements Menu {
+public abstract class StageMenu implements Menu {
 
     @Getter
-    private String name;
+    private final String name;
 
     @Getter
-    protected List<Step<?>> steps;
+    protected List<Stage<?>> stages;
 
-    protected Menu previousMenu;
+    @Getter
+    protected final Menu previousMenu;
 
     private int count = 0;
 
@@ -27,21 +28,21 @@ public abstract class StepMenu implements Menu {
      *
      * @param name
      */
-    public StepMenu(String name, Menu previousMenu) {
+    public StageMenu(String name, Menu previousMenu) {
         this.name = name;
-        this.steps = new ArrayList<>();
+        this.stages = new ArrayList<>();
         this.previousMenu = previousMenu;
 
-        addSteps();
+        addStages();
         beginPhase();
     }
 
     @Override
     public void print() {
-        steps.get(0).print();
+        stages.get(0).print();
     }
 
-    public abstract void addSteps();
+    public abstract void addStages();
 
     public abstract void exitPhase();
 
@@ -49,22 +50,22 @@ public abstract class StepMenu implements Menu {
 
     }
 
-    public void addStep(Step<?> step) {
-        steps.add(step);
+    public void addStage(Stage<?> stage) {
+        stages.add(stage);
     }
 
-    public void nextStep() {
+    public void nextStage() {
         count++;
-        if (count >= steps.size()) {
+        if (count >= stages.size()) {
             exitPhase();
         } else {
-            Step<?> nextStep = steps.get(count);
-            nextStep.print();
+            Stage<?> nextStage = stages.get(count);
+            nextStage.print();
         }
     }
 
-    public Step<?> currentStep() {
-        return steps.get(count);
+    public Stage<?> currentStage() {
+        return stages.get(count);
     }
 
     public void openPreviousMenu() {
@@ -73,7 +74,7 @@ public abstract class StepMenu implements Menu {
 
     public void restart() {
         count = 0;
-        steps = new ArrayList<>();
+        stages = new ArrayList<>();
         beginPhase();
         print();
     }

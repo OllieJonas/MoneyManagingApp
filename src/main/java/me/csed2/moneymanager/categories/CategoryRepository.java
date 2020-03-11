@@ -4,7 +4,6 @@ import me.csed2.moneymanager.IRepository;
 import me.csed2.moneymanager.categories.commands.LoadCategoriesCommand;
 import me.csed2.moneymanager.categories.commands.SaveCategoriesCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
-import me.csed2.moneymanager.main.User;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.utils.ConsoleUtils;
 
@@ -92,6 +91,7 @@ public class CategoryRepository implements IRepository<Category, Integer> {
 
     public List<Transaction> readByTransaction(Transaction transaction) {
         List<Transaction> transactions = new ArrayList<>();
+
         for (Category category : categories) {
             for (Transaction trans : category.getTransactions()) {
                 if (transaction.getCategoryId() == transaction.getCategoryId()) {
@@ -117,11 +117,7 @@ public class CategoryRepository implements IRepository<Category, Integer> {
     }
 
     public void save() {
-        try {
-            CommandDispatcher.getInstance().dispatchSync(new SaveCategoriesCommand("data.json", categories));
-        } catch (FileNotFoundException e) {
-            System.out.println("Error: File not found!");
-        }
+        CommandDispatcher.getInstance().dispatchSync(new SaveCategoriesCommand("data.json", categories));
     }
 
     public static CategoryRepository getInstance() {

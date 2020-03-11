@@ -54,6 +54,6 @@ public class Category {
         return "category: " + name + "  " + "\n  "
                 + " id: " + id + "\n  "
                 + " created: " + created + "\n  "
-                + " budget: " + budget;
+                + " budget: £" + Math.round(budget / 100);
     }
 }

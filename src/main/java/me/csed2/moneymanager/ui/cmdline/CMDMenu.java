@@ -13,6 +13,8 @@ public abstract class CMDMenu implements Menu {
 
     private String name;
 
+    private Menu parent;
+
     /**
      * The list of buttons inside this menu
      */
@@ -27,6 +29,15 @@ public abstract class CMDMenu implements Menu {
         this.name = name;
 
         addButtons();
+        addExitButton();
+    }
+
+    public CMDMenu(String name, Menu parent) {
+        this.name = name;
+        this.parent = parent;
+
+        addButtons();
+        addBackButton(true);
         addExitButton();
     }
 
@@ -74,8 +85,12 @@ public abstract class CMDMenu implements Menu {
         addButton(new Button("Exit the Application", User::exit));
     }
 
-    public <T extends CMDMenu> void addBackButton(T parent, boolean clearConsole) {
-        addButton(new Button("Go Back", user -> user.openMenu(parent), true, clearConsole));
+    public void addBackButton(boolean clearConsole) {
+        addButton(new Button("Go Back", user -> {
+            if (parent != null) {
+                user.openMenu(parent);
+            }
+        }, true, clearConsole, true));
     }
 
 }
