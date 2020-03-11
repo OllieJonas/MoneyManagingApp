@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dca5a5fc-7958-4d1a-9a37-00820f621c46" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/Display.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/Display.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +94,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Maven.MoneyManagingApp [clean,install]">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="CategoryHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="me.csed2.moneymanager.categories.CategoryHandler" />
       <module name="MoneyManagingApp" />
@@ -443,7 +442,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583931252621</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Started new GUI Branch.&#10;Working on Display Class">
+      <created>1583932087882</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1583932087882</updated>
+    </task>
+    <option name="localTasksCounter" value="25" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -487,7 +493,8 @@
     <MESSAGE value="Finished adding basic implementation of Command Line menu" />
     <MESSAGE value="Generally improved functionality of UI&#10;Updated JSON file and Category/Transaction to use the appropriate data types (now using Date for dates as opposed to String)" />
     <MESSAGE value="Added commenting to classes created.&#10;Generally improved code.&#10;Added Back Button functionality." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added commenting to classes created.&#10;Generally improved code.&#10;Added Back Button functionality." />
+    <MESSAGE value="Started new GUI Branch.&#10;Working on Display Class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started new GUI Branch.&#10;Working on Display Class" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="672" key="#Project_Structure" />
