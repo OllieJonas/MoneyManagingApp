@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.main;
 
 import me.csed2.moneymanager.categories.CategoryHandler;
+import me.csed2.moneymanager.ui.gui.Display;
 
 /**
  * @author Ollie
@@ -9,6 +10,12 @@ import me.csed2.moneymanager.categories.CategoryHandler;
 public class Main {
 
     public Main() {
+
+        //Testing Frame
+        Display d = new Display(400, 400, "itsa me, michael");
+
+        //End of Testing
+
         new User();
         new CategoryHandler();
         User.getInstance().openMenu(new MainMenu());
