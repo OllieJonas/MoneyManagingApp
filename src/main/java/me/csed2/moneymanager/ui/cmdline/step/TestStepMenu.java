@@ -3,7 +3,7 @@ package me.csed2.moneymanager.ui.cmdline.step;
 public class TestStepMenu extends StepMenu {
 
     public TestStepMenu() {
-        super("Test");
+        super("Test", null);
     }
 
     @Override

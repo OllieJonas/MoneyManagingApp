@@ -1,11 +1,15 @@
 package me.csed2.moneymanager.ui.cmdline.step;
 
 import lombok.Getter;
+import me.csed2.moneymanager.main.User;
 import me.csed2.moneymanager.ui.Menu;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Abstract implementation of a step menu.
+ */
 public abstract class StepMenu implements Menu {
 
     @Getter
@@ -14,6 +18,8 @@ public abstract class StepMenu implements Menu {
     @Getter
     protected List<Step<?>> steps;
 
+    protected Menu previousMenu;
+
     private int count = 0;
 
     /**
@@ -21,11 +27,13 @@ public abstract class StepMenu implements Menu {
      *
      * @param name
      */
-    public StepMenu(String name) {
+    public StepMenu(String name, Menu previousMenu) {
         this.name = name;
         this.steps = new ArrayList<>();
+        this.previousMenu = previousMenu;
 
         addSteps();
+        beginPhase();
     }
 
     @Override
@@ -36,6 +44,10 @@ public abstract class StepMenu implements Menu {
     public abstract void addSteps();
 
     public abstract void exitPhase();
+
+    public void beginPhase() {
+
+    }
 
     public void addStep(Step<?> step) {
         steps.add(step);
@@ -53,5 +65,16 @@ public abstract class StepMenu implements Menu {
 
     public Step<?> currentStep() {
         return steps.get(count);
+    }
+
+    public void openPreviousMenu() {
+        User.getInstance().openMenu(previousMenu);
+    }
+
+    public void restart() {
+        count = 0;
+        steps = new ArrayList<>();
+        beginPhase();
+        print();
     }
 }

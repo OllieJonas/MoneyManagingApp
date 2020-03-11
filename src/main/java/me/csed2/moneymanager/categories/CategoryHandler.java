@@ -13,7 +13,6 @@ public class CategoryHandler {
 
     public CategoryHandler() {
         try {
-            System.out.println("loaded cats");
             new CategoryRepository(CommandDispatcher.getInstance().dispatchSync(new LoadCategoriesCommand("data.json")));
         } catch (FileNotFoundException e) {
             e.printStackTrace();

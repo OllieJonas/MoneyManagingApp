@@ -3,104 +3,119 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="1245.0" y="1461.0">me.csed2.moneymanager.ui.cmdline.InputProcessor</node>
-    <node x="1051.0" y="936.5">me.csed2.moneymanager.categories.commands.LoadCategoriesCommand</node>
-    <node x="435.0" y="915.0">me.csed2.moneymanager.transactions.commands.AddTransactionCommand</node>
-    <node x="659.0" y="1107.0">me.csed2.moneymanager.main.User</node>
-    <node x="0.0" y="1107.0">me.csed2.moneymanager.utils.ConsoleUtils</node>
-    <node x="952.0" y="321.0">me.csed2.moneymanager.utils.StringAlignUtils.Alignment</node>
-    <node x="941.875" y="768.5">me.csed2.moneymanager.command.ICommand</node>
-    <node x="445.75" y="146.0">me.csed2.moneymanager.ui.cmdline.CMDMenu</node>
-    <node x="385.0" y="466.0">me.csed2.moneymanager.ui.cmdline.menu.MainMenu</node>
-    <node x="230.0" y="1461.0">me.csed2.moneymanager.command.CommandDispatcher</node>
-    <node x="1239.0" y="0.0">me.csed2.moneymanager.transactions.TransactionBuilder</node>
-    <node x="494.25" y="0.0">me.csed2.moneymanager.ui.Menu</node>
+    <node x="751.0" y="1775.0">me.csed2.moneymanager.ui.cmdline.InputProcessor</node>
+    <node x="616.0" y="1318.5">me.csed2.moneymanager.categories.commands.LoadCategoriesCommand</node>
+    <node x="0.0" y="1297.0">me.csed2.moneymanager.transactions.commands.AddTransactionCommand</node>
+    <node x="796.0" y="477.5">me.csed2.moneymanager.ui.cmdline.step.TestStepMenu</node>
+    <node x="1610.0" y="1107.0">me.csed2.moneymanager.main.User</node>
+    <node x="777.0" y="103.0">me.csed2.moneymanager.ui.cmdline.step.StepMenu</node>
+    <node x="435.0" y="725.0">me.csed2.moneymanager.utils.ConsoleUtils</node>
+    <node x="506.875" y="1150.5">me.csed2.moneymanager.command.ICommand</node>
+    <node x="445.75" y="125.0">me.csed2.moneymanager.ui.cmdline.CMDMenu</node>
+    <node x="1135.0" y="321.0">me.csed2.moneymanager.utils.StringAlignUtils.Alignment</node>
+    <node x="1218.0" y="1481.0">me.csed2.moneymanager.command.CommandDispatcher</node>
+    <node x="1422.0" y="0.0">me.csed2.moneymanager.transactions.TransactionBuilder</node>
+    <node x="638.125" y="0.0">me.csed2.moneymanager.ui.Menu</node>
+    <node x="414.0" y="1775.0">me.csed2.moneymanager.exceptions.InvalidTypeException</node>
     <node x="97.5" y="0.0">me.csed2.moneymanager.IRepository</node>
-    <node x="560.0" y="423.0">me.csed2.moneymanager.ui.cmdline.menu.CategoriesMenu</node>
-    <node x="1320.0" y="915.0">me.csed2.moneymanager.categories.commands.SaveCategoriesCommand</node>
-    <node x="321.0" y="1107.0">me.csed2.moneymanager.ui.Button</node>
-    <node x="0.0" y="1461.0">me.csed2.moneymanager.ui.cmdline.InputReader</node>
-    <node x="1490.0" y="1461.0">me.csed2.moneymanager.ui.IAction</node>
-    <node x="1041.0" y="1461.0">me.csed2.moneymanager.main.Main</node>
-    <node x="1257.0" y="1107.0">me.csed2.moneymanager.transactions.Transaction</node>
-    <node x="736.0" y="915.0">me.csed2.moneymanager.categories.commands.AddCategoryCommand</node>
+    <node x="885.0" y="1297.0">me.csed2.moneymanager.categories.commands.SaveCategoriesCommand</node>
+    <node x="763.0" y="1481.0">me.csed2.moneymanager.ui.cmdline.step.Step</node>
+    <node x="1272.0" y="1107.0">me.csed2.moneymanager.ui.Button</node>
+    <node x="988.0" y="1481.0">me.csed2.moneymanager.ui.cmdline.InputReader</node>
+    <node x="210.0" y="1775.0">me.csed2.moneymanager.main.Main</node>
+    <node x="996.0" y="1775.0">me.csed2.moneymanager.ui.IAction</node>
+    <node x="373.0" y="1481.0">me.csed2.moneymanager.transactions.Transaction</node>
+    <node x="301.0" y="1297.0">me.csed2.moneymanager.categories.commands.AddCategoryCommand</node>
     <node x="0.0" y="256.0">me.csed2.moneymanager.categories.CategoryRepository</node>
     <node x="0.0" y="725.0">me.csed2.moneymanager.categories.CategoryBuilder</node>
-    <node x="831.0" y="1461.0">me.csed2.moneymanager.categories.CategoryHandler</node>
-    <node x="79.0" y="1341.0">me.csed2.moneymanager.utils.ConsoleUtils.BorderType</node>
-    <node x="1320.9375" y="725.0">me.csed2.moneymanager.categories.commands.CategoriesCommand</node>
-    <node x="821.0" y="0.0">me.csed2.moneymanager.utils.StringAlignUtils</node>
-    <node x="884.0" y="1107.0">me.csed2.moneymanager.categories.Category</node>
-    <node x="0.0" y="1667.0">me.csed2.moneymanager.ui.gui</node>
+    <node x="560.0" y="467.0">me.csed2.moneymanager.categories.menu.cmdline.CategoriesMenu</node>
+    <node x="0.0" y="1775.0">me.csed2.moneymanager.categories.CategoryHandler</node>
+    <node x="541.5" y="981.0">me.csed2.moneymanager.utils.ConsoleUtils.BorderType</node>
+    <node x="885.9375" y="1107.0">me.csed2.moneymanager.categories.commands.CategoriesCommand</node>
+    <node x="1004.0" y="0.0">me.csed2.moneymanager.utils.StringAlignUtils</node>
+    <node x="385.0" y="488.5">me.csed2.moneymanager.main.MainMenu</node>
+    <node x="0.0" y="1481.0">me.csed2.moneymanager.categories.Category</node>
   </nodes>
   <notes />
   <edges>
+    <edge source="me.csed2.moneymanager.ui.cmdline.step.TestStepMenu" target="me.csed2.moneymanager.ui.cmdline.step.StepMenu">
+      <point x="0.0" y="-59.0" />
+      <point x="0.0" y="157.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.transactions.commands.AddTransactionCommand" target="me.csed2.moneymanager.command.ICommand">
+      <point x="0.0" y="-69.5" />
+      <point x="140.5" y="1267.0" />
+      <point x="521.0" y="1267.0" />
+      <point x="-42.375" y="26.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.ui.cmdline.CMDMenu" target="me.csed2.moneymanager.ui.Menu">
+      <point x="0.0" y="-135.0" />
+      <point x="565.25" y="78.0" />
+      <point x="666.625" y="78.0" />
+      <point x="-28.5" y="26.5" />
+    </edge>
     <edge source="me.csed2.moneymanager.categories.CategoryRepository" target="me.csed2.moneymanager.IRepository">
       <point x="0.0" y="-212.0" />
       <point x="0.0" y="103.0" />
     </edge>
-    <edge source="me.csed2.moneymanager.categories.commands.LoadCategoriesCommand" target="me.csed2.moneymanager.command.ICommand">
-      <point x="-62.24999999999994" y="-48.0" />
-      <point x="1113.25" y="895.0" />
-      <point x="1012.5" y="895.0" />
-      <point x="14.125" y="26.5" />
-    </edge>
-    <edge source="me.csed2.moneymanager.categories.commands.AddCategoryCommand" target="me.csed2.moneymanager.command.ICommand">
-      <point x="0.0" y="-69.5" />
-      <point x="883.5" y="895.0" />
-      <point x="984.25" y="895.0" />
-      <point x="-14.125" y="26.5" />
-    </edge>
-    <edge source="me.csed2.moneymanager.ui.cmdline.CMDMenu" target="me.csed2.moneymanager.ui.Menu">
-      <point x="0.0" y="-113.5" />
-      <point x="0.0" y="48.0" />
-    </edge>
-    <edge source="me.csed2.moneymanager.ui.cmdline.menu.MainMenu" target="me.csed2.moneymanager.ui.cmdline.CMDMenu">
-      <point x="0.0" y="-26.5" />
-      <point x="462.5" y="398.0" />
-      <point x="505.5" y="398.0" />
-      <point x="-59.75" y="113.5" />
-    </edge>
-    <edge source="me.csed2.moneymanager.transactions.commands.AddTransactionCommand" target="me.csed2.moneymanager.command.ICommand">
-      <point x="0.0" y="-69.5" />
-      <point x="575.5" y="885.0" />
-      <point x="956.0" y="885.0" />
-      <point x="-42.375" y="26.5" />
-    </edge>
-    <edge source="me.csed2.moneymanager.categories.commands.SaveCategoriesCommand" target="me.csed2.moneymanager.command.ICommand">
-      <point x="-85.5" y="-69.5" />
-      <point x="1405.5" y="885.0" />
-      <point x="1040.75" y="885.0" />
-      <point x="42.375" y="26.5" />
-    </edge>
     <edge source="me.csed2.moneymanager.categories.commands.LoadCategoriesCommand" target="me.csed2.moneymanager.categories.commands.CategoriesCommand">
-      <point x="62.25000000000006" y="-48.0" />
-      <point x="1237.75" y="895.0" />
-      <point x="1375.6875" y="895.0" />
+      <point x="62.25" y="-48.0" />
+      <point x="802.75" y="1277.0" />
+      <point x="940.6875" y="1277.0" />
       <point x="-54.75" y="70.0" />
     </edge>
     <edge source="me.csed2.moneymanager.utils.ConsoleUtils.BorderType" target="me.csed2.moneymanager.utils.ConsoleUtils">
       <point x="0.0" y="-37.5" />
-      <point x="0.0" y="92.0" />
+      <point x="0.0" y="103.0" />
     </edge>
     <edge source="me.csed2.moneymanager.utils.StringAlignUtils.Alignment" target="me.csed2.moneymanager.utils.StringAlignUtils">
       <point x="0.0" y="-48.5" />
       <point x="0.0" y="135.5" />
     </edge>
+    <edge source="me.csed2.moneymanager.categories.commands.LoadCategoriesCommand" target="me.csed2.moneymanager.command.ICommand">
+      <point x="-62.25" y="-48.0" />
+      <point x="678.25" y="1277.0" />
+      <point x="577.5" y="1277.0" />
+      <point x="14.125" y="26.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.main.MainMenu" target="me.csed2.moneymanager.ui.cmdline.CMDMenu">
+      <point x="0.0" y="-48.0" />
+      <point x="462.5" y="442.0" />
+      <point x="505.5" y="442.0" />
+      <point x="-59.75" y="135.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.ui.cmdline.step.StepMenu" target="me.csed2.moneymanager.ui.Menu">
+      <point x="0.0" y="-157.0" />
+      <point x="868.0" y="78.0" />
+      <point x="723.625" y="78.0" />
+      <point x="28.5" y="26.5" />
+    </edge>
     <edge source="me.csed2.moneymanager.categories.commands.SaveCategoriesCommand" target="me.csed2.moneymanager.categories.commands.CategoriesCommand">
       <point x="85.5" y="-69.5" />
-      <point x="1576.5" y="895.0" />
-      <point x="1485.1875" y="895.0" />
+      <point x="1141.5" y="1277.0" />
+      <point x="1050.1875" y="1277.0" />
       <point x="54.75" y="70.0" />
     </edge>
-    <edge source="me.csed2.moneymanager.ui.cmdline.menu.CategoriesMenu" target="me.csed2.moneymanager.ui.cmdline.CMDMenu">
+    <edge source="me.csed2.moneymanager.categories.menu.cmdline.CategoriesMenu" target="me.csed2.moneymanager.ui.cmdline.CMDMenu">
       <point x="0.0" y="-69.5" />
-      <point x="668.0" y="398.0" />
-      <point x="625.0" y="398.0" />
-      <point x="59.75" y="113.5" />
+      <point x="668.0" y="442.0" />
+      <point x="625.0" y="442.0" />
+      <point x="59.75" y="135.0" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.commands.AddCategoryCommand" target="me.csed2.moneymanager.command.ICommand">
+      <point x="0.0" y="-69.5" />
+      <point x="448.5" y="1277.0" />
+      <point x="549.25" y="1277.0" />
+      <point x="-14.125" y="26.5" />
+    </edge>
+    <edge source="me.csed2.moneymanager.categories.commands.SaveCategoriesCommand" target="me.csed2.moneymanager.command.ICommand">
+      <point x="-85.5" y="-69.5" />
+      <point x="970.5" y="1267.0" />
+      <point x="605.75" y="1267.0" />
+      <point x="42.375" y="26.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="1.4" x="723.3571428571429" y="430.57142857142856" />
+  <settings layout="Hierarchic Group" zoom="0.6999999999999994" x="1028.3571428571431" y="377.1428571428575" />
   <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
