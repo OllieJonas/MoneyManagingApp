@@ -2,6 +2,7 @@ package me.csed2.moneymanager.main;
 
 import me.csed2.moneymanager.categories.CategoryHandler;
 import me.csed2.moneymanager.ui.gui.Display;
+import me.csed2.moneymanager.ui.gui.DisplayExample;
 
 /**
  * @author Ollie
@@ -11,14 +12,13 @@ public class Main {
 
     public Main() {
 
-        //Testing Frame
-        Display d = new Display(400, 400, "itsa me, michael");
-
-        //End of Testing
-
         new User();
         new CategoryHandler();
         User.getInstance().openMenu(new MainMenu());
+
+        //Testing Frame
+        User.getInstance().openMenu(Display.DISPLAY_EXAMPLE);
+        //End of Testing
     }
 
     /**
