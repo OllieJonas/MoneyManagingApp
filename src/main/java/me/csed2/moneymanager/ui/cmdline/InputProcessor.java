@@ -25,62 +25,62 @@ public class InputProcessor {
      * @param user The current instance of the user using this.
      * @param input Their input into the console.
      */
-    public static <T> void process(User user, String input) {
+    public static void process(User user, String input) {
 
-        if (user.getCurrentMenu() != null) {
+            if (user.getCurrentMenu() != null) {
 
-            Menu menu = user.getCurrentMenu();
+                Menu menu = user.getCurrentMenu();
 
-            if (menu instanceof StepMenu) {
+                if (menu instanceof StepMenu) {
 
-                StepMenu stepMenu = (StepMenu) menu;
+                    StepMenu stepMenu = (StepMenu) menu;
 
-                Step<?> currentStep = stepMenu.currentStep();
+                    Step<?> currentStep = stepMenu.currentStep(); // Get the current result
 
-                try {
-                    Object result = StringReaderFactory.parse(input, currentStep.getResultType());
-                    currentStep.setResult(result);
-                    stepMenu.nextStep();
-                } catch (InvalidTypeException e) {
-                    System.out.println(e.getMessage());
-                }
-
-            } else {
-                CMDMenu cmdMenu = (CMDMenu) menu;
-
-                try {
-                    int optionNo = Integer.parseInt(input); // Convert string to integer
-                    List<Button> buttons = cmdMenu.getButtons();
-
-                    if (optionNo <= 0 || optionNo > buttons.size()) { // Checking that the user has entered a valid number
-                        System.out.println("Please enter a number between the given values!");
-
-                    } else {
-
-                        Button button = buttons.get(optionNo - 1); // ArrayList will be different from printed value
-
-                        if (cmdMenu instanceof CMDMenu && button.isClearConsole()) {
-                            ConsoleUtils.clearConsole();
-                        }
-
-                        System.out.print("\n");
-
-                        button.execute(user);
-
-                        System.out.print("\n");
-
-                        if (button.isShowMenu()) { // If this option means that you reprint the menu
-                            user.getCurrentMenu().print();
-                        }
+                    try {
+                        Object result = StringReaderFactory.parse(input, currentStep.getResultType()); // Convert string to object with correct type
+                        currentStep.setResult(result); // set result to this
+                        stepMenu.nextStep(); // Load next step
+                    } catch (InvalidTypeException e) {
+                        System.out.println(e.getMessage());
                     }
-                } catch (NumberFormatException e) {
-                    System.out.println("Please type in a number!");
+
+                } else {
+                    CMDMenu cmdMenu = (CMDMenu) menu;
+
+                    try {
+                        int optionNo = Integer.parseInt(input); // Convert string to integer
+                        List<Button> buttons = cmdMenu.getButtons();
+
+                        if (optionNo <= 0 || optionNo > buttons.size()) { // Checking that the user has entered a valid number
+                            System.out.println("Please enter a number between the given values!");
+
+                        } else {
+
+                            Button button = buttons.get(optionNo - 1); // ArrayList will be different from printed value
+
+                            if (button.isClearConsole()) {
+                                ConsoleUtils.clearConsole();
+                            }
+
+                            System.out.print("\n");
+
+                            button.execute(user);
+
+                            System.out.print("\n");
+
+                            if (button.isShowMenu()) { // If this option means that you reprint the menu
+                                user.getCurrentMenu().print();
+                            }
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println("Please type in a number!");
+                    }
                 }
-            }
+
             } else {
             System.out.println("Fatal Error: Please try loading the program again! If the problem persists, please get in touch with a developer!");
             user.exit();
         }
-
-        }
     }
+}

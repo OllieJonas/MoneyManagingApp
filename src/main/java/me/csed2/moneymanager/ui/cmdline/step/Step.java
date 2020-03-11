@@ -6,7 +6,9 @@ import me.csed2.moneymanager.utils.ClassUtils;
 public class Step<T> {
 
     @Getter
-    private final String text;
+    private String text;
+
+    private String[] multipleText;
 
     @Getter
     private T result;
@@ -19,11 +21,22 @@ public class Step<T> {
         this.text = text;
     }
 
+    public Step(Class<T> resultType, String... text) {
+        this.resultType = resultType;
+        this.multipleText = text;
+    }
+
     public void setResult(Object result) {
         this.result = ClassUtils.getResultFromObject(result, resultType);
     }
 
     public void print() {
-        System.out.println(text);
+        if (text != null) {
+            System.out.println(text);
+        } else if (multipleText != null) {
+            for (String line : multipleText) {
+                System.out.println(line);
+            }
+        }
     }
 }

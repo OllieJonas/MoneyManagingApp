@@ -1,22 +1,28 @@
 package me.csed2.moneymanager.categories.commands;
 
+import com.google.gson.Gson;
+import com.google.gson.stream.JsonReader;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.command.ICommand;
+import me.csed2.moneymanager.main.Main;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.OutputStreamWriter;
+import java.io.*;
+import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class SaveCategoriesCommand extends CategoriesCommand implements ICommand<Boolean> {
+public class SaveCategoriesCommand implements ICommand<Boolean> {
+
+    private Gson gson;
+    private URL fileUrl;
 
     private List<Category> categories;
 
     public SaveCategoriesCommand(String fileName, List<Category> categories) throws FileNotFoundException {
-        super(fileName);
+        this.gson = new Gson();
+        this.fileUrl = Main.class.getClassLoader().getResource(fileName);
+
         this.categories = categories;
     }
 
@@ -36,7 +42,7 @@ public class SaveCategoriesCommand extends CategoriesCommand implements ICommand
             }
 
             FileOutputStream fOut = new FileOutputStream(myFile);
-            OutputStreamWriter myOutWriter =new OutputStreamWriter(fOut);
+            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
 
             myOutWriter.append(gsonString);
 
@@ -44,7 +50,8 @@ public class SaveCategoriesCommand extends CategoriesCommand implements ICommand
             fOut.close();
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-        return null;
+        return true;
     }
 }

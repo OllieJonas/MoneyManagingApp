@@ -4,6 +4,7 @@ import me.csed2.moneymanager.IRepository;
 import me.csed2.moneymanager.categories.commands.LoadCategoriesCommand;
 import me.csed2.moneymanager.categories.commands.SaveCategoriesCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.main.User;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.utils.ConsoleUtils;
 
@@ -81,6 +82,14 @@ public class CategoryRepository implements IRepository<Category, Integer> {
         ConsoleUtils.printBorder(ConsoleUtils.BorderType.BOTTOM);
     }
 
+    public void printNames() {
+        StringBuilder builder = new StringBuilder();
+
+        for (Category category : categories) {
+            builder.append(category.getName()).append(" ");
+        }
+    }
+
     public List<Transaction> readByTransaction(Transaction transaction) {
         List<Transaction> transactions = new ArrayList<>();
         for (Category category : categories) {
@@ -93,16 +102,33 @@ public class CategoryRepository implements IRepository<Category, Integer> {
         return transactions;
     }
 
+    public Category readByName(String name) {
+        for (Category category : categories) {
+            if (category.getName().equalsIgnoreCase(name)) {
+                return category;
+            }
+        }
+        return null;
+    }
+
     public void loadFromJson() throws FileNotFoundException {
         this.categories = CommandDispatcher.getInstance().dispatchSync(new LoadCategoriesCommand("data.json"));
         orderById(); // In case it's out of order... (it shouldn't be but just in case)
     }
 
-    public void save() throws FileNotFoundException {
-        CommandDispatcher.getInstance().dispatchSync(new SaveCategoriesCommand("data.json", categories));
+    public void save() {
+        try {
+            CommandDispatcher.getInstance().dispatchSync(new SaveCategoriesCommand("data.json", categories));
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: File not found!");
+        }
     }
 
     public static CategoryRepository getInstance() {
         return instance;
+    }
+
+    public Integer nextId() {
+        return categories.size() + 1;
     }
 }
