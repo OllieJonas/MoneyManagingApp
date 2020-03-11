@@ -2,11 +2,20 @@ package me.csed2.moneymanager.ui.gui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.HashMap;
+import java.util.Map;
 
-public class Display {
+import me.csed2.moneymanager.ui.Menu;
+
+public abstract class Display implements Menu{
+
+    //Create Static Instance for each Menu
+    public static final Display DISPLAY_EXAMPLE = new DisplayExample();
 
     //Frame
-    private JFrame frame;
+    protected JFrame frame;
 
     //Frame information
     private int width, height;
@@ -16,16 +25,14 @@ public class Display {
         this.width = width;
         this.height = height;
         this.title = title;
-
+        initFrame();
         initDisplay();
     }
 
     /**
      * Initiate and place widgets on frame
      */
-    private void initDisplay(){
-        initFrame();
-    }
+    public abstract void initDisplay();
 
     private void initFrame(){
         frame = new JFrame(title);
@@ -34,6 +41,11 @@ public class Display {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Exit program on close
         frame.setResizable(false);
         frame.setLocationRelativeTo(null); //Center on screen
+        frame.setVisible(false);
+        frame.setLayout(new FlowLayout()); //experiment with this later
+    }
+
+    public void print(){
         frame.setVisible(true);
     }
 
