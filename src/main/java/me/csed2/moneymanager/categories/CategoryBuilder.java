@@ -59,7 +59,7 @@ public class CategoryBuilder {
         return this;
     }
 
-    public CategoryBuilder withTransactions(ArrayList<Transaction> transactions) {
+    public CategoryBuilder withTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
         return this;
     }

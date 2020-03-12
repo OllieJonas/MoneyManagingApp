@@ -13,8 +13,7 @@ public class CategoryHandler {
 
     public CategoryHandler() {
         try {
-            System.out.println("loaded cats");
-            new CategoryRepository(CommandDispatcher.getInstance().dispatchSync(new LoadCategoriesCommand("data.json")));
+            new CategoryRepository().loadFromJson();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -24,6 +23,7 @@ public class CategoryHandler {
      * Prints an example entry for the data.json file.
      * Used for showing the formatting required.
      */
+    @SuppressWarnings("unused")
     private void printExample() {
         ArrayList<Category> categories = new ArrayList<>();
         Gson gson = new Gson();
@@ -43,14 +43,5 @@ public class CategoryHandler {
 
         categories.add(category);
         System.out.println(gson.toJson(categories));
-    }
-
-    /**
-     * Used for testing
-     *
-     * @param args null
-     */
-    public static void main(String[] args) {
-        new CategoryHandler();
     }
 }

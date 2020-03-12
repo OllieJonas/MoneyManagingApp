@@ -82,7 +82,4 @@ public class TransactionBuilder {
         return 1;
     }
 
-//    private int getIdFromCat() {
-//        return CategoryRepository.getInstance().readById(categoryId).getTransactions().size() + 1;
-//    }
 }

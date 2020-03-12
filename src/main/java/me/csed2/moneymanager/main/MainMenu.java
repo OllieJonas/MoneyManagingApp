@@ -1,9 +1,10 @@
 package me.csed2.moneymanager.main;
 
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.menu.cmdline.CategoriesMenu;
+import me.csed2.moneymanager.transactions.menu.cmdline.TransactionMenu;
 import me.csed2.moneymanager.ui.Button;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
-import me.csed2.moneymanager.ui.cmdline.step.TestStepMenu;
+import me.csed2.moneymanager.ui.cmdline.stage.TestStageMenu;
 
 /**
  * This class contains the implementation for the main menu.
@@ -22,10 +23,8 @@ public class MainMenu extends CMDMenu {
 
     @Override
     public void addButtons() {
-        addButton(new Button("foo", user -> System.out.println("bar"), true));
-
-        addButton(new Button("List All Categories", user -> CategoryRepository.getInstance().print(), true));
-
-        addButton(new Button("Test Step Menu", user -> user.openMenu(new TestStepMenu())));
+        addButton(new Button("Categories", user -> user.openMenu(new CategoriesMenu(this))));
+        addButton(new Button("Transactions", user -> user.openMenu(new TransactionMenu(this))));
+        addButton(new Button("Test Step Menu", user -> user.openMenu(new TestStageMenu(this))));
     }
 }

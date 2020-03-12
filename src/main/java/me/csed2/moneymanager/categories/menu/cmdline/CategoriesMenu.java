@@ -1,8 +1,12 @@
 package me.csed2.moneymanager.categories.menu.cmdline;
 
 import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.menu.cmdline.stage.AddCategoryMenu;
+import me.csed2.moneymanager.categories.menu.cmdline.stage.RemoveCategoryMenu;
 import me.csed2.moneymanager.main.MainMenu;
+import me.csed2.moneymanager.main.User;
 import me.csed2.moneymanager.ui.Button;
+import me.csed2.moneymanager.ui.IAction;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
 
 /**
@@ -10,20 +14,22 @@ import me.csed2.moneymanager.ui.cmdline.CMDMenu;
  */
 public class CategoriesMenu extends CMDMenu {
 
-    private MainMenu parent;
-
     public CategoriesMenu(MainMenu parent) {
-        super("Categories");
-
-        this.parent = parent;
+        super("Categories", parent);
     }
-
 
     @Override
     public void addButtons() {
 
-        addButton(new Button("List All Categories", user -> CategoryRepository.getInstance().print(), true));
+        addButton(new Button("List All Categories", user -> CategoryRepository.getInstance().print(), true, true));
 
-        addBackButton(parent, true);
+        addButton(new Button("Add a New Category", user -> user.openMenu(new AddCategoryMenu(this)), false));
+
+        addButton(new Button("Remove a Category", user -> user.openMenu(new RemoveCategoryMenu(this)), false));
+
+        addButton(new Button("Update a Category", user -> user.openMenu(new UpdateCategoryMenu(this))));
+
+        addButton(new Button("Test", user -> System.out.println("this works!")));
+
     }
 }

@@ -2,8 +2,12 @@ package me.csed2.moneymanager.main;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.csed2.moneymanager.AutoSave;
+import me.csed2.moneymanager.categories.CategoryRepository;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.InputReader;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author Ollie
@@ -11,7 +15,6 @@ import me.csed2.moneymanager.ui.cmdline.InputReader;
  */
 public class User {
 
-    private InputReader reader;
 
     @Getter @Setter
     private Menu previousMenu;
@@ -19,12 +22,19 @@ public class User {
     @Getter @Setter
     private Menu currentMenu;
 
+    private InputReader reader;
+
+    private AutoSave autoSave;
+
     @Getter
     private static User instance;
 
     public User() {
         reader = new InputReader();
         reader.start();
+
+        autoSave = new AutoSave(5, TimeUnit.MINUTES);
+        autoSave.start();
         instance = this;
     }
 
@@ -36,7 +46,13 @@ public class User {
 
     public synchronized void exit() {
         System.out.println("Exiting program...");
-        reader.close();
+
+        CategoryRepository.getInstance().save();
+
+        autoSave.interrupt();
+
+        reader.interrupt();
+
         System.exit(0);
     }
 }
