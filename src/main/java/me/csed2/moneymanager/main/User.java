@@ -2,6 +2,7 @@ package me.csed2.moneymanager.main;
 
 import lombok.Getter;
 import lombok.Setter;
+import me.csed2.moneymanager.categories.CategoryRepository;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.InputReader;
 
@@ -36,6 +37,7 @@ public class User {
 
     public synchronized void exit() {
         System.out.println("Exiting program...");
+        CategoryRepository.getInstance().save();
         reader.close();
         System.exit(0);
     }

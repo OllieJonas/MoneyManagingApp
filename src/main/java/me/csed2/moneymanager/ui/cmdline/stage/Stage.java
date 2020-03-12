@@ -1,9 +1,9 @@
-package me.csed2.moneymanager.ui.cmdline.step;
+package me.csed2.moneymanager.ui.cmdline.stage;
 
 import lombok.Getter;
 import me.csed2.moneymanager.utils.ClassUtils;
 
-public class Step<T> {
+public class Stage<T> {
 
     @Getter
     private String text;
@@ -16,12 +16,12 @@ public class Step<T> {
     @Getter
     private Class<T> resultType;
 
-    public Step(Class<T> resultType, String text) {
+    public Stage(Class<T> resultType, String text) {
         this.resultType = resultType;
         this.text = text;
     }
 
-    public Step(Class<T> resultType, String... text) {
+    public Stage(Class<T> resultType, String... text) {
         this.resultType = resultType;
         this.multipleText = text;
     }
