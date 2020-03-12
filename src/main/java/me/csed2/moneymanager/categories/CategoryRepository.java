@@ -1,5 +1,6 @@
 package me.csed2.moneymanager.categories;
 
+import lombok.Getter;
 import me.csed2.moneymanager.IRepository;
 import me.csed2.moneymanager.categories.commands.LoadCategoriesCommand;
 import me.csed2.moneymanager.categories.commands.SaveCategoriesCommand;
@@ -11,12 +12,25 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.BiPredicate;
 
 public class CategoryRepository implements IRepository<Category, Integer> {
 
     private List<Category> categories;
 
     private static CategoryRepository instance;
+
+    @Getter
+    private BiPredicate<String, String> namePredicate = String::equalsIgnoreCase;
+
+    @Getter
+    private BiPredicate<Integer, Integer> idPredicate = Integer::equals;
+
+    @Getter
+    private BiPredicate<Category, Transaction> transactionPredicate =
+            (category, transaction) -> category.getId() == transaction.getCategoryId();
+
+
 
     public CategoryRepository(ArrayList<Category> categories) {
         this.categories = categories;
@@ -35,8 +49,9 @@ public class CategoryRepository implements IRepository<Category, Integer> {
 
     @Override
     public Category readById(Integer id) {
+
         for (Category category : categories) {
-            if (category.getId() == id) {
+            if (idPredicate.test(category.getId(), id)) {
                 return category;
             }
         }
@@ -95,10 +110,8 @@ public class CategoryRepository implements IRepository<Category, Integer> {
         List<Transaction> transactions = new ArrayList<>();
 
         for (Category category : categories) {
-            for (Transaction trans : category.getTransactions()) {
-                if (transaction.getCategoryId() == transaction.getCategoryId()) {
-                    transactions.add(trans);
-                }
+            if (transactionPredicate.test(category, transaction)) {
+                transactions.add(transaction);
             }
         }
         return transactions;
@@ -106,7 +119,7 @@ public class CategoryRepository implements IRepository<Category, Integer> {
 
     public Category readByName(String name) {
         for (Category category : categories) {
-            if (category.getName().equalsIgnoreCase(name)) {
+            if (namePredicate.test(category.getName(), name)) {
                 return category;
             }
         }
@@ -122,15 +135,15 @@ public class CategoryRepository implements IRepository<Category, Integer> {
         CommandDispatcher.getInstance().dispatchSync(new SaveCategoriesCommand("data.json", categories));
     }
 
-    public static CategoryRepository getInstance() {
-        return instance;
-    }
-
     public Integer nextId() {
         return categories.get(categories.size() - 1).getId() + 1;
     }
 
     public Integer nextTransactionID(Category category) {
         return category.getTransactions().get(category.getTransactions().size() - 1).getId() + 1;
+    }
+
+    public static CategoryRepository getInstance() {
+        return instance;
     }
 }

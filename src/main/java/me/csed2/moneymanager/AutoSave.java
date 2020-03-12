@@ -62,7 +62,7 @@ public class AutoSave {
      */
     public synchronized void interrupt() {
         future.cancel(true);
-        service.shutdownNow();
-        service.shutdown();
+        service.shutdownNow(); // Ensures the process has shut down
+        service.shutdown(); // Shut down the ExecutorService
     }
 }

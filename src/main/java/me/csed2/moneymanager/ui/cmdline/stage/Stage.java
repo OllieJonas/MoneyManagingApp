@@ -60,7 +60,7 @@ public class Stage<T> {
     }
 
     public Stage<T> withExecutionPhase(ExecutionPhase phase) {
-        phase.execute();
+        this.phase = phase;
         return this;
     }
 

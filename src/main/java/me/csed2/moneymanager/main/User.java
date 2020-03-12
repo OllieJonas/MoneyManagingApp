@@ -15,15 +15,16 @@ import java.util.concurrent.TimeUnit;
  */
 public class User {
 
-    private InputReader reader;
-
-    private AutoSave autoSave;
 
     @Getter @Setter
     private Menu previousMenu;
 
     @Getter @Setter
     private Menu currentMenu;
+
+    private InputReader reader;
+
+    private AutoSave autoSave;
 
     @Getter
     private static User instance;
