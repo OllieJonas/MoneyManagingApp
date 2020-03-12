@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="08364290-c790-4a44-9539-459ea2dced1f" name="Default Changelist" comment="Started implementation of Transactions:`&#10;&#10;- Created CMD Line Menu for Transactions&#10;- Finished work on AddTransactionCommand and RemoveTransactionCommand&#10;- Started work on UpdateTransactionCommand&#10;&#10;Added ExecutionPhase to StageMenu&#10;&#10;General tidying up of the code.">
+    <list default="true" id="08364290-c790-4a44-9539-459ea2dced1f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/AutoSave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/AutoSave.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryHandler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/CategoriesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/CategoriesMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/stage/Stage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/stage/Stage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/me/csed2/moneymanager/ui/cmdline/TestButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/me/csed2/moneymanager/ui/cmdline/TestButton.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,7 +273,7 @@
       <workItem from="1583433275038" duration="13744000" />
       <workItem from="1583714257894" duration="924000" />
       <workItem from="1583715202273" duration="34207000" />
-      <workItem from="1583846813157" duration="37967000" />
+      <workItem from="1583846813157" duration="39619000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1582808077680</created>
@@ -464,7 +457,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584011979308</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Changed CategoryRepository to now use BiPredicates&#10;&#10;General improvements">
+      <created>1584019387820</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1584019387820</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,7 +472,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Implemented JUnit" />
     <MESSAGE value="Cleaned up pom.xml" />
     <MESSAGE value="Updated .gitignore" />
     <MESSAGE value="Added Category class to allow for better cloning of repo" />
@@ -497,7 +496,8 @@
     <MESSAGE value="Fixing category UI menu" />
     <MESSAGE value="Made progress on Category Menu&#10;&#10;Changed name of StepMenu to StageMenu&#10;&#10;Finished implementation of UpdateCategoryCommandAddCategoryCommand and RemoveCategoryCommand&#10;&#10;Fixed bug regarding the Back Button throwing a NullPointerException&#10;&#10;General improvements to StageMenu" />
     <MESSAGE value="Started implementation of Transactions:&#10;&#10;- Created CMD Line Menu for Transactions&#10;- Finished work on AddTransactionCommand and RemoveTransactionCommand&#10;- Started work on UpdateTransactionCommand&#10;&#10;Added ExecutionPhase to StageMenu&#10;&#10;General tidying up of the code." />
-    <option name="LAST_COMMIT_MESSAGE" value="Started implementation of Transactions:&#10;&#10;- Created CMD Line Menu for Transactions&#10;- Finished work on AddTransactionCommand and RemoveTransactionCommand&#10;- Started work on UpdateTransactionCommand&#10;&#10;Added ExecutionPhase to StageMenu&#10;&#10;General tidying up of the code." />
+    <MESSAGE value="Changed CategoryRepository to now use BiPredicates&#10;&#10;General improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed CategoryRepository to now use BiPredicates&#10;&#10;General improvements" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="672" key="#Project_Structure" timestamp="1582809727214">
@@ -532,10 +532,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584007807113" />
-    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2" timestamp="1584011997414">
+    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2" timestamp="1584019387668">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1584011997414" />
+    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1584019387668" />
     <state x="692" y="101" key="Diagram.Print.Preview.Dialog" timestamp="1583726945635">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -552,22 +552,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="714" y="145" width="481" height="743" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582804353039" />
-    <state width="1878" height="350" key="GridCell.Tab.0.bottom" timestamp="1584018819673">
+    <state width="1878" height="350" key="GridCell.Tab.0.bottom" timestamp="1584020149710">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="350" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1584018819673" />
-    <state width="1878" height="350" key="GridCell.Tab.0.center" timestamp="1584018819671">
+    <state width="1878" height="350" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1584020149710" />
+    <state width="1878" height="350" key="GridCell.Tab.0.center" timestamp="1584020149709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="350" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1584018819671" />
-    <state width="1878" height="350" key="GridCell.Tab.0.left" timestamp="1584018819670">
+    <state width="1878" height="350" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1584020149709" />
+    <state width="1878" height="350" key="GridCell.Tab.0.left" timestamp="1584020149709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="350" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1584018819670" />
-    <state width="1878" height="350" key="GridCell.Tab.0.right" timestamp="1584018819671">
+    <state width="1878" height="350" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1584020149709" />
+    <state width="1878" height="350" key="GridCell.Tab.0.right" timestamp="1584020149709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="350" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584018819671" />
+    <state width="1878" height="350" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584020149709" />
     <state x="666" y="229" width="578" height="575" key="MultipleFileMergeDialog" timestamp="1583430509630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -576,10 +576,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="395" y="73" width="1024" height="840" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1583931153904" />
-    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2" timestamp="1584012011589">
+    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2" timestamp="1584019400589">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584012011589" />
+    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584019400589" />
     <state x="678" y="411" width="553" height="225" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1582811456630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

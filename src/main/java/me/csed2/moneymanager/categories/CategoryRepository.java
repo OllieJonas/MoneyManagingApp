@@ -10,9 +10,11 @@ import me.csed2.moneymanager.utils.ConsoleUtils;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 public class CategoryRepository implements IRepository<Category, Integer> {
 
@@ -106,7 +108,7 @@ public class CategoryRepository implements IRepository<Category, Integer> {
         System.out.println(builder.toString());
     }
 
-    public List<Transaction> readByTransaction(Transaction transaction) {
+    public List<Transaction> readTransactions(Transaction transaction) {
         List<Transaction> transactions = new ArrayList<>();
 
         for (Category category : categories) {
@@ -117,9 +119,32 @@ public class CategoryRepository implements IRepository<Category, Integer> {
         return transactions;
     }
 
+
+    public List<Transaction> readTransactions(Category category, Predicate<? super String> predicate) {
+        List<Transaction> transactions = new ArrayList<>();
+        for (Transaction transaction : category.getTransactions()) {
+
+            if (predicate.test(transaction.getName())) {
+                transactions.add(transaction);
+            }
+
+        }
+        return transactions;
+    }
+
     public Category readByName(String name) {
         for (Category category : categories) {
             if (namePredicate.test(category.getName(), name)) {
+                return category;
+            }
+        }
+        return null;
+    }
+
+
+    public Category readByName(String name, BiPredicate<? super String, ? super String> predicate) {
+        for (Category category : categories) {
+            if (namePredicate.and(predicate).test(category.getName(), name)) {
                 return category;
             }
         }
