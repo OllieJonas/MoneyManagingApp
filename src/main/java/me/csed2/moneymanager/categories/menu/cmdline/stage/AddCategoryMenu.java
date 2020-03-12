@@ -34,7 +34,9 @@ public class AddCategoryMenu extends StageMenu {
         Integer budget = (Integer) stages.get(1).getResult();
         List<Transaction> transactions = new ArrayList<>();
 
-        CommandDispatcher.getInstance().dispatchSync(new AddCategoryCommand(name, budget, transactions));
+        if (CommandDispatcher.getInstance().dispatchSync(new AddCategoryCommand(name, budget, transactions))) {
+            System.out.println("Category successfully added!");
+        }
 
         openPreviousMenu();
     }

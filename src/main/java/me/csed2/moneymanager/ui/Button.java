@@ -54,12 +54,22 @@ public class Button {
         this.surroundWithSpaces = surroundWithSpaces;
     }
 
+    /**
+     * Constructor that calls the main constructor with the values of:
+     * ClearConsole: true
+     *
+     * @param name Text to be printed out
+     * @param action The action to be performed upon execution
+     * @param showMenu Whether to reprint the menu the user is on upon completion
+     * @param surroundWithSpaces Whether to surround the execution with spaces
+     */
     public Button(String name, IAction action, boolean showMenu, boolean surroundWithSpaces) {
         this(name, action, showMenu, true, surroundWithSpaces);
     }
 
     /**
-     * Constructor that calls the main constructor with values of ShowMenu: false, ClearConsole: true.
+     * Constructor that calls the main constructor with values of:
+     * ShowMenu: false, ClearConsole: true, SurroundWithSpaces: true
      *
      * @param name The text to be printed out
      * @param action The action to be performed upon execution
@@ -68,6 +78,14 @@ public class Button {
         this(name, action, false, true, true);
     }
 
+    /**
+     * Constructor that calls the main constructor with the values of:
+     * ShowMenu: false, ClearConsole: true
+     *
+     * @param name Name of the button
+     * @param action The action to be performed upon execution
+     * @param surroundWithSpaces Whether to surround the execution with spaces
+     */
     public Button(String name, IAction action, boolean surroundWithSpaces) {
         this(name, action, false, true, surroundWithSpaces);
     }

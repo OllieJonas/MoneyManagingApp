@@ -1,31 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="08364290-c790-4a44-9539-459ea2dced1f" name="Default Changelist" comment="Made progress on Category Menu&#10;&#10;Changed name of StepMenu to StageMenu&#10;&#10;Finished implementation of UpdateCategoryCommandAddCategoryCommand and RemoveCategoryCommand&#10;&#10;Fixed bug regarding the Back Button throwing a NullPointerException&#10;&#10;General improvements to StageMenu">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryArgType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/commands/UpdateCategoryCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/UpdateCategoryMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/stage/UpdateBudgetMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/stage/UpdateNameMenu.java" afterDir="false" />
+    <list default="true" id="08364290-c790-4a44-9539-459ea2dced1f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/Category.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/commands/LoadCategoriesCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/commands/LoadCategoriesCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/commands/RemoveCategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/commands/RemoveCategoryCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/commands/SaveCategoriesCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/commands/SaveCategoriesCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/CategoriesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/CategoriesMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/step/AddCategoryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/stage/AddCategoryMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/step/RemoveCategoryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/stage/RemoveCategoryMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/step/UpdateCategoryMenu.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/CMDMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/CMDMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/InputProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/InputProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/step/Step.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/stage/Stage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/step/StepMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/stage/StageMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/step/TestStepMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/stage/TestStageMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/utils/ClassUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/utils/ClassUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,6 +80,7 @@
       <recent name="me.csed2.moneymanager.main" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="me.csed2.moneymanager.transactions.menu.cmdline.stage" />
       <recent name="me.csed2.moneymanager.categories.menu.cmdline.step" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -294,7 +273,7 @@
       <workItem from="1583433275038" duration="13744000" />
       <workItem from="1583714257894" duration="924000" />
       <workItem from="1583715202273" duration="34207000" />
-      <workItem from="1583846813157" duration="12528000" />
+      <workItem from="1583846813157" duration="39619000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1582808077680</created>
@@ -464,7 +443,28 @@
       <option name="project" value="LOCAL" />
       <updated>1583931230597</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Made progress on Category Menu&#10;&#10;Changed name of StepMenu to StageMenu&#10;&#10;Finished implementation of UpdateCategoryCommandAddCategoryCommand and RemoveCategoryCommand&#10;&#10;Fixed bug regarding the Back Button throwing a NullPointerException&#10;&#10;General improvements to StageMenu">
+      <created>1583939327021</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1583939327021</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Started implementation of Transactions:&#10;&#10;- Created CMD Line Menu for Transactions&#10;- Finished work on AddTransactionCommand and RemoveTransactionCommand&#10;- Started work on UpdateTransactionCommand&#10;&#10;Added ExecutionPhase to StageMenu&#10;&#10;General tidying up of the code.">
+      <created>1584011979308</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1584011979308</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Changed CategoryRepository to now use BiPredicates&#10;&#10;General improvements">
+      <created>1584019387820</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1584019387820</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -472,8 +472,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Initial commit v2" />
-    <MESSAGE value="Implemented JUnit" />
     <MESSAGE value="Cleaned up pom.xml" />
     <MESSAGE value="Updated .gitignore" />
     <MESSAGE value="Added Category class to allow for better cloning of repo" />
@@ -497,7 +495,9 @@
     <MESSAGE value="Added new StepMenu.&#10;Expanded on existing utils." />
     <MESSAGE value="Fixing category UI menu" />
     <MESSAGE value="Made progress on Category Menu&#10;&#10;Changed name of StepMenu to StageMenu&#10;&#10;Finished implementation of UpdateCategoryCommandAddCategoryCommand and RemoveCategoryCommand&#10;&#10;Fixed bug regarding the Back Button throwing a NullPointerException&#10;&#10;General improvements to StageMenu" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made progress on Category Menu&#10;&#10;Changed name of StepMenu to StageMenu&#10;&#10;Finished implementation of UpdateCategoryCommandAddCategoryCommand and RemoveCategoryCommand&#10;&#10;Fixed bug regarding the Back Button throwing a NullPointerException&#10;&#10;General improvements to StageMenu" />
+    <MESSAGE value="Started implementation of Transactions:&#10;&#10;- Created CMD Line Menu for Transactions&#10;- Finished work on AddTransactionCommand and RemoveTransactionCommand&#10;- Started work on UpdateTransactionCommand&#10;&#10;Added ExecutionPhase to StageMenu&#10;&#10;General tidying up of the code." />
+    <MESSAGE value="Changed CategoryRepository to now use BiPredicates&#10;&#10;General improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed CategoryRepository to now use BiPredicates&#10;&#10;General improvements" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="672" key="#Project_Structure" timestamp="1582809727214">
@@ -508,34 +508,34 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="71" y="217" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583430452445" />
-    <state x="287" y="238" width="484" height="557" key="#com.intellij.ide.util.MemberChooser" timestamp="1583936568115">
+    <state x="287" y="238" width="484" height="557" key="#com.intellij.ide.util.MemberChooser" timestamp="1584008455337">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="287" y="238" width="484" height="557" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1583936568115" />
+    <state x="287" y="238" width="484" height="557" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584008455337" />
     <state x="639" y="438" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1583721327296">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="639" y="438" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583721327296" />
-    <state x="738" y="363" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1583936789567">
+    <state x="738" y="363" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1584003157175">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="738" y="363" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1583936789567" />
+    <state x="738" y="363" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1920.1040@0.0.1920.1040" timestamp="1584003157175" />
     <state x="738" y="391" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1582810313936">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="738" y="391" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040@0.0.1920.1040" timestamp="1582810313936" />
-    <state x="712" y="163" width="476" height="703" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1583939176002">
+    <state x="712" y="163" width="476" height="703" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1584003081173">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="712" y="163" width="476" height="703" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583939176002" />
-    <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1583936718103">
+    <state x="712" y="163" width="476" height="703" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584003081173" />
+    <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584007807113">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583936718103" />
-    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2" timestamp="1583939304880">
+    <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584007807113" />
+    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2" timestamp="1584019387668">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1583939304880" />
+    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1584019387668" />
     <state x="692" y="101" key="Diagram.Print.Preview.Dialog" timestamp="1583726945635">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -552,22 +552,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="714" y="145" width="481" height="743" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1582804353039" />
-    <state width="1878" height="340" key="GridCell.Tab.0.bottom" timestamp="1583939204044">
+    <state width="1878" height="350" key="GridCell.Tab.0.bottom" timestamp="1584020149710">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="340" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1583939204044" />
-    <state width="1878" height="340" key="GridCell.Tab.0.center" timestamp="1583939204043">
+    <state width="1878" height="350" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1584020149710" />
+    <state width="1878" height="350" key="GridCell.Tab.0.center" timestamp="1584020149709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="340" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1583939204043" />
-    <state width="1878" height="340" key="GridCell.Tab.0.left" timestamp="1583939204043">
+    <state width="1878" height="350" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1584020149709" />
+    <state width="1878" height="350" key="GridCell.Tab.0.left" timestamp="1584020149709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="340" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1583939204043" />
-    <state width="1878" height="340" key="GridCell.Tab.0.right" timestamp="1583939204044">
+    <state width="1878" height="350" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1584020149709" />
+    <state width="1878" height="350" key="GridCell.Tab.0.right" timestamp="1584020149709">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1878" height="340" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1583939204044" />
+    <state width="1878" height="350" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584020149709" />
     <state x="666" y="229" width="578" height="575" key="MultipleFileMergeDialog" timestamp="1583430509630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -576,10 +576,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="395" y="73" width="1024" height="840" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1583931153904" />
-    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2" timestamp="1583931247676">
+    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2" timestamp="1584019400589">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1583931247675" />
+    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584019400589" />
     <state x="678" y="411" width="553" height="225" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1582811456630">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -588,14 +588,18 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="275" y="434" width="398" height="165" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040@0.0.1920.1040" timestamp="1583571652828" />
-    <state x="689" y="208" width="531" height="617" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1583753488014">
+    <state x="689" y="208" width="674" height="617" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1584007854350">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="689" y="208" width="531" height="617" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583753488014" />
+    <state x="689" y="208" width="674" height="617" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584007854350" />
     <state x="693" y="264" width="524" height="504" key="extract.method.dialog" timestamp="1583934924854">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="264" width="524" height="504" key="extract.method.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583934924854" />
+    <state x="626" y="235" width="667" height="568" key="find.popup" timestamp="1584003181993">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="626" y="235" width="667" height="568" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584003181993" />
     <state x="721" y="153" width="467" height="727" key="git4idea.branch.GitSmartOperationDialog" timestamp="1583430505149">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -608,13 +612,13 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="666" y="146" width="577" height="740" key="refactoring.ChangeSignatureDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1583764658234" />
-    <state x="624" y="238" width="672" height="677" key="run.anything.popup" timestamp="1583756164930">
+    <state x="624" y="238" width="672" height="677" key="run.anything.popup" timestamp="1584014482134">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="624" y="238" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583756164930" />
-    <state x="1103" y="228" width="672" height="678" key="search.everywhere.popup" timestamp="1583726787093">
+    <state x="624" y="238" width="672" height="677" key="run.anything.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584014482134" />
+    <state x="1103" y="228" width="672" height="678" key="search.everywhere.popup" timestamp="1583943873953">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1103" y="228" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583726787093" />
+    <state x="1103" y="228" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1583943873953" />
   </component>
 </project>
