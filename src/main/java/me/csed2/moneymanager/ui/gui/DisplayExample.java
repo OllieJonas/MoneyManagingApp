@@ -3,9 +3,7 @@ package me.csed2.moneymanager.ui.gui;
 import me.csed2.moneymanager.categories.CategoryRepository;
 import me.csed2.moneymanager.ui.Button;
 
-import javax.swing.*;
-
-public class DisplayExample extends Display {
+public class DisplayExample extends DisplayButtonMenu {
 
     public DisplayExample(){
         super(300, 300, "Example");

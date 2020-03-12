@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dca5a5fc-7958-4d1a-9a37-00820f621c46" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/ButtonListener.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayStageMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/Button.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/Button.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/Display.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/ButtonListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/ButtonListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/Display.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayButtonMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayExample.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -475,7 +476,14 @@
       <option name="project" value="LOCAL" />
       <updated>1583937832825</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Buttons now actually do stuff&#10;Works using the same addButton() method as the CMD ui">
+      <created>1583956999873</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1583956999873</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,7 +504,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Implemented JUnit" />
     <MESSAGE value="Cleaned up pom.xml" />
     <MESSAGE value="Updated .gitignore" />
     <MESSAGE value="Added Category class to allow for better cloning of repo" />
@@ -521,7 +528,8 @@
     <MESSAGE value="Got a working blank JFrame." />
     <MESSAGE value="Set up a basic structure for creating Display subclasses." />
     <MESSAGE value="Added Button functionality as in the cmd ui classes. &#10;(Buttons currently don't do anything!)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Button functionality as in the cmd ui classes. &#10;(Buttons currently don't do anything!)" />
+    <MESSAGE value="Buttons now actually do stuff&#10;Works using the same addButton() method as the CMD ui" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buttons now actually do stuff&#10;Works using the same addButton() method as the CMD ui" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="672" key="#Project_Structure" />

@@ -5,7 +5,6 @@ import me.csed2.moneymanager.ui.IAction;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ButtonListener implements ActionListener {
@@ -20,7 +19,8 @@ public class ButtonListener implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e){
-        buttonsAndActions.get(e.getActionCommand()).execute(User.getInstance()); //**Not sure if User.getinstance is right here?**
+        System.out.println(e.getID());
+        buttonsAndActions.get(e.getActionCommand()).execute(User.getInstance());
     }
 
     public static ButtonListener getInstance(){
