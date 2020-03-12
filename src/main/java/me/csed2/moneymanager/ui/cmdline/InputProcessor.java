@@ -42,6 +42,13 @@ public class InputProcessor {
         }
     }
 
+    /**
+     * Processes anything the user inputs, if it's a stage menu
+     *
+     * @param user The user using this
+     * @param input The input that they typed
+     * @param menu The menu they're accessing
+     */
     private static void processStageMenu(User user, String input, StageMenu menu) {
         if (input.equalsIgnoreCase("exit")) {
             user.openMenu(menu.getPreviousMenu());
@@ -61,6 +68,13 @@ public class InputProcessor {
         }
     }
 
+    /**
+     * Processes anything the user inputs, if it's a normal CMD menu
+     *
+     * @param user The user using this
+     * @param input The input that they typed
+     * @param menu The menu they're accessing
+     */
     private static void processCMDMenu(User user, String input, CMDMenu menu) {
         try {
             int optionNo = Integer.parseInt(input); // Convert string to integer

@@ -56,4 +56,29 @@ public class Category {
                 + " created: " + created + "\n  "
                 + " budget: £" + Math.round(budget / 100);
     }
+
+    public Transaction getTransactionByName(String transactionName) {
+        for (Transaction transaction : transactions) {
+            if (transaction.getName().equalsIgnoreCase(transactionName)) {
+                return transaction;
+            }
+        }
+        return null;
+    }
+
+    public void removeTransaction(Transaction transaction) {
+        transactions.remove(transaction);
+    }
+
+    public Transaction update(Transaction entity) {
+        transactions.removeIf(transaction -> transaction.getId() == entity.getId());
+        transactions.add(entity);
+        return entity;
+    }
+
+    public void printTransactions() {
+        for (Transaction transaction : transactions) {
+            transaction.print();
+        }
+    }
 }

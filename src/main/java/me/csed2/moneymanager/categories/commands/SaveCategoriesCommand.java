@@ -22,13 +22,11 @@ public class SaveCategoriesCommand implements ICommand<Boolean> {
     public SaveCategoriesCommand(String fileName, List<Category> categories) {
         this.gson = new Gson();
         this.fileUrl = Main.class.getClassLoader().getResource(fileName);
-
         this.categories = categories;
     }
 
     @Override
     public Boolean execute() {
-
         String gsonString = gson.toJson(categories);
 
         try {
@@ -38,20 +36,21 @@ public class SaveCategoriesCommand implements ICommand<Boolean> {
             File myFile = path.toFile();
 
             if (myFile.delete()) {
-                myFile.createNewFile();
+                if (myFile.createNewFile()) {
+                    FileOutputStream fOut = new FileOutputStream(myFile);
+                    OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+
+                    myOutWriter.append(gsonString);
+
+                    myOutWriter.close();
+                    fOut.close();
+                    return true;
+                }
             }
-
-            FileOutputStream fOut = new FileOutputStream(myFile);
-            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
-
-            myOutWriter.append(gsonString);
-
-            myOutWriter.close();
-            fOut.close();
         } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
-        return true;
+        return false;
     }
 }

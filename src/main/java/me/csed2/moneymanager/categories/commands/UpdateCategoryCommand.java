@@ -25,26 +25,22 @@ public class UpdateCategoryCommand<T> implements ICommand<Boolean> {
         Category category = repository.readByName(categoryName);
 
         if (category != null) {
-
             switch (argType) {
                 case NAME:
                     category.setName((String) result);
-                    repository.update(category);
-                    repository.save();
-                    return true;
-
+                    break;
                 case BUDGET:
                     category.setBudget((Integer) result);
-                    repository.update(category);
-                    repository.save();
-                    return true;
+                    break;
 
                 default:
                     return false; // Should never be called
-
             }
-        } else {
-            return false;
+
+            repository.update(category);
+            repository.save();
+            return true;
         }
+        return false;
     }
 }

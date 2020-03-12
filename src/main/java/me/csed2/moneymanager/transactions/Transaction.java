@@ -43,10 +43,24 @@ public class Transaction {
      */
     private int categoryId;
 
+
     /**
      * Any notes the user may have about the transaction
      */
     private String[] notes;
 
     private String vendor;
+
+    public void print() {
+        System.out.println("name: " + name);
+        System.out.println("  id: " + id);
+        System.out.println("  created: " + date.toString());
+        System.out.println("  amount: " + amount);
+        System.out.println("  category_id: " + categoryId);
+        System.out.println("  vendor: " + vendor);
+        System.out.println("  notes: ");
+        for (String note : notes) {
+            System.out.println("    \"" + note + "\"");
+        }
+    }
 }

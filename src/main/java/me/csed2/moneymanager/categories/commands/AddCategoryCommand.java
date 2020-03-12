@@ -9,7 +9,7 @@ import me.csed2.moneymanager.transactions.Transaction;
 import java.util.Date;
 import java.util.List;
 
-public class AddCategoryCommand implements ICommand<Category> {
+public class AddCategoryCommand implements ICommand<Boolean> {
 
     private final String name;
     private final int id;
@@ -26,7 +26,7 @@ public class AddCategoryCommand implements ICommand<Category> {
     }
 
     @Override
-    public Category execute() {
+    public Boolean execute() {
 
         CategoryRepository repository = CategoryRepository.getInstance();
 
@@ -42,6 +42,6 @@ public class AddCategoryCommand implements ICommand<Category> {
 
         repository.save();
 
-        return category;
+        return true;
     }
 }

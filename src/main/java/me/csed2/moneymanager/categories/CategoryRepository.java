@@ -87,6 +87,8 @@ public class CategoryRepository implements IRepository<Category, Integer> {
         for (Category category : categories) {
             builder.append(category.getName()).append(" ");
         }
+
+        System.out.println(builder.toString());
     }
 
     public List<Transaction> readByTransaction(Transaction transaction) {
@@ -125,6 +127,10 @@ public class CategoryRepository implements IRepository<Category, Integer> {
     }
 
     public Integer nextId() {
-        return categories.size() + 1;
+        return categories.get(categories.size() - 1).getId() + 1;
+    }
+
+    public Integer nextTransactionID(Category category) {
+        return category.getTransactions().get(category.getTransactions().size() - 1).getId() + 1;
     }
 }

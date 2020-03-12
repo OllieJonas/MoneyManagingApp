@@ -34,11 +34,13 @@ public abstract class StageMenu implements Menu {
         this.previousMenu = previousMenu;
 
         addStages();
+        System.out.println("Please type \"EXIT\" if you'd like to exit this menu!");
         beginPhase();
     }
 
     @Override
     public void print() {
+        stages.get(0).executionPhase();
         stages.get(0).print();
     }
 
@@ -60,6 +62,7 @@ public abstract class StageMenu implements Menu {
             exitPhase();
         } else {
             Stage<?> nextStage = stages.get(count);
+            nextStage.executionPhase();
             nextStage.print();
         }
     }
@@ -76,6 +79,7 @@ public abstract class StageMenu implements Menu {
         count = 0;
         stages = new ArrayList<>();
         beginPhase();
+        System.out.println("Please type \"EXIT\" if you'd like to exit this menu!");
         print();
     }
 }
