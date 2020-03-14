@@ -146,4 +146,14 @@ public class CategoryRepository implements IRepository<Category, Integer> {
     public static CategoryRepository getInstance() {
         return instance;
     }
+
+    public String getCategoryReport(){
+        String report = "";
+        for (Category category : categories) {
+            System.out.println(category.getBudget());
+            report += category.toFormattedString() + "\n";
+        }
+
+        return report;
+    }
 }

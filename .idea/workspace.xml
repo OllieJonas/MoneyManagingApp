@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="08364290-c790-4a44-9539-459ea2dced1f" name="Default Changelist" comment="Started implementation of Transactions:`&#10;&#10;- Created CMD Line Menu for Transactions&#10;- Finished work on AddTransactionCommand and RemoveTransactionCommand&#10;- Started work on UpdateTransactionCommand&#10;&#10;Added ExecutionPhase to StageMenu&#10;&#10;General tidying up of the code.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonCategories.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonMain.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageAddCategory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageMenu.java" afterDir="false" />
+    <list default="true" id="08364290-c790-4a44-9539-459ea2dced1f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageRemoveCategory.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/ButtonListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/ButtonListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayButtonMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayExample.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayStageMenu.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonCategories.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonCategories.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageAddCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageAddCategory.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -85,16 +80,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/test/java/me/csed2/moneymanager" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="me.csed2.moneymanager.categories" />
       <recent name="me.csed2.moneymanager.main" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="me.csed2.moneymanager.ui.gui.stage" />
+    </key>
     <key name="CreateClassDialog.RecentsKey">
       <recent name="me.csed2.moneymanager.transactions.menu.cmdline.stage" />
       <recent name="me.csed2.moneymanager.categories.menu.cmdline.step" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/test/java/me/csed2/moneymanager" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -479,7 +477,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584011979308</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Finished off DisplayStageMenu, started on building all the windows, fixed moving between windows.">
+      <created>1584193887631</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1584193887631</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +505,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Implemented JUnit" />
     <MESSAGE value="Cleaned up pom.xml" />
     <MESSAGE value="Updated .gitignore" />
     <MESSAGE value="Added Category class to allow for better cloning of repo" />
@@ -525,7 +529,8 @@
     <MESSAGE value="Fixing category UI menu" />
     <MESSAGE value="Made progress on Category Menu&#10;&#10;Changed name of StepMenu to StageMenu&#10;&#10;Finished implementation of UpdateCategoryCommandAddCategoryCommand and RemoveCategoryCommand&#10;&#10;Fixed bug regarding the Back Button throwing a NullPointerException&#10;&#10;General improvements to StageMenu" />
     <MESSAGE value="Started implementation of Transactions:&#10;&#10;- Created CMD Line Menu for Transactions&#10;- Finished work on AddTransactionCommand and RemoveTransactionCommand&#10;- Started work on UpdateTransactionCommand&#10;&#10;Added ExecutionPhase to StageMenu&#10;&#10;General tidying up of the code." />
-    <option name="LAST_COMMIT_MESSAGE" value="Started implementation of Transactions:&#10;&#10;- Created CMD Line Menu for Transactions&#10;- Finished work on AddTransactionCommand and RemoveTransactionCommand&#10;- Started work on UpdateTransactionCommand&#10;&#10;Added ExecutionPhase to StageMenu&#10;&#10;General tidying up of the code." />
+    <MESSAGE value="Finished off DisplayStageMenu, started on building all the windows, fixed moving between windows." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished off DisplayStageMenu, started on building all the windows, fixed moving between windows." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="672" key="#Project_Structure" timestamp="1582809727214">

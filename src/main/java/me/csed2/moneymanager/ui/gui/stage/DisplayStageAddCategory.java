@@ -30,13 +30,10 @@ public class DisplayStageAddCategory extends DisplayStageMenu{
         Integer budget = (Integer) stages.get(1).getResult();
         List<Transaction> transactions = new ArrayList<>();
 
-        /*
         if (CommandDispatcher.getInstance().dispatchSync(new AddCategoryCommand(name, budget, transactions))) {
             System.out.println("Category successfully added!");
         }
-         */
-        System.out.println(currentMenu);
+
         openPreviousMenu();
-        System.out.println(currentMenu);
     }
 }
