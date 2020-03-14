@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.ui.gui;
+package me.csed2.moneymanager.ui.gui.button;
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,16 +6,19 @@ import java.util.ArrayList;
 
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.Button;
+import me.csed2.moneymanager.ui.gui.ButtonListener;
+import me.csed2.moneymanager.ui.gui.DisplayMenu;
 
 public abstract class DisplayButtonMenu extends DisplayMenu {
 
     //Buttons
     private ArrayList<Button> buttons;
 
-    public DisplayButtonMenu(int width, int height, String title) {
+    public DisplayButtonMenu(int width, int height, String title, DisplayMenu parent) {
         this.width = width;
         this.height = height;
         this.title = title;
+        this.parent = parent;
 
         initFrame(); //Create the Frame and Panel
         buttons = new ArrayList<Button>();
@@ -45,7 +48,7 @@ public abstract class DisplayButtonMenu extends DisplayMenu {
             JButton jButton = new JButton(counter + ": " + b.getName());
             jButton.setAlignmentX(Component.CENTER_ALIGNMENT);
             jButton.addActionListener(ButtonListener.getInstance());
-            ButtonListener.getButtonsAndActions().put(jButton.getActionCommand(), b.getAction()); //Make a KV pair for the button's label and the action.
+            ButtonListener.getButtonsAndActions().put(title + ":" + jButton.getActionCommand(), b.getAction()); //Make a KV pair for the button's label and the action.
 
             panel.add(jButton);
             panel.add(Box.createRigidArea(new Dimension(0, 10))); //Create gap between buttons
@@ -53,9 +56,11 @@ public abstract class DisplayButtonMenu extends DisplayMenu {
         }
     }
 
-    public void print(){
-        frame.setVisible(true);
+    protected void addBackButton(){
+        addButton(new Button("Go Back", user -> {
+            if (parent != null) {
+                user.openMenu(parent);
+            }
+        }, true, false, true));
     }
-
-
 }

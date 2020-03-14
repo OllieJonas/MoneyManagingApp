@@ -1,16 +1,28 @@
 package me.csed2.moneymanager.ui.gui;
 
-import me.csed2.moneymanager.ui.Button;
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
+
+import me.csed2.moneymanager.main.User;
 import me.csed2.moneymanager.ui.Menu;
+import me.csed2.moneymanager.ui.gui.button.DisplayButtonCategories;
+import me.csed2.moneymanager.ui.gui.button.DisplayButtonMain;
+import me.csed2.moneymanager.ui.gui.button.DisplayButtonMenu;
+import me.csed2.moneymanager.ui.gui.stage.DisplayStageAddCategory;
+import me.csed2.moneymanager.ui.gui.stage.DisplayStageMenu;
 
 public abstract class DisplayMenu implements Menu{
 
     //Create Static Instance for each Menu
-    public static final DisplayButtonMenu DISPLAY_EXAMPLE = new DisplayExample();
-    //public static final DisplayStageMenu DISPLAY_STAGE_EXAMPLE = new DisplayStageExample();
+    public static DisplayMenu currentMenu;
+
+    public static final DisplayMenu MAIN = new DisplayButtonMain();
+    public static final DisplayMenu CATEGORY = new DisplayButtonCategories();
+
+    public static final DisplayMenu ADD_CATEGORY = new DisplayStageAddCategory();
+
+    //Parent Menu
+    protected DisplayMenu parent;
 
     //Frame information
     protected int width, height;
@@ -19,6 +31,8 @@ public abstract class DisplayMenu implements Menu{
     //Frame
     protected JFrame frame;
     protected JPanel panel;
+
+
 
     protected void initFrame(){
         frame = new JFrame(title);
@@ -45,5 +59,22 @@ public abstract class DisplayMenu implements Menu{
         labTitle.setAlignmentX(Component.CENTER_ALIGNMENT); //Place title in the middle
         labTitle.setFont(new Font("TimesRoman", Font.BOLD, 20));
         panel.add(labTitle);
+    }
+
+    public void print(){
+        frame.setVisible(true);
+        if(currentMenu != null){
+            currentMenu.close();
+        }
+        currentMenu = this;
+    }
+
+    public void close(){
+        frame.setVisible(false);
+    }
+
+
+    protected void openPreviousMenu(){
+        User.getInstance().openMenu(parent);
     }
 }
