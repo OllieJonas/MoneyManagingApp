@@ -3,6 +3,8 @@ package me.csed2.moneymanager.ui.gui;
 import me.csed2.moneymanager.main.User;
 import me.csed2.moneymanager.ui.IAction;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -19,8 +21,8 @@ public class ButtonListener implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent e){
-        System.out.println(e.getID());
-        buttonsAndActions.get(e.getActionCommand()).execute(User.getInstance());
+        String title = ((JFrame)SwingUtilities.getRoot(((Component)e.getSource()))).getTitle(); //Get the title of the pane that this button is on.
+        buttonsAndActions.get(title + ":" + e.getActionCommand()).execute(User.getInstance());
     }
 
     public static ButtonListener getInstance(){
