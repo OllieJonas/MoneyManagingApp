@@ -10,6 +10,7 @@ import me.csed2.moneymanager.ui.gui.button.DisplayButtonMain;
 import me.csed2.moneymanager.ui.gui.button.DisplayButtonMenu;
 import me.csed2.moneymanager.ui.gui.stage.DisplayStageAddCategory;
 import me.csed2.moneymanager.ui.gui.stage.DisplayStageMenu;
+import me.csed2.moneymanager.ui.gui.stage.DisplayStageRemoveCategory;
 
 public abstract class DisplayMenu implements Menu{
 
@@ -20,6 +21,7 @@ public abstract class DisplayMenu implements Menu{
     public static final DisplayMenu CATEGORY = new DisplayButtonCategories();
 
     public static final DisplayMenu ADD_CATEGORY = new DisplayStageAddCategory();
+    public static final DisplayMenu REMOVE_CATEGORY = new DisplayStageRemoveCategory();
 
     //Parent Menu
     protected DisplayMenu parent;
