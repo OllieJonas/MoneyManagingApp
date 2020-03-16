@@ -22,7 +22,7 @@ public class DisplayButtonCategories extends DisplayButtonMenu {
 
         addButton(new Button("Remove a Category", user -> user.openMenu(REMOVE_CATEGORY)));
 
-        addButton(new Button("Update a Category", user -> user.openMenu(new UpdateCategoryMenu(this))));
+        addButton(new Button("Update a Category", user -> user.openMenu(UPDATE_CATEGORY)));
 
         addBackButton();
     }
