@@ -1,6 +1,6 @@
 package me.csed2.moneymanager.transactions.menu.cmdline.stage;
 
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.transactions.commands.AddTransactionCommand;
 import me.csed2.moneymanager.ui.Menu;
@@ -19,7 +19,7 @@ public class AddTransactionMenu extends StageMenu {
     @Override
     public void addStages() {
         addStage(new Stage<>(String.class, "What is the name of the category you'd like to add the transaction to?")
-                .withExecutionPhase(() -> CategoryRepository.getInstance().printNames()));
+                .withExecutionPhase(() -> CategoryCache.getInstance().printNames()));
 
         addStage(new Stage<>(String.class, "What is the name of the transaction?"));
         addStage(new Stage<>(Integer.class, "How much was spent at this transaction?"));

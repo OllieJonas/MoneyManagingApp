@@ -3,6 +3,7 @@ package me.csed2.moneymanager.categories;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import me.csed2.moneymanager.Cacheable;
 import me.csed2.moneymanager.transactions.Transaction;
 
 import java.util.Date;
@@ -19,7 +20,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Category {
+public class Category implements Cacheable {
 
     /**
      * The name of the category

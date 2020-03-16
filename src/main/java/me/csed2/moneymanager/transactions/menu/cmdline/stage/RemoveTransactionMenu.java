@@ -1,10 +1,9 @@
 package me.csed2.moneymanager.transactions.menu.cmdline.stage;
 
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.transactions.commands.RemoveTransactionCommand;
 import me.csed2.moneymanager.transactions.menu.cmdline.TransactionMenu;
-import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
 
@@ -17,7 +16,7 @@ public class RemoveTransactionMenu extends StageMenu {
     @Override
     public void addStages() {
         addStage(new Stage<>(String.class, "What category would you like to remove the transaction from?")
-                .withExecutionPhase(() -> CategoryRepository.getInstance().printNames()));
+                .withExecutionPhase(() -> CategoryCache.getInstance().printNames()));
 
         addStage(new Stage<>(String.class, "Which transaction would you like to remove?"));
     }

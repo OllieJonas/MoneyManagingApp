@@ -1,7 +1,7 @@
 package me.csed2.moneymanager.transactions.commands;
 
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.transactions.TransactionBuilder;
 
@@ -25,7 +25,7 @@ public class AddTransactionCommand implements ICommand<Boolean> {
 
     @Override
     public Boolean execute() {
-        CategoryRepository repository = CategoryRepository.getInstance();
+        CategoryCache repository = CategoryCache.getInstance();
         Category category = repository.readByName(categoryName);
 
         if (categoryName != null) {

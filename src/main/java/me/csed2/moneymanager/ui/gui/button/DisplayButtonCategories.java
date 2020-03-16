@@ -1,9 +1,7 @@
 package me.csed2.moneymanager.ui.gui.button;
 
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.categories.menu.cmdline.UpdateCategoryMenu;
-import me.csed2.moneymanager.categories.menu.cmdline.stage.AddCategoryMenu;
-import me.csed2.moneymanager.categories.menu.cmdline.stage.RemoveCategoryMenu;
 import me.csed2.moneymanager.ui.Button;
 
 import javax.swing.*;
@@ -16,7 +14,7 @@ public class DisplayButtonCategories extends DisplayButtonMenu {
 
     @Override
     protected void addButtons() {
-        addButton(new Button("List All Categories", user -> JOptionPane.showMessageDialog(null, CategoryRepository.getInstance().getCategoryReport())));
+        addButton(new Button("List All Categories", user -> JOptionPane.showMessageDialog(null, CategoryCache.getInstance().getCategoryReport())));
 
         addButton(new Button("Add a New Category", user -> user.openMenu(ADD_CATEGORY)));
 

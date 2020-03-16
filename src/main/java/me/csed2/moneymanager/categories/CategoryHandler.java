@@ -1,8 +1,6 @@
 package me.csed2.moneymanager.categories;
 
 import com.google.gson.Gson;
-import me.csed2.moneymanager.categories.commands.LoadCategoriesCommand;
-import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.transactions.TransactionBuilder;
 
 import java.io.FileNotFoundException;
@@ -13,7 +11,7 @@ public class CategoryHandler {
 
     public CategoryHandler() {
         try {
-            new CategoryRepository().loadFromJson();
+            new CategoryCache().load();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

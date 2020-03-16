@@ -2,7 +2,7 @@ package me.csed2.moneymanager.categories.commands;
 
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.command.ICommand;
 
 public class UpdateCategoryCommand<T> implements ICommand<Boolean> {
@@ -21,7 +21,7 @@ public class UpdateCategoryCommand<T> implements ICommand<Boolean> {
 
     @Override
     public Boolean execute() {
-        CategoryRepository repository = CategoryRepository.getInstance();
+        CategoryCache repository = CategoryCache.getInstance();
         Category category = repository.readByName(categoryName);
 
         if (category != null) {

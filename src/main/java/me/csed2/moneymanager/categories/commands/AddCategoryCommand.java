@@ -2,7 +2,7 @@ package me.csed2.moneymanager.categories.commands;
 
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryBuilder;
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.transactions.Transaction;
 
@@ -19,7 +19,7 @@ public class AddCategoryCommand implements ICommand<Boolean> {
 
     public AddCategoryCommand(String name, int budget, List<Transaction> transactions) {
         this.name = name;
-        this.id = CategoryRepository.getInstance().nextId();
+        this.id = CategoryCache.getInstance().nextId();
         this.created = new Date();
         this.budget = budget;
         this.transactions = transactions;
@@ -28,7 +28,7 @@ public class AddCategoryCommand implements ICommand<Boolean> {
     @Override
     public Boolean execute() {
 
-        CategoryRepository repository = CategoryRepository.getInstance();
+        CategoryCache repository = CategoryCache.getInstance();
 
         CategoryBuilder builder = new CategoryBuilder(name)
                 .withId(id)

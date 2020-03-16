@@ -1,8 +1,5 @@
 package me.csed2.moneymanager.transactions;
 
-import me.csed2.moneymanager.categories.CategoryRepository;
-
-import java.util.Calendar;
 import java.util.Date;
 
 /**
