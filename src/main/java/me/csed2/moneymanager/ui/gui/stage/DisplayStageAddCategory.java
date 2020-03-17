@@ -8,7 +8,7 @@ import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DisplayStageAddCategory extends DisplayStageMenu{
+public class DisplayStageAddCategory extends DisplayStageMenu {
 
     public DisplayStageAddCategory(){
         super(300, 300, "Add Category", CATEGORY);
@@ -20,7 +20,7 @@ public class DisplayStageAddCategory extends DisplayStageMenu{
         addStage(new Stage<>(Integer.class, "What is the budget you would like to set for this category?"));
     }
 
-    public void beginPhase(){
+    public void beginPhase() {
 
     }
 
@@ -28,9 +28,8 @@ public class DisplayStageAddCategory extends DisplayStageMenu{
     public void exitPhase() {
         String name = (String) stages.get(0).getResult();
         Integer budget = (Integer) stages.get(1).getResult();
-        List<Transaction> transactions = new ArrayList<>();
 
-        if (CommandDispatcher.getInstance().dispatchSync(new AddCategoryCommand(name, budget, transactions))) {
+        if (CommandDispatcher.getInstance().dispatchSync(new AddCategoryCommand(name, budget))) {
             System.out.println("Category successfully added!");
         }
 

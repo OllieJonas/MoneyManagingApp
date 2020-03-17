@@ -1,8 +1,8 @@
 package me.csed2.moneymanager.categories;
 
-import me.csed2.moneymanager.Cache;
-import me.csed2.moneymanager.categories.commands.LoadCategoriesCommand;
-import me.csed2.moneymanager.categories.commands.SaveCategoriesCommand;
+import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.cache.commands.LoadFromDBCommand;
+import me.csed2.moneymanager.cache.commands.SaveToDBCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.utils.ConsoleUtils;
 
@@ -37,12 +37,12 @@ public class CategoryCache extends Cache<Category> {
     }
 
     public void load() throws FileNotFoundException {
-        this.items = CommandDispatcher.getInstance().dispatchSync(new LoadCategoriesCommand("data.json"));
+        this.items = CommandDispatcher.getInstance().dispatchSync(new LoadFromDBCommand<>(Category.class, "categories.json"));
         orderById(); // In case it's out of order... (it shouldn't be but just in case)
     }
 
     public void save() {
-        CommandDispatcher.getInstance().dispatchSync(new SaveCategoriesCommand("data.json", items));
+        CommandDispatcher.getInstance().dispatchSync(new SaveToDBCommand<>("categories.json", items));
     }
 
     public static CategoryCache getInstance() {

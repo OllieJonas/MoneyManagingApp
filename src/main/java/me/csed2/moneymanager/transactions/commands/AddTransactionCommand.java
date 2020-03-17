@@ -25,23 +25,24 @@ public class AddTransactionCommand implements ICommand<Boolean> {
 
     @Override
     public Boolean execute() {
-        CategoryCache repository = CategoryCache.getInstance();
-        Category category = repository.readByName(categoryName);
-
-        if (categoryName != null) {
-            TransactionBuilder builder = new TransactionBuilder(name)
-                    .withDate(new Date())
-                    .withAmount(amount)
-                    .withCategoryID(category.getId())
-                    .withVendor(vendor)
-                    .withNotes(notes);
-
-            category.addTransaction(builder.build());
-            repository.update(category);
-            repository.save();
-            return true;
-        } else {
-            return false;
-        }
+//        CategoryCache repository = CategoryCache.getInstance();
+//        Category category = repository.readByName(categoryName);
+//
+//        if (categoryName != null) {
+//            TransactionBuilder builder = new TransactionBuilder(name)
+//                    .withDate(new Date())
+//                    .withAmount(amount)
+//                    .withCategoryID(category.getId())
+//                    .withVendor(vendor)
+//                    .withNotes(notes);
+//
+//            category.addTransaction(builder.build());
+//            repository.update(category);
+//            repository.save();
+//            return true;
+//        } else {
+//            return false;
+//        }
+        return false;
     }
 }

@@ -1,9 +1,9 @@
-package me.csed2.moneymanager.categories.commands;
+package me.csed2.moneymanager.cache.commands;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.cache.CacheTypeFactory;
+import me.csed2.moneymanager.cache.Cacheable;
 import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.main.Main;
 
@@ -11,28 +11,28 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 
-public class LoadCategoriesCommand implements ICommand<ArrayList<Category>> {
+public class LoadFromDBCommand<T extends Cacheable> implements ICommand<List<T>> {
+
+    private final Type type;
 
     private final Gson gson;
 
     private JsonReader reader;
 
-    public LoadCategoriesCommand(String fileName) throws FileNotFoundException {
-
+    public LoadFromDBCommand(Class<T> clazz, String fileName) throws FileNotFoundException {
+        this.type = CacheTypeFactory.getType(clazz);
         this.gson = new Gson();
         URL fileUrl = Main.class.getClassLoader().getResource(fileName);
 
         if (fileUrl != null) {
             reader = new JsonReader(new FileReader(fileUrl.getPath()));
         }
-
     }
 
     @Override
-    public ArrayList<Category> execute() {
-        Type category = new TypeToken<ArrayList<Category>>(){}.getType();
-        return gson.fromJson(reader, category);
+    public List<T> execute() {
+        return gson.fromJson(reader, type);
     }
 }

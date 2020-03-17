@@ -26,35 +26,35 @@ public class UpdateTransactionCommand<T> implements ICommand<Boolean> {
 
     @Override
     public Boolean execute() {
-        CategoryCache repository = CategoryCache.getInstance();
-        Category category = repository.readByName(categoryName);
-        if (category != null) {
-            Transaction transaction = category.getTransactionByName(transactionName);
-            if (transaction != null) {
-                switch (argType) {
-                    case NAME:
-                        transaction.setName((String) result);
-                        break;
-                    case AMOUNT:
-                        transaction.setAmount((Integer) result);
-                        break;
-                    case NOTES:
-                        transaction.setNotes((String[]) result);
-                        break;
-                    case VENDOR:
-                        transaction.setVendor((String) result);
-                        break;
-                    default:
-                        return false; // Should never be called
-                }
-
-                category.update(transaction);
-                repository.update(category);
-                repository.save();
-
-                return true;
-            }
-        }
+//        CategoryCache repository = CategoryCache.getInstance();
+//        Category category = repository.readByName(categoryName);
+//        if (category != null) {
+//            Transaction transaction = category.getTransactionByName(transactionName);
+//            if (transaction != null) {
+//                switch (argType) {
+//                    case NAME:
+//                        transaction.setName((String) result);
+//                        break;
+//                    case AMOUNT:
+//                        transaction.setAmount((Integer) result);
+//                        break;
+//                    case NOTES:
+//                        transaction.setNotes((String[]) result);
+//                        break;
+//                    case VENDOR:
+//                        transaction.setVendor((String) result);
+//                        break;
+//                    default:
+//                        return false; // Should never be called
+//                }
+//
+//                category.update(transaction);
+//                repository.update(category);
+//                repository.save();
+//
+//                return true;
+//            }
+//        }
         return false;
     }
 }

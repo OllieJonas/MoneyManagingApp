@@ -1,0 +1,11 @@
+[
+  {
+  "name": "Score",
+  "id": 1,
+  "date": "Mar 9, 2020, 3:22:39 AM",
+  "amount": 100,
+  "categoryId": 1,
+  "notes": ["Test","Test2"],
+  "vendor": "SU Bath"
+  }
+]

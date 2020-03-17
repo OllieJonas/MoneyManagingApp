@@ -15,14 +15,12 @@ public class AddCategoryCommand implements ICommand<Boolean> {
     private final int id;
     private final Date created;
     private final int budget;
-    private final List<Transaction> transactions;
 
-    public AddCategoryCommand(String name, int budget, List<Transaction> transactions) {
+    public AddCategoryCommand(String name, int budget) {
         this.name = name;
         this.id = CategoryCache.getInstance().nextId();
         this.created = new Date();
         this.budget = budget;
-        this.transactions = transactions;
     }
 
     @Override
@@ -33,8 +31,7 @@ public class AddCategoryCommand implements ICommand<Boolean> {
         CategoryBuilder builder = new CategoryBuilder(name)
                 .withId(id)
                 .withCreationDate(created)
-                .withBudget(budget)
-                .withTransactions(transactions);
+                .withBudget(budget);
 
         Category category = builder.build();
 

@@ -1,8 +1,9 @@
 package me.csed2.moneymanager.main;
 
-import me.csed2.moneymanager.categories.CategoryHandler;
-import me.csed2.moneymanager.ui.gui.DisplayMenu;
-import me.csed2.moneymanager.ui.gui.button.DisplayButtonMenu;
+import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.transactions.TransactionCache;
+
+import java.io.FileNotFoundException;
 
 /**
  * @author Ollie
@@ -13,10 +14,17 @@ public class Main {
     public Main() {
 
         new User();
-        new CategoryHandler();
+        try {
+
+            new CategoryCache().load();
+            new TransactionCache().load();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
 
         //Testing Frame
-        User.getInstance().openMenu(DisplayMenu.MAIN);
+        User.getInstance().openMenu(new MainMenu());
         //End of Testing
     }
 

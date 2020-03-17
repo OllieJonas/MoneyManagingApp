@@ -2,9 +2,14 @@ package me.csed2.moneymanager.transactions.menu.cmdline.stage;
 
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.transactions.Transaction;
+import me.csed2.moneymanager.transactions.commands.ListTransactionsCommand;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
+
+import java.util.List;
 
 public class ListTransactionsMenu extends StageMenu {
     /**
@@ -29,7 +34,14 @@ public class ListTransactionsMenu extends StageMenu {
         Category category = repository.readByName(result);
 
         if (category != null) {
-            category.printTransactions();
+            try {
+                List<Transaction> transactions = CommandDispatcher.getInstance().dispatchSync(new ListTransactionsCommand(category.getName()));
+                for (Transaction transaction : transactions) {
+                    System.out.println(transaction.toFormattedString());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             openPreviousMenu();
         } else {
             System.out.println("Error: Unable to find this category!");

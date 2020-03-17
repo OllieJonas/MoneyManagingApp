@@ -1,13 +1,13 @@
-package me.csed2.moneymanager;
+package me.csed2.moneymanager.cache;
 
 import lombok.Getter;
-import me.csed2.moneymanager.categories.Category;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 /**
  * Interface for our own custom repository.
@@ -19,10 +19,10 @@ public abstract class Cache<T extends Cacheable> {
     protected List<T> items;
 
     @Getter
-    private BiPredicate<String, String> namePredicate = String::equalsIgnoreCase;
+    protected BiPredicate<String, String> namePredicate = String::equalsIgnoreCase;
 
     @Getter
-    private BiPredicate<Integer, Integer> idPredicate = Integer::equals;
+    protected BiPredicate<Integer, Integer> idPredicate = Integer::equals;
 
     public Cache() {
         this.items = new ArrayList<>();
@@ -62,6 +62,17 @@ public abstract class Cache<T extends Cacheable> {
             }
         }
         return null;
+    }
+
+    public List<T> readByName(Predicate<String> predicate) {
+        List<T> list = new ArrayList<>();
+
+        for (T item : items) {
+            if (predicate.test(item.getName())) {
+                list.add(item);
+            }
+        }
+        return list;
     }
 
     public int nextId() {
