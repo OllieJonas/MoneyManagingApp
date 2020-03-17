@@ -8,6 +8,8 @@ import me.csed2.moneymanager.command.CommandDispatcher;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 public class TransactionCache extends Cache<Transaction> {
 
@@ -35,6 +37,28 @@ public class TransactionCache extends Cache<Transaction> {
 
         for (Transaction transaction : items) {
             if (idPredicate.test(categoryId, transaction.getId())) {
+                transactions.add(transaction);
+            }
+        }
+        return transactions;
+    }
+
+    public List<Transaction> readByCategory(String name, Predicate<String> predicate) {
+        List<Transaction> transactions = new ArrayList<>();
+
+        for (Transaction transaction : items) {
+            if (namePredicate.test(name, transaction.getName()) && predicate.test(transaction.getName())) {
+                transactions.add(transaction);
+            }
+        }
+        return transactions;
+    }
+
+    public List<Transaction> readByCategory(String name) {
+        List<Transaction> transactions = new ArrayList<>();
+
+        for (Transaction transaction : items) {
+            if (namePredicate.test(name, transaction.getCategory())) {
                 transactions.add(transaction);
             }
         }

@@ -4,6 +4,7 @@ import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.transactions.TransactionBuilder;
+import me.csed2.moneymanager.transactions.TransactionCache;
 
 import java.util.Date;
 
@@ -25,24 +26,23 @@ public class AddTransactionCommand implements ICommand<Boolean> {
 
     @Override
     public Boolean execute() {
-//        CategoryCache repository = CategoryCache.getInstance();
-//        Category category = repository.readByName(categoryName);
-//
-//        if (categoryName != null) {
-//            TransactionBuilder builder = new TransactionBuilder(name)
-//                    .withDate(new Date())
-//                    .withAmount(amount)
-//                    .withCategoryID(category.getId())
-//                    .withVendor(vendor)
-//                    .withNotes(notes);
-//
-//            category.addTransaction(builder.build());
-//            repository.update(category);
-//            repository.save();
-//            return true;
-//        } else {
-//            return false;
-//        }
+        CategoryCache categoryCache = CategoryCache.getInstance();
+        TransactionCache transactionCache = TransactionCache.getInstance();
+        
+        if (categoryCache.exists(categoryName)) {
+
+            transactionCache.add(new TransactionBuilder(name)
+            .withAmount(amount)
+            .withCategoryName(name)
+            .withVendor(vendor)
+            .withDate(new Date())
+            .withNotes(notes)
+            .withCategoryName(categoryName)
+            .build());
+
+            transactionCache.save();
+            return true;
+        }
         return false;
     }
 }

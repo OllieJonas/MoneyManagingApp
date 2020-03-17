@@ -2,32 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="dca5a5fc-7958-4d1a-9a37-00820f621c46" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/CacheTypeFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/commands/LoadFromDBCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/commands/SaveToDBCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/TransactionCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/ListTransactionsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/categories.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/transactions.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/Cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/Cache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/Cacheable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/Cacheable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/Category.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryCache.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/commands/AddCategoryCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/commands/AddCategoryCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/commands/LoadCategoriesCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/commands/SaveCategoriesCommand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/stage/AddCategoryMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/menu/cmdline/stage/AddCategoryMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/Cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/Cache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/CacheTypeFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/CacheTypeFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/commands/LoadFromDBCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/commands/LoadFromDBCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/TransactionArgType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/TransactionArgType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/TransactionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/TransactionBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/TransactionCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/TransactionCache.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/AddTransactionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/AddTransactionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/ListTransactionsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/ListTransactionsCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/RemoveTransactionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/RemoveTransactionCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/UpdateTransactionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/UpdateTransactionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/AddTransactionMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/AddTransactionMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/ListTransactionsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/ListTransactionsMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageAddCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageAddCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/RemoveTransactionMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/RemoveTransactionMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/UpdateTransactionMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/UpdateTransactionMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/update/UpdateAmountMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/update/UpdateAmountMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/update/UpdateNameMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/update/UpdateNameMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/update/UpdateNotesMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/update/UpdateNotesMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/update/UpdateVendorMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/update/UpdateVendorMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/stage/Stage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/cmdline/stage/Stage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/utils/ClassUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/utils/ClassUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/transactions.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/transactions.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/me/csed2/moneymanager/categories/TestCategories.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/me/csed2/moneymanager/commands/TestCommand.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/me/csed2/moneymanager/main/TestMoneyManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/me/csed2/moneymanager/ui/cmdline/TestButton.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +78,7 @@
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
@@ -496,7 +499,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584370242224</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="im currently working on a new storing json system (which works atm i just need to reimplement the transactioncommands using it)... as a brief summary of what i've done:&#10;&#10;I've turned the IRepository interface into a Cache abstract class which contains the majority of the implementation needed for both&#10;&#10;I've made a new interface called Cacheable (if you can think of a better name then please tell me lmao i couldnt come up w a good name) which contains 3 methods: getId(), getName() and toFormattedString(). I've made this for the Cache abstract class so now basically the Cache now looks like this: public abstract class Cache&lt;T extends Cacheable&gt; which means when you iterate through the list you can access those methods from the Interface)&#10;&#10;I've generified the LoadCategories and SaveCategories into LoadFromDBCommand&lt;T extends Cacheable&gt; and SaveToDBCommand&lt;T extends Cacheable&gt;... &#10;&#10;Save was easy to generify just had to replace Category with T&#10;&#10;Load was a bit harder... there's now a new class called CacheTypeFactory which gets the type based on the class of the Cacheable thing... it has a single method in it called getType(Class&lt;? extends Cacheable&gt; class) which gets the type based on what you specify&#10;&#10;Also generic fixes 🙂">
+      <created>1584450214208</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1584450214208</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -517,7 +527,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Updated .gitignore" />
     <MESSAGE value="Added Category class to allow for better cloning of repo" />
     <MESSAGE value="Reformatted test/java package structure" />
     <MESSAGE value="Tidying up of package structure.&#10;Added lombok and guava as dependencies." />
@@ -542,17 +551,18 @@
     <MESSAGE value="Added Button functionality as in the cmd ui classes. &#10;(Buttons currently don't do anything!)" />
     <MESSAGE value="Buttons now actually do stuff&#10;Works using the same addButton() method as the CMD ui" />
     <MESSAGE value="Changed name of Repository to Cache&#10;&#10;Abstracted and generified methods from CategoryRepository to new abstract Cache class." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed name of Repository to Cache&#10;&#10;Abstracted and generified methods from CategoryRepository to new abstract Cache class." />
+    <MESSAGE value="im currently working on a new storing json system (which works atm i just need to reimplement the transactioncommands using it)... as a brief summary of what i've done:&#10;&#10;I've turned the IRepository interface into a Cache abstract class which contains the majority of the implementation needed for both&#10;&#10;I've made a new interface called Cacheable (if you can think of a better name then please tell me lmao i couldnt come up w a good name) which contains 3 methods: getId(), getName() and toFormattedString(). I've made this for the Cache abstract class so now basically the Cache now looks like this: public abstract class Cache&lt;T extends Cacheable&gt; which means when you iterate through the list you can access those methods from the Interface)&#10;&#10;I've generified the LoadCategories and SaveCategories into LoadFromDBCommand&lt;T extends Cacheable&gt; and SaveToDBCommand&lt;T extends Cacheable&gt;... &#10;&#10;Save was easy to generify just had to replace Category with T&#10;&#10;Load was a bit harder... there's now a new class called CacheTypeFactory which gets the type based on the class of the Cacheable thing... it has a single method in it called getType(Class&lt;? extends Cacheable&gt; class) which gets the type based on what you specify&#10;&#10;Also generic fixes " />
+    <option name="LAST_COMMIT_MESSAGE" value="im currently working on a new storing json system (which works atm i just need to reimplement the transactioncommands using it)... as a brief summary of what i've done:&#10;&#10;I've turned the IRepository interface into a Cache abstract class which contains the majority of the implementation needed for both&#10;&#10;I've made a new interface called Cacheable (if you can think of a better name then please tell me lmao i couldnt come up w a good name) which contains 3 methods: getId(), getName() and toFormattedString(). I've made this for the Cache abstract class so now basically the Cache now looks like this: public abstract class Cache&lt;T extends Cacheable&gt; which means when you iterate through the list you can access those methods from the Interface)&#10;&#10;I've generified the LoadCategories and SaveCategories into LoadFromDBCommand&lt;T extends Cacheable&gt; and SaveToDBCommand&lt;T extends Cacheable&gt;... &#10;&#10;Save was easy to generify just had to replace Category with T&#10;&#10;Load was a bit harder... there's now a new class called CacheTypeFactory which gets the type based on the class of the Cacheable thing... it has a single method in it called getType(Class&lt;? extends Cacheable&gt; class) which gets the type based on what you specify&#10;&#10;Also generic fixes " />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="672" key="#Project_Structure" timestamp="1584328470835" />
     <state x="555" y="180" width="800" height="672" key="#Project_Structure/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470835" />
     <state x="71" y="217" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1584328470835" />
     <state x="71" y="217" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470835" />
-    <state x="287" y="238" width="484" height="557" key="#com.intellij.ide.util.MemberChooser" timestamp="1584449027178">
+    <state x="287" y="238" width="484" height="557" key="#com.intellij.ide.util.MemberChooser" timestamp="1584455834411">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="287" y="238" width="484" height="557" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584449027178" />
+    <state x="287" y="238" width="484" height="557" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1584455834411" />
     <state x="639" y="438" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1584328470835" />
     <state x="639" y="438" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470835" />
     <state x="738" y="363" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1584328470835" />
@@ -561,14 +571,14 @@
     <state x="738" y="391" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470835" />
     <state x="712" y="163" width="476" height="703" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1584328470835" />
     <state x="712" y="163" width="476" height="703" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470835" />
-    <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584449369596">
+    <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584455706143">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584449369596" />
-    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2" timestamp="1584370242012">
+    <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584455706143" />
+    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2" timestamp="1584450213958">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1584370242012" />
+    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1584450213958" />
     <state x="692" y="101" key="Diagram.Print.Preview.Dialog" timestamp="1584328470836" />
     <state x="692" y="101" key="Diagram.Print.Preview.Dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470836" />
     <state x="743" y="263" width="432" height="506" key="FileChooserDialogImpl" timestamp="1584328470836" />
@@ -577,30 +587,30 @@
     <state x="800" y="416" width="310" height="200" key="Github.ShareDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470836" />
     <state x="714" y="145" width="481" height="743" key="Github.UntrackedFilesDialog" timestamp="1584328470836" />
     <state x="714" y="145" width="481" height="743" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470836" />
-    <state width="1534" height="339" key="GridCell.Tab.0.bottom" timestamp="1584449334333">
+    <state width="1534" height="339" key="GridCell.Tab.0.bottom" timestamp="1584456396621">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1534" height="339" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1584449334333" />
-    <state width="1534" height="339" key="GridCell.Tab.0.center" timestamp="1584449334332">
+    <state width="1534" height="339" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1584456396621" />
+    <state width="1534" height="339" key="GridCell.Tab.0.center" timestamp="1584456396620">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1534" height="339" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1584449334332" />
-    <state width="1534" height="339" key="GridCell.Tab.0.left" timestamp="1584449334331">
+    <state width="1534" height="339" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1584456396620" />
+    <state width="1534" height="339" key="GridCell.Tab.0.left" timestamp="1584456396620">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1534" height="339" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1584449334331" />
-    <state width="1534" height="339" key="GridCell.Tab.0.right" timestamp="1584449334332">
+    <state width="1534" height="339" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1584456396620" />
+    <state width="1534" height="339" key="GridCell.Tab.0.right" timestamp="1584456396621">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1534" height="339" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584449334332" />
+    <state width="1534" height="339" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584456396621" />
     <state x="666" y="229" width="578" height="575" key="MultipleFileMergeDialog" timestamp="1584328470836" />
     <state x="666" y="229" width="578" height="575" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470836" />
     <state x="395" y="73" width="1024" height="840" key="SettingsEditor" timestamp="1584328470836" />
     <state x="395" y="73" width="1024" height="840" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470836" />
-    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2" timestamp="1584370257553">
+    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2" timestamp="1584450233656">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584370257553" />
+    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584450233656" />
     <state x="678" y="411" width="553" height="225" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1584328470836" />
     <state x="678" y="411" width="553" height="225" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470836" />
     <state x="275" y="434" width="398" height="165" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584328470836" />
@@ -611,6 +621,10 @@
     <state x="689" y="208" width="576" height="617" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584446833547" />
     <state x="693" y="264" width="524" height="504" key="extract.method.dialog" timestamp="1584328470836" />
     <state x="693" y="264" width="524" height="504" key="extract.method.dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470836" />
+    <state x="505" y="410" width="812" height="630" key="find.popup" timestamp="1584455472140">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="505" y="410" width="812" height="630" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1584455472140" />
     <state x="721" y="153" width="467" height="727" key="git4idea.branch.GitSmartOperationDialog" timestamp="1584328470836" />
     <state x="721" y="153" width="467" height="727" key="git4idea.branch.GitSmartOperationDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470836" />
     <state x="0" y="129" width="1157" height="775" key="new project wizard" timestamp="1584328470836" />

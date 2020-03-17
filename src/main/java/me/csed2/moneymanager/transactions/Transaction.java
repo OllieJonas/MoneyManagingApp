@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.csed2.moneymanager.cache.Cacheable;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -42,8 +43,7 @@ public class Transaction implements Cacheable {
     /**
      * The category in which the transaction belongs
      */
-    private int categoryId;
-
+    private String category;
 
     /**
      * Any notes the user may have about the transaction
@@ -57,7 +57,7 @@ public class Transaction implements Cacheable {
         System.out.println("  id: " + id);
         System.out.println("  created: " + date.toString());
         System.out.println("  amount: " + amount);
-        System.out.println("  category_id: " + categoryId);
+        System.out.println("  category: " + category);
         System.out.println("  vendor: " + vendor);
         System.out.println("  notes: ");
         for (String note : notes) {
@@ -67,16 +67,12 @@ public class Transaction implements Cacheable {
 
     @Override
     public String toFormattedString() {
-        StringBuilder noteBuilder = new StringBuilder();
-        for (String note : notes) {
-            noteBuilder.append("\"").append(note).append("\"").append(", ");
-        }
         return "name: " + name + "\n" +
                 "  id: " + id + "\n" +
                 "  created: " + date.toString() + "\n" +
                 "  amount: " + amount + "\n" +
-                "  category_id: " + categoryId + "\n" +
+                "  category: " + category + "\n" +
                 "  vendor: " + vendor + "\n" +
-                "  notes: " + noteBuilder.toString();
+                "  notes: " + Arrays.toString(notes);
     }
 }

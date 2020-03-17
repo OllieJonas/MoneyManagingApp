@@ -58,7 +58,7 @@ public class ClassUtils {
 
             Object result = StringReaderFactory.parse(text, clazz);
 
-            return getResultFromObject(result, clazz);
+            return cast(result, clazz);
 
         } catch (InvalidTypeException e) {
             System.out.println(e.getMessage());
@@ -75,7 +75,7 @@ public class ClassUtils {
      * @return The converted object type; if this is unable to convert this then returns null
      */
     @SuppressWarnings("unchecked")
-    public static <T> T getResultFromObject(Object result, Class<T> clazz) {
+    public static <T> T cast(Object result, Class<T> clazz) {
         if (Primitives.wrap(clazz).isAssignableFrom(result.getClass())) {
             return (T) result;
         } else {

@@ -31,7 +31,7 @@ public class UpdateVendorMenu extends StageMenu {
         String vendor = (String) stages.get(2).getResult();
 
         if (CommandDispatcher.getInstance().dispatchSync(
-                new UpdateTransactionCommand<>(categoryName, transactionName, TransactionArgType.VENDOR, vendor))) {
+                new UpdateTransactionCommand<>(transactionName, TransactionArgType.VENDOR, vendor))) {
             System.out.println("Transaction successfully updated!");
             openPreviousMenu();
         } else {

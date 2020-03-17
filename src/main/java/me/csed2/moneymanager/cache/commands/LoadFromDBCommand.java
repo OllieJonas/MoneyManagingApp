@@ -21,13 +21,13 @@ public class LoadFromDBCommand<T extends Cacheable> implements ICommand<List<T>>
 
     private JsonReader reader;
 
-    public LoadFromDBCommand(Class<T> clazz, String fileName) throws FileNotFoundException {
-        this.type = CacheTypeFactory.getType(clazz);
+    public LoadFromDBCommand(Class<T> klass, String fileName) throws FileNotFoundException {
+        this.type = CacheTypeFactory.getType(klass);
         this.gson = new Gson();
         URL fileUrl = Main.class.getClassLoader().getResource(fileName);
 
         if (fileUrl != null) {
-            reader = new JsonReader(new FileReader(fileUrl.getPath()));
+            this.reader = new JsonReader(new FileReader(fileUrl.getPath()));
         }
     }
 

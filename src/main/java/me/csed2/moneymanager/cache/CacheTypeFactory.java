@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 public class CacheTypeFactory {
 
-    public static Type getType(Class<? extends Cacheable> clazz) {
-        if (clazz == Transaction.class) {
+    public static Type getType(Class<? extends Cacheable> klass) {
+        if (klass == Transaction.class) {
             return new TypeToken<ArrayList<Transaction>>(){}.getType();
-        } else if (clazz == Category.class) {
+        } else if (klass == Category.class) {
             return new TypeToken<ArrayList<Category>>(){}.getType();
         } else {
             return null;

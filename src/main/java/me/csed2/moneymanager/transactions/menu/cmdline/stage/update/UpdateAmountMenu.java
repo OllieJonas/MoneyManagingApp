@@ -19,19 +19,17 @@ public class UpdateAmountMenu extends StageMenu {
 
     @Override
     public void addStages() {
-        addStage(new Stage<>(String.class, "Which category is the transaction in?"));
         addStage(new Stage<>(String.class, "Which transaction would you like to update?"));
         addStage(new Stage<>(Double.class, "What would you like to change the amount to?"));
     }
 
     @Override
     public void exitPhase() {
-        String categoryName = (String) stages.get(0).getResult();
-        String transactionName = (String) stages.get(1).getResult();
-        Double amount = (Double) stages.get(2).getResult();
+        String transactionName = (String) stages.get(0).getResult();
+        Double amount = (Double) stages.get(1).getResult();
 
         if (CommandDispatcher.getInstance().dispatchSync(
-                new UpdateTransactionCommand<>(categoryName, transactionName, TransactionArgType.AMOUNT, amount))) {
+                new UpdateTransactionCommand<>(transactionName, TransactionArgType.AMOUNT, amount))) {
             System.out.println("Transaction successfully updated!");
             openPreviousMenu();
         } else {

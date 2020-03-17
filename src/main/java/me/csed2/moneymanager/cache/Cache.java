@@ -55,6 +55,15 @@ public abstract class Cache<T extends Cacheable> {
         items.remove(entity);
     }
 
+    public void remove(String entity) {
+        for (T item : items) {
+            if (namePredicate.test(item.getName(), entity)) {
+                remove(item);
+                break;
+            }
+        }
+    }
+
     public T readByName(String name) {
         for (T item : items) {
             if (namePredicate.test(item.getName(), name)) {
@@ -81,5 +90,21 @@ public abstract class Cache<T extends Cacheable> {
 
     public void orderById() {
         items.sort(Comparator.comparingInt(Cacheable::getId));
+    }
+
+    public boolean exists(String name) {
+        boolean exists = false;
+
+        for (T item : items) {
+            if (namePredicate.test(name, item.getName())) {
+                exists = true;
+                break;
+            }
+        }
+        return exists;
+    }
+
+    public List<T> asList() {
+        return items;
     }
 }

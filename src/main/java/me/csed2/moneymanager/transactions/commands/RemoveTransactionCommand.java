@@ -4,36 +4,25 @@ import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.transactions.Transaction;
+import me.csed2.moneymanager.transactions.TransactionCache;
 
 public class RemoveTransactionCommand implements ICommand<Boolean> {
 
-    private final String categoryName;
-
     private final String transactionName;
 
-    public RemoveTransactionCommand(String categoryName, String transactionName) {
-        this.categoryName = categoryName;
+    public RemoveTransactionCommand(String transactionName) {
         this.transactionName = transactionName;
 
     }
     @Override
     public Boolean execute() {
-//        CategoryCache repository = CategoryCache.getInstance();
-//        Category category = repository.readByName(categoryName);
-//        if (category != null) {
-//            Transaction transaction = category.getTransactionByName(transactionName);
-//
-//            if (transaction != null) {
-//                category.removeTransaction(transaction);
-//                repository.update(category);
-//                repository.save();
-//                return true;
-//            } else {
-//                return false;
-//            }
-//        } else {
-//            return false;
-//        }
-        return true;
+        TransactionCache transactionCache = TransactionCache.getInstance();
+
+        if (transactionCache.exists(transactionName)) {
+            transactionCache.remove(transactionName);
+            transactionCache.save();
+            return true;
+        }
+        return false;
     }
 }

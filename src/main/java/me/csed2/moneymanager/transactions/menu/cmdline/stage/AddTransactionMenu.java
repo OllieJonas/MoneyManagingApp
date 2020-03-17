@@ -33,7 +33,7 @@ public class AddTransactionMenu extends StageMenu {
         String name = (String) stages.get(1).getResult();
         Integer amount = (Integer) stages.get(2).getResult();
         String vendor = (String) stages.get(3).getResult();
-        String[] notes = ((String) stages.get(4).getResult()).split(",");
+        String[] notes = ((String) stages.get(4).getResult()).split(", ");
 
         if (CommandDispatcher.getInstance().dispatchSync(new AddTransactionCommand(categoryName, name, amount, vendor, notes))) {
             System.out.println("Transaction successfully added!");

@@ -31,7 +31,7 @@ public class UpdateNameMenu extends StageMenu {
         String name = (String) stages.get(2).getResult();
 
         if (CommandDispatcher.getInstance().dispatchSync(
-                new UpdateTransactionCommand<>(categoryName, transactionName, TransactionArgType.NAME, name))) {
+                new UpdateTransactionCommand<>(transactionName, TransactionArgType.NAME, name))) {
             System.out.println("Transaction successfully updated!");
             openPreviousMenu();
         } else {
