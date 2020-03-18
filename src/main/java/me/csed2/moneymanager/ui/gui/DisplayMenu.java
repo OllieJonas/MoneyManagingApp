@@ -5,10 +5,7 @@ import java.awt.*;
 
 import me.csed2.moneymanager.main.User;
 import me.csed2.moneymanager.ui.Menu;
-import me.csed2.moneymanager.ui.gui.button.DisplayButtonCategories;
-import me.csed2.moneymanager.ui.gui.button.DisplayButtonMain;
-import me.csed2.moneymanager.ui.gui.button.DisplayButtonMenu;
-import me.csed2.moneymanager.ui.gui.button.DisplayButtonUpdateCategory;
+import me.csed2.moneymanager.ui.gui.button.*;
 import me.csed2.moneymanager.ui.gui.stage.*;
 
 public abstract class DisplayMenu implements Menu{
@@ -19,11 +16,15 @@ public abstract class DisplayMenu implements Menu{
     public static final DisplayMenu MAIN = new DisplayButtonMain();
     public static final DisplayMenu CATEGORY = new DisplayButtonCategories();
     public static final DisplayMenu UPDATE_CATEGORY = new DisplayButtonUpdateCategory();
+    public static final DisplayMenu TRANSACTION = new DisplayButtonTransactions();
 
     public static final DisplayMenu ADD_CATEGORY = new DisplayStageAddCategory();
     public static final DisplayMenu REMOVE_CATEGORY = new DisplayStageRemoveCategory();
     public static final DisplayMenu UPDATE_CATEGORY_NAME = new DisplayStageUpdateCategoryName();
     public static final DisplayMenu UPDATE_CATEGORY_BUDGET = new DisplayStageUpdateCategoryBudget();
+    public static final DisplayMenu LIST_TRANSACTIONS = new DisplayStageListTransactions();
+    public static final DisplayMenu ADD_TRANSACTION = new DisplayStageAddTransaction();
+    public static final DisplayMenu REMOVE_TRANSACTION = new DisplayStageRemoveTransaction();
 
     //Parent Menu
     protected DisplayMenu parent;

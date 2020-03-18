@@ -2,9 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08364290-c790-4a44-9539-459ea2dced1f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonTransactions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonUpdateTransaction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageAddTransaction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageListTransactions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageRemoveTransaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/CategoryRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonMain.java" afterDir="false" />
     </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,6 +93,18 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/test/java/me/csed2/moneymanager" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="CategoryHandler" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -232,11 +251,11 @@
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.CategoryHandler" />
       <item itemvalue="Application.ClassUtils" />
+      <item itemvalue="Application.Stage" />
       <item itemvalue="JUnit.main.java.me.csed2.moneymanager in MoneyManagingApp" />
       <item itemvalue="Maven.MoneyManagingApp [clean,install]" />
       <item itemvalue="Maven.MoneyManagingApp []" />
       <item itemvalue="Maven.MoneyManagingApp [surefire-report:report-only]" />
-      <item itemvalue="Application.Stage" />
     </list>
     <recent_temporary>
       <list>
@@ -469,6 +488,17 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
