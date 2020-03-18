@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="08364290-c790-4a44-9539-459ea2dced1f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonTransactions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonUpdateTransaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageAddTransaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageListTransactions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageRemoveTransaction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonMain.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -483,7 +476,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584019387820</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Started working on the Transaction menu">
+      <created>1584529783677</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1584529783677</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -494,7 +494,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
@@ -502,7 +504,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Cleaned up pom.xml" />
     <MESSAGE value="Updated .gitignore" />
     <MESSAGE value="Added Category class to allow for better cloning of repo" />
     <MESSAGE value="Reformatted test/java package structure" />
@@ -527,7 +528,8 @@
     <MESSAGE value="Made progress on Category Menu&#10;&#10;Changed name of StepMenu to StageMenu&#10;&#10;Finished implementation of UpdateCategoryCommandAddCategoryCommand and RemoveCategoryCommand&#10;&#10;Fixed bug regarding the Back Button throwing a NullPointerException&#10;&#10;General improvements to StageMenu" />
     <MESSAGE value="Started implementation of Transactions:&#10;&#10;- Created CMD Line Menu for Transactions&#10;- Finished work on AddTransactionCommand and RemoveTransactionCommand&#10;- Started work on UpdateTransactionCommand&#10;&#10;Added ExecutionPhase to StageMenu&#10;&#10;General tidying up of the code." />
     <MESSAGE value="Changed CategoryRepository to now use BiPredicates&#10;&#10;General improvements" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed CategoryRepository to now use BiPredicates&#10;&#10;General improvements" />
+    <MESSAGE value="Started working on the Transaction menu" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started working on the Transaction menu" />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="672" key="#Project_Structure" timestamp="1582809727214">
