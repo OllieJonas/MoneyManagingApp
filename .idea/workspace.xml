@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="dca5a5fc-7958-4d1a-9a37-00820f621c46" name="Default Changelist" comment="Abstracted Listing Transaction Command&#10;&#10;Small fix on adding transactions.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/plaid/Plaid.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/MoneyManagingApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/MoneyManagingApp.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_joda_joda_money_1_0_1.xml" beforeDir="false" />
+    <list default="true" id="dca5a5fc-7958-4d1a-9a37-00820f621c46" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/SubCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/categories/SubCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/AddTransactionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/AddTransactionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/ListTransactionsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/commands/ListTransactionsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/ListTransactionsMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/menu/cmdline/stage/ListTransactionsMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/Cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/Cache.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,7 +269,7 @@
       <workItem from="1583714257894" duration="924000" />
       <workItem from="1583715202273" duration="30721000" />
       <workItem from="1584463046667" duration="2367000" />
-      <workItem from="1584534739588" duration="2271000" />
+      <workItem from="1584534739588" duration="2311000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1582808077680</created>
@@ -495,7 +488,14 @@
       <option name="project" value="LOCAL" />
       <updated>1584456579926</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Abstracted Listing Transaction Command&#10;&#10;Small fix on adding transactions.">
+      <created>1584538410414</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1584538410414</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -566,10 +566,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584455706143" />
-    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2" timestamp="1584538391085">
+    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2" timestamp="1584538410273">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1584538391085" />
+    <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1584538410273" />
     <state x="692" y="101" key="Diagram.Print.Preview.Dialog" timestamp="1584328470836" />
     <state x="692" y="101" key="Diagram.Print.Preview.Dialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470836" />
     <state x="743" y="263" width="432" height="506" key="FileChooserDialogImpl" timestamp="1584328470836" />
@@ -600,10 +600,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="395" y="73" width="1024" height="840" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1584534892682" />
-    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2" timestamp="1584456592454">
+    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2" timestamp="1584538418208">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584456592454" />
+    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584538418208" />
     <state x="678" y="411" width="553" height="225" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1584328470836" />
     <state x="678" y="411" width="553" height="225" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1920.1040@0.0.1920.1040" timestamp="1584328470836" />
     <state x="275" y="434" width="398" height="165" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584328470836" />
