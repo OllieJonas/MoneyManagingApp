@@ -29,9 +29,9 @@ public class DisplayStageUpdateCategoryBudget extends DisplayStageMenu {
         int newBudget = (int) Math.round((Double) stages.get(1).getResult() * 100);
 
         if (CommandDispatcher.getInstance().dispatchSync(new UpdateCategoryCommand<>(name, CategoryArgType.BUDGET, newBudget))) {
-            System.out.println("Successfully updated the budget!");
+            showMessage("Successfully updated the budget!");
         } else {
-            System.out.println("Error: Unable to update this category!");
+            showMessage("Error: Unable to update this category!");
         }
         openPreviousMenu();
 

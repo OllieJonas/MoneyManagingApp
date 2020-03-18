@@ -3,13 +3,14 @@ package me.csed2.moneymanager.ui.gui.stage;
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.categories.commands.UpdateCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.transactions.TransactionArgType;
+import me.csed2.moneymanager.transactions.commands.UpdateTransactionCommand;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
-import me.csed2.moneymanager.ui.gui.button.DisplayButtonUpdateCategory;
 
-public class DisplayStageUpdateCategoryName extends DisplayStageMenu {
+public class DisplayStageUpdateTransactionName extends DisplayStageMenu {
 
-    public DisplayStageUpdateCategoryName(){
-        super(300, 300, "Update Category Name", UPDATE_CATEGORY);
+    public DisplayStageUpdateTransactionName(){
+        super(300, 300, "Update Transaction Name", UPDATE_TRANSACTION);
     }
 
     @Override
@@ -25,13 +26,13 @@ public class DisplayStageUpdateCategoryName extends DisplayStageMenu {
 
     @Override
     protected void exitPhase() {
-        String categoryName = (String) stages.get(0).getResult();
+        String transactionName = (String) stages.get(0).getResult();
         String result = (String) stages.get(1).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(new UpdateCategoryCommand<>(categoryName, CategoryArgType.NAME, result))) {
-            showMessage("Successfully updated the name of this category!");
+        if (CommandDispatcher.getInstance().dispatchSync(new UpdateTransactionCommand<>(transactionName, TransactionArgType.NAME, result))) {
+            showMessage("Successfully updated the name of this transaction!");
         } else {
-            showMessage("Error: Unable to update this category!");
+            showMessage("Error: Unable to update this transaction!");
         }
         openPreviousMenu();
     }

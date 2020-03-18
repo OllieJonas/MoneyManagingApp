@@ -85,7 +85,12 @@ public abstract class Cache<T extends Cacheable> {
     }
 
     public int nextId() {
-        return items.get(items.size() - 1).getId() + 1;
+        if(items.size() > 0){
+            return items.get(items.size() - 1).getId() + 1;
+        }else{
+            return 0;
+        }
+
     }
 
     public void orderById() {

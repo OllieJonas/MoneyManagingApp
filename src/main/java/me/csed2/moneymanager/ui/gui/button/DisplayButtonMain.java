@@ -9,7 +9,7 @@ import me.csed2.moneymanager.ui.gui.DisplayMenu;
 public class DisplayButtonMain extends DisplayButtonMenu {
 
     public DisplayButtonMain(){
-        super(300,400, "Main Menu", null);
+        super(300,400, "Main Menu", null, false);
     }
 
     @Override

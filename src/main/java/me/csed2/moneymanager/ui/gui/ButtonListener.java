@@ -13,7 +13,7 @@ public class ButtonListener implements ActionListener {
 
     private static ButtonListener instance = new ButtonListener();
 
-    //Buttons and their respective Actions - **not sure if there's a better way to identify buttons than their label?**
+    //Buttons and their respective Actions
     private static HashMap<String, IAction> buttonsAndActions = new HashMap<String, IAction>();
 
     private ButtonListener(){

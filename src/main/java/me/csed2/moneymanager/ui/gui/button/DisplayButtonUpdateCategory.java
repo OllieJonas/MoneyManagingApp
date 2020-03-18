@@ -7,7 +7,7 @@ import me.csed2.moneymanager.ui.Button;
 public class DisplayButtonUpdateCategory extends DisplayButtonMenu {
 
     public DisplayButtonUpdateCategory(){
-        super(300, 300, "Update a Category", CATEGORY);
+        super(300, 300, "Update a Category", CATEGORY, false);
     }
 
     @Override

@@ -1,8 +1,12 @@
 package me.csed2.moneymanager.ui.gui.stage;
 
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.transactions.Transaction;
+import me.csed2.moneymanager.transactions.TransactionCache;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
+
+import javax.swing.*;
 
 public class DisplayStageListTransactions extends DisplayStageMenu{
 
@@ -22,16 +26,26 @@ public class DisplayStageListTransactions extends DisplayStageMenu{
 
     @Override
     public void exitPhase() {
-        CategoryRepository repository = CategoryRepository.getInstance();
+        CategoryCache cache = CategoryCache.getInstance();
         String result = (String) stages.get(0).getResult();
 
-        Category category = repository.readByName(result);
+        Category category = cache.readByName(result);
 
         if (category != null) {
-            category.printTransactions();
+            JOptionPane.showMessageDialog(null, getTransactionReport(result));
         } else {
             System.out.println("Error: Unable to find this category!");
         }
         openPreviousMenu();
+    }
+
+    private String getTransactionReport(String category){
+        StringBuilder builder = new StringBuilder();
+
+        for(Transaction transaction : TransactionCache.getInstance().readByCategory(category)){
+            builder.append(transaction.toFormattedString() + "\n");
+        }
+
+        return builder.toString();
     }
 }

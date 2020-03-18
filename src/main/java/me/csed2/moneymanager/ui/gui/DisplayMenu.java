@@ -1,8 +1,10 @@
 package me.csed2.moneymanager.ui.gui;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 
+import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.main.User;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.gui.button.*;
@@ -17,6 +19,7 @@ public abstract class DisplayMenu implements Menu{
     public static final DisplayMenu CATEGORY = new DisplayButtonCategories();
     public static final DisplayMenu UPDATE_CATEGORY = new DisplayButtonUpdateCategory();
     public static final DisplayMenu TRANSACTION = new DisplayButtonTransactions();
+    public static final DisplayMenu UPDATE_TRANSACTION = new DisplayButtonUpdateTransaction();
 
     public static final DisplayMenu ADD_CATEGORY = new DisplayStageAddCategory();
     public static final DisplayMenu REMOVE_CATEGORY = new DisplayStageRemoveCategory();
@@ -25,6 +28,10 @@ public abstract class DisplayMenu implements Menu{
     public static final DisplayMenu LIST_TRANSACTIONS = new DisplayStageListTransactions();
     public static final DisplayMenu ADD_TRANSACTION = new DisplayStageAddTransaction();
     public static final DisplayMenu REMOVE_TRANSACTION = new DisplayStageRemoveTransaction();
+    public static final DisplayMenu UPDATE_TRANSACTION_NAME = new DisplayStageUpdateTransactionName();
+    public static final DisplayMenu UPDATE_TRANSACTION_AMOUNT = new DisplayStageUpdateTransactionAmount();
+    public static final DisplayMenu UPDATE_TRANSACTION_VENDOR = new DisplayStageUpdateTransactionVendor();
+    public static final DisplayMenu UPDATE_TRANSACTION_NOTES = new DisplayStageUpdateTransactionNotes();
 
     //Parent Menu
     protected DisplayMenu parent;
@@ -48,8 +55,13 @@ public abstract class DisplayMenu implements Menu{
         frame.setLocationRelativeTo(null); //Center on screen
         frame.setVisible(false);
 
+
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+
+        //Border
+        Border blackBorder = BorderFactory.createMatteBorder(5, 5, 5, 5, Color.black);
+        panel.setBorder(blackBorder);
 
         frame.add(panel);
 
@@ -62,7 +74,7 @@ public abstract class DisplayMenu implements Menu{
     protected void addTitle(String title){
         JLabel labTitle = new JLabel(title);
         labTitle.setAlignmentX(Component.CENTER_ALIGNMENT); //Place title in the middle
-        labTitle.setFont(new Font("TimesRoman", Font.BOLD, 20));
+        labTitle.setFont(new Font("TimesRoman", Font.BOLD, 26));
         panel.add(labTitle);
     }
 
@@ -81,5 +93,9 @@ public abstract class DisplayMenu implements Menu{
 
     protected void openPreviousMenu(){
         User.getInstance().openMenu(parent);
+    }
+
+    protected void showMessage(String msg){
+        JOptionPane.showMessageDialog(null, msg);
     }
 }

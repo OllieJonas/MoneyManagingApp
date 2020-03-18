@@ -66,6 +66,12 @@ public abstract class DisplayStageMenu extends DisplayMenu {
         JButton submitButton = new JButton("Submit");
         ButtonListener.getButtonsAndActions().put(title + ":" + submitButton.getActionCommand(), createSubmitAction());
         submitButton.addActionListener(ButtonListener.getInstance());
+
+        JButton backButton = new JButton("Back");
+        ButtonListener.getButtonsAndActions().put(title + ":" + backButton.getActionCommand(), user -> openPreviousMenu());
+        backButton.addActionListener(ButtonListener.getInstance());
+
+        buttonPanel.add(backButton);
         buttonPanel.add(submitButton);
 
         panel.add(buttonPanel);
@@ -87,7 +93,7 @@ public abstract class DisplayStageMenu extends DisplayMenu {
                     exitPhase();
 
                 }catch(InvalidTypeException e){
-                    System.out.println("INVALID TYPE IN TEXT FIELD");
+                    showMessage("Invalid types in text fields. Please try again.");
                 }
             }
         };
