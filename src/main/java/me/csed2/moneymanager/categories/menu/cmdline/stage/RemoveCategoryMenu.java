@@ -1,6 +1,6 @@
 package me.csed2.moneymanager.categories.menu.cmdline.stage;
 
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.categories.commands.RemoveCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.ui.Menu;
@@ -20,7 +20,7 @@ public class RemoveCategoryMenu extends StageMenu {
 
     @Override
     public void beginPhase() {
-        CategoryRepository.getInstance().printNames();
+        CategoryCache.getInstance().printNames();
     }
 
     @Override

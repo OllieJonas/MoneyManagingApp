@@ -3,7 +3,9 @@ package me.csed2.moneymanager.transactions;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import me.csed2.moneymanager.cache.Cacheable;
 
+import java.util.Arrays;
 import java.util.Date;
 
 /**
@@ -17,7 +19,7 @@ import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Transaction {
+public class Transaction implements Cacheable {
 
     /**
      * Name of the transaction
@@ -41,8 +43,7 @@ public class Transaction {
     /**
      * The category in which the transaction belongs
      */
-    private int categoryId;
-
+    private String category;
 
     /**
      * Any notes the user may have about the transaction
@@ -56,11 +57,22 @@ public class Transaction {
         System.out.println("  id: " + id);
         System.out.println("  created: " + date.toString());
         System.out.println("  amount: " + amount);
-        System.out.println("  category_id: " + categoryId);
+        System.out.println("  category: " + category);
         System.out.println("  vendor: " + vendor);
         System.out.println("  notes: ");
         for (String note : notes) {
             System.out.println("    \"" + note + "\"");
         }
+    }
+
+    @Override
+    public String toFormattedString() {
+        return "name: " + name + "\n" +
+                "  id: " + id + "\n" +
+                "  created: " + date.toString() + "\n" +
+                "  amount: " + amount + "\n" +
+                "  category: " + category + "\n" +
+                "  vendor: " + vendor + "\n" +
+                "  notes: " + Arrays.toString(notes);
     }
 }

@@ -3,10 +3,9 @@ package me.csed2.moneymanager.categories;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import me.csed2.moneymanager.transactions.Transaction;
+import me.csed2.moneymanager.cache.Cacheable;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * Category POJO.
@@ -19,7 +18,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-public class Category {
+public class Category implements Cacheable {
 
     /**
      * The name of the category
@@ -41,44 +40,10 @@ public class Category {
      */
     private int budget;
 
-    /**
-     * The list of all transactions
-     */
-    private List<Transaction> transactions;
-
-    public void addTransaction(Transaction transaction) {
-        transactions.add(transaction);
-    }
-
     public String toFormattedString() {
         return "category: " + name + "  " + "\n  "
                 + " id: " + id + "\n  "
                 + " created: " + created + "\n  "
                 + " budget: £" + Math.round(budget / 100);
-    }
-
-    public Transaction getTransactionByName(String transactionName) {
-        for (Transaction transaction : transactions) {
-            if (transaction.getName().equalsIgnoreCase(transactionName)) {
-                return transaction;
-            }
-        }
-        return null;
-    }
-
-    public void removeTransaction(Transaction transaction) {
-        transactions.remove(transaction);
-    }
-
-    public Transaction update(Transaction entity) {
-        transactions.removeIf(transaction -> transaction.getId() == entity.getId());
-        transactions.add(entity);
-        return entity;
-    }
-
-    public void printTransactions() {
-        for (Transaction transaction : transactions) {
-            transaction.print();
-        }
     }
 }

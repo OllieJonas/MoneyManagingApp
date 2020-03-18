@@ -50,7 +50,7 @@ public class Stage<T> {
     }
 
     public void setResult(Object result) {
-        this.result = ClassUtils.getResultFromObject(result, resultType);
+        this.result = ClassUtils.cast(result, resultType);
     }
 
     public void print() {

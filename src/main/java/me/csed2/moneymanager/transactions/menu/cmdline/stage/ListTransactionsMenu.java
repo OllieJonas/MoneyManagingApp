@@ -1,16 +1,20 @@
 package me.csed2.moneymanager.transactions.menu.cmdline.stage;
 
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.transactions.Transaction;
+import me.csed2.moneymanager.transactions.TransactionCache;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
+
+import java.util.List;
 
 public class ListTransactionsMenu extends StageMenu {
     /**
      * Constructor for CMDMenu. Responsible for adding the buttons to the list.
      *
-     * @param name
      * @param previousMenu
      */
     public ListTransactionsMenu(Menu previousMenu) {
@@ -24,18 +28,33 @@ public class ListTransactionsMenu extends StageMenu {
 
     @Override
     public void exitPhase() {
-        CategoryRepository repository = CategoryRepository.getInstance();
+        CategoryCache repository = CategoryCache.getInstance();
         String result = (String) stages.get(0).getResult();
 
-        Category category = repository.readByName(result);
-
-        if (category != null) {
-            category.printTransactions();
-            openPreviousMenu();
+        if (result.equalsIgnoreCase("ALL")) {
+            for (Transaction transaction : TransactionCache.getInstance().asList()) {
+                System.out.println(transaction.toFormattedString());
+                openPreviousMenu();
+            }
         } else {
-            System.out.println("Error: Unable to find this category!");
-            restart();
-        }
+            Category category = repository.readByName(result);
 
+            if (category != null) {
+                try {
+
+                    List<Transaction> transactions = TransactionCache.getInstance().readByCategory(result);
+
+                    for (Transaction transaction : transactions) {
+                        System.out.println(transaction.toFormattedString());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                openPreviousMenu();
+            } else {
+                System.out.println("Error: Unable to find this category!");
+                restart();
+            }
+        }
     }
 }
