@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.main;
 
 import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.subscriptions.SubscriptionCache;
 import me.csed2.moneymanager.transactions.TransactionCache;
 import me.csed2.moneymanager.ui.gui.DisplayMenu;
 
@@ -19,6 +20,7 @@ public class Main {
         try {
             new CategoryCache().load();
             new TransactionCache().load();
+            new SubscriptionCache().load();
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

@@ -16,5 +16,6 @@ public class DisplayButtonMain extends DisplayButtonMenu {
     protected void addButtons() {
         addButton(new Button("Categories", user -> user.openMenu(CATEGORY)));
         addButton(new Button("Transactions", user -> user.openMenu(TRANSACTION)));
+        addButton(new Button("Subscriptions", user-> user.openMenu(SUBSCRIPTION)));
     }
 }

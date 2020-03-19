@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.ui.gui.stage;
+package me.csed2.moneymanager.ui.gui.stage.Transaction;
 
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.categories.commands.UpdateCategoryCommand;
@@ -6,6 +6,7 @@ import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.transactions.TransactionArgType;
 import me.csed2.moneymanager.transactions.commands.UpdateTransactionCommand;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
+import me.csed2.moneymanager.ui.gui.stage.DisplayStageMenu;
 
 public class DisplayStageUpdateTransactionName extends DisplayStageMenu {
 

@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.main;
 
 import me.csed2.moneymanager.categories.menu.cmdline.CategoriesMenu;
+import me.csed2.moneymanager.subscriptions.menu.cmdline.SubscriptionMenu;
 import me.csed2.moneymanager.transactions.menu.cmdline.TransactionMenu;
 import me.csed2.moneymanager.ui.Button;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
@@ -25,6 +26,9 @@ public class MainMenu extends CMDMenu {
     public void addButtons() {
         addButton(new Button("Categories", user -> user.openMenu(new CategoriesMenu(this))));
         addButton(new Button("Transactions", user -> user.openMenu(new TransactionMenu(this))));
+
+        addButton(new Button("Subscriptions", user-> user.openMenu(new SubscriptionMenu(this))));
+
         addButton(new Button("Test Step Menu", user -> user.openMenu(new TestStageMenu(this))));
     }
 }

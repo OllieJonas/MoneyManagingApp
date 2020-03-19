@@ -1,17 +1,18 @@
-package me.csed2.moneymanager.ui.gui.stage;
+package me.csed2.moneymanager.ui.gui.stage.Subscription;
 
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryCache;
-import me.csed2.moneymanager.transactions.Transaction;
-import me.csed2.moneymanager.transactions.TransactionCache;
+import me.csed2.moneymanager.subscriptions.Subscription;
+import me.csed2.moneymanager.subscriptions.SubscriptionCache;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
+import me.csed2.moneymanager.ui.gui.stage.DisplayStageMenu;
 
 import javax.swing.*;
 
-public class DisplayStageListTransactions extends DisplayStageMenu{
+public class DisplayStageListSubscriptions extends DisplayStageMenu {
 
-    public DisplayStageListTransactions(){
-        super(300, 300, "List Transactions", TRANSACTION);
+    public DisplayStageListSubscriptions(){
+        super(300, 300, "List Subscriptions", TRANSACTION);
     }
 
     @Override
@@ -32,18 +33,18 @@ public class DisplayStageListTransactions extends DisplayStageMenu{
         Category category = cache.readByName(result);
 
         if (category != null) {
-            JOptionPane.showMessageDialog(null, getTransactionReport(result));
+            JOptionPane.showMessageDialog(null, getSubscriptionReport(result));
         } else {
             System.out.println("Error: Unable to find this category!");
         }
         openPreviousMenu();
     }
 
-    private String getTransactionReport(String category){
+    private String getSubscriptionReport(String category){
         StringBuilder builder = new StringBuilder();
 
-        for(Transaction transaction : TransactionCache.getInstance().readByCategory(category)){
-            builder.append(transaction.toFormattedString()).append("\n");
+        for(Subscription subscription : SubscriptionCache.getInstance().readByCategory(category)){
+            builder.append(subscription.toFormattedString()).append("\n");
         }
 
         return builder.toString();
