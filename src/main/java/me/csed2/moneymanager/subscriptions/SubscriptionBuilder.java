@@ -11,7 +11,6 @@ import java.util.List;
  * Subscription trans = new SubscriptionBuilder("Score").withId(1).withDate(03/03/2020).withAmount(200)
  * .withCategory(Category.FUN).withNotes("we do love to see this").withVendor("SU").build();
  *
- * @author Ollie
  * @since 03/03/2020
  */
 public class SubscriptionBuilder {

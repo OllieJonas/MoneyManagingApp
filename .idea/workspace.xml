@@ -1,53 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="08364290-c790-4a44-9539-459ea2dced1f" name="Default Changelist" comment="Started work on subscriptions">
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/SubscriptionArgType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/SubscriptionBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/SubscriptionCache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/commands/AddSubscriptionCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/commands/ListSubscriptionsCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/commands/RemoveSubscriptionCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/commands/UpdateSubscriptionCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/menu/cmdline/SubscriptionMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/menu/cmdline/stage/AddSubscriptionMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/menu/cmdline/stage/ListSubscriptionsMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/menu/cmdline/stage/RemoveSubscriptionMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/menu/cmdline/stage/UpdateSubscriptionMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/menu/cmdline/stage/update/UpdateAmountMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/menu/cmdline/stage/update/UpdateNameMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/menu/cmdline/stage/update/UpdateNotesMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/menu/cmdline/stage/update/UpdateVendorMenu.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonSubscriptions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonUpdateSubscription.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Subscription/DisplayStageListSubscriptions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Transaction/DisplayStageAddTransaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Transaction/DisplayStageListTransactions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Transaction/DisplayStageRemoveTransaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Transaction/DisplayStageUpdateTransactionAmount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Transaction/DisplayStageUpdateTransactionName.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Transaction/DisplayStageUpdateTransactionNotes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Transaction/DisplayStageUpdateTransactionVendor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/subscriptions.json" afterDir="false" />
+    <list default="true" id="08364290-c790-4a44-9539-459ea2dced1f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/commands/LoadFromDBCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/cache/commands/LoadFromDBCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/main/MainMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/Subscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/Subscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/transactions/Transaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/DisplayMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageAddCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Category/DisplayStageAddCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageAddTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Subscription/DisplayStageAddSubscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageListTransactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Subscription/DisplayStageListSubscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageRemoveCategory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Category/DisplayStageRemoveCategory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageRemoveTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Subscription/DisplayStageRemoveSubscription.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageUpdateCategoryBudget.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Category/DisplayStageUpdateCategoryBudget.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageUpdateCategoryName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Category/DisplayStageUpdateCategoryName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageUpdateTransactionAmount.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Subscription/DisplayStageUpdateSubscriptionAmount.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageUpdateTransactionName.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Subscription/DisplayStageUpdateSubscriptionName.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageUpdateTransactionNotes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Subscription/DisplayStageUpdateSubscriptionNotes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/DisplayStageUpdateTransactionVendor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/stage/Subscription/DisplayStageUpdateSubscriptionVendor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/SubscriptionBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/subscriptions/SubscriptionBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonUpdateSubscription.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/csed2/moneymanager/ui/gui/button/DisplayButtonUpdateSubscription.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -576,7 +533,21 @@
       <option name="project" value="LOCAL" />
       <updated>1584638425473</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Cloned the transaction part but named as subscription to use as a base for further development of subscriptions.">
+      <created>1584647104383</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1584647104383</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Cloned the transaction part but named as subscription to use as a base for further development of subscriptions.">
+      <created>1584647247880</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1584647247880</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -610,7 +581,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added basic POJO classes for Transaction and Category&#10;&#10;Created interface for commands" />
     <MESSAGE value="Added a Command Dispatcher class including the execution of both asynchronous and synchronous commands." />
     <MESSAGE value="Updated various things, updated CommandDispatcher to use CompletableFuture as opposed to ListenableFuture (still working on)" />
     <MESSAGE value="Finished writing / saving to data.json" />
@@ -635,7 +605,8 @@
     <MESSAGE value="Various fixing of stuff." />
     <MESSAGE value="Started work on SortedCache" />
     <MESSAGE value="Started work on subscriptions" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started work on subscriptions" />
+    <MESSAGE value="Cloned the transaction part but named as subscription to use as a base for further development of subscriptions." />
+    <option name="LAST_COMMIT_MESSAGE" value="Cloned the transaction part but named as subscription to use as a base for further development of subscriptions." />
   </component>
   <component name="WindowStateProjectService">
     <state x="555" y="180" width="800" height="672" key="#Project_Structure" timestamp="1584637647586" />
@@ -654,10 +625,10 @@
     <state x="712" y="163" width="476" height="703" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
     <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584637647586" />
     <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
-    <state x="1366" y="-1440" width="807" height="800" key="CommitChangelistDialog2" timestamp="1584647103346">
+    <state x="1366" y="-1440" width="807" height="800" key="CommitChangelistDialog2" timestamp="1584647247080">
       <screen x="374" y="-1440" width="2560" height="1440" />
     </state>
-    <state x="1366" y="-1440" key="CommitChangelistDialog2/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647103346" />
+    <state x="1366" y="-1440" key="CommitChangelistDialog2/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647247080" />
     <state x="551" y="0" width="807" height="800" key="CommitChangelistDialog2/0.0.1422.800@0.0.1422.800" timestamp="1584638424678" />
     <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
     <state x="692" y="101" key="Diagram.Print.Preview.Dialog" timestamp="1584637647586" />
@@ -668,25 +639,25 @@
     <state x="800" y="416" width="310" height="200" key="Github.ShareDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
     <state x="714" y="145" width="481" height="743" key="Github.UntrackedFilesDialog" timestamp="1584637647586" />
     <state x="714" y="145" width="481" height="743" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
-    <state width="1256" height="393" key="GridCell.Tab.0.bottom" timestamp="1584647216177">
+    <state width="1256" height="393" key="GridCell.Tab.0.bottom" timestamp="1584649820460">
       <screen x="374" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1256" height="393" key="GridCell.Tab.0.bottom/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647216177" />
+    <state width="1256" height="393" key="GridCell.Tab.0.bottom/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584649820460" />
     <state width="407" height="338" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
-    <state width="1256" height="393" key="GridCell.Tab.0.center" timestamp="1584647216177">
+    <state width="1256" height="393" key="GridCell.Tab.0.center" timestamp="1584649820459">
       <screen x="374" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1256" height="393" key="GridCell.Tab.0.center/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647216177" />
+    <state width="1256" height="393" key="GridCell.Tab.0.center/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584649820459" />
     <state width="407" height="338" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
-    <state width="1256" height="393" key="GridCell.Tab.0.left" timestamp="1584647216177">
+    <state width="1256" height="393" key="GridCell.Tab.0.left" timestamp="1584649820459">
       <screen x="374" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1256" height="393" key="GridCell.Tab.0.left/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647216177" />
+    <state width="1256" height="393" key="GridCell.Tab.0.left/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584649820459" />
     <state width="407" height="338" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
-    <state width="1256" height="393" key="GridCell.Tab.0.right" timestamp="1584647216177">
+    <state width="1256" height="393" key="GridCell.Tab.0.right" timestamp="1584649820460">
       <screen x="374" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1256" height="393" key="GridCell.Tab.0.right/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647216177" />
+    <state width="1256" height="393" key="GridCell.Tab.0.right/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584649820460" />
     <state width="407" height="338" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
     <state x="666" y="229" width="578" height="575" key="MultipleFileMergeDialog" timestamp="1584637647586" />
     <state x="666" y="229" width="578" height="575" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
@@ -696,9 +667,10 @@
     <state x="1085" y="-1440" key="SettingsEditor/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584640601316" />
     <state x="395" y="0" width="1024" height="800" key="SettingsEditor/0.0.1422.800@0.0.1422.800" timestamp="1584637748607" />
     <state x="395" y="73" width="1024" height="840" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
-    <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2" timestamp="1584638435637">
-      <screen x="0" y="0" width="1422" height="800" />
+    <state x="1373" y="-988" width="800" height="531" key="Vcs.Push.Dialog.v2" timestamp="1584647853395">
+      <screen x="374" y="-1440" width="2560" height="1440" />
     </state>
+    <state x="1373" y="-988" key="Vcs.Push.Dialog.v2/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647853395" />
     <state x="555" y="251" key="Vcs.Push.Dialog.v2/0.0.1422.800@0.0.1422.800" timestamp="1584638435637" />
     <state x="555" y="251" width="800" height="531" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
     <state x="386" y="224" key="com.intellij.ide.util.TipDialog" timestamp="1584637771832">

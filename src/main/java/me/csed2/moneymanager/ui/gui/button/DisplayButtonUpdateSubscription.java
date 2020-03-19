@@ -18,6 +18,6 @@ public class DisplayButtonUpdateSubscription extends DisplayButtonMenu {
         addButton(new Button("Update Amount for a Subscription", user -> user.openMenu(UPDATE_SUBSCRIPTION_AMOUNT)));
         addButton(new Button("Update Vendor for a Subscription", user -> user.openMenu(UPDATE_SUBSCRIPTION_VENDOR)));
         addButton(new Button("Update Notes for a Subscription", user -> user.openMenu(UPDATE_SUBSCRIPTION_NOTES)));
-        addBackButton();
+        addButton(new Button("Back", user-> user.openMenu((SUBSCRIPTION))));
     }
 }
