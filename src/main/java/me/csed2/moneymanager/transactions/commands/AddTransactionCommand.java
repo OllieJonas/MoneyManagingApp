@@ -33,7 +33,6 @@ public class AddTransactionCommand implements ICommand<Boolean> {
 
             transactionCache.add(new TransactionBuilder(name)
             .withAmount(amount)
-            .withCategoryName(name)
             .withVendor(vendor)
             .withDate(new Date())
             .withNotes(notes)
