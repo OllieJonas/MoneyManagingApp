@@ -1,5 +1,6 @@
 package me.csed2.moneymanager.ui.cmdline;
 
+import lombok.Getter;
 import me.csed2.moneymanager.main.User;
 import me.csed2.moneymanager.ui.Button;
 import me.csed2.moneymanager.ui.Menu;
@@ -18,6 +19,7 @@ public abstract class CMDMenu implements Menu {
     /**
      * The list of buttons inside this menu
      */
+    @Getter
     private List<Button> buttons = new ArrayList<>();
 
     /**
@@ -37,7 +39,7 @@ public abstract class CMDMenu implements Menu {
         this.parent = parent;
 
         addButtons();
-        addBackButton(true);
+        addBackButton();
         addExitButton();
     }
 
@@ -77,20 +79,15 @@ public abstract class CMDMenu implements Menu {
         ConsoleUtils.printBorder(ConsoleUtils.BorderType.BOTTOM);
     }
 
-    public List<Button> getButtons() {
-        return buttons;
-    }
-
     private void addExitButton() {
         addButton(new Button("Exit the Application", User::exit));
     }
 
-    public void addBackButton(boolean clearConsole) {
+    private void addBackButton() {
         addButton(new Button("Go Back", user -> {
             if (parent != null) {
                 user.openMenu(parent);
             }
-        }, true, clearConsole, true));
+        }, true, true, true));
     }
-
 }

@@ -1,18 +1,25 @@
 package me.csed2.moneymanager.cache.commands;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
-import me.csed2.moneymanager.cache.CacheTypeFactory;
 import me.csed2.moneymanager.cache.Cacheable;
+import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.main.Main;
+import me.csed2.moneymanager.transactions.Transaction;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.lang.reflect.Type;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class contains the Command to Load from a Database.
+ * @param <T>
+ */
 public class LoadFromDBCommand<T extends Cacheable> implements ICommand<List<T>> {
 
     private final Type type;
@@ -34,5 +41,30 @@ public class LoadFromDBCommand<T extends Cacheable> implements ICommand<List<T>>
     @Override
     public List<T> execute() {
         return gson.fromJson(reader, type);
+    }
+
+
+    /**
+     * This class implements the Factory design pattern (https://refactoring.guru/design-patterns/factory-method).
+     *
+     * This class is used to get the type of ArrayList to map the JSON file into.
+     */
+    private static class CacheTypeFactory {
+
+        /**
+         * Main method. Takes the class of the cacheable item and returns a Type to be used for GSON.
+         *
+         * @param clazz The class.
+         * @return A type containing an ArrayList version of the class.
+         */
+        private static Type getType(Class<? extends Cacheable> clazz) {
+            if (clazz == Transaction.class) {
+                return new TypeToken<ArrayList<Transaction>>(){}.getType();
+            } else if (clazz == Category.class) {
+                return new TypeToken<ArrayList<Category>>(){}.getType();
+            } else {
+                return null;
+            }
+        }
     }
 }

@@ -10,9 +10,21 @@ import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 /**
- * Interface for our own custom repository.
+ * Abstract class for our own custom cache.
+ *
+ * This is essentially a wrapper for an ArrayList with additional features. The main purpose of this class is to allow
+ * to search the wrapped list by the properties contained inside one of the Cacheable items. For example, if you wanted
+ * to search a list of Transactions by the Category Name.
+ *
+ * At the moment, the abstract version contains searches for two things; their name and the ID. At the moment, both of
+ * these are used interchangeably during the code, although we will be aiming to mainly use names, due to making it
+ * easier to present for a user to read, rather than having to convert an ID into a name.
+ *
+ * @author Ollie, Jac
+ * @since 16/3/20
  *
  * @param <T> The type of object stored in the repository
+ *
  */
 public abstract class Cache<T extends Cacheable> {
 
@@ -24,7 +36,7 @@ public abstract class Cache<T extends Cacheable> {
     @Getter
     protected BiPredicate<Integer, Integer> idPredicate = Integer::equals;
 
-    public Cache() {
+    protected Cache() {
         this.items = new ArrayList<>();
     }
 
@@ -106,6 +118,20 @@ public abstract class Cache<T extends Cacheable> {
             }
         }
         return exists;
+    }
+
+    public void print() {
+        for (T item : items) {
+            System.out.println(item.toFormattedString());
+        }
+    }
+
+    public void printIf(Predicate<String> predicate) {
+        for (T item : items) {
+            if (predicate.test(item.getName())) {
+                System.out.println(item.toFormattedString());
+            }
+        }
     }
 
     public List<T> asList() {

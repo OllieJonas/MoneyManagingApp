@@ -14,8 +14,8 @@ public class Main {
     public Main() {
 
         new User();
-        try {
 
+        try {
             new CategoryCache().load();
             new TransactionCache().load();
 
@@ -26,16 +26,6 @@ public class Main {
         //Testing Frame
         User.getInstance().openMenu(new MainMenu());
         //End of Testing
-    }
-
-    /**
-     * Method that multiplies 2 numbers together, used for testing JUnit
-     * @param a First number
-     * @param b Second number
-     * @return a*b
-     */
-    public int multiply(int a, int b) {
-        return a*b;
     }
 
     public static void main(String[] args) {
