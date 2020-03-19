@@ -18,9 +18,12 @@ public class RemoveCategoryCommand implements ICommand<Boolean> {
         Category category = repository.readByName(name);
 
         if (category != null) {
+
             repository.remove(category);
             repository.save();
+
             return true;
+
         } else {
             return false;
         }

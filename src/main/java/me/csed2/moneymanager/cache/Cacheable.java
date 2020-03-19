@@ -2,7 +2,7 @@ package me.csed2.moneymanager.cache;
 
 
 /**
- * Interface implemented by anything that can be cached in the Cache {@link Cache<T>} abstract class.
+ * Interface implemented by anything that can be cached in the Cache {@link Cache } abstract class.
  *
  * This class allows common implementation of searching the cache either by name or by the ID.
  *
@@ -18,5 +18,9 @@ public interface Cacheable {
     String getName();
 
     String toFormattedString();
+
+    default boolean equals(Cacheable cacheable) {
+        return this.getClass() == cacheable.getClass() && this.getId() == cacheable.getId();
+    }
 
 }

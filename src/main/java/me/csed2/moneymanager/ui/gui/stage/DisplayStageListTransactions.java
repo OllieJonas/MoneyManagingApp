@@ -43,7 +43,7 @@ public class DisplayStageListTransactions extends DisplayStageMenu{
         StringBuilder builder = new StringBuilder();
 
         for(Transaction transaction : TransactionCache.getInstance().readByCategory(category)){
-            builder.append(transaction.toFormattedString() + "\n");
+            builder.append(transaction.toFormattedString()).append("\n");
         }
 
         return builder.toString();
