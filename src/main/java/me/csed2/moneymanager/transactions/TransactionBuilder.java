@@ -1,9 +1,9 @@
 package me.csed2.moneymanager.transactions;
 
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.CategoryCache;
 
-import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Builder class for a transaction.
@@ -43,7 +43,7 @@ public class TransactionBuilder {
      */
     private String vendor;
 
-    private int categoryId;
+    private String categoryName;
 
     public TransactionBuilder(String name) {
         this.name = name;
@@ -59,8 +59,8 @@ public class TransactionBuilder {
         return this;
     }
 
-    public TransactionBuilder withCategoryID(int categoryId) {
-        this.categoryId = categoryId;
+    public TransactionBuilder withCategoryName(String name) {
+        this.categoryName = name;
         return this;
     }
 
@@ -75,11 +75,17 @@ public class TransactionBuilder {
     }
 
     public Transaction build() {
-        return new Transaction(name, getIdFromCat(), date, amount, categoryId, notes, vendor);
+        return new Transaction(name, getId(), date, amount, categoryName, notes, vendor);
     }
 
-    private int getIdFromCat() {
-        return 1;
+    private int getId() {
+        TransactionCache cache = TransactionCache.getInstance();
+        List<Transaction> transactions = cache.readByCategory(categoryName);
+        if (transactions == null) {
+            return 1;
+        } else {
+            return transactions.get(transactions.size() - 1).getId() + 1;
+        }
     }
 
 }

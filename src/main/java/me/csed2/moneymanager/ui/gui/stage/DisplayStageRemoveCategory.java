@@ -1,16 +1,14 @@
-package me.csed2.moneymanager.categories.menu.cmdline.stage;
+package me.csed2.moneymanager.ui.gui.stage;
 
 import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.categories.commands.RemoveCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
-import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
-import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
 
-public class RemoveCategoryMenu extends StageMenu {
+public class DisplayStageRemoveCategory extends DisplayStageMenu{
 
-    public RemoveCategoryMenu(Menu menu) {
-        super("Remove Category", menu);
+    public DisplayStageRemoveCategory(){
+        super(300, 300, "Remove Category", CATEGORY);
     }
 
     @Override
@@ -35,7 +33,7 @@ public class RemoveCategoryMenu extends StageMenu {
 
         } else {
             System.out.println("Unable to find category " + name + "!");
-            restart();
+            openPreviousMenu();
         }
 
     }

@@ -5,6 +5,7 @@ import lombok.Getter;
 public enum TransactionArgType {
     NAME(String.class),
     AMOUNT(Integer.class),
+    CATEGORY(String.class),
     NOTES(String.class), // String because that's what the thing takes
     VENDOR(String.class);
 

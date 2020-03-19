@@ -1,36 +1,36 @@
-package me.csed2.moneymanager.categories.commands;
+package me.csed2.moneymanager.cache.commands;
 
 import com.google.gson.Gson;
-import com.google.gson.stream.JsonReader;
-import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.cache.Cacheable;
 import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.main.Main;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStreamWriter;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class SaveCategoriesCommand implements ICommand<Boolean> {
+public class SaveToDBCommand<T extends Cacheable> implements ICommand<Boolean> {
 
     private final Gson gson;
     private final URL fileUrl;
 
-    private final List<Category> categories;
+    private final List<T> items;
 
-    public SaveCategoriesCommand(String fileName, List<Category> categories) {
+    public SaveToDBCommand(String fileName, List<T> items) {
         this.gson = new Gson();
         this.fileUrl = Main.class.getClassLoader().getResource(fileName);
-        this.categories = categories;
+        this.items = items;
     }
 
     @Override
     public Boolean execute() {
-        String gsonString = gson.toJson(categories);
+        String jsonString = gson.toJson(items);
 
         try {
-
             System.out.println(fileUrl.getPath());
             Path path = Paths.get(fileUrl.toURI());
             File myFile = path.toFile();
@@ -40,7 +40,7 @@ public class SaveCategoriesCommand implements ICommand<Boolean> {
                     FileOutputStream fOut = new FileOutputStream(myFile);
                     OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
 
-                    myOutWriter.append(gsonString);
+                    myOutWriter.append(jsonString);
 
                     myOutWriter.close();
                     fOut.close();
@@ -48,9 +48,9 @@ public class SaveCategoriesCommand implements ICommand<Boolean> {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
             return false;
         }
         return false;
     }
+
 }

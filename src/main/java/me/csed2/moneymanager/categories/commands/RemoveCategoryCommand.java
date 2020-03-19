@@ -1,7 +1,7 @@
 package me.csed2.moneymanager.categories.commands;
 
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.command.ICommand;
 
 public class RemoveCategoryCommand implements ICommand<Boolean> {
@@ -13,7 +13,7 @@ public class RemoveCategoryCommand implements ICommand<Boolean> {
     }
     @Override
     public Boolean execute() {
-        CategoryRepository repository = CategoryRepository.getInstance();
+        CategoryCache repository = CategoryCache.getInstance();
 
         Category category = repository.readByName(name);
 

@@ -1,16 +1,19 @@
 package me.csed2.moneymanager.transactions.menu.cmdline.stage;
 
-import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.transactions.Transaction;
+import me.csed2.moneymanager.transactions.commands.ListTransactionsCommand;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
 
+import java.util.List;
+
 public class ListTransactionsMenu extends StageMenu {
+
     /**
      * Constructor for CMDMenu. Responsible for adding the buttons to the list.
      *
-     * @param name
      * @param previousMenu
      */
     public ListTransactionsMenu(Menu previousMenu) {
@@ -24,18 +27,13 @@ public class ListTransactionsMenu extends StageMenu {
 
     @Override
     public void exitPhase() {
-        CategoryRepository repository = CategoryRepository.getInstance();
         String result = (String) stages.get(0).getResult();
+        List<Transaction> transactions = CommandDispatcher.getInstance().dispatchSync(new ListTransactionsCommand(result));
 
-        Category category = repository.readByName(result);
-
-        if (category != null) {
-            category.printTransactions();
-            openPreviousMenu();
-        } else {
-            System.out.println("Error: Unable to find this category!");
-            restart();
+        for (Transaction transaction : transactions) {
+            System.out.println(transaction.toFormattedString());
         }
 
+        openPreviousMenu();
     }
 }

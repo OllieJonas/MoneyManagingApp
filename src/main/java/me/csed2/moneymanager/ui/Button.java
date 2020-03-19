@@ -14,6 +14,7 @@ public class Button {
     /**
      * The action to be performed upon selecting this button.
      */
+    @Getter
     private IAction action;
 
     /**

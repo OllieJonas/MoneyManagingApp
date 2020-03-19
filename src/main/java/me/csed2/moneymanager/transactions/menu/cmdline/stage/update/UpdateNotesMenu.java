@@ -31,7 +31,7 @@ public class UpdateNotesMenu extends StageMenu {
         String[] notes = ((String) stages.get(2).getResult()).split(",");
 
         if (CommandDispatcher.getInstance().dispatchSync(
-                new UpdateTransactionCommand<>(categoryName, transactionName, TransactionArgType.NOTES, notes))) {
+                new UpdateTransactionCommand<>(transactionName, TransactionArgType.NOTES, notes))) {
             System.out.println("Transaction successfully updated!");
             openPreviousMenu();
         } else {

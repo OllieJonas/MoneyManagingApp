@@ -1,6 +1,6 @@
 package me.csed2.moneymanager;
 
-import me.csed2.moneymanager.categories.CategoryRepository;
+import me.csed2.moneymanager.categories.CategoryCache;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -52,7 +52,7 @@ public class AutoSave {
     public void start() {
         future = service.scheduleAtFixedRate(() -> {
             System.out.println("Saving...");
-            CategoryRepository.getInstance().save();
+            CategoryCache.getInstance().save();
             System.out.println("Saved!");
         }, time, time, units);
     }

@@ -29,14 +29,8 @@ public class CategoryBuilder {
      */
     private int budget;
 
-    /**
-     * The list of all transactions
-     */
-    private List<Transaction> transactions;
-
     public CategoryBuilder(String name) {
         this.name = name;
-        this.transactions = new ArrayList<>();
     }
 
     public CategoryBuilder withId(int id) {
@@ -54,17 +48,7 @@ public class CategoryBuilder {
         return this;
     }
 
-    public CategoryBuilder addTransaction(Transaction transaction) {
-        transactions.add(transaction);
-        return this;
-    }
-
-    public CategoryBuilder withTransactions(List<Transaction> transactions) {
-        this.transactions = transactions;
-        return this;
-    }
-
     public Category build() {
-        return new Category(name, id, created, budget, transactions);
+        return new Category(name, id, created, budget);
     }
 }
