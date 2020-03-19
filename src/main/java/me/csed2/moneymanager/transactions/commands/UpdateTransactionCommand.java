@@ -56,6 +56,7 @@ public class UpdateTransactionCommand<T> implements ICommand<Boolean> {
                 cache.save();
                 return true;
             }
+        System.out.println("ERROR HERE");
         return false;
     }
 }

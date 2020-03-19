@@ -1,9 +1,14 @@
 package me.csed2.moneymanager.ui.gui.stage;
 
 import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.categories.commands.AddCategoryCommand;
 import me.csed2.moneymanager.categories.commands.RemoveCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DisplayStageRemoveCategory extends DisplayStageMenu{
 
@@ -28,11 +33,11 @@ public class DisplayStageRemoveCategory extends DisplayStageMenu{
 
         if (CommandDispatcher.getInstance().dispatchSync(new RemoveCategoryCommand(name))) {
 
-            System.out.println("Removed category " + name + "!");
+            showMessage("Removed category " + name + "!");
             openPreviousMenu();
 
         } else {
-            System.out.println("Unable to find category " + name + "!");
+            showMessage("Unable to find category " + name + "!");
             openPreviousMenu();
         }
 

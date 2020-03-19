@@ -84,7 +84,11 @@ public class TransactionBuilder {
         if (transactions == null) {
             return 1;
         } else {
-            return transactions.get(transactions.size() - 1).getId() + 1;
+            if(transactions.size() > 0){
+                return transactions.get(transactions.size() - 1).getId() + 1;
+            }else{
+                return 0;
+            }
         }
     }
 
