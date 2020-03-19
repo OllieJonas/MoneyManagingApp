@@ -21,6 +21,7 @@ public abstract class DisplayMenu implements Menu{
     public static final DisplayMenu UPDATE_CATEGORY = new DisplayButtonUpdateCategory();
     public static final DisplayMenu TRANSACTION = new DisplayButtonTransactions();
     public static final DisplayMenu UPDATE_TRANSACTION = new DisplayButtonUpdateTransaction();
+    public static final DisplayMenu UPDATE_SUBSCRIPTION = new DisplayButtonUpdateSubscription();
     public static final DisplayMenu SUBSCRIPTION = new DisplayButtonSubscriptions();
 
     public static final DisplayMenu ADD_CATEGORY = new DisplayStageAddCategory();

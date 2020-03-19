@@ -654,9 +654,10 @@
     <state x="712" y="163" width="476" height="703" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
     <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1584637647586" />
     <state x="693" y="269" width="524" height="495" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
-    <state x="551" y="0" width="807" height="800" key="CommitChangelistDialog2" timestamp="1584638424678">
-      <screen x="0" y="0" width="1422" height="800" />
+    <state x="1366" y="-1440" width="807" height="800" key="CommitChangelistDialog2" timestamp="1584647103346">
+      <screen x="374" y="-1440" width="2560" height="1440" />
     </state>
+    <state x="1366" y="-1440" key="CommitChangelistDialog2/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647103346" />
     <state x="551" y="0" width="807" height="800" key="CommitChangelistDialog2/0.0.1422.800@0.0.1422.800" timestamp="1584638424678" />
     <state x="551" y="30" width="807" height="973" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
     <state x="692" y="101" key="Diagram.Print.Preview.Dialog" timestamp="1584637647586" />
@@ -667,25 +668,25 @@
     <state x="800" y="416" width="310" height="200" key="Github.ShareDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
     <state x="714" y="145" width="481" height="743" key="Github.UntrackedFilesDialog" timestamp="1584637647586" />
     <state x="714" y="145" width="481" height="743" key="Github.UntrackedFilesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
-    <state width="1256" height="393" key="GridCell.Tab.0.bottom" timestamp="1584647033112">
+    <state width="1256" height="393" key="GridCell.Tab.0.bottom" timestamp="1584647216177">
       <screen x="374" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1256" height="393" key="GridCell.Tab.0.bottom/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647033112" />
+    <state width="1256" height="393" key="GridCell.Tab.0.bottom/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647216177" />
     <state width="407" height="338" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
-    <state width="1256" height="393" key="GridCell.Tab.0.center" timestamp="1584647033112">
+    <state width="1256" height="393" key="GridCell.Tab.0.center" timestamp="1584647216177">
       <screen x="374" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1256" height="393" key="GridCell.Tab.0.center/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647033112" />
+    <state width="1256" height="393" key="GridCell.Tab.0.center/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647216177" />
     <state width="407" height="338" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
-    <state width="1256" height="393" key="GridCell.Tab.0.left" timestamp="1584647033111">
+    <state width="1256" height="393" key="GridCell.Tab.0.left" timestamp="1584647216177">
       <screen x="374" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1256" height="393" key="GridCell.Tab.0.left/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647033111" />
+    <state width="1256" height="393" key="GridCell.Tab.0.left/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647216177" />
     <state width="407" height="338" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
-    <state width="1256" height="393" key="GridCell.Tab.0.right" timestamp="1584647033112">
+    <state width="1256" height="393" key="GridCell.Tab.0.right" timestamp="1584647216177">
       <screen x="374" y="-1440" width="2560" height="1440" />
     </state>
-    <state width="1256" height="393" key="GridCell.Tab.0.right/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647033112" />
+    <state width="1256" height="393" key="GridCell.Tab.0.right/0.0.1422.800/374.-1440.2560.1440@374.-1440.2560.1440" timestamp="1584647216177" />
     <state width="407" height="338" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />
     <state x="666" y="229" width="578" height="575" key="MultipleFileMergeDialog" timestamp="1584637647586" />
     <state x="666" y="229" width="578" height="575" key="MultipleFileMergeDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1584637647586" />

@@ -18,7 +18,7 @@ public class DisplayButtonSubscriptions extends DisplayButtonMenu {
         addButton(new Button("List Subscription", user -> user.openMenu(LIST_SUBSCRIPTIONS), false, false), "icons/button_search_0.png");
         addButton(new Button("Add a Subscription", user -> user.openMenu(ADD_SUBSCRIPTION), false, false), "icons/button_add_0.png");
         addButton(new Button("Remove a Subscription", user -> user.openMenu(REMOVE_SUBSCRIPTION), false, false), "icons/button_delete_0.png");
-        //addButton(new Button("Update a Subscription", user -> user.openMenu(UPDATE_SUBSCRIPTION), false, false), "icons/button_update_0.png");
+        addButton(new Button("Update a Subscription", user -> user.openMenu(UPDATE_SUBSCRIPTION), false, false), "icons/button_update_0.png");
         addBackButton();
     }
 }
