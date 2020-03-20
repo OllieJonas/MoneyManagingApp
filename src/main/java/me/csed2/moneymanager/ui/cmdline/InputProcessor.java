@@ -25,7 +25,7 @@ public class InputProcessor {
      * @param user The current instance of the user using this.
      * @param input Their input into the console.
      */
-    public static void process(User user, String input) {
+    static void process(User user, String input) {
 
             if (user.getCurrentMenu() != null) {
                 Menu menu = user.getCurrentMenu();

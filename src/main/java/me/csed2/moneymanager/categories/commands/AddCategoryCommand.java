@@ -26,7 +26,7 @@ public class AddCategoryCommand implements ICommand<Boolean> {
     @Override
     public Boolean execute() {
 
-        CategoryCache repository = CategoryCache.getInstance();
+        CategoryCache cache = CategoryCache.getInstance();
 
         CategoryBuilder builder = new CategoryBuilder(name)
                 .withId(id)
@@ -35,9 +35,9 @@ public class AddCategoryCommand implements ICommand<Boolean> {
 
         Category category = builder.build();
 
-        repository.add(category);
+        cache.add(category);
 
-        repository.save();
+        cache.save();
 
         return true;
     }

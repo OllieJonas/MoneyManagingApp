@@ -55,7 +55,7 @@ public class InputReader extends Thread {
     /**
      * Closes the input reader.
      */
-    public synchronized void close() {
+    private synchronized void close() {
         try {
             reader.close();
         } catch (IOException e) {

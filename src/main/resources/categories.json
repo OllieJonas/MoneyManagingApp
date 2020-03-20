@@ -4,5 +4,12 @@
     "id": 1,
     "created": "Mar 9, 2020, 3:25:03 AM",
     "budget": 10000
+  },
+
+  {
+    "name": "Rent",
+    "id": 2,
+    "created": "Mar 9, 2020, 3:25:03 AM",
+    "budget": 50000
   }
 ]

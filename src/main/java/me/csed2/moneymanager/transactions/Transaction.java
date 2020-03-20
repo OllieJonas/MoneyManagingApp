@@ -19,38 +19,39 @@ import java.util.Date;
 @Getter
 @Setter
 @AllArgsConstructor
+
 public class Transaction implements Cacheable {
 
     /**
      * Name of the transaction
      */
-    private String name;
+    protected String name;
     /**
      * Its associated ID
      */
-    private int id;
+    protected int id;
 
     /**
      * Date transaction occurred
      */
-    private Date date;
+    protected Date date;
 
     /**
      * How much the transaction cost
      */
-    private int amount;
+    protected int amount;
 
     /**
      * The category in which the transaction belongs
      */
-    private String category;
+    protected String category;
 
     /**
      * Any notes the user may have about the transaction
      */
-    private String[] notes;
+    protected String[] notes;
 
-    private String vendor;
+    protected String vendor;
 
     public void print() {
         System.out.println("name: " + name);

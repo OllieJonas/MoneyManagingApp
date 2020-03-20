@@ -9,11 +9,13 @@ import me.csed2.moneymanager.ui.gui.DisplayMenu;
 public class DisplayButtonMain extends DisplayButtonMenu {
 
     public DisplayButtonMain(){
-        super(300,400, "Main Menu", null);
+        super(300,400, "Main Menu", null, false);
     }
 
     @Override
     protected void addButtons() {
-        addButton(new Button("Categories", user -> user.openMenu(DisplayMenu.CATEGORY)));
+        addButton(new Button("Categories", user -> user.openMenu(CATEGORY)));
+        addButton(new Button("Transactions", user -> user.openMenu(TRANSACTION)));
+        addButton(new Button("Subscriptions", user-> user.openMenu(SUBSCRIPTION)));
     }
 }

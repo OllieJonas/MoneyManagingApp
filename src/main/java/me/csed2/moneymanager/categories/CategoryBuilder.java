@@ -1,10 +1,6 @@
 package me.csed2.moneymanager.categories;
 
-import me.csed2.moneymanager.transactions.Transaction;
-
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 @SuppressWarnings("unused")
 public class CategoryBuilder {

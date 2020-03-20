@@ -1,5 +1,10 @@
 package me.csed2.moneymanager.plaid;
 
+import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.transactions.Transaction;
+
+import java.util.Date;
+
 public class Plaid {
 
     public static String CLIENT_ID = "5e70f54621b2b0012c0e233";
@@ -12,9 +17,5 @@ public class Plaid {
 
     private void plaidTest() {
 
-    }
-
-    public static void main(String[] args) {
-        new Plaid();
     }
 }

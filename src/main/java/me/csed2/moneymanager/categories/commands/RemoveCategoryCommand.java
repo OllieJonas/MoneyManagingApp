@@ -23,6 +23,7 @@ public class RemoveCategoryCommand implements ICommand<Boolean> {
             repository.save();
 
             return true;
+
         } else {
             return false;
         }

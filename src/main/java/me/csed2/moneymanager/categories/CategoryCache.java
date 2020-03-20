@@ -53,7 +53,6 @@ public class CategoryCache extends Cache<Category> {
         StringBuilder report = new StringBuilder();
 
         for (Category category : items) {
-            System.out.println(category.getBudget());
             report.append(category.toFormattedString()).append("\n");
         }
 
