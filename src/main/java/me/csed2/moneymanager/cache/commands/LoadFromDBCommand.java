@@ -8,6 +8,7 @@ import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.main.Main;
 import me.csed2.moneymanager.transactions.Transaction;
+import me.csed2.moneymanager.subscriptions.Subscription;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -62,7 +63,9 @@ public class LoadFromDBCommand<T extends Cacheable> implements ICommand<List<T>>
                 return new TypeToken<ArrayList<Transaction>>(){}.getType();
             } else if (clazz == Category.class) {
                 return new TypeToken<ArrayList<Category>>(){}.getType();
-            } else {
+            } else if (clazz ==Subscription.class){
+                return new TypeToken<ArrayList<Subscription>>(){}.getType();
+            }  else {
                 return null;
             }
         }

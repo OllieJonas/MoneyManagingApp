@@ -1,65 +1,33 @@
-package me.csed2.moneymanager.transactions;
+package me.csed2.moneymanager.subscriptions;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 import me.csed2.moneymanager.cache.Cacheable;
+import me.csed2.moneymanager.transactions.Transaction;
 
 import java.util.Arrays;
 import java.util.Date;
 
-/**
- * Transaction POJO.
- *
- * Note the use of Lombok generating the getters, setters and the constructor.
- *
- * @author Ollie
- * @since 03/03/2020
- */
-@Getter
-@Setter
-@AllArgsConstructor
+public class Subscription extends Transaction implements Cacheable{
 
-public class Transaction implements Cacheable {
+    private int timeCycle;
+    private String timeCycleUnit;
 
-    /**
-     * Name of the transaction
-     */
-    protected String name;
-    /**
-     * Its associated ID
-     */
-    protected int id;
+    private Boolean cancelMe;
 
-    /**
-     * Date transaction occurred
-     */
-    protected Date date;
+    public Subscription(String name, int id, Date date, int amount, String category, String[] notes, String vendor) {
+        super(name, id, date, amount, category, notes, vendor);
+    }
 
-    /**
-     * How much the transaction cost
-     */
-    protected int amount;
 
-    /**
-     * The category in which the transaction belongs
-     */
-    protected String category;
-
-    /**
-     * Any notes the user may have about the transaction
-     */
-    protected String[] notes;
-
-    protected String vendor;
-
-    public void print() {
+    @Override
+    public void print(){
         System.out.println("name: " + name);
         System.out.println("  id: " + id);
         System.out.println("  created: " + date.toString());
         System.out.println("  amount: " + amount);
         System.out.println("  category: " + category);
         System.out.println("  vendor: " + vendor);
+        System.out.println("  Remews everu " + timeCycle + " " + timeCycleUnit);
+        System.out.println("  You want to be notified for cancellation: " + cancelMe);
         System.out.println("  notes: ");
         for (String note : notes) {
             System.out.println("    \"" + note + "\"");
