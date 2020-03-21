@@ -1,6 +1,5 @@
 package me.csed2.moneymanager.rest;
 
-import me.csed2.moneymanager.utils.HTTPUtils;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;

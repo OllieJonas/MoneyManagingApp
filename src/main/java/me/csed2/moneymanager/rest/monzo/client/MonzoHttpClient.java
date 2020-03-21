@@ -1,8 +1,11 @@
-package me.csed2.moneymanager.rest.monzo;
+package me.csed2.moneymanager.rest.monzo.client;
 
+import lombok.Setter;
+import me.csed2.moneymanager.rest.monzo.server.AuthMonzoServer;
 import me.csed2.moneymanager.utils.StateGenerator;
 
 import java.awt.*;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.http.HttpClient;
@@ -14,27 +17,21 @@ public class MonzoHttpClient {
 
     private String state;
 
+    @Setter
+    private static String accessToken;
+
     public static final HttpClient client = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
             .build();
 
-    private MonzoHttpClient() throws Exception {
-        new MonzoServer();
-        sendGET();
-        Desktop.getDesktop().browse(buildMonzoURI());
+    public MonzoHttpClient() {
+
     }
 
-    private void sendGET() throws Exception {
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .uri(buildMonzoURI())
-                .build();
-
-        CompletableFuture<HttpResponse<String>> responseFuture = client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
-
-        HttpResponse<String> response = responseFuture.get();
-        System.out.println(response.statusCode());
-        System.out.println(response.body());
+    public void accessPage() throws URISyntaxException, IOException {
+        if (Desktop.isDesktopSupported()) {
+            Desktop.getDesktop().browse(buildMonzoURI());
+        }
     }
 
     private URI buildMonzoURI() throws URISyntaxException {
@@ -47,12 +44,5 @@ public class MonzoHttpClient {
         builder.append("state=").append(state);
 
         return new URI(builder.toString());
-    }
-    public static void main(String[] args) {
-        try {
-            new MonzoHttpClient();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 }
