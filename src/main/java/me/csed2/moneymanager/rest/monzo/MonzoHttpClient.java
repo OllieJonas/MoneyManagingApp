@@ -10,11 +10,11 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.concurrent.CompletableFuture;
 
-public class MonzoHttpClient extends me.csed2.moneymanager.rest.HttpClient {
+public class MonzoHttpClient {
 
     private String state;
 
-    private final HttpClient client = HttpClient.newBuilder()
+    public static final HttpClient client = HttpClient.newBuilder()
             .version(HttpClient.Version.HTTP_2)
             .build();
 

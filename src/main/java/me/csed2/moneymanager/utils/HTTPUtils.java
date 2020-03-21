@@ -7,6 +7,12 @@ import java.util.Map;
 
 public class HTTPUtils {
 
+    /**
+     * Builds Body Publisher data for POST requests.
+     *
+     * @param data Map of the data to be
+     * @return BodyPublisher for the HTTP Request
+     */
     public static HttpRequest.BodyPublisher ofFormData(Map<Object, Object> data) {
         StringBuilder builder = new StringBuilder();
 
@@ -18,6 +24,7 @@ public class HTTPUtils {
             builder.append("=");
             builder.append(URLEncoder.encode(entry.getValue().toString(), StandardCharsets.UTF_8));
         }
+
         return HttpRequest.BodyPublishers.ofString(builder.toString());
     }
 }
