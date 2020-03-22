@@ -1,11 +1,13 @@
 package me.csed2.moneymanager.rest.monzo.server;
 
+import com.google.gson.JsonObject;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import lombok.Getter;
 import me.csed2.moneymanager.rest.AuthServerHandler;
 import me.csed2.moneymanager.rest.monzo.client.MonzoDetails;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
+import me.csed2.moneymanager.utils.JSONUtils;
 import me.csed2.moneymanager.utils.NameValuePairBuilder;
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
@@ -46,42 +48,29 @@ public class AuthMonzoHandler extends AuthServerHandler {
             state = s.split("&")[1].split("=")[1]; // Gets the state
 
             try {
-                getAccessToken(); // Use this newly assigned authentication code to get the Access Token from Monzo
+                getAccessToken(); // Use this newly assigned authentication code to get the Access Token
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
     }
 
-    private void authentication() {
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create("https://api.monzo.com/ping/whoami")).build();
-
-        try {
-            HttpResponse<String> response = MonzoHttpClient.client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            String auth = response.body();
-            System.out.println(auth);
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void getAccessToken() throws IOException {
+    private void getAccessToken() throws IOException {
         HttpPost post = new HttpPost("https://api.monzo.com/oauth2/token");
 
-        post.setEntity(new UrlEncodedFormEntity(buildAuthenticationRequest()));
+        post.setEntity(new UrlEncodedFormEntity(buildAuthenticationRequest())); // Set POST values to the authentication request
 
-        try (CloseableHttpClient httpClient = HttpClients.createDefault();
+        try (CloseableHttpClient httpClient = HttpClients.createDefault(); // Create a HTTP client
              
-             CloseableHttpResponse response = httpClient.execute(post)) {
+             CloseableHttpResponse response = httpClient.execute(post)) { // Execute post
             
-            String repString = EntityUtils.toString(response.getEntity());
+            String repString = EntityUtils.toString(response.getEntity()); // Get response
             
             System.out.println(repString);
-            
-            MonzoHttpClient.setAccessToken(repString);
+
+            JsonObject json = JSONUtils.getAsJsonObject(repString);
+            String accessToken = json.get("access_token").getAsString(); // Get access token from array
+            MonzoHttpClient.setAccessToken(accessToken);
         }
 
     }
