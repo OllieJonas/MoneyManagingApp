@@ -27,11 +27,8 @@ public class MainMenu extends CMDMenu {
     public void addButtons() {
         addButton(new Button("Categories", user -> user.openMenu(new CategoriesMenu(this))));
         addButton(new Button("Transactions", user -> user.openMenu(new TransactionMenu(this))));
-
         addButton(new Button("Subscriptions", user -> user.openMenu(new SubscriptionMenu(this))));
-
         addButton(new Button("Authenticate Bank Account", user -> user.openMenu(new AuthBankMenu(this))));
-
         addButton(new Button("Test Step Menu", user -> user.openMenu(new TestStageMenu(this))));
     }
 }

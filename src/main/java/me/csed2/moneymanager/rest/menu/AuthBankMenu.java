@@ -14,6 +14,6 @@ public class AuthBankMenu extends CMDMenu {
 
     @Override
     protected void addButtons() {
-        addButton(new Button("Authenticate Monzo", user -> CommandDispatcher.getInstance().dispatchSync(new MonzoAuthCommand())));
+        addButton(new Button("Authenticate Monzo", user -> CommandDispatcher.getInstance().dispatchSync(new MonzoAuthCommand()), false, false));
     }
 }

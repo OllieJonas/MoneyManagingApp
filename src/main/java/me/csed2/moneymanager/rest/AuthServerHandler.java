@@ -20,12 +20,12 @@ public abstract class AuthServerHandler implements HttpHandler {
 
     @Override
     public void handle(HttpExchange httpExchange) throws IOException {
-        String fullReply = httpExchange.getRequestURI().toString();
-        String reply = fullReply.split("\\?")[1].split("=")[0];
+        String fullReply = httpExchange.getRequestURI().toString(); // Get entire reply
+        String reply = fullReply.split("\\?")[1].split("=")[0]; // Get first identifier in the url
 
         for (String tag : responses.keySet()) {
             if (reply.contains(tag)) {
-                responses.get(tag).accept(fullReply);
+                responses.get(tag).accept(fullReply); // Execute consumer contained in the HashMap
                 break;
             }
         }
@@ -35,7 +35,7 @@ public abstract class AuthServerHandler implements HttpHandler {
 
     public abstract List<NameValuePair> buildAuthenticationRequest();
 
-    public void addResponse(String tag, Consumer<String> response) {
-        responses.put(tag, response);
+    protected void addResponse(String name, Consumer<String> response) {
+        responses.put(name, response);
     }
 }
