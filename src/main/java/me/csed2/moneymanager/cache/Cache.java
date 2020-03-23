@@ -104,7 +104,7 @@ public abstract class Cache<T extends Cacheable> {
         }
     }
 
-    public void orderById() {
+    protected void orderById() {
         items.sort(Comparator.comparingInt(Cacheable::getId));
     }
 

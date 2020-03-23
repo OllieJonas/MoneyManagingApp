@@ -23,12 +23,12 @@ public class SubscriptionCache extends Cache<Subscription> {
 
     @Override
     public void load() throws FileNotFoundException {
-        this.items = CommandDispatcher.getInstance().dispatchSync(new LoadFromDBCommand<>(Subscription.class, "Subscriptions.json"));
+        this.items = CommandDispatcher.getInstance().dispatchSync(new LoadFromDBCommand<>(Subscription.class, "subscriptions.json"));
     }
 
     @Override
     public void save() {
-        CommandDispatcher.getInstance().dispatchSync(new SaveToDBCommand<>("Subscriptions.json", items));
+        CommandDispatcher.getInstance().dispatchSync(new SaveToDBCommand<>("subscriptions.json", items));
     }
 
     public List<Subscription> readByCategoryID(int categoryId) {
