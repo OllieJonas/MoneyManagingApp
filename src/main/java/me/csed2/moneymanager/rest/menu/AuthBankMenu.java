@@ -1,10 +1,7 @@
 package me.csed2.moneymanager.rest.menu;
 
-import me.csed2.moneymanager.command.CommandDispatcher;
-import me.csed2.moneymanager.main.User;
-import me.csed2.moneymanager.rest.monzo.commands.MonzoAuthCommand;
+import me.csed2.moneymanager.rest.monzo.menu.MonzoMenu;
 import me.csed2.moneymanager.ui.Button;
-import me.csed2.moneymanager.ui.IAction;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
 
@@ -16,6 +13,6 @@ public class AuthBankMenu extends CMDMenu {
 
     @Override
     protected void addButtons() {
-        addButton(new Button("Authenticate Monzo", user -> CommandDispatcher.getInstance().dispatchSync(new MonzoAuthCommand())));
+        addButton(new Button("Monzo", user -> user.openMenu(new MonzoMenu(this))));
     }
 }

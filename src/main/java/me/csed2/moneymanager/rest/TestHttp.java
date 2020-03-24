@@ -1,8 +1,10 @@
 package me.csed2.moneymanager.rest;
 
+import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -10,22 +12,12 @@ import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class TestHttp {
-
-    private final HttpClient client = HttpClient.newBuilder()
-            .version(HttpClient.Version.HTTP_2)
-            .build();
-
-    private String postString = "test=hello";
 
     private Map<Object, Object> postMap = new HashMap<>();
 
@@ -35,12 +27,12 @@ public class TestHttp {
         try {
             testPost();
             testGet();
-        } catch (IOException | InterruptedException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    private void testPost() throws IOException, InterruptedException {
+    private void testPost() throws IOException {
         HttpPost post = new HttpPost("https://postman-echo.com/post");
 
         List<NameValuePair> params = new ArrayList<>();
@@ -54,16 +46,20 @@ public class TestHttp {
         }
     }
 
-    private void testGet() throws IOException, InterruptedException {
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create("https://postman-echo.com/get?hello=hi"))
-                .build();
+    private void testGet() throws IOException {
+        HttpGet request = new HttpGet("https://postman-echo.com/get?hello=hi");
 
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        System.out.println(response.statusCode());
-        System.out.println(response.body());
+        try (CloseableHttpClient client = HttpClients.createDefault();
+             CloseableHttpResponse response = client.execute(request)) {
+
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                String result = EntityUtils.toString(entity);
+                System.out.println(result);
+            }
+        }
     }
+
     public static void main(String[] args) {
         new TestHttp();
     }

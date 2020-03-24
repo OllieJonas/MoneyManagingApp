@@ -1,29 +1,20 @@
 package me.csed2.moneymanager.rest.monzo.server;
 
-import com.sun.net.httpserver.HttpExchange;
-import com.sun.net.httpserver.HttpHandler;
 import lombok.Getter;
 import me.csed2.moneymanager.rest.AuthServerHandler;
 import me.csed2.moneymanager.rest.monzo.client.MonzoDetails;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.utils.NameValuePairBuilder;
-import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
-import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 public class AuthMonzoHandler extends AuthServerHandler {
     // {"access_token":"eyJhbGciOiJFUzI1NiIsInR5cCI6IkpXVCJ9.eyJlYiI6ImJZZUg3RHI1Q2FQc2o5MTlDa290IiwianRpIjoiYWNjdG9rXzAwMDA5dEV3Wk82N0hIVDlBRGpsZ24iLCJ0eXAiOiJhdCIsInYiOiI2In0.K4h7hwuRdg9V90nRsHjFCKGrVkBhDPQTYJ3lLqsg3GnTabJzrMIju9sxltKjJi-T5sSJL8Q5Gb1Rwk6ok8sB9Q","client_id":"oauth2client_00009tCzlbhKRvzmyNTqAz","expires_in":107999,"scope":"third_party_developer_app.pre_verification","token_type":"Bearer","user_id":"user_00009tCp9hi0eaAopMnkcT"}
@@ -39,7 +30,6 @@ public class AuthMonzoHandler extends AuthServerHandler {
 
     @Override
     public void addResponses() {
-
         // Listens for authentication
         addResponse("code", s -> {
             authenticationCode = s.split("=")[1].split("&")[0]; // Gets the authentication code from the URL callback from Monzo
@@ -51,21 +41,6 @@ public class AuthMonzoHandler extends AuthServerHandler {
                 e.printStackTrace();
             }
         });
-    }
-
-    private void authentication() {
-        HttpRequest request = HttpRequest.newBuilder()
-                .GET()
-                .uri(URI.create("https://api.monzo.com/ping/whoami")).build();
-
-        try {
-            HttpResponse<String> response = MonzoHttpClient.client.send(request, HttpResponse.BodyHandlers.ofString());
-
-            String auth = response.body();
-            System.out.println(auth);
-        } catch (IOException | InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     public void getAccessToken() throws IOException {
@@ -83,7 +58,6 @@ public class AuthMonzoHandler extends AuthServerHandler {
             
             MonzoHttpClient.setAccessToken(repString);
         }
-
     }
 
     public List<NameValuePair> buildAuthenticationRequest() {

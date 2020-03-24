@@ -4,7 +4,6 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.apache.http.NameValuePair;
 
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Consumer;
@@ -19,7 +18,7 @@ public abstract class AuthServerHandler implements HttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) throws IOException {
+    public void handle(HttpExchange httpExchange) {
         String fullReply = httpExchange.getRequestURI().toString();
         String reply = fullReply.split("\\?")[1].split("=")[0];
 
