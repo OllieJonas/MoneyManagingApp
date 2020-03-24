@@ -1,8 +1,6 @@
 package me.csed2.moneymanager.rest.monzo.server;
 
-import com.google.gson.Gson;
 import lombok.Getter;
-import me.csed2.moneymanager.main.Main;
 import me.csed2.moneymanager.rest.AuthServerHandler;
 import me.csed2.moneymanager.rest.monzo.client.MonzoDetails;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
@@ -16,12 +14,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.nio.file.Files;
 import java.util.List;
 
 public class AuthMonzoHandler extends AuthServerHandler {
@@ -57,7 +50,6 @@ public class AuthMonzoHandler extends AuthServerHandler {
         post.setEntity(new UrlEncodedFormEntity(buildAuthenticationRequest()));
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
-             
              CloseableHttpResponse response = httpClient.execute(post)) {
             
             String repString = EntityUtils.toString(response.getEntity());

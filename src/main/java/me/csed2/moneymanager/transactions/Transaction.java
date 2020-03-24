@@ -1,5 +1,6 @@
 package me.csed2.moneymanager.transactions;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

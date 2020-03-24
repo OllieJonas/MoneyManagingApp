@@ -78,7 +78,7 @@ public class Button {
      * @param action The action to be performed upon execution
      */
     public Button(String name, Consumer<User> action) {
-        this(name, action, false, true, true);
+        this(name, action, false, true, false);
     }
 
     /**
