@@ -1,9 +1,11 @@
 package me.csed2.moneymanager.rest.monzo.server;
 
+import com.google.gson.Gson;
 import lombok.Getter;
 import me.csed2.moneymanager.rest.AuthServerHandler;
 import me.csed2.moneymanager.rest.monzo.client.MonzoDetails;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
+import me.csed2.moneymanager.utils.JSONUtils;
 import me.csed2.moneymanager.utils.NameValuePairBuilder;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
@@ -31,9 +33,9 @@ public class AuthMonzoHandler extends AuthServerHandler {
     @Override
     public void addResponses() {
         // Listens for authentication
-        addResponse("code", s -> {
-            authenticationCode = s.split("=")[1].split("&")[0]; // Gets the authentication code from the URL callback from Monzo
-            state = s.split("&")[1].split("=")[1]; // Gets the state
+        addResponse("code", (exchange, reply) -> {
+            authenticationCode = reply.split("=")[1].split("&")[0]; // Gets the authentication code from the URL callback from Monzo
+            state = reply.split("&")[1].split("=")[1]; // Gets the state
 
             try {
                 getAccessToken(); // Use this newly assigned authentication code to get the Access Token from Monzo
@@ -41,9 +43,13 @@ public class AuthMonzoHandler extends AuthServerHandler {
                 e.printStackTrace();
             }
         });
+
+        addDefaultResponse((exchange, reply) -> {
+
+        });
     }
 
-    public void getAccessToken() throws IOException {
+    private void getAccessToken() throws IOException {
         HttpPost post = new HttpPost("https://api.monzo.com/oauth2/token");
 
         post.setEntity(new UrlEncodedFormEntity(buildAuthenticationRequest()));
@@ -53,10 +59,10 @@ public class AuthMonzoHandler extends AuthServerHandler {
              CloseableHttpResponse response = httpClient.execute(post)) {
             
             String repString = EntityUtils.toString(response.getEntity());
+            String accessToken = JSONUtils.getAsJsonObject(repString).get("access_token").getAsString();
+            System.out.println(accessToken);
             
-            System.out.println(repString);
-            
-            MonzoHttpClient.setAccessToken(repString);
+            MonzoHttpClient.setAccessToken(accessToken);
         }
     }
 

@@ -6,11 +6,14 @@ import org.apache.http.NameValuePair;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public abstract class AuthServerHandler implements HttpHandler {
 
-    private HashMap<String, Consumer<String>> responses;
+    private HashMap<String, BiConsumer<HttpExchange, String>> responses;
+
+    private BiConsumer<HttpExchange, String> defaultResponse;
 
     public AuthServerHandler() {
         responses = new HashMap<>();
@@ -18,15 +21,20 @@ public abstract class AuthServerHandler implements HttpHandler {
     }
 
     @Override
-    public void handle(HttpExchange httpExchange) {
-        String fullReply = httpExchange.getRequestURI().toString();
+    public void handle(HttpExchange exchange) {
+        String fullReply = exchange.getRequestURI().toString();
         String reply = fullReply.split("\\?")[1].split("=")[0];
 
+        boolean executed = false;
         for (String tag : responses.keySet()) {
             if (reply.contains(tag)) {
-                responses.get(tag).accept(fullReply);
+                responses.get(tag).accept(exchange, fullReply);
+                executed = true;
                 break;
             }
+        }
+        if (!executed) {
+            defaultResponse.accept(exchange, fullReply);
         }
     }
 
@@ -34,7 +42,11 @@ public abstract class AuthServerHandler implements HttpHandler {
 
     public abstract List<NameValuePair> buildAuthenticationRequest();
 
-    public void addResponse(String tag, Consumer<String> response) {
+    protected void addResponse(String tag, BiConsumer<HttpExchange, String> response) {
         responses.put(tag, response);
+    }
+
+    protected void addDefaultResponse(BiConsumer<HttpExchange, String> response) {
+        this.defaultResponse = response;
     }
 }

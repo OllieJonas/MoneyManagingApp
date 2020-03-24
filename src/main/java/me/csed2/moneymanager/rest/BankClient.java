@@ -15,7 +15,7 @@ public abstract class BankClient<T extends Account> {
     private List<T> accounts = new ArrayList<>();
 
     @Setter @Getter
-    private String accessToken;
+    private static String accessToken;
 
     public abstract void accessPage() throws URISyntaxException, IOException;
 
