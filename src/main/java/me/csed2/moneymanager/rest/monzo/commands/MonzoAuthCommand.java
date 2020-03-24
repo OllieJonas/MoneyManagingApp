@@ -18,7 +18,8 @@ public class MonzoAuthCommand implements ICommand<String> {
 
             MonzoHttpClient client = new MonzoHttpClient(); // Start Monzo Client
             client.accessPage(); // Access auth webpage
-        } catch (URISyntaxException | IOException e) {
+
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
         return null;

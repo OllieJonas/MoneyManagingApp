@@ -4,16 +4,15 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.apache.http.NameValuePair;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
-import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 public abstract class AuthServerHandler implements HttpHandler {
 
-    private HashMap<String, BiConsumer<HttpExchange, String>> responses;
-
-    private BiConsumer<HttpExchange, String> defaultResponse;
+    private HashMap<String, Consumer<String>> responses;
 
     public AuthServerHandler() {
         responses = new HashMap<>();
@@ -25,16 +24,11 @@ public abstract class AuthServerHandler implements HttpHandler {
         String fullReply = exchange.getRequestURI().toString();
         String reply = fullReply.split("\\?")[1].split("=")[0];
 
-        boolean executed = false;
         for (String tag : responses.keySet()) {
             if (reply.contains(tag)) {
-                responses.get(tag).accept(exchange, fullReply);
-                executed = true;
+                responses.get(tag).accept(fullReply);
                 break;
             }
-        }
-        if (!executed) {
-            defaultResponse.accept(exchange, fullReply);
         }
     }
 
@@ -42,11 +36,7 @@ public abstract class AuthServerHandler implements HttpHandler {
 
     public abstract List<NameValuePair> buildAuthenticationRequest();
 
-    protected void addResponse(String tag, BiConsumer<HttpExchange, String> response) {
-        responses.put(tag, response);
-    }
-
-    protected void addDefaultResponse(BiConsumer<HttpExchange, String> response) {
-        this.defaultResponse = response;
+    protected void addResponse(String name, Consumer<String> response) {
+        responses.put(name, response);
     }
 }

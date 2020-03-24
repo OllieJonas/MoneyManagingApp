@@ -2,6 +2,7 @@ package me.csed2.moneymanager.rest.monzo.server;
 
 import com.google.gson.Gson;
 import lombok.Getter;
+import me.csed2.moneymanager.main.Main;
 import me.csed2.moneymanager.rest.AuthServerHandler;
 import me.csed2.moneymanager.rest.monzo.client.MonzoDetails;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
@@ -15,7 +16,12 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
+import java.nio.file.Files;
 import java.util.List;
 
 public class AuthMonzoHandler extends AuthServerHandler {
@@ -33,7 +39,7 @@ public class AuthMonzoHandler extends AuthServerHandler {
     @Override
     public void addResponses() {
         // Listens for authentication
-        addResponse("code", (exchange, reply) -> {
+        addResponse("code", reply -> {
             authenticationCode = reply.split("=")[1].split("&")[0]; // Gets the authentication code from the URL callback from Monzo
             state = reply.split("&")[1].split("=")[1]; // Gets the state
 
@@ -42,10 +48,6 @@ public class AuthMonzoHandler extends AuthServerHandler {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        });
-
-        addDefaultResponse((exchange, reply) -> {
-
         });
     }
 
@@ -60,8 +62,7 @@ public class AuthMonzoHandler extends AuthServerHandler {
             
             String repString = EntityUtils.toString(response.getEntity());
             String accessToken = JSONUtils.getAsJsonObject(repString).get("access_token").getAsString();
-            System.out.println(accessToken);
-            
+
             MonzoHttpClient.setAccessToken(accessToken);
         }
     }
@@ -76,9 +77,5 @@ public class AuthMonzoHandler extends AuthServerHandler {
                 .addBasicPair("code", authenticationCode)
 
                 .build();
-    }
-
-    private void buildConfirmationWebsite() {
-
     }
 }
