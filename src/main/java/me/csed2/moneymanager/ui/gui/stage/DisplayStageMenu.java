@@ -1,10 +1,7 @@
 package me.csed2.moneymanager.ui.gui.stage;
 
-import com.google.gson.internal.$Gson$Preconditions;
 import me.csed2.moneymanager.exceptions.InvalidTypeException;
 import me.csed2.moneymanager.main.User;
-import me.csed2.moneymanager.ui.Button;
-import me.csed2.moneymanager.ui.IAction;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.gui.ButtonListener;
 import me.csed2.moneymanager.ui.gui.DisplayMenu;
@@ -14,6 +11,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.function.Consumer;
 
 public abstract class DisplayStageMenu extends DisplayMenu {
 
@@ -60,7 +58,7 @@ public abstract class DisplayStageMenu extends DisplayMenu {
         }
     }
 
-    private void addStageButtons(){
+    private void addStageButtons() {
         JPanel buttonPanel = new JPanel();
 
         JButton submitButton = new JButton("Submit");
@@ -77,24 +75,21 @@ public abstract class DisplayStageMenu extends DisplayMenu {
         panel.add(buttonPanel);
     }
 
-    private IAction createSubmitAction(){
-        return new IAction(){
-            @Override
-            public void execute(User user){
-                try {
-                    //Run all Stage Execution Phases
-                    for (Stage<?> s : stages) {
-                        Object result = StringReaderFactory.parse(stagesWithTextFields.get(s).getText(), s.getResultType());
-                        s.setResult(result);
-                        s.executionPhase();
-                    }
-
-                    //Run this menu's Exit Phase
-                    exitPhase();
-
-                }catch(InvalidTypeException e){
-                    showMessage("Invalid types in text fields. Please try again.");
+    private Consumer<User> createSubmitAction(){
+        return user -> {
+            try {
+                //Run all Stage Execution Phases
+                for (Stage<?> s : stages) {
+                    Object result = StringReaderFactory.parse(stagesWithTextFields.get(s).getText(), s.getResultType());
+                    s.setResult(result);
+                    s.executionPhase();
                 }
+
+                //Run this menu's Exit Phase
+                exitPhase();
+
+            } catch (InvalidTypeException e) {
+                showMessage("Invalid types in text fields. Please try again.");
             }
         };
     }

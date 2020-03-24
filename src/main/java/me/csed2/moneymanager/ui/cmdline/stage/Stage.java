@@ -41,7 +41,6 @@ public class Stage<T> {
     @Getter
     private T result;
 
-
     private ExecutionPhase phase;
 
     public Stage(Class<T> resultType, String... text) {

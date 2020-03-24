@@ -10,20 +10,20 @@ import java.util.concurrent.Executors;
 
 public class AuthMonzoServer implements Server {
 
-    private HttpServer server;
+    private HttpServer server; // The server object.
 
-    private ExecutorService service = Executors.newSingleThreadScheduledExecutor();
+    private ExecutorService service = Executors.newSingleThreadScheduledExecutor(); // Like implements Runnable, but allows one to assign the HttpServer to this thread.
 
     private int port;
 
     public AuthMonzoServer(int port) throws IOException {
         this.port = port;
 
-        server = HttpServer.create(new InetSocketAddress("localhost", port), 0);
+        server = HttpServer.create(new InetSocketAddress("localhost", port), 0); // Start a localhost server on port to listen to responses from Monzo
 
-        server.createContext("/oauth/callback", new AuthMonzoHandler());
+        server.createContext("/oauth/callback", new AuthMonzoHandler()); // Set the listener to this path.
 
-        server.setExecutor(service);
+        server.setExecutor(service); // Set asynchronous
     }
 
     @Override
@@ -38,13 +38,13 @@ public class AuthMonzoServer implements Server {
 
     @Override
     public void close() {
-        service.shutdownNow();
-        service.shutdown();
+        service.shutdownNow(); // Force close thread
+        service.shutdown(); // Ensure everything has closed properly
     }
 
     @Override
     public void start() {
-        server.start();
+        server.start(); // Start the server
         System.out.println("Listening for connections...");
     }
 }
