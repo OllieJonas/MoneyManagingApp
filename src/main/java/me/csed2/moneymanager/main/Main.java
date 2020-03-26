@@ -5,7 +5,9 @@ import me.csed2.moneymanager.rest.AuthServerManager;
 import me.csed2.moneymanager.subscriptions.SubscriptionCache;
 import me.csed2.moneymanager.transactions.TransactionCache;
 import me.csed2.moneymanager.ui.gui.DisplayMenu;
+import me.csed2.moneymanager.utils.Notifications;
 
+import java.awt.*;
 import java.io.FileNotFoundException;
 
 /**
@@ -28,6 +30,8 @@ public class Main {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        Notifications.displayNotification("hi", TrayIcon.MessageType.NONE);
 
         //Testing Frame
         User.getInstance().openMenu(new MainMenu());

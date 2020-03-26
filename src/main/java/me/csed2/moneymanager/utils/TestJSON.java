@@ -15,7 +15,6 @@ public class TestJSON {
 
     private String jsonString = "{\"accounts\":[{\"id\":\"acc_00009tCqeFZDQyVERoioio\",\"closed\":false,\"created\":\"2020-03-20T18:04:32.171Z\",\"description\":\"user_00009tCp9hi0eaAopMnkcT\",\"type\":\"uk_retail\",\"currency\":\"GBP\",\"country_code\":\"GB\",\"owners\":[{\"user_id\":\"user_00009tCp9hi0eaAopMnkcT\",\"preferred_name\":\"Ollie Jonas\",\"preferred_first_name\":\"Ollie\"}],\"account_number\":\"57544951\",\"sort_code\":\"040004\",\"payment_details\":{\"locale_uk\":{\"account_number\":\"57544951\",\"sort_code\":\"040004\"}}}]}";
 
-
     private TestJSON() {
 
     }
@@ -37,6 +36,5 @@ public class TestJSON {
         JsonObject list = new Gson().fromJson(newObject, JsonObject.class);
         JsonElement element = list.get("id");
         System.out.println(element);
-
     }
 }
