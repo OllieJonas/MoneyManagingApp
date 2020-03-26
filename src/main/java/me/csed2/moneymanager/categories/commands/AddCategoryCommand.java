@@ -3,13 +3,11 @@ package me.csed2.moneymanager.categories.commands;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryBuilder;
 import me.csed2.moneymanager.categories.CategoryCache;
-import me.csed2.moneymanager.command.ICommand;
-import me.csed2.moneymanager.transactions.Transaction;
 
 import java.util.Date;
-import java.util.List;
+import java.util.function.Supplier;
 
-public class AddCategoryCommand implements ICommand<Boolean> {
+public class AddCategoryCommand implements Supplier<Boolean> {
 
     private final String name;
     private final int id;
@@ -24,7 +22,7 @@ public class AddCategoryCommand implements ICommand<Boolean> {
     }
 
     @Override
-    public Boolean execute() {
+    public Boolean get() {
 
         CategoryCache cache = CategoryCache.getInstance();
 

@@ -1,14 +1,13 @@
 package me.csed2.moneymanager.subscriptions.commands;
 
-import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryCache;
-import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.subscriptions.SubscriptionBuilder;
 import me.csed2.moneymanager.subscriptions.SubscriptionCache;
 
 import java.util.Date;
+import java.util.function.Supplier;
 
-public class AddSubscriptionCommand implements ICommand<Boolean> {
+public class AddSubscriptionCommand implements Supplier<Boolean> {
 
     private final String categoryName;
     private final String name;
@@ -25,7 +24,7 @@ public class AddSubscriptionCommand implements ICommand<Boolean> {
     }
 
     @Override
-    public Boolean execute() {
+    public Boolean get() {
         CategoryCache categoryCache = CategoryCache.getInstance();
         SubscriptionCache subscriptionCache = SubscriptionCache.getInstance();
 

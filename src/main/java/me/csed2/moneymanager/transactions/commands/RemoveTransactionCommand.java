@@ -1,12 +1,10 @@
 package me.csed2.moneymanager.transactions.commands;
 
-import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.categories.CategoryCache;
-import me.csed2.moneymanager.command.ICommand;
-import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.transactions.TransactionCache;
 
-public class RemoveTransactionCommand implements ICommand<Boolean> {
+import java.util.function.Supplier;
+
+public class RemoveTransactionCommand implements Supplier<Boolean> {
 
     private final String transactionName;
 
@@ -15,7 +13,7 @@ public class RemoveTransactionCommand implements ICommand<Boolean> {
 
     }
     @Override
-    public Boolean execute() {
+    public Boolean get() {
         TransactionCache transactionCache = TransactionCache.getInstance();
 
         if (transactionCache.exists(transactionName)) {

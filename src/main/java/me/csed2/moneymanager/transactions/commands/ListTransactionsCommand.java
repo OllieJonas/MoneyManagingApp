@@ -2,14 +2,14 @@ package me.csed2.moneymanager.transactions.commands;
 
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryCache;
-import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.transactions.TransactionCache;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
-public class ListTransactionsCommand implements ICommand<List<Transaction>> {
+public class ListTransactionsCommand implements Supplier<List<Transaction>> {
 
     private final String categoryName;
 
@@ -18,7 +18,7 @@ public class ListTransactionsCommand implements ICommand<List<Transaction>> {
     }
 
     @Override
-    public List<Transaction> execute() {
+    public List<Transaction> get() {
         CategoryCache cache = CategoryCache.getInstance();
         List<Transaction> transactions = new ArrayList<>();
 

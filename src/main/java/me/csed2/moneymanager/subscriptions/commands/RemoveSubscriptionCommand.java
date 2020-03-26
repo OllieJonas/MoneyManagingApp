@@ -1,9 +1,10 @@
 package me.csed2.moneymanager.subscriptions.commands;
 
-import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.subscriptions.SubscriptionCache;
 
-public class RemoveSubscriptionCommand implements ICommand<Boolean> {
+import java.util.function.Supplier;
+
+public class RemoveSubscriptionCommand implements Supplier<Boolean> {
 
     private final String subscriptionName;
 
@@ -12,7 +13,7 @@ public class RemoveSubscriptionCommand implements ICommand<Boolean> {
 
     }
     @Override
-    public Boolean execute() {
+    public Boolean get() {
         SubscriptionCache subscriptionCache = SubscriptionCache.getInstance();
 
         if (subscriptionCache.exists(subscriptionName)) {

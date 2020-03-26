@@ -2,9 +2,10 @@ package me.csed2.moneymanager.categories.commands;
 
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryCache;
-import me.csed2.moneymanager.command.ICommand;
 
-public class RemoveCategoryCommand implements ICommand<Boolean> {
+import java.util.function.Supplier;
+
+public class RemoveCategoryCommand implements Supplier<Boolean> {
 
     private final String name;
 
@@ -12,7 +13,7 @@ public class RemoveCategoryCommand implements ICommand<Boolean> {
         this.name = name;
     }
     @Override
-    public Boolean execute() {
+    public Boolean get() {
         CategoryCache repository = CategoryCache.getInstance();
 
         Category category = repository.readByName(name);

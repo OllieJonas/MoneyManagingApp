@@ -5,6 +5,7 @@ import lombok.NonNull;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 /**
  * This is a singleton class which allows for the dispatching of commands in both a synchronous and asynchronous fashion.
@@ -36,8 +37,8 @@ public class CommandDispatcher {
      * @param <T> The return type of the command
      * @return The result of the command
      */
-    public <T> T dispatchSync(ICommand<T> command) {
-        return command.execute();
+    public <T> T dispatchSync(Supplier<T> command) {
+        return command.get();
     }
 
     /**
@@ -50,9 +51,9 @@ public class CommandDispatcher {
      *
      * @param <T> The return type of the command
      */
-    public final <T> ListenableFuture<T> dispatchAsync(ICommand<T> command, @NonNull FutureCallback<T> callback, long timeout, TimeUnit timeUnit) {
+    public final <T> ListenableFuture<T> dispatchAsync(Supplier<T> command, @NonNull FutureCallback<T> callback, long timeout, TimeUnit timeUnit) {
         ListeningScheduledExecutorService service = MoreExecutors.listeningDecorator(Executors.newSingleThreadScheduledExecutor());
-        ListenableFuture<T> future = service.submit(command::execute);
+        ListenableFuture<T> future = service.submit(command::get);
 
         Futures.addCallback(future, callback, service);
 

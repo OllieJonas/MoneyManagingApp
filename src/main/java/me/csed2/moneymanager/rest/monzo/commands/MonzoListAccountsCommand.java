@@ -4,7 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
-import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.rest.monzo.client.MonzoAccount;
 import me.csed2.moneymanager.rest.monzo.client.MonzoDetails;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
@@ -19,12 +18,12 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.function.Supplier;
 
-public class MonzoListAccountsCommand implements ICommand<JsonArray> {
+public class MonzoListAccountsCommand implements Supplier<JsonArray> {
 
     @Override
-    public JsonArray execute() {
+    public JsonArray get() {
         HttpGet request = new HttpGet(MonzoDetails.MONZO_API + "/accounts"); // Make request for accounts
         request.addHeader("Authorization", "Bearer " + MonzoHttpClient.getAccessToken()); // Add header showing access token
 

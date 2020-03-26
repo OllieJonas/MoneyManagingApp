@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import me.csed2.moneymanager.cache.Cacheable;
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.main.Main;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.subscriptions.Subscription;
@@ -16,12 +15,13 @@ import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Supplier;
 
 /**
  * This class contains the Command to Load from a Database.
  * @param <T>
  */
-public class LoadFromDBCommand<T extends Cacheable> implements ICommand<List<T>> {
+public class LoadFromDBCommand<T extends Cacheable> implements Supplier<List<T>> {
 
     private final Type type;
 
@@ -40,7 +40,7 @@ public class LoadFromDBCommand<T extends Cacheable> implements ICommand<List<T>>
     }
 
     @Override
-    public List<T> execute() {
+    public List<T> get() {
         return gson.fromJson(reader, type);
     }
 

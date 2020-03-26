@@ -2,7 +2,6 @@ package me.csed2.moneymanager.cache.commands;
 
 import com.google.gson.Gson;
 import me.csed2.moneymanager.cache.Cacheable;
-import me.csed2.moneymanager.command.ICommand;
 import me.csed2.moneymanager.main.Main;
 
 import java.io.File;
@@ -12,8 +11,9 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.function.Supplier;
 
-public class SaveToDBCommand<T extends Cacheable> implements ICommand<Boolean> {
+public class SaveToDBCommand<T extends Cacheable> implements Supplier<Boolean> {
 
     private final Gson gson;
     private final URL fileUrl;
@@ -27,7 +27,7 @@ public class SaveToDBCommand<T extends Cacheable> implements ICommand<Boolean> {
     }
 
     @Override
-    public Boolean execute() {
+    public Boolean get() {
         String jsonString = gson.toJson(items);
 
         try {
