@@ -15,6 +15,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -38,7 +39,7 @@ public class Cache<T extends Cacheable> {
     /**
      * The wrapped list of items.
      */
-    protected List<T> items;
+    private List<T> items;
 
     /**
      * Default constructor, used to initialise the variables.
@@ -47,25 +48,28 @@ public class Cache<T extends Cacheable> {
         this.items = new ArrayList<>();
     }
 
+    public Cache(ArrayList<T> list) {
+        this.items = new ArrayList<>();
+    }
+
     /**
      * Add an item to the list.
      *
      * @param entity The item in question.
      */
-    public void add(T entity) {
-        items.add(entity);
+    public boolean add(T entity) {
+        return items.add(entity);
     }
 
     /**
      * Updates a given category based on its ID. Essentially just removes it and re-adds it to the list.
      *
      * @param entity The entity in the list
-     * @return The new entity
      */
-    public boolean update(T entity) {
-        return ((Function<T, Boolean>) t -> items.removeIf(item -> item.getId() == t.getId()))
-                .andThen(aBoolean -> items.add(entity))
-                .apply(entity);
+    public void update(T entity) {
+        ((Consumer<T>) t -> items.removeIf(item -> item.getId() == t.getId()))
+                .andThen(t -> items.add(t))
+                .accept(entity);
     }
 
     /**
@@ -199,8 +203,10 @@ public class Cache<T extends Cacheable> {
     }
 
     /**
-     * Sorts the cache list based on a comparator synchronously. Note the lack of parallelSort; it doesn't really make sense
-     * to sort something asynchronously (otherwise we're waiting on other values, therefore just becoming asynchronous).
+     * Sorts the cache list based on a comparator synchronously.
+     *
+     * Note the lack of parallelSort; it doesn't really make sense to sort something asynchronously
+     * (otherwise we'll be waiting for other values, therefore just becoming asynchronous).
      *
      * @param comparator The comparator to sort by.
      * @return An immutable (unchangeable) sorted list using the comparator given.
