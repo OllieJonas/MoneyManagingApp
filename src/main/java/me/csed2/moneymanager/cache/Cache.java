@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -55,14 +56,12 @@ public abstract class Cache<T extends Cacheable> {
     }
 
     public boolean remove(String entity) {
-        boolean removed = false;
-        for (T item : items) {
-            if (item.getName().equalsIgnoreCase(entity)) {
-                removed = remove(item);
-                break;
-            }
-        }
-        return removed;
+        AtomicBoolean removed = new AtomicBoolean(false);
+        items.stream()
+                .filter(item -> item.getName().equalsIgnoreCase(entity))
+                .findFirst()
+                .ifPresent(item -> removed.set(items.remove(item)));
+        return removed.get();
     }
 
     public int nextId() {
