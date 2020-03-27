@@ -1,13 +1,15 @@
 package me.csed2.moneymanager.cache;
 
-import lombok.Getter;
+import com.google.common.collect.ImmutableList;
+import me.csed2.moneymanager.transactions.Transaction;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.BiPredicate;
+import java.util.Optional;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 /**
  * Abstract class for our own custom cache.
@@ -30,28 +32,13 @@ public abstract class Cache<T extends Cacheable> {
 
     protected List<T> items;
 
-    @Getter
-    protected BiPredicate<String, String> namePredicate = String::equalsIgnoreCase;
-
-    @Getter
-    protected BiPredicate<Integer, Integer> idPredicate = Integer::equals;
-
     protected Cache() {
         this.items = new ArrayList<>();
     }
 
-    public abstract void load() throws FileNotFoundException;
+    public abstract void load(String fileName) throws FileNotFoundException;
 
-    public abstract void save();
-
-    public T readById(int id) {
-        for (T item : items) {
-            if (idPredicate.test(item.getId(), id)) {
-                return item;
-            }
-        }
-        return null;
-    }
+    public abstract void save(String fileName);
 
     public void add(T entity) {
         items.add(entity);
@@ -70,32 +57,12 @@ public abstract class Cache<T extends Cacheable> {
     public boolean remove(String entity) {
         boolean removed = false;
         for (T item : items) {
-            if (namePredicate.test(item.getName(), entity)) {
+            if (item.getName().equalsIgnoreCase(entity)) {
                 removed = remove(item);
                 break;
             }
         }
         return removed;
-    }
-
-    public T readByName(String name) {
-        for (T item : items) {
-            if (namePredicate.test(item.getName(), name)) {
-                return item;
-            }
-        }
-        return null;
-    }
-
-    public List<T> readByName(Predicate<String> predicate) {
-        List<T> list = new ArrayList<>();
-
-        for (T item : items) {
-            if (predicate.test(item.getName())) {
-                list.add(item);
-            }
-        }
-        return list;
     }
 
     public int nextId() {
@@ -106,20 +73,12 @@ public abstract class Cache<T extends Cacheable> {
         }
     }
 
-    protected void orderById() {
-        items.sort(Comparator.comparingInt(Cacheable::getId));
+    public boolean exists(Predicate<T> predicate) {
+        return asList().parallelStream().anyMatch(predicate);
     }
 
     public boolean exists(String name) {
-        boolean exists = false;
-
-        for (T item : items) {
-            if (namePredicate.test(name, item.getName())) {
-                exists = true;
-                break;
-            }
-        }
-        return exists;
+        return exists(item -> item.getName().equalsIgnoreCase(name));
     }
 
     public void print() {
@@ -128,12 +87,53 @@ public abstract class Cache<T extends Cacheable> {
         }
     }
 
-    public void printIf(Predicate<String> predicate) {
-        for (T item : items) {
-            if (predicate.test(item.getName())) {
-                System.out.println(item.toFormattedString());
-            }
-        }
+    /**
+     * Searches through the list finding the first thing searching through the predicate.
+     *
+     * @param predicate The predicate to search for
+     * @return The optional containing the value.
+     */
+    public Optional<T> searchFirst(Predicate<T> predicate) {
+        return asList().stream().filter(predicate).findFirst();
+    }
+
+    /**
+     * Searches the cache list based on a predicate asynchronously.
+     *
+     * @param predicate The predicate to filter by.
+     * @return An immutable (unchangeable) list containing any items that matched the predicate given.
+     */
+    public ImmutableList<T> parallelSearch(Predicate<T> predicate) {
+        return ImmutableList.copyOf(asList().parallelStream().filter(predicate).collect(Collectors.toList()));
+    }
+
+    /**
+     * Searches the cache list based on a predicate synchronously.
+     *
+     * @param predicate The predicate to filter by.
+     * @return An immutable (unchangeable) list containing any items that matched the predicate given.
+     */
+    public ImmutableList<T> search(Predicate<T> predicate) {
+        return ImmutableList.copyOf(asList().stream().filter(predicate).collect(Collectors.toList()));
+    }
+
+    public Optional<T> search(String name) {
+        return searchFirst(item -> item.getName().equalsIgnoreCase(name));
+    }
+
+    /**
+     * Sorts the cache list based on a comparator synchronously. Note the lack of parallelSort; it doesn't really make sense
+     * to sort something asynchronously (otherwise we're waiting on other values, therefore just becoming asynchronous).
+     *
+     * @param comparator The comparator to sort by.
+     * @return An immutable (unchangeable) sorted list using the comparator given.
+     */
+    public ImmutableList<T> sort(Comparator<T> comparator) {
+        return ImmutableList.copyOf(asList().stream().sorted(comparator).collect(Collectors.toList()));
+    }
+
+    public ImmutableList<T> asImmutableList() {
+        return ImmutableList.copyOf(items);
     }
 
     public List<T> asList() {

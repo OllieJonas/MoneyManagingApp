@@ -5,6 +5,7 @@ import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.subscriptions.SubscriptionArgType;
 import me.csed2.moneymanager.subscriptions.SubscriptionCache;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class UpdateSubscriptionCommand<T> implements Supplier<Boolean> {
@@ -25,8 +26,9 @@ public class UpdateSubscriptionCommand<T> implements Supplier<Boolean> {
     @Override
     public Boolean get() {
         SubscriptionCache cache = SubscriptionCache.getInstance();
-        Subscription subscription = cache.readByName(subscriptionName);
-        if (subscription != null) {
+        Optional<Subscription> subOptional = cache.search(subscriptionName);
+        if (subOptional.isPresent()) {
+            Subscription subscription = subOptional.get();
             switch (argType) {
                 case NAME:
                     subscription.setName((String) result);
@@ -54,7 +56,7 @@ public class UpdateSubscriptionCommand<T> implements Supplier<Boolean> {
                     return false; // Should never be called
             }
             cache.update(subscription);
-            cache.save();
+            cache.save("subscriptions.json");
             return true;
         }
         System.out.println("ERROR HERE");

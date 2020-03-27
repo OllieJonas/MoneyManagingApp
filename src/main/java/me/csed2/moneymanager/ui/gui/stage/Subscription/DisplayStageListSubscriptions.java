@@ -8,6 +8,7 @@ import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.gui.stage.DisplayStageMenu;
 
 import javax.swing.*;
+import java.util.Optional;
 
 public class DisplayStageListSubscriptions extends DisplayStageMenu {
 
@@ -30,9 +31,9 @@ public class DisplayStageListSubscriptions extends DisplayStageMenu {
         CategoryCache cache = CategoryCache.getInstance();
         String result = (String) stages.get(0).getResult();
 
-        Category category = cache.readByName(result);
+        Optional<Category> category = cache.searchFirst(cat -> cat.getName().equalsIgnoreCase(result));
 
-        if (category != null) {
+        if (category.isPresent()) {
             JOptionPane.showMessageDialog(null, getSubscriptionReport(result));
         } else {
             System.out.println("Error: Unable to find this category!");
@@ -40,10 +41,10 @@ public class DisplayStageListSubscriptions extends DisplayStageMenu {
         openPreviousMenu();
     }
 
-    private String getSubscriptionReport(String category){
+    private String getSubscriptionReport(String name) {
         StringBuilder builder = new StringBuilder();
 
-        for(Subscription subscription : SubscriptionCache.getInstance().readByCategory(category)){
+        for(Subscription subscription : SubscriptionCache.getInstance().parallelSearch(category -> category.getName().equals(name))){
             builder.append(subscription.toFormattedString()).append("\n");
         }
 

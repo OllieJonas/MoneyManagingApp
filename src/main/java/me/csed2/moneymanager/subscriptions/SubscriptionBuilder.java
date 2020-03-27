@@ -77,7 +77,7 @@ public class SubscriptionBuilder {
 
     private int getId() {
         SubscriptionCache cache = SubscriptionCache.getInstance();
-        List<Subscription> Subscriptions = cache.readByCategory(categoryName);
+        List<Subscription> Subscriptions = cache.search(sub -> sub.getCategory().equalsIgnoreCase(categoryName));
         if (Subscriptions == null) {
             return 1;
         } else {

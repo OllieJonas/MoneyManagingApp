@@ -23,9 +23,9 @@ public class Main {
         new AuthServerManager();
 
         try {
-            new CategoryCache().load();
-            new TransactionCache().load();
-            new SubscriptionCache().load();
+            new CategoryCache().load("categories.json");
+            new TransactionCache().load("transactions.json");
+            new SubscriptionCache().load("subscriptions.json");
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

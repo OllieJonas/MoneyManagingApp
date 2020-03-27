@@ -35,7 +35,7 @@ public class AddCategoryCommand implements Supplier<Boolean> {
 
         cache.add(category);
 
-        cache.save();
+        cache.save("categories.json");
 
         return true;
     }

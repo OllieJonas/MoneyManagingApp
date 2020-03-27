@@ -52,7 +52,7 @@ public class AutoSave {
     public void start() {
         future = service.scheduleAtFixedRate(() -> {
             System.out.println("Saving...");
-            CategoryCache.getInstance().save();
+            CategoryCache.getInstance().save("categories.json");
             System.out.println("Saved!");
         }, time, time, units);
     }

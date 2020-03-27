@@ -38,7 +38,7 @@ public class AddSubscriptionCommand implements Supplier<Boolean> {
                     .withCategoryName(categoryName)
                     .build());
 
-            subscriptionCache.save();
+            subscriptionCache.save("subscriptions.json");
             return true;
         }
         return false;

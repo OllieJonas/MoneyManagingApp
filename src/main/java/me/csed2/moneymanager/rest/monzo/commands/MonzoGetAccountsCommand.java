@@ -21,10 +21,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-public class MonzoGetAccountsCommand implements Supplier<JsonArray> {
+public class MonzoGetAccountsCommand implements Supplier<List<MonzoAccount>> {
 
     @Override
-    public JsonArray get() {
+    public List<MonzoAccount> get() {
         HttpGet request = new HttpGet(MonzoDetails.MONZO_API + "/accounts"); // Make request for accounts
         request.addHeader("Authorization", "Bearer " + MonzoHttpClient.getAccessToken()); // Add header showing access token
 
@@ -34,26 +34,22 @@ public class MonzoGetAccountsCommand implements Supplier<JsonArray> {
             HttpEntity entity = response.getEntity(); // Get response
 
             String fullJson = EntityUtils.toString(entity); // Convert to JSON string
-            JsonObject initialObject= JSONUtils.getAsJsonObject(fullJson);
+            JsonObject initialObject = JSONUtils.getAsJsonObject(fullJson);
 
             // Handling Monzo's weird JSON formatting...
             JsonArray array = initialObject.getAsJsonArray("accounts");
 
             List<MonzoAccount> arrList = new ArrayList<>();
+
             Gson gson = new Gson();
 
             for (int i = 0; i < array.size(); i++) {
                 JsonObject newObject = array.get(i).getAsJsonObject();
                 arrList.add(new MonzoAccount(gson.fromJson(newObject, JsonObject.class)));
             }
-
-            System.out.println(arrList.get(0).getCreated());
-
-            Type type = new TypeToken<ArrayList<MonzoAccount>>(){}.getType(); // Get type
-
             MonzoHttpClient.setSelectedAccount(arrList.get(0)); // Set default Selected Account to the first one.
 
-            return new Gson().fromJson(fullJson, type);
+            return arrList;
 
         } catch (IOException e) {
             e.printStackTrace();

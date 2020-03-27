@@ -47,7 +47,7 @@ public class User {
     public synchronized void exit() {
         System.out.println("Exiting program...");
 
-        CategoryCache.getInstance().save();
+        CategoryCache.getInstance().save("categories.json");
 
         autoSave.interrupt();
 

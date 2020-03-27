@@ -5,6 +5,7 @@ import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.transactions.TransactionArgType;
 import me.csed2.moneymanager.transactions.TransactionCache;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class UpdateTransactionCommand<T> implements Supplier<Boolean> {
@@ -25,8 +26,11 @@ public class UpdateTransactionCommand<T> implements Supplier<Boolean> {
     @Override
     public Boolean get() {
         TransactionCache cache = TransactionCache.getInstance();
-        Transaction transaction = cache.readByName(transactionName);
-            if (transaction != null) {
+
+        Optional<Transaction> transOptional = cache.search(transactionName);
+
+            if (transOptional.isPresent()) {
+                Transaction transaction = transOptional.get();
                 switch (argType) {
                     case NAME:
                         transaction.setName((String) result);
@@ -54,7 +58,7 @@ public class UpdateTransactionCommand<T> implements Supplier<Boolean> {
                         return false; // Should never be called
                 }
                 cache.update(transaction);
-                cache.save();
+                cache.save("transactions.json");
                 return true;
             }
         System.out.println("ERROR HERE");

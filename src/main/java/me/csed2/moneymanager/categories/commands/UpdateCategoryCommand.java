@@ -4,6 +4,7 @@ import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.categories.CategoryCache;
 
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class UpdateCategoryCommand<T> implements Supplier<Boolean> {
@@ -23,9 +24,12 @@ public class UpdateCategoryCommand<T> implements Supplier<Boolean> {
     @Override
     public Boolean get() {
         CategoryCache repository = CategoryCache.getInstance();
-        Category category = repository.readByName(categoryName);
+        Optional<Category> catOptional = repository.search(categoryName);
 
-        if (category != null) {
+        if (catOptional.isPresent()) {
+
+            Category category = catOptional.get();
+
             switch (argType) {
                 case NAME:
                     category.setName((String) result);
@@ -39,7 +43,7 @@ public class UpdateCategoryCommand<T> implements Supplier<Boolean> {
             }
 
             repository.update(category);
-            repository.save();
+            repository.save("categories.json");
             return true;
         }
         return false;

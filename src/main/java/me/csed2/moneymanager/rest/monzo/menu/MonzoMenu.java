@@ -5,6 +5,7 @@ import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.rest.monzo.commands.MonzoAuthCommand;
 import me.csed2.moneymanager.rest.monzo.commands.MonzoCheckAuthCommand;
 import me.csed2.moneymanager.rest.monzo.commands.MonzoGetAccountsCommand;
+import me.csed2.moneymanager.rest.monzo.commands.MonzoGetTransactionsCommand;
 import me.csed2.moneymanager.ui.Button;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
@@ -19,6 +20,7 @@ public class MonzoMenu extends CMDMenu {
     protected void addButtons() {
         addButton(new Button("Authenticate Monzo", user -> CommandDispatcher.getInstance().dispatchSync(new MonzoAuthCommand()), false, false));
         addButton(new Button("List Accounts", user -> CommandDispatcher.getInstance().dispatchSync(new MonzoGetAccountsCommand()), false, false));
+        addButton(new Button("List Transactions", user -> CommandDispatcher.getInstance().dispatchSync(new MonzoGetTransactionsCommand()), false, false));
         addButton(new Button("Update from Monzo", user -> System.out.println("Coming Soon TM"), true, true));
         addButton(new Button("Check Authentication", user -> System.out.println(CommandDispatcher.getInstance().dispatchSync(new MonzoCheckAuthCommand())), false, false));
         addButton(new Button("Print Access Token", user -> System.out.println(MonzoHttpClient.getAccessToken()), false, false));

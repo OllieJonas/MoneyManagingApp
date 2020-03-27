@@ -77,7 +77,6 @@ public abstract class StageMenu implements Menu {
 
     public void restart() {
         count = 0;
-        stages = new ArrayList<>();
         beginPhase();
         System.out.println("Please type \"EXIT\" if you'd like to exit this menu!");
         print();

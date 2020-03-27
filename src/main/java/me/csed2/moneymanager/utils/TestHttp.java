@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.rest;
+package me.csed2.moneymanager.utils;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;

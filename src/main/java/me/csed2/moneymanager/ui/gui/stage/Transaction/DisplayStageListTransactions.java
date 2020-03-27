@@ -8,6 +8,7 @@ import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.gui.stage.DisplayStageMenu;
 
 import javax.swing.*;
+import java.util.Optional;
 
 public class DisplayStageListTransactions extends DisplayStageMenu {
 
@@ -30,9 +31,9 @@ public class DisplayStageListTransactions extends DisplayStageMenu {
         CategoryCache cache = CategoryCache.getInstance();
         String result = (String) stages.get(0).getResult();
 
-        Category category = cache.readByName(result);
+        Optional<Category> category = cache.searchFirst(cat -> cat.getName().equalsIgnoreCase(result));
 
-        if (category != null) {
+        if (category.isPresent()) {
             JOptionPane.showMessageDialog(null, getTransactionReport(result));
         } else {
             System.out.println("Error: Unable to find this category!");
@@ -43,7 +44,7 @@ public class DisplayStageListTransactions extends DisplayStageMenu {
     private String getTransactionReport(String category){
         StringBuilder builder = new StringBuilder();
 
-        for(Transaction transaction : TransactionCache.getInstance().readByCategory(category)){
+        for(Transaction transaction : TransactionCache.getInstance().search(trans -> trans.getCategory().equalsIgnoreCase(category))){
             builder.append(transaction.toFormattedString()).append("\n");
         }
 

@@ -2,12 +2,22 @@ package me.csed2.moneymanager.rest.monzo.client;
 
 import com.google.gson.JsonObject;
 import me.csed2.moneymanager.rest.JsonWrapped;
+import me.csed2.moneymanager.transactions.Transaction;
 
-public class MonzoTransaction implements JsonWrapped {
+import java.sql.Date;
+import java.time.Instant;
+
+public class MonzoTransaction extends Transaction implements JsonWrapped {
 
     private JsonObject object;
 
-    public MonzoTransaction(JsonObject object) {
+    public MonzoTransaction(JsonObject object, int id) {
+        super(object.get("name").getAsString(),
+                id,
+                Date.from(Instant.parse(object.get("created").getAsString())),
+                object.get("amount").getAsInt(), object.get("category").getAsString(),
+                object.get("notes").getAsString().split("\n"),
+                object.get("description").getAsString());
         this.object = object;
     }
 

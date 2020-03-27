@@ -80,11 +80,11 @@ public class TransactionBuilder {
 
     private int getId() {
         TransactionCache cache = TransactionCache.getInstance();
-        List<Transaction> transactions = cache.readByCategory(categoryName);
+        List<Transaction> transactions = cache.search(trans -> trans.getCategory().equalsIgnoreCase(categoryName));
         if (transactions == null) {
             return 1;
         } else {
-            if(transactions.size() > 0){
+            if(transactions.size() > 0) {
                 return transactions.get(transactions.size() - 1).getId() + 1;
             }else{
                 return 0;

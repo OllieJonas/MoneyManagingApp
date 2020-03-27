@@ -18,7 +18,7 @@ public class RemoveTransactionCommand implements Supplier<Boolean> {
 
         if (transactionCache.exists(transactionName)) {
             transactionCache.remove(transactionName);
-            transactionCache.save();
+            transactionCache.save("transactions.json");
             return true;
         }
         return false;

@@ -18,7 +18,7 @@ public class RemoveSubscriptionCommand implements Supplier<Boolean> {
 
         if (subscriptionCache.exists(subscriptionName)) {
             subscriptionCache.remove(subscriptionName);
-            subscriptionCache.save();
+            subscriptionCache.save("subscriptions.json");
             return true;
         }
         return false;

@@ -7,6 +7,7 @@ import me.csed2.moneymanager.subscriptions.SubscriptionCache;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class ListSubscriptionsCommand implements Supplier<List<Subscription>> {
@@ -25,9 +26,9 @@ public class ListSubscriptionsCommand implements Supplier<List<Subscription>> {
         if (categoryName.equalsIgnoreCase("ALL")) {
             subscriptions = SubscriptionCache.getInstance().asList();
         } else {
-            Category category = cache.readByName(categoryName);
-            if (category != null) {
-                subscriptions = SubscriptionCache.getInstance().readByCategory(categoryName);
+            Optional<Category> category = cache.search(categoryName);
+            if (category.isPresent()) {
+                subscriptions = SubscriptionCache.getInstance().search(sub -> sub.getCategory().equalsIgnoreCase(categoryName));
             }
         }
         return subscriptions;

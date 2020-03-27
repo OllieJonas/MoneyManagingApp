@@ -7,6 +7,7 @@ import me.csed2.moneymanager.transactions.TransactionCache;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 public class ListTransactionsCommand implements Supplier<List<Transaction>> {
@@ -25,9 +26,9 @@ public class ListTransactionsCommand implements Supplier<List<Transaction>> {
         if (categoryName.equalsIgnoreCase("ALL")) {
             transactions = TransactionCache.getInstance().asList();
         } else {
-            Category category = cache.readByName(categoryName);
-            if (category != null) {
-                transactions = TransactionCache.getInstance().readByCategory(categoryName);
+            Optional<Category> category = cache.search(categoryName);
+            if (category.isPresent()) {
+                transactions = TransactionCache.getInstance().parallelSearch(cat -> cat.getCategory().equalsIgnoreCase(categoryName));
             }
         }
         return transactions;

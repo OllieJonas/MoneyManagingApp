@@ -21,10 +21,9 @@ public class RemoveCategoryCommand implements Supplier<Boolean> {
         AtomicBoolean removed = new AtomicBoolean(false); // async boolean variable, see Atomic Variables
 
         // Performs the null check
-        Optional.ofNullable(repository.readByName(name)) // Can be null
-                .ifPresent(cat -> removed.set(repository.remove(cat))); // If not null, remove the category from the repo and set flag to true
+        repository.search(name).ifPresent(cat -> removed.set(repository.remove(cat))); // If not null, remove the category from the repo and set flag to true
 
-        repository.save();
+        repository.save("categories.json");
         return removed.get();
     }
 }

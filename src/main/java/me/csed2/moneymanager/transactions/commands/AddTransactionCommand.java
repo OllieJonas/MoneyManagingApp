@@ -38,7 +38,7 @@ public class AddTransactionCommand implements Supplier<Boolean> {
             .withCategoryName(categoryName)
             .build());
 
-            transactionCache.save();
+            transactionCache.save("transactions.json");
             return true;
         }
         return false;
