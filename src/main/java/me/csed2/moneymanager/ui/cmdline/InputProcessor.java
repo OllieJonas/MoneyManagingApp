@@ -3,7 +3,7 @@ package me.csed2.moneymanager.ui.cmdline;
 import me.csed2.moneymanager.exceptions.InvalidTypeException;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.Button;
-import me.csed2.moneymanager.main.User;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
 import me.csed2.moneymanager.utils.ConsoleUtils;
@@ -22,36 +22,36 @@ public class InputProcessor {
     /**
      * Processes any information that they may type into the console.
      *
-     * @param user The current instance of the user using this.
+     * @param app The current instance of the user using this.
      * @param input Their input into the console.
      */
-    static void process(User user, String input) {
+    static void process(App app, String input) {
 
-            if (user.getCurrentMenu() != null) {
-                Menu menu = user.getCurrentMenu();
+            if (app.getCurrentMenu() != null) {
+                Menu menu = app.getCurrentMenu();
 
                 if (menu instanceof StageMenu) {
-                    processStageMenu(user, input, (StageMenu) menu);
+                    processStageMenu(app, input, (StageMenu) menu);
                 } else {
-                    processCMDMenu(user, input, (CMDMenu) menu);
+                    processCMDMenu(app, input, (CMDMenu) menu);
                 }
 
             } else {
             System.out.println("Fatal Error: Please try loading the program again! If the problem persists, please get in touch with a developer!");
-            user.exit();
+            app.exit();
         }
     }
 
     /**
      * Processes anything the user inputs, if it's a stage menu
      *
-     * @param user The user using this
+     * @param app The user using this
      * @param input The input that they typed
      * @param menu The menu they're accessing
      */
-    private static void processStageMenu(User user, String input, StageMenu menu) {
+    private static void processStageMenu(App app, String input, StageMenu menu) {
         if (input.equalsIgnoreCase("exit")) {
-            user.openMenu(menu.getPreviousMenu());
+            app.openMenu(menu.getPreviousMenu());
 
         } else {
 
@@ -71,11 +71,11 @@ public class InputProcessor {
     /**
      * Processes anything the user inputs, if it's a normal CMD menu
      *
-     * @param user The user using this
+     * @param app The user using this
      * @param input The input that they typed
      * @param menu The menu they're accessing
      */
-    private static void processCMDMenu(User user, String input, CMDMenu menu) {
+    private static void processCMDMenu(App app, String input, CMDMenu menu) {
         try {
             int optionNo = Integer.parseInt(input); // Convert string to integer
             List<Button> buttons = menu.getButtons();
@@ -95,14 +95,14 @@ public class InputProcessor {
                     System.out.print("\n");
                 }
 
-                button.execute(user);
+                button.execute(app);
 
                 if (button.isSurroundWithSpaces()) {
                     System.out.print("\n");
                 }
 
                 if (button.isShowMenu()) { // If this option means that you reprint the menu
-                    user.getCurrentMenu().print();
+                    app.getCurrentMenu().print();
                 }
             }
         } catch (NumberFormatException e) {

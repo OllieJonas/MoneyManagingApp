@@ -28,7 +28,7 @@ public class UpdateAmountMenu extends StageMenu {
         String transactionName = (String) stages.get(0).getResult();
         Double amount = (Double) stages.get(1).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(
+        if (CommandDispatcher.dispatchSync(
                 new UpdateTransactionCommand<>(transactionName, TransactionArgType.AMOUNT, amount))) {
             System.out.println("Transaction successfully updated!");
             openPreviousMenu();

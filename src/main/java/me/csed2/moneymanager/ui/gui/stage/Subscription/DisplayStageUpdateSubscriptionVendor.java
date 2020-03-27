@@ -30,7 +30,7 @@ public class DisplayStageUpdateSubscriptionVendor extends DisplayStageMenu {
         String subscriptionName = (String) stages.get(1).getResult();
         String vendor = (String) stages.get(2).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(
+        if (CommandDispatcher.dispatchSync(
                 new UpdateSubscriptionCommand<>(subscriptionName, SubscriptionArgType.VENDOR, vendor))) {
              showMessage("Subscription successfully updated!");
         } else {

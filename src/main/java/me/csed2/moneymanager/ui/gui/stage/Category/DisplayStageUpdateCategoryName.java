@@ -29,7 +29,7 @@ public class DisplayStageUpdateCategoryName extends DisplayStageMenu {
         String categoryName = (String) stages.get(0).getResult();
         String result = (String) stages.get(1).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(new UpdateCategoryCommand<>(categoryName, CategoryArgType.NAME, result))) {
+        if (CommandDispatcher.dispatchSync(new UpdateCategoryCommand<>(categoryName, CategoryArgType.NAME, result))) {
             showMessage("Successfully updated the name of this category!");
         } else {
             showMessage("Error: Unable to update this category!");

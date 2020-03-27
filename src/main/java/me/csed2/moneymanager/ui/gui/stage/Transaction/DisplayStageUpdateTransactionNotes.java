@@ -30,7 +30,7 @@ public class DisplayStageUpdateTransactionNotes extends DisplayStageMenu {
         String transactionName = (String) stages.get(1).getResult();
         String[] notes = ((String) stages.get(2).getResult()).split(",");
 
-        if (CommandDispatcher.getInstance().dispatchSync(
+        if (CommandDispatcher.dispatchSync(
                 new UpdateTransactionCommand<>(transactionName, TransactionArgType.NOTES, notes))) {
             showMessage("Transaction successfully updated!");
         } else {

@@ -1,7 +1,8 @@
 package me.csed2.moneymanager.subscriptions;
 
+import me.csed2.moneymanager.main.App;
+
 import java.util.Date;
-import java.util.List;
 
 /**
  * Builder class for a Subscription.
@@ -72,21 +73,7 @@ public class SubscriptionBuilder {
     }
 
     public Subscription build() {
-        return new Subscription(name, getId(), date, amount, categoryName, notes, vendor);
-    }
-
-    private int getId() {
-        SubscriptionCache cache = SubscriptionCache.getInstance();
-        List<Subscription> Subscriptions = cache.search(sub -> sub.getCategory().equalsIgnoreCase(categoryName));
-        if (Subscriptions == null) {
-            return 1;
-        } else {
-            if(Subscriptions.size() > 0){
-                return Subscriptions.get(Subscriptions.size() - 1).getId() + 1;
-            }else{
-                return 0;
-            }
-        }
+        return new Subscription(name, App.getInstance().getSubscriptionCache().nextId(), date, amount, categoryName, notes, vendor);
     }
 
 }

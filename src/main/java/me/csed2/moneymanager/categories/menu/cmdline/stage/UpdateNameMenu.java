@@ -29,7 +29,7 @@ public class UpdateNameMenu extends StageMenu {
         String categoryName = (String) stages.get(0).getResult();
         String result = (String) stages.get(1).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(new UpdateCategoryCommand<>(categoryName, CategoryArgType.NAME, result))) {
+        if (CommandDispatcher.dispatchSync(new UpdateCategoryCommand<>(categoryName, CategoryArgType.NAME, result))) {
             System.out.println("Successfully updated the name of this category!");
         } else {
             System.out.println("Error: Unable to update this category!");

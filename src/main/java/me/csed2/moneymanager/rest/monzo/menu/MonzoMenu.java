@@ -18,11 +18,11 @@ public class MonzoMenu extends CMDMenu {
 
     @Override
     protected void addButtons() {
-        addButton(new Button("Authenticate Monzo", user -> CommandDispatcher.getInstance().dispatchSync(new MonzoAuthCommand()), false, false));
-        addButton(new Button("List Accounts", user -> CommandDispatcher.getInstance().dispatchSync(new MonzoGetAccountsCommand()), false, false));
-        addButton(new Button("List Transactions", user -> CommandDispatcher.getInstance().dispatchSync(new MonzoGetTransactionsCommand()), false, false));
+        addButton(new Button("Authenticate Monzo", user -> CommandDispatcher.dispatchSync(new MonzoAuthCommand()), false, false));
+        addButton(new Button("List Accounts", user -> CommandDispatcher.dispatchSync(new MonzoGetAccountsCommand()), false, false));
+        addButton(new Button("List Transactions", user -> CommandDispatcher.dispatchSync(new MonzoGetTransactionsCommand()), false, false));
         addButton(new Button("Update from Monzo", user -> System.out.println("Coming Soon TM"), true, true));
-        addButton(new Button("Check Authentication", user -> System.out.println(CommandDispatcher.getInstance().dispatchSync(new MonzoCheckAuthCommand())), false, false));
+        addButton(new Button("Check Authentication", user -> System.out.println(CommandDispatcher.dispatchSync(new MonzoCheckAuthCommand())), false, false));
         addButton(new Button("Print Access Token", user -> System.out.println(MonzoHttpClient.getAccessToken()), false, false));
     }
 }

@@ -28,7 +28,7 @@ public class DisplayStageUpdateSubscriptionAmount extends DisplayStageMenu {
         String subscriptionName = (String) stages.get(0).getResult();
         int amount = (Integer) stages.get(1).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(
+        if (CommandDispatcher.dispatchSync(
                 new UpdateSubscriptionCommand<>(subscriptionName, SubscriptionArgType.AMOUNT, amount))) {
             showMessage("Subscription successfully updated!");
         } else {

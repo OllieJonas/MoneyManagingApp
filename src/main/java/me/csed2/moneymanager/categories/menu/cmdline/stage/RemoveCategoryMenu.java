@@ -1,8 +1,8 @@
 package me.csed2.moneymanager.categories.menu.cmdline.stage;
 
-import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.categories.commands.RemoveCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
@@ -20,7 +20,7 @@ public class RemoveCategoryMenu extends StageMenu {
 
     @Override
     public void beginPhase() {
-        CategoryCache.getInstance().printNames();
+        App.getInstance().getCategoryCache().print();
     }
 
     @Override
@@ -28,7 +28,7 @@ public class RemoveCategoryMenu extends StageMenu {
 
         String name = (String) stages.get(0).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(new RemoveCategoryCommand(name))) {
+        if (CommandDispatcher.dispatchSync(new RemoveCategoryCommand(name))) {
 
             System.out.println("Removed category " + name + "!");
             openPreviousMenu();

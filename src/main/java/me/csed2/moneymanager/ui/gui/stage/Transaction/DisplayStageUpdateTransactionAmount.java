@@ -28,7 +28,7 @@ public class DisplayStageUpdateTransactionAmount extends DisplayStageMenu {
         String transactionName = (String) stages.get(0).getResult();
         int amount = (Integer) stages.get(1).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(
+        if (CommandDispatcher.dispatchSync(
                 new UpdateTransactionCommand<>(transactionName, TransactionArgType.AMOUNT, amount))) {
             showMessage("Transaction successfully updated!");
         } else {

@@ -1,7 +1,7 @@
 package me.csed2.moneymanager.ui.cmdline;
 
 import lombok.Getter;
-import me.csed2.moneymanager.main.User;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.ui.Button;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.utils.ConsoleUtils;
@@ -80,7 +80,7 @@ public abstract class CMDMenu implements Menu {
     }
 
     private void addExitButton() {
-        addButton(new Button("Exit the Application", User::exit));
+        addButton(new Button("Exit the Application", App::exit));
     }
 
     private void addBackButton() {

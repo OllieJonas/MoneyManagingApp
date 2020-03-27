@@ -1,7 +1,7 @@
 package me.csed2.moneymanager.ui;
 
 import lombok.Getter;
-import me.csed2.moneymanager.main.User;
+import me.csed2.moneymanager.main.App;
 
 import java.util.function.Consumer;
 
@@ -17,7 +17,7 @@ public class Button {
      * The action to be performed upon selecting this button.
      */
     @Getter
-    private Consumer<User> action;
+    private Consumer<App> action;
 
     /**
      * The text that is printed out when the menu prints out.
@@ -49,7 +49,7 @@ public class Button {
      * @param clearConsole Whether the console should be cleared before execution
      * @param surroundWithSpaces Whether when printing the result should be surrounded with spaces
      */
-    public Button(String name, Consumer<User> action, boolean showMenu, boolean clearConsole, boolean surroundWithSpaces) {
+    public Button(String name, Consumer<App> action, boolean showMenu, boolean clearConsole, boolean surroundWithSpaces) {
         this.name = name;
         this.action = action;
         this.showMenu = showMenu;
@@ -66,7 +66,7 @@ public class Button {
      * @param showMenu Whether to reprint the menu the user is on upon completion
      * @param surroundWithSpaces Whether to surround the execution with spaces
      */
-    public Button(String name, Consumer<User> action, boolean showMenu, boolean surroundWithSpaces) {
+    public Button(String name, Consumer<App> action, boolean showMenu, boolean surroundWithSpaces) {
         this(name, action, showMenu, true, surroundWithSpaces);
     }
 
@@ -77,7 +77,7 @@ public class Button {
      * @param name The text to be printed out
      * @param action The action to be performed upon execution
      */
-    public Button(String name, Consumer<User> action) {
+    public Button(String name, Consumer<App> action) {
         this(name, action, false, true, false);
     }
 
@@ -89,17 +89,17 @@ public class Button {
      * @param action The action to be performed upon execution
      * @param surroundWithSpaces Whether to surround the execution with spaces
      */
-    public Button(String name, Consumer<User> action, boolean surroundWithSpaces) {
+    public Button(String name, Consumer<App> action, boolean surroundWithSpaces) {
         this(name, action, false, true, surroundWithSpaces);
     }
 
     /**
      * Executes the action inside this button.
      *
-     * @param user The user executing.
+     * @param app The user executing.
      */
-    public void execute(User user) {
-        action.accept(user);
+    public void execute(App app) {
+        action.accept(app);
     }
 
 

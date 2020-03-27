@@ -1,12 +1,13 @@
 package me.csed2.moneymanager.categories.commands;
 
-import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.main.App;
 
-import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
-public class RemoveCategoryCommand implements Supplier<Boolean> {
+public class RemoveCategoryCommand implements Function<App, Boolean> {
 
     private final String name;
 
@@ -15,15 +16,15 @@ public class RemoveCategoryCommand implements Supplier<Boolean> {
     }
 
     @Override
-    public Boolean get() {
-        CategoryCache repository = CategoryCache.getInstance();
+    public Boolean apply(App app) {
+        Cache<Category> cache = App.getInstance().getCategoryCache();
 
         AtomicBoolean removed = new AtomicBoolean(false); // async boolean variable, see Atomic Variables
 
         // Performs the null check
-        repository.search(name).ifPresent(cat -> removed.set(repository.remove(cat))); // If not null, remove the category from the repo and set flag to true
+        cache.search(name).ifPresent(cat -> removed.set(cache.remove(cat))); // If not null, remove the category from the repo and set flag to true
 
-        repository.save("categories.json");
+        cache.save("categories.json");
         return removed.get();
     }
 }

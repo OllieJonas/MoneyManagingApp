@@ -1,10 +1,12 @@
 package me.csed2.moneymanager.subscriptions.commands;
 
-import me.csed2.moneymanager.subscriptions.SubscriptionCache;
+import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.main.App;
+import me.csed2.moneymanager.subscriptions.Subscription;
 
-import java.util.function.Supplier;
+import java.util.function.Function;
 
-public class RemoveSubscriptionCommand implements Supplier<Boolean> {
+public class RemoveSubscriptionCommand implements Function<App, Boolean> {
 
     private final String subscriptionName;
 
@@ -13,8 +15,8 @@ public class RemoveSubscriptionCommand implements Supplier<Boolean> {
 
     }
     @Override
-    public Boolean get() {
-        SubscriptionCache subscriptionCache = SubscriptionCache.getInstance();
+    public Boolean apply(App app) {
+        Cache<Subscription> subscriptionCache = app.getSubscriptionCache();
 
         if (subscriptionCache.exists(subscriptionName)) {
             subscriptionCache.remove(subscriptionName);

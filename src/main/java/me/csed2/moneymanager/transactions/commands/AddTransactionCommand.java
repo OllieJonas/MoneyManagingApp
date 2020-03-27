@@ -1,13 +1,15 @@
 package me.csed2.moneymanager.transactions.commands;
 
-import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.main.App;
+import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.transactions.TransactionBuilder;
-import me.csed2.moneymanager.transactions.TransactionCache;
 
 import java.util.Date;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
-public class AddTransactionCommand implements Supplier<Boolean> {
+public class AddTransactionCommand implements Function<App, Boolean> {
 
     private final String categoryName;
     private final String name;
@@ -24,9 +26,9 @@ public class AddTransactionCommand implements Supplier<Boolean> {
     }
 
     @Override
-    public Boolean get() {
-        CategoryCache categoryCache = CategoryCache.getInstance();
-        TransactionCache transactionCache = TransactionCache.getInstance();
+    public Boolean apply(App app) {
+        Cache<Category> categoryCache = app.getCategoryCache();
+        Cache<Transaction> transactionCache = app.getTransactionCache();
         
         if (categoryCache.exists(categoryName)) {
 

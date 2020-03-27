@@ -30,7 +30,7 @@ public class DisplayStageAddCategory extends DisplayStageMenu {
         String name = (String) stages.get(0).getResult();
         Integer budget = (Integer) stages.get(1).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(new AddCategoryCommand(name, budget))) {
+        if (CommandDispatcher.dispatchSync(new AddCategoryCommand(name, budget))) {
             showMessage("Category successfully added!");
         }
 

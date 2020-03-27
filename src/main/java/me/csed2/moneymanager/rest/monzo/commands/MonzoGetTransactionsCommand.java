@@ -3,13 +3,12 @@ package me.csed2.moneymanager.rest.monzo.commands;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import me.csed2.moneymanager.rest.monzo.client.MonzoAccount;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.rest.monzo.client.MonzoDetails;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.rest.monzo.client.MonzoTransaction;
 import me.csed2.moneymanager.utils.JSONUtils;
 import org.apache.http.HttpEntity;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -19,12 +18,12 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
-public class MonzoGetTransactionsCommand implements Supplier<List<MonzoTransaction>> {
+public class MonzoGetTransactionsCommand implements Function<App, List<MonzoTransaction>> {
 
     @Override
-    public List<MonzoTransaction> get() {
+    public List<MonzoTransaction> apply(App app) {
         HttpGet request = new HttpGet(MonzoDetails.MONZO_API + "/transactions");
         request.addHeader("Authorization", "Bearer " + MonzoHttpClient.getAccessToken());
         request.addHeader("account_id", MonzoHttpClient.getSelectedAccount().getId());

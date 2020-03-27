@@ -1,9 +1,9 @@
 package me.csed2.moneymanager.ui.gui.stage.Subscription;
 
+import me.csed2.moneymanager.cache.Cache;
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.subscriptions.Subscription;
-import me.csed2.moneymanager.subscriptions.SubscriptionCache;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.gui.stage.DisplayStageMenu;
 
@@ -28,7 +28,7 @@ public class DisplayStageListSubscriptions extends DisplayStageMenu {
 
     @Override
     public void exitPhase() {
-        CategoryCache cache = CategoryCache.getInstance();
+        Cache<Category> cache = App.getInstance().getCategoryCache();
         String result = (String) stages.get(0).getResult();
 
         Optional<Category> category = cache.searchFirst(cat -> cat.getName().equalsIgnoreCase(result));
@@ -44,7 +44,7 @@ public class DisplayStageListSubscriptions extends DisplayStageMenu {
     private String getSubscriptionReport(String name) {
         StringBuilder builder = new StringBuilder();
 
-        for(Subscription subscription : SubscriptionCache.getInstance().parallelSearch(category -> category.getName().equals(name))){
+        for (Subscription subscription : App.getInstance().getSubscriptionCache().parallelSearch(category -> category.getName().equals(name))){
             builder.append(subscription.toFormattedString()).append("\n");
         }
 

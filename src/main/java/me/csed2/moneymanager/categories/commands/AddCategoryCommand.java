@@ -1,13 +1,14 @@
 package me.csed2.moneymanager.categories.commands;
 
+import me.csed2.moneymanager.cache.Cache;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryBuilder;
-import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.main.App;
 
 import java.util.Date;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
-public class AddCategoryCommand implements Supplier<Boolean> {
+public class AddCategoryCommand implements Function<App, Boolean> {
 
     private final String name;
     private final int id;
@@ -16,15 +17,15 @@ public class AddCategoryCommand implements Supplier<Boolean> {
 
     public AddCategoryCommand(String name, int budget) {
         this.name = name;
-        this.id = CategoryCache.getInstance().nextId();
+        this.id = App.getInstance().getCategoryCache().nextId();
         this.created = new Date();
         this.budget = budget;
     }
 
     @Override
-    public Boolean get() {
+    public Boolean apply(App app) {
 
-        CategoryCache cache = CategoryCache.getInstance();
+        Cache<Category> cache = app.getCategoryCache();
 
         CategoryBuilder builder = new CategoryBuilder(name)
                 .withId(id)

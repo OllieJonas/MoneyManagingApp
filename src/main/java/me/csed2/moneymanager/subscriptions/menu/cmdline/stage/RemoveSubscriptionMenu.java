@@ -21,7 +21,7 @@ public class RemoveSubscriptionMenu extends StageMenu {
     public void exitPhase() {
         String subscriptionName = (String) stages.get(0).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(new RemoveSubscriptionCommand(subscriptionName))) {
+        if (CommandDispatcher.dispatchSync(new RemoveSubscriptionCommand(subscriptionName))) {
             System.out.println("Subscription successfully removed!");
             openPreviousMenu();
         } else {

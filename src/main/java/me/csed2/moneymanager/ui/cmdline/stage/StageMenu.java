@@ -1,7 +1,7 @@
 package me.csed2.moneymanager.ui.cmdline.stage;
 
 import lombok.Getter;
-import me.csed2.moneymanager.main.User;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.ui.Menu;
 
 import java.util.ArrayList;
@@ -72,7 +72,7 @@ public abstract class StageMenu implements Menu {
     }
 
     public void openPreviousMenu() {
-        User.getInstance().openMenu(previousMenu);
+        App.getInstance().openMenu(previousMenu);
     }
 
     public void restart() {
