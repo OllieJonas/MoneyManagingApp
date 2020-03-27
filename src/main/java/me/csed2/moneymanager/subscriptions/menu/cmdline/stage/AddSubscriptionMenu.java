@@ -1,7 +1,7 @@
 package me.csed2.moneymanager.subscriptions.menu.cmdline.stage;
 
-import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.subscriptions.commands.AddSubscriptionCommand;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
@@ -19,7 +19,7 @@ public class AddSubscriptionMenu extends StageMenu {
     @Override
     public void addStages() {
         addStage(new Stage<>(String.class, "What is the name of the category you'd like to add the Subscription to?")
-                .withExecutionPhase(() -> CategoryCache.getInstance().printNames()));
+                .withExecutionPhase(() -> App.getInstance().getCategoryCache().print()));
 
         addStage(new Stage<>(String.class, "What is the name of the Subscription?"));
         addStage(new Stage<>(Integer.class, "How much was spent at this Subscription?"));
@@ -35,7 +35,7 @@ public class AddSubscriptionMenu extends StageMenu {
         String vendor = (String) stages.get(3).getResult();
         String[] notes = ((String) stages.get(4).getResult()).split(", ");
 
-        if (CommandDispatcher.getInstance().dispatchSync(new AddSubscriptionCommand(categoryName, name, amount, vendor, notes))) {
+        if (CommandDispatcher.dispatchSync(new AddSubscriptionCommand(categoryName, name, amount, vendor, notes))) {
             System.out.println("Subscription successfully added!");
             openPreviousMenu();
         } else {

@@ -1,8 +1,8 @@
 package me.csed2.moneymanager.categories.menu.cmdline;
 
-import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.categories.menu.cmdline.stage.AddCategoryMenu;
 import me.csed2.moneymanager.categories.menu.cmdline.stage.RemoveCategoryMenu;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.main.MainMenu;
 import me.csed2.moneymanager.ui.Button;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
@@ -19,7 +19,7 @@ public class CategoriesMenu extends CMDMenu {
     @Override
     public void addButtons() {
 
-        addButton(new Button("List All Categories", user -> CategoryCache.getInstance().print(), true, true));
+        addButton(new Button("List All Categories", user -> App.getInstance().getCategoryCache().print(), true, true));
 
         addButton(new Button("Add a New Category", user -> user.openMenu(new AddCategoryMenu(this)), false));
 

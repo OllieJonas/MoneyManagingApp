@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 
-import me.csed2.moneymanager.main.User;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.gui.button.*;
 import me.csed2.moneymanager.ui.gui.stage.Category.*;
@@ -104,7 +104,7 @@ public abstract class DisplayMenu implements Menu{
 
 
     protected void openPreviousMenu(){
-        User.getInstance().openMenu(parent);
+        App.getInstance().openMenu(parent);
     }
 
     protected void showMessage(String msg){

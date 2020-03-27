@@ -6,7 +6,6 @@ import me.csed2.moneymanager.subscriptions.menu.cmdline.SubscriptionMenu;
 import me.csed2.moneymanager.transactions.menu.cmdline.TransactionMenu;
 import me.csed2.moneymanager.ui.Button;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
-import me.csed2.moneymanager.ui.cmdline.stage.TestStageMenu;
 
 /**
  * This class contains the implementation for the main menu.
@@ -29,6 +28,5 @@ public class MainMenu extends CMDMenu {
         addButton(new Button("Transactions", user -> user.openMenu(new TransactionMenu(this))));
         addButton(new Button("Subscriptions", user -> user.openMenu(new SubscriptionMenu(this))));
         addButton(new Button("Authenticate Bank Account", user -> user.openMenu(new AuthBankMenu(this))));
-        addButton(new Button("Test Step Menu", user -> user.openMenu(new TestStageMenu(this))));
     }
 }

@@ -25,7 +25,7 @@ public class DisplayStageRemoveSubscription extends DisplayStageMenu{
     public void exitPhase() {
         String subscriptionName = (String) stages.get(0).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(new RemoveSubscriptionCommand(subscriptionName))) {
+        if (CommandDispatcher.dispatchSync(new RemoveSubscriptionCommand(subscriptionName))) {
             showMessage("Subscription successfully removed!");
         } else {
             showMessage("Error: Unable to remove subscription!");

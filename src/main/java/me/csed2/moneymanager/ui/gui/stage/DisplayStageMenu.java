@@ -1,7 +1,7 @@
 package me.csed2.moneymanager.ui.gui.stage;
 
 import me.csed2.moneymanager.exceptions.InvalidTypeException;
-import me.csed2.moneymanager.main.User;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.gui.ButtonListener;
 import me.csed2.moneymanager.ui.gui.DisplayMenu;
@@ -75,7 +75,7 @@ public abstract class DisplayStageMenu extends DisplayMenu {
         panel.add(buttonPanel);
     }
 
-    private Consumer<User> createSubmitAction(){
+    private Consumer<App> createSubmitAction(){
         return user -> {
             try {
                 //Run all Stage Execution Phases

@@ -1,13 +1,14 @@
 package me.csed2.moneymanager.ui.gui.stage.Transaction;
 
+import me.csed2.moneymanager.cache.Cache;
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.transactions.Transaction;
-import me.csed2.moneymanager.transactions.TransactionCache;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.gui.stage.DisplayStageMenu;
 
 import javax.swing.*;
+import java.util.Optional;
 
 public class DisplayStageListTransactions extends DisplayStageMenu {
 
@@ -27,12 +28,12 @@ public class DisplayStageListTransactions extends DisplayStageMenu {
 
     @Override
     public void exitPhase() {
-        CategoryCache cache = CategoryCache.getInstance();
+        Cache<Category> cache = App.getInstance().getCategoryCache();
         String result = (String) stages.get(0).getResult();
 
-        Category category = cache.readByName(result);
+        Optional<Category> category = cache.searchFirst(cat -> cat.getName().equalsIgnoreCase(result));
 
-        if (category != null) {
+        if (category.isPresent()) {
             JOptionPane.showMessageDialog(null, getTransactionReport(result));
         } else {
             System.out.println("Error: Unable to find this category!");
@@ -43,7 +44,7 @@ public class DisplayStageListTransactions extends DisplayStageMenu {
     private String getTransactionReport(String category){
         StringBuilder builder = new StringBuilder();
 
-        for(Transaction transaction : TransactionCache.getInstance().readByCategory(category)){
+        for (Transaction transaction : App.getInstance().getTransactionCache().search(trans -> trans.getCategory().equalsIgnoreCase(category))){
             builder.append(transaction.toFormattedString()).append("\n");
         }
 

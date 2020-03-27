@@ -1,13 +1,15 @@
 package me.csed2.moneymanager.subscriptions.commands;
 
-import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.main.App;
+import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.subscriptions.SubscriptionBuilder;
-import me.csed2.moneymanager.subscriptions.SubscriptionCache;
 
 import java.util.Date;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
-public class AddSubscriptionCommand implements Supplier<Boolean> {
+public class AddSubscriptionCommand implements Function<App, Boolean> {
 
     private final String categoryName;
     private final String name;
@@ -24,9 +26,9 @@ public class AddSubscriptionCommand implements Supplier<Boolean> {
     }
 
     @Override
-    public Boolean get() {
-        CategoryCache categoryCache = CategoryCache.getInstance();
-        SubscriptionCache subscriptionCache = SubscriptionCache.getInstance();
+    public Boolean apply(App app) {
+        Cache<Category> categoryCache = app.getCategoryCache();
+        Cache<Subscription> subscriptionCache = app.getSubscriptionCache();
 
         if (categoryCache.exists(categoryName)) {
 
@@ -38,7 +40,7 @@ public class AddSubscriptionCommand implements Supplier<Boolean> {
                     .withCategoryName(categoryName)
                     .build());
 
-            subscriptionCache.save();
+            subscriptionCache.save("subscriptions.json");
             return true;
         }
         return false;

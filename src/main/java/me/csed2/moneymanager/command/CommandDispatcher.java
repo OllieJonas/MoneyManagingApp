@@ -2,9 +2,12 @@ package me.csed2.moneymanager.command;
 
 import com.google.common.util.concurrent.*;
 import lombok.NonNull;
+import me.csed2.moneymanager.main.App;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 /**
@@ -24,12 +27,6 @@ import java.util.function.Supplier;
  */
 public class CommandDispatcher {
 
-    private static CommandDispatcher instance;
-
-    static {
-        instance = new CommandDispatcher();
-    }
-
     /**
      * Dispatching a synchronous command.
      *
@@ -37,8 +34,20 @@ public class CommandDispatcher {
      * @param <T> The return type of the command
      * @return The result of the command
      */
-    public <T> T dispatchSync(Supplier<T> command) {
+    public static <T> T dispatchSync(Supplier<T> command) {
         return command.get();
+    }
+
+    public static <T> T dispatchSync(Function<App, T> command) {
+        return command.apply(App.getInstance());
+    }
+
+    public static <T> void dispatchSync(Consumer<T> command, T value) {
+        command.accept(value);
+    }
+
+    public static void dispatchSync(Consumer<App> command) {
+        command.accept(App.getInstance());
     }
 
     /**
@@ -51,7 +60,7 @@ public class CommandDispatcher {
      *
      * @param <T> The return type of the command
      */
-    public final <T> ListenableFuture<T> dispatchAsync(Supplier<T> command, @NonNull FutureCallback<T> callback, long timeout, TimeUnit timeUnit) {
+    public static <T> ListenableFuture<T> dispatchAsync(Supplier<T> command, @NonNull FutureCallback<T> callback, long timeout, TimeUnit timeUnit) {
         ListeningScheduledExecutorService service = MoreExecutors.listeningDecorator(Executors.newSingleThreadScheduledExecutor());
         ListenableFuture<T> future = service.submit(command::get);
 
@@ -60,9 +69,5 @@ public class CommandDispatcher {
         Futures.withTimeout(future, timeout, timeUnit, service);
 
         return future;
-    }
-
-    public static CommandDispatcher getInstance() {
-        return instance;
     }
 }

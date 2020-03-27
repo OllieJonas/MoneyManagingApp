@@ -1,15 +1,16 @@
 package me.csed2.moneymanager.subscriptions.commands;
 
+import me.csed2.moneymanager.cache.Cache;
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.subscriptions.Subscription;
-import me.csed2.moneymanager.subscriptions.SubscriptionCache;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Supplier;
+import java.util.Optional;
+import java.util.function.Function;
 
-public class ListSubscriptionsCommand implements Supplier<List<Subscription>> {
+public class ListSubscriptionsCommand implements Function<App, List<Subscription>> {
 
     private final String categoryName;
 
@@ -18,16 +19,16 @@ public class ListSubscriptionsCommand implements Supplier<List<Subscription>> {
     }
 
     @Override
-    public List<Subscription> get() {
-        CategoryCache cache = CategoryCache.getInstance();
+    public List<Subscription> apply(App app) {
+        Cache<Category> cache = app.getCategoryCache();
         List<Subscription> subscriptions = new ArrayList<>();
 
         if (categoryName.equalsIgnoreCase("ALL")) {
-            subscriptions = SubscriptionCache.getInstance().asList();
+            subscriptions = app.getSubscriptionCache().asList();
         } else {
-            Category category = cache.readByName(categoryName);
-            if (category != null) {
-                subscriptions = SubscriptionCache.getInstance().readByCategory(categoryName);
+            Optional<Category> category = cache.search(categoryName);
+            if (category.isPresent()) {
+                subscriptions = app.getSubscriptionCache().search(sub -> sub.getCategory().equalsIgnoreCase(categoryName));
             }
         }
         return subscriptions;

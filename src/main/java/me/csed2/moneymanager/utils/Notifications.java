@@ -2,12 +2,8 @@ package me.csed2.moneymanager.utils;
 
 import me.csed2.moneymanager.main.Main;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.nio.file.Paths;
 
 public class Notifications {
 

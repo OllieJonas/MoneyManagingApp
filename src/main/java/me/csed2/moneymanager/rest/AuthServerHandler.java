@@ -15,8 +15,7 @@ public abstract class AuthServerHandler implements HttpHandler {
     private HashMap<String, Consumer<String>> responses;
 
     public AuthServerHandler() {
-        responses = new HashMap<>();
-        addResponses();
+        this.responses = new HashMap<>();
     }
 
     @Override
@@ -33,6 +32,8 @@ public abstract class AuthServerHandler implements HttpHandler {
     }
 
     public abstract void addResponses();
+
+    public abstract void run();
 
     public abstract List<NameValuePair> buildAuthenticationRequest();
 

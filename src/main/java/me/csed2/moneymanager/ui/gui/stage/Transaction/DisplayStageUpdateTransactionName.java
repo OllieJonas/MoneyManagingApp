@@ -30,7 +30,7 @@ public class DisplayStageUpdateTransactionName extends DisplayStageMenu {
         String transactionName = (String) stages.get(0).getResult();
         String result = (String) stages.get(1).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(new UpdateTransactionCommand<>(transactionName, TransactionArgType.NAME, result))) {
+        if (CommandDispatcher.dispatchSync(new UpdateTransactionCommand<>(transactionName, TransactionArgType.NAME, result))) {
             showMessage("Successfully updated the name of this transaction!");
         } else {
             showMessage("Error: Unable to update this transaction!");

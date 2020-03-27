@@ -28,7 +28,7 @@ public class ListSubscriptionsMenu extends StageMenu {
     @Override
     public void exitPhase() {
         String result = (String) stages.get(0).getResult();
-        List<Subscription> subscriptions = CommandDispatcher.getInstance().dispatchSync(new ListSubscriptionsCommand(result));
+        List<Subscription> subscriptions = CommandDispatcher.dispatchSync(new ListSubscriptionsCommand(result));
 
         for (Subscription subscription : subscriptions) {
             System.out.println(subscription.toFormattedString());

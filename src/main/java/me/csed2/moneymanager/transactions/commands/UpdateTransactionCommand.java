@@ -1,13 +1,15 @@
 package me.csed2.moneymanager.transactions.commands;
 
-import me.csed2.moneymanager.categories.CategoryCache;
+import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.transactions.TransactionArgType;
-import me.csed2.moneymanager.transactions.TransactionCache;
 
-import java.util.function.Supplier;
+import java.util.Optional;
+import java.util.function.Function;
 
-public class UpdateTransactionCommand<T> implements Supplier<Boolean> {
+public class UpdateTransactionCommand<T> implements Function<App, Boolean> {
 
     private final T result;
 
@@ -23,10 +25,13 @@ public class UpdateTransactionCommand<T> implements Supplier<Boolean> {
     }
 
     @Override
-    public Boolean get() {
-        TransactionCache cache = TransactionCache.getInstance();
-        Transaction transaction = cache.readByName(transactionName);
-            if (transaction != null) {
+    public Boolean apply(App app) {
+        Cache<Transaction> cache = app.getTransactionCache();
+
+        Optional<Transaction> transOptional = cache.search(transactionName);
+
+            if (transOptional.isPresent()) {
+                Transaction transaction = transOptional.get();
                 switch (argType) {
                     case NAME:
                         transaction.setName((String) result);
@@ -41,7 +46,7 @@ public class UpdateTransactionCommand<T> implements Supplier<Boolean> {
                         transaction.setVendor((String) result);
                         break;
                     case CATEGORY:
-                        CategoryCache categoryCache = CategoryCache.getInstance();
+                        Cache<Category> categoryCache = app.getCategoryCache();
                         String categoryName = (String) result;
 
                         if (categoryCache.exists(categoryName)) {
@@ -54,7 +59,7 @@ public class UpdateTransactionCommand<T> implements Supplier<Boolean> {
                         return false; // Should never be called
                 }
                 cache.update(transaction);
-                cache.save();
+                cache.save("transactions.json");
                 return true;
             }
         System.out.println("ERROR HERE");

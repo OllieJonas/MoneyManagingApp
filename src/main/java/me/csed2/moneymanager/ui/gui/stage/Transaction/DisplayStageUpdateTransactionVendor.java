@@ -31,7 +31,7 @@ public class DisplayStageUpdateTransactionVendor extends DisplayStageMenu {
         String transactionName = (String) stages.get(1).getResult();
         String vendor = (String) stages.get(2).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(
+        if (CommandDispatcher.dispatchSync(
                 new UpdateTransactionCommand<>(transactionName, TransactionArgType.VENDOR, vendor))) {
              showMessage("Transaction successfully updated!");
         } else {

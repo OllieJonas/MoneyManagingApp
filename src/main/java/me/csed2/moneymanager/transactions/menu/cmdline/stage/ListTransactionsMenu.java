@@ -28,7 +28,7 @@ public class ListTransactionsMenu extends StageMenu {
     @Override
     public void exitPhase() {
         String result = (String) stages.get(0).getResult();
-        List<Transaction> transactions = CommandDispatcher.getInstance().dispatchSync(new ListTransactionsCommand(result));
+        List<Transaction> transactions = CommandDispatcher.dispatchSync(new ListTransactionsCommand(result));
 
         for (Transaction transaction : transactions) {
             System.out.println(transaction.toFormattedString());

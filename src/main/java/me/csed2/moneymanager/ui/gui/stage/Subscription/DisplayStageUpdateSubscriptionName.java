@@ -28,7 +28,7 @@ public class DisplayStageUpdateSubscriptionName extends DisplayStageMenu {
         String subscriptionName = (String) stages.get(0).getResult();
         String result = (String) stages.get(1).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(new UpdateSubscriptionCommand<>(subscriptionName, SubscriptionArgType.NAME, result))) {
+        if (CommandDispatcher.dispatchSync(new UpdateSubscriptionCommand<>(subscriptionName, SubscriptionArgType.NAME, result))) {
             showMessage("Successfully updated the name of this subscription!");
         } else {
             showMessage("Error: Unable to update this subscription!");

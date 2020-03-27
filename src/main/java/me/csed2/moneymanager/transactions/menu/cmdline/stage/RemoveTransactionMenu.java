@@ -1,6 +1,5 @@
 package me.csed2.moneymanager.transactions.menu.cmdline.stage;
 
-import me.csed2.moneymanager.categories.CategoryCache;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.transactions.commands.RemoveTransactionCommand;
 import me.csed2.moneymanager.transactions.menu.cmdline.TransactionMenu;
@@ -22,7 +21,7 @@ public class RemoveTransactionMenu extends StageMenu {
     public void exitPhase() {
         String transactionName = (String) stages.get(0).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(new RemoveTransactionCommand(transactionName))) {
+        if (CommandDispatcher.dispatchSync(new RemoveTransactionCommand(transactionName))) {
             System.out.println("Transaction successfully removed!");
             openPreviousMenu();
         } else {

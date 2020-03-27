@@ -2,13 +2,9 @@ package me.csed2.moneymanager.categories.menu.cmdline.stage;
 
 import me.csed2.moneymanager.categories.commands.AddCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
-import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.stage.Stage;
 import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class AddCategoryMenu extends StageMenu {
 
@@ -33,7 +29,7 @@ public class AddCategoryMenu extends StageMenu {
         String name = (String) stages.get(0).getResult();
         Integer budget = (Integer) stages.get(1).getResult();
 
-        if (CommandDispatcher.getInstance().dispatchSync(new AddCategoryCommand(name, budget))) {
+        if (CommandDispatcher.dispatchSync(new AddCategoryCommand(name, budget))) {
             System.out.println("Category successfully added!");
         }
 

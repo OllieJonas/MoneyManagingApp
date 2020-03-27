@@ -31,7 +31,7 @@ public class UpdateBudgetMenu extends StageMenu {
 
         int newBudget = (int) Math.round((Double) stages.get(1).getResult() * 100);
 
-        if (CommandDispatcher.getInstance().dispatchSync(new UpdateCategoryCommand<>(name, CategoryArgType.BUDGET, newBudget))) {
+        if (CommandDispatcher.dispatchSync(new UpdateCategoryCommand<>(name, CategoryArgType.BUDGET, newBudget))) {
             System.out.println("Successfully updated the budget!");
         } else {
             System.out.println("Error: Unable to update this category!");
