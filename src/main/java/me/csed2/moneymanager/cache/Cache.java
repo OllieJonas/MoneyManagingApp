@@ -11,11 +11,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 /**
@@ -34,6 +31,7 @@ import java.util.stream.Collectors;
  * @param <T> The type of object stored in the repository
  *
  */
+@SuppressWarnings("unused")
 public class Cache<T extends Cacheable> {
 
     /**
@@ -104,7 +102,9 @@ public class Cache<T extends Cacheable> {
      * @return Whether this item exists in the list
      */
     public boolean exists(Predicate<T> predicate) {
-        return asList().parallelStream().anyMatch(predicate);
+        return asList()
+                .parallelStream()
+                .anyMatch(predicate);
     }
 
     /**
@@ -127,20 +127,11 @@ public class Cache<T extends Cacheable> {
      * @return The next ID in the list
      */
     public int nextId() {
-        AtomicInteger id = new AtomicInteger(1);
-        ifNotEmpty(cache -> id.set(cache.asList().get(items.size() - 1).getId() + 1));
-        return id.get();
-    }
-
-
-    /**
-     * Executes the consumer if the list isn't empty, with the parameter being this.
-     *
-     * @param consumer The consumer to execute
-     */
-    public void ifNotEmpty(Consumer<Cache<T>> consumer) {
+        int id = 1; // Initial value of 1.
+        sort(Comparator.comparingInt(T::getId)); // Ensure the list is sorted by ID, with the last ID at the back
         if (items.size() > 0)
-            consumer.accept(this);
+            id = items.get(items.size() - 1).getId() + 1;
+        return id;
     }
 
     /**
@@ -256,8 +247,8 @@ public class Cache<T extends Cacheable> {
      *
      * @param fileName The filename in question
      */
-    public void save(String fileName) {
-        CommandDispatcher.dispatchSync(new SaveToDBCommand<>(fileName, items));
+    public boolean save(String fileName) {
+        return CommandDispatcher.dispatchSync(new SaveToDBCommand<>(fileName, items));
     }
 
     /**
