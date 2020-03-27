@@ -63,17 +63,19 @@ public abstract class Cache<T extends Cacheable> {
         return entity;
     }
 
-    public void remove(T entity) {
-        items.remove(entity);
+    public boolean remove(T entity) {
+        return items.remove(entity);
     }
 
-    public void remove(String entity) {
+    public boolean remove(String entity) {
+        boolean removed = false;
         for (T item : items) {
             if (namePredicate.test(item.getName(), entity)) {
-                remove(item);
+                removed = remove(item);
                 break;
             }
         }
+        return removed;
     }
 
     public T readByName(String name) {

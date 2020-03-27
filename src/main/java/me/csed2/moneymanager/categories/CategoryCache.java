@@ -7,6 +7,10 @@ import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.utils.ConsoleUtils;
 
 import java.io.FileNotFoundException;
+import java.util.List;
+import java.util.function.BiPredicate;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class CategoryCache extends Cache<Category> {
 

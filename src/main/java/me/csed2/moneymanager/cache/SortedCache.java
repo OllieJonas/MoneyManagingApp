@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public abstract class SortedCache<T extends Cacheable> {
@@ -15,7 +16,7 @@ public abstract class SortedCache<T extends Cacheable> {
     }
 
     public List<T> searchByName(Predicate<String> predicate) {
-        List<T> list = new ArrayList<>();
+        List<T> list = cache.asList();
         for (T item : cache.asList()) {
             if (predicate.test(item.getName())) {
                 list.add(item);

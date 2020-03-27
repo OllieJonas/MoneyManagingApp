@@ -5,6 +5,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
+import me.csed2.moneymanager.rest.monzo.client.MonzoAccount;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -26,15 +27,5 @@ public class TestJSON {
 
     private void test() {
         JsonObject initialObject= JSONUtils.getAsJsonObject(jsonString);
-        JsonArray array = initialObject.getAsJsonArray("accounts");
-        JsonObject newObject = array.get(0).getAsJsonObject();
-
-        System.out.println(newObject);
-
-        Type listType = new TypeToken<ArrayList<String>>(){}.getType();
-
-        JsonObject list = new Gson().fromJson(newObject, JsonObject.class);
-        JsonElement element = list.get("id");
-        System.out.println(element);
     }
 }

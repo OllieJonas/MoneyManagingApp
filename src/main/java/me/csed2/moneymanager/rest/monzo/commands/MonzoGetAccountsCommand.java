@@ -18,9 +18,10 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Supplier;
 
-public class MonzoListAccountsCommand implements Supplier<JsonArray> {
+public class MonzoGetAccountsCommand implements Supplier<JsonArray> {
 
     @Override
     public JsonArray get() {
@@ -31,16 +32,26 @@ public class MonzoListAccountsCommand implements Supplier<JsonArray> {
              CloseableHttpResponse response = client.execute(request)) { // Execute request
 
             HttpEntity entity = response.getEntity(); // Get response
-            String fullJson = EntityUtils.toString(entity); // Convert to JSON string
 
+            String fullJson = EntityUtils.toString(entity); // Convert to JSON string
+            JsonObject initialObject= JSONUtils.getAsJsonObject(fullJson);
+
+            // Handling Monzo's weird JSON formatting...
+            JsonArray array = initialObject.getAsJsonArray("accounts");
+
+            List<MonzoAccount> arrList = new ArrayList<>();
             Gson gson = new Gson();
 
-            System.out.println(response.getStatusLine().getStatusCode()); // Get status code
-            System.out.println(fullJson);
-            JsonObject accountJson = JSONUtils.getAsJsonObject(fullJson);
-            JsonArray accountText = accountJson.get("accounts").getAsJsonArray();
+            for (int i = 0; i < array.size(); i++) {
+                JsonObject newObject = array.get(i).getAsJsonObject();
+                arrList.add(new MonzoAccount(gson.fromJson(newObject, JsonObject.class)));
+            }
+
+            System.out.println(arrList.get(0).getCreated());
 
             Type type = new TypeToken<ArrayList<MonzoAccount>>(){}.getType(); // Get type
+
+            MonzoHttpClient.setSelectedAccount(arrList.get(0)); // Set default Selected Account to the first one.
 
             return new Gson().fromJson(fullJson, type);
 

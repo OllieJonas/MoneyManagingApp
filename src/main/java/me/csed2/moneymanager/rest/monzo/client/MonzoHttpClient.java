@@ -1,5 +1,7 @@
 package me.csed2.moneymanager.rest.monzo.client;
 
+import lombok.Getter;
+import lombok.Setter;
 import me.csed2.moneymanager.rest.BankClient;
 import me.csed2.moneymanager.utils.StateGenerator;
 
@@ -11,6 +13,9 @@ import java.net.URISyntaxException;
 public class MonzoHttpClient extends BankClient<MonzoAccount> {
 
     private String state;
+
+    @Getter @Setter
+    private static MonzoAccount selectedAccount;
 
     public MonzoHttpClient() {
 
