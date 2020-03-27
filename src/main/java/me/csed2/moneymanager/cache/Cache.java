@@ -63,7 +63,9 @@ public class Cache<T extends Cacheable> {
      * @return The new entity
      */
     public boolean update(T entity) {
-        return ((Function<T, Boolean>) t -> items.removeIf(item -> item.getId() == t.getId())).andThen(aBoolean -> items.add(entity)).apply(entity);
+        return ((Function<T, Boolean>) t -> items.removeIf(item -> item.getId() == t.getId()))
+                .andThen(aBoolean -> items.add(entity))
+                .apply(entity);
     }
 
     /**
@@ -84,7 +86,10 @@ public class Cache<T extends Cacheable> {
      */
     public boolean remove(String entity) {
         AtomicBoolean removed = new AtomicBoolean(false);
-        items.stream().filter(item -> item.getName().equalsIgnoreCase(entity)).findFirst().ifPresent(item -> removed.set(items.remove(item)));
+        items.stream()
+                .filter(item -> item.getName().equalsIgnoreCase(entity))
+                .findFirst()
+                .ifPresent(item -> removed.set(items.remove(item)));
         return removed.get();
     }
 
@@ -141,7 +146,10 @@ public class Cache<T extends Cacheable> {
      * @return An immutable (unchangeable) list containing any items that matched the predicate given.
      */
     public ImmutableList<T> search(Predicate<T> predicate) {
-        return ImmutableList.copyOf(asList().stream().filter(predicate).collect(Collectors.toList()));
+        return ImmutableList.copyOf(asList()
+                .stream()
+                .filter(predicate)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -151,7 +159,10 @@ public class Cache<T extends Cacheable> {
      * @return An immutable (unchangeable) list containing any items that matched the predicate given.
      */
     public ImmutableList<T> parallelSearch(Predicate<T> predicate) {
-        return ImmutableList.copyOf(asList().parallelStream().filter(predicate).collect(Collectors.toList()));
+        return ImmutableList.copyOf(asList()
+                .parallelStream()
+                .filter(predicate)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -161,7 +172,10 @@ public class Cache<T extends Cacheable> {
      * @return The optional containing the value.
      */
     public Optional<T> searchFirst(Predicate<T> predicate) {
-        return asList().stream().filter(predicate).findFirst();
+        return asList()
+                .stream()
+                .filter(predicate)
+                .findFirst();
     }
 
     /**
@@ -192,14 +206,18 @@ public class Cache<T extends Cacheable> {
      * @return An immutable (unchangeable) sorted list using the comparator given.
      */
     public ImmutableList<T> sort(Comparator<T> comparator) {
-        return ImmutableList.copyOf(asList().stream().sorted(comparator).collect(Collectors.toList()));
+        return ImmutableList.copyOf(asList()
+                .stream()
+                .sorted(comparator)
+                .collect(Collectors.toList()));
     }
 
     /**
      * Iterates through the loop, printing each one as a formatted string.
      */
     public void print() {
-        items.iterator().forEachRemaining(t -> System.out.println(t.toFormattedString()));
+        items.iterator()
+                .forEachRemaining(t -> System.out.println(t.toFormattedString()));
     }
 
     /**
@@ -209,7 +227,8 @@ public class Cache<T extends Cacheable> {
      */
     public String getReport() {
         StringBuilder builder = new StringBuilder();
-        items.iterator().forEachRemaining(t -> builder.append(t.toFormattedString()).append("\n"));
+        items.iterator()
+                .forEachRemaining(t -> builder.append(t.toFormattedString()).append("\n"));
         return builder.toString();
     }
 
