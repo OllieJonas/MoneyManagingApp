@@ -1,7 +1,6 @@
 package me.csed2.moneymanager.cache;
 
 import com.google.common.collect.ImmutableList;
-import me.csed2.moneymanager.transactions.Transaction;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -31,30 +30,74 @@ import java.util.stream.Collectors;
  */
 public abstract class Cache<T extends Cacheable> {
 
+    /**
+     * The wrapped list of items.
+     */
     protected List<T> items;
 
+    /**
+     * Default constructor, used to initialise the variables.
+     */
     protected Cache() {
         this.items = new ArrayList<>();
     }
 
+    /**
+     * Load a JSON file into the items list, implemented in subclasses.
+     *
+     * TODO: Maybe find some clever trick to do this in this class without giving it to subclasses?
+     *
+     * @param fileName The filename in question
+     * @throws FileNotFoundException If the file can't be found
+     */
     public abstract void load(String fileName) throws FileNotFoundException;
 
+    /**
+     * Saves any data from the items list into the JSON file. Implemented in subclasses.
+     *
+     * TODO: See above
+     *
+     * @param fileName The filename in question
+     */
     public abstract void save(String fileName);
 
+    /**
+     * Add an item to the list.
+     *
+     * @param entity The item in question.
+     */
     public void add(T entity) {
         items.add(entity);
     }
 
+    /**
+     * Updates a given category based on its ID. Essentially just removes it and re-adds it to the list.
+     *
+     * @param entity The entity in the list
+     * @return The new entity
+     */
     public T update(T entity) {
         items.removeIf(item -> entity.getId() == item.getId());
         items.add(entity);
         return entity;
     }
 
+    /**
+     * Removes an item from the list.
+     *
+     * @param entity The entity from the list
+     * @return Whether it was successful
+     */
     public boolean remove(T entity) {
         return items.remove(entity);
     }
 
+    /**
+     * Removes an item from the list using the Stream API based on its name.
+     *
+     * @param entity The item's name to remove
+     * @return Whether it was successfully removed
+     */
     public boolean remove(String entity) {
         AtomicBoolean removed = new AtomicBoolean(false);
         items.stream()
@@ -64,6 +107,15 @@ public abstract class Cache<T extends Cacheable> {
         return removed.get();
     }
 
+    /**
+     * Gets the next id based on the last thing in the list.
+     *
+     * Note: This assumes that the list is ordered already.
+     *
+     * TODO: Change this to search through the list and find the last ID?
+     *
+     * @return The next ID in the list
+     */
     public int nextId() {
         if (items.size() > 0) {
             return items.get(items.size() - 1).getId() + 1;
@@ -72,14 +124,31 @@ public abstract class Cache<T extends Cacheable> {
         }
     }
 
+    /**
+     * Checks if an item exists in the list based on any given predicate asynchronously.
+     *
+     * @param predicate The predicate to filter for.
+     * @return Whether this item exists in the list
+     */
     public boolean exists(Predicate<T> predicate) {
         return asList().parallelStream().anyMatch(predicate);
     }
 
+    /**
+     * Checks whether an item exists in the list based on its name asynchronously.
+     *
+     * This just calls the exists(Predicate<T> predicate) method, just automatically filling out the appropriate details.
+     *
+     * @param name The name to search for
+     * @return Whether this item exists in the list
+     */
     public boolean exists(String name) {
         return exists(item -> item.getName().equalsIgnoreCase(name));
     }
 
+    /**
+     * Iterates through the loop, printing each one as a formatted string.
+     */
     public void print() {
         for (T item : items) {
             System.out.println(item.toFormattedString());
@@ -131,10 +200,20 @@ public abstract class Cache<T extends Cacheable> {
         return ImmutableList.copyOf(asList().stream().sorted(comparator).collect(Collectors.toList()));
     }
 
+    /**
+     * Return the items as an Immutable List.
+     *
+     * @return The items as an Immutable List
+     */
     public ImmutableList<T> asImmutableList() {
         return ImmutableList.copyOf(items);
     }
 
+    /**
+     * Get the items.
+     *
+     * @return The items
+     */
     public List<T> asList() {
         return items;
     }
