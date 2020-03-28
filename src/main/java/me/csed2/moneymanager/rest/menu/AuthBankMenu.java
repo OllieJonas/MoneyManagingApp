@@ -2,7 +2,6 @@ package me.csed2.moneymanager.rest.menu;
 
 import me.csed2.moneymanager.rest.monzo.menu.MonzoMenu;
 import me.csed2.moneymanager.ui.Button;
-import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
 
 public class AuthBankMenu extends CMDMenu {

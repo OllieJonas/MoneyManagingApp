@@ -2,7 +2,7 @@ package me.csed2.moneymanager.utils;
 
 import com.google.gson.internal.Primitives;
 import me.csed2.moneymanager.exceptions.InvalidTypeException;
-import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
+import me.csed2.moneymanager.ui.model.StageMenu;
 
 import java.util.HashMap;
 

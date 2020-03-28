@@ -1,9 +1,9 @@
 package me.csed2.moneymanager.utils;
 
 import me.csed2.moneymanager.exceptions.InvalidTypeException;
-import me.csed2.moneymanager.ui.cmdline.InputProcessor;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
-import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
+import me.csed2.moneymanager.ui.controller.InputProcessor;
+import me.csed2.moneymanager.ui.model.Stage;
+import me.csed2.moneymanager.ui.model.StageMenu;
 
 /**
  * This class is responsible for turning a String into an Object.

@@ -5,7 +5,6 @@ import me.csed2.moneymanager.transactions.menu.cmdline.stage.ListTransactionsMen
 import me.csed2.moneymanager.transactions.menu.cmdline.stage.RemoveTransactionMenu;
 import me.csed2.moneymanager.transactions.menu.cmdline.stage.UpdateTransactionMenu;
 import me.csed2.moneymanager.ui.Button;
-import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
 
 public class TransactionMenu extends CMDMenu {

@@ -5,7 +5,6 @@ import javax.swing.border.Border;
 import java.awt.*;
 
 import me.csed2.moneymanager.main.App;
-import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.gui.button.*;
 import me.csed2.moneymanager.ui.gui.stage.Category.*;
 import me.csed2.moneymanager.ui.gui.stage.Subscription.*;

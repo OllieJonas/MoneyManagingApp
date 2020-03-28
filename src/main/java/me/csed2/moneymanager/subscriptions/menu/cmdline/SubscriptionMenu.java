@@ -5,7 +5,6 @@ import me.csed2.moneymanager.subscriptions.menu.cmdline.stage.ListSubscriptionsM
 import me.csed2.moneymanager.subscriptions.menu.cmdline.stage.RemoveSubscriptionMenu;
 import me.csed2.moneymanager.subscriptions.menu.cmdline.stage.UpdateSubscriptionMenu;
 import me.csed2.moneymanager.ui.Button;
-import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
 
 public class SubscriptionMenu extends CMDMenu {

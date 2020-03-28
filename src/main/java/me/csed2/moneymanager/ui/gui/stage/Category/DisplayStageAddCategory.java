@@ -2,12 +2,8 @@ package me.csed2.moneymanager.ui.gui.stage.Category;
 
 import me.csed2.moneymanager.categories.commands.AddCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
-import me.csed2.moneymanager.transactions.Transaction;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
+import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.gui.stage.DisplayStageMenu;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class DisplayStageAddCategory extends DisplayStageMenu {
 

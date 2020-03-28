@@ -1,9 +1,9 @@
-package me.csed2.moneymanager.ui.cmdline.stage;
+package me.csed2.moneymanager.ui.model;
 
 import lombok.Getter;
 import me.csed2.moneymanager.exceptions.InvalidTypeException;
-import me.csed2.moneymanager.ui.cmdline.InputProcessor;
-import me.csed2.moneymanager.ui.cmdline.InputReader;
+import me.csed2.moneymanager.ui.controller.InputProcessor;
+import me.csed2.moneymanager.ui.controller.InputReader;
 import me.csed2.moneymanager.utils.ClassUtils;
 import me.csed2.moneymanager.utils.StringReaderFactory;
 

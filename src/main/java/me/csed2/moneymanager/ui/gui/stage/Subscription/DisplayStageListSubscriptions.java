@@ -1,10 +1,10 @@
 package me.csed2.moneymanager.ui.gui.stage.Subscription;
 
-import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.subscriptions.Subscription;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
+import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.gui.stage.DisplayStageMenu;
 
 import javax.swing.*;
@@ -28,7 +28,7 @@ public class DisplayStageListSubscriptions extends DisplayStageMenu {
 
     @Override
     public void exitPhase() {
-        Cache<Category> cache = App.getInstance().getCategoryCache();
+        CachedList<Category> cache = App.getInstance().getCategoryCache();
         String result = (String) stages.get(0).getResult();
 
         Optional<Category> category = cache.searchFirst(cat -> cat.getName().equalsIgnoreCase(result));

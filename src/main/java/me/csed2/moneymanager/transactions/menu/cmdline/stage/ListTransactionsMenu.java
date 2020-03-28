@@ -3,9 +3,8 @@ package me.csed2.moneymanager.transactions.menu.cmdline.stage;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.transactions.commands.ListTransactionsCommand;
-import me.csed2.moneymanager.ui.Menu;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
-import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
+import me.csed2.moneymanager.ui.model.Stage;
+import me.csed2.moneymanager.ui.model.StageMenu;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class ListTransactionsMenu extends StageMenu {
      * @param previousMenu
      */
     public ListTransactionsMenu(Menu previousMenu) {
-        super("List Transactions", previousMenu);
+        super("List Transactions", previousMenu, image);
     }
 
     @Override

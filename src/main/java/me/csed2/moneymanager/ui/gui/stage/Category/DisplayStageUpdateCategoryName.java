@@ -3,8 +3,7 @@ package me.csed2.moneymanager.ui.gui.stage.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.categories.commands.UpdateCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
-import me.csed2.moneymanager.ui.gui.button.DisplayButtonUpdateCategory;
+import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.gui.stage.DisplayStageMenu;
 
 public class DisplayStageUpdateCategoryName extends DisplayStageMenu {

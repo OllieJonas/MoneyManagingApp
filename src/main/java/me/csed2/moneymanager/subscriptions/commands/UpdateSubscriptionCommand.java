@@ -1,6 +1,6 @@
 package me.csed2.moneymanager.subscriptions.commands;
 
-import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.subscriptions.Subscription;
@@ -26,7 +26,7 @@ public class UpdateSubscriptionCommand<T> implements Function<App, Boolean> {
 
     @Override
     public Boolean apply(App app) {
-        Cache<Subscription> cache = app.getSubscriptionCache();
+        CachedList<Subscription> cache = app.getSubscriptionCache();
 
         Optional<Subscription> subOptional = cache.search(subscriptionName);
         if (subOptional.isPresent()) {
@@ -45,7 +45,7 @@ public class UpdateSubscriptionCommand<T> implements Function<App, Boolean> {
                     subscription.setVendor((String) result);
                     break;
                 case CATEGORY:
-                    Cache<Category> categoryCache = app.getCategoryCache();
+                    CachedList<Category> categoryCache = app.getCategoryCache();
                     String categoryName = (String) result;
 
                     if (categoryCache.exists(categoryName)) {

@@ -1,9 +1,7 @@
 package me.csed2.moneymanager.transactions.menu.cmdline.stage;
 
-import me.csed2.moneymanager.transactions.TransactionArgType;
 import me.csed2.moneymanager.transactions.menu.cmdline.stage.update.*;
 import me.csed2.moneymanager.ui.Button;
-import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
 
 public class UpdateTransactionMenu extends CMDMenu {

@@ -5,7 +5,6 @@ import me.csed2.moneymanager.rest.menu.AuthBankMenu;
 import me.csed2.moneymanager.subscriptions.menu.cmdline.SubscriptionMenu;
 import me.csed2.moneymanager.transactions.menu.cmdline.TransactionMenu;
 import me.csed2.moneymanager.ui.Button;
-import me.csed2.moneymanager.ui.cmdline.CMDMenu;
 
 /**
  * This class contains the implementation for the main menu.

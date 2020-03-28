@@ -3,14 +3,13 @@ package me.csed2.moneymanager.categories.menu.cmdline.stage;
 import me.csed2.moneymanager.categories.commands.RemoveCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.main.App;
-import me.csed2.moneymanager.ui.Menu;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
-import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
+import me.csed2.moneymanager.ui.model.Stage;
+import me.csed2.moneymanager.ui.model.StageMenu;
 
 public class RemoveCategoryMenu extends StageMenu {
 
     public RemoveCategoryMenu(Menu menu) {
-        super("Remove Category", menu);
+        super("Remove Category", menu, image);
     }
 
     @Override

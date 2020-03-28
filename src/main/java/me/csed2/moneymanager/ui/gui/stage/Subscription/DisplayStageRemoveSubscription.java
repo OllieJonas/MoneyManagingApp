@@ -2,7 +2,7 @@ package me.csed2.moneymanager.ui.gui.stage.Subscription;
 
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.subscriptions.commands.RemoveSubscriptionCommand;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
+import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.gui.stage.DisplayStageMenu;
 
 public class DisplayStageRemoveSubscription extends DisplayStageMenu{

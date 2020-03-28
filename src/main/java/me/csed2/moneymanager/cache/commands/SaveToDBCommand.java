@@ -12,28 +12,21 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
-public class SaveToDBCommand<T extends Cacheable> implements Function<App, Boolean> {
-
-    private final Gson gson;
-    private final URL fileUrl;
-
-    private final List<T> items;
-
-    public SaveToDBCommand(String fileName, List<T> items) {
-        this.gson = new Gson();
-        this.fileUrl = Main.class.getClassLoader().getResource(fileName);
-        this.items = items;
-    }
+public class SaveToDBCommand<T extends Cacheable> implements BiFunction<String, List<T>, Boolean> {
 
     @Override
-    public Boolean apply(App app) {
-        String jsonString = gson.toJson(items);
+    public Boolean apply(String fileName, List<T> items) {
+        String jsonString = new Gson().toJson(items);
+
+        URL url = Main.class.getClassLoader().getResource(fileName);
 
         try {
-            System.out.println(fileUrl.getPath());
-            Path path = Paths.get(fileUrl.toURI());
+            assert url != null;
+            System.out.println(url.getPath());
+            Path path = Paths.get(url.toURI());
             File myFile = path.toFile();
 
             if (myFile.delete()) {

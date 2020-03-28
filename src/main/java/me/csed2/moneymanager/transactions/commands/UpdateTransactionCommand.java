@@ -1,6 +1,6 @@
 package me.csed2.moneymanager.transactions.commands;
 
-import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.transactions.Transaction;
@@ -26,7 +26,7 @@ public class UpdateTransactionCommand<T> implements Function<App, Boolean> {
 
     @Override
     public Boolean apply(App app) {
-        Cache<Transaction> cache = app.getTransactionCache();
+        CachedList<Transaction> cache = app.getTransactionCache();
 
         Optional<Transaction> transOptional = cache.search(transactionName);
 
@@ -46,7 +46,7 @@ public class UpdateTransactionCommand<T> implements Function<App, Boolean> {
                         transaction.setVendor((String) result);
                         break;
                     case CATEGORY:
-                        Cache<Category> categoryCache = app.getCategoryCache();
+                        CachedList<Category> categoryCache = app.getCategoryCache();
                         String categoryName = (String) result;
 
                         if (categoryCache.exists(categoryName)) {

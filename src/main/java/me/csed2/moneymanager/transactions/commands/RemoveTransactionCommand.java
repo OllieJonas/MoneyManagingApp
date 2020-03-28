@@ -1,6 +1,6 @@
 package me.csed2.moneymanager.transactions.commands;
 
-import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.transactions.Transaction;
 
@@ -16,7 +16,7 @@ public class RemoveTransactionCommand implements Function<App, Boolean> {
     }
     @Override
     public Boolean apply(App app) {
-        Cache<Transaction> transactionCache = app.getTransactionCache();
+        CachedList<Transaction> transactionCache = app.getTransactionCache();
 
         if (transactionCache.exists(transactionName)) {
 

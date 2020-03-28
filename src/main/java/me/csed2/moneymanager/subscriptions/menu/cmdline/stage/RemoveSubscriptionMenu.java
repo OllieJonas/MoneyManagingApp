@@ -3,13 +3,13 @@ package me.csed2.moneymanager.subscriptions.menu.cmdline.stage;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.subscriptions.commands.RemoveSubscriptionCommand;
 import me.csed2.moneymanager.subscriptions.menu.cmdline.SubscriptionMenu;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
-import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
+import me.csed2.moneymanager.ui.model.Stage;
+import me.csed2.moneymanager.ui.model.StageMenu;
 
 public class RemoveSubscriptionMenu extends StageMenu {
 
     public RemoveSubscriptionMenu(SubscriptionMenu menu) {
-        super("Remove Subscription", menu);
+        super("Remove Subscription", menu, image);
     }
 
     @Override

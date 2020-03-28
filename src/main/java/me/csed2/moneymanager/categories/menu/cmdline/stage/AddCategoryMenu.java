@@ -2,9 +2,8 @@ package me.csed2.moneymanager.categories.menu.cmdline.stage;
 
 import me.csed2.moneymanager.categories.commands.AddCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
-import me.csed2.moneymanager.ui.Menu;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
-import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
+import me.csed2.moneymanager.ui.model.Stage;
+import me.csed2.moneymanager.ui.model.StageMenu;
 
 public class AddCategoryMenu extends StageMenu {
 
@@ -15,7 +14,7 @@ public class AddCategoryMenu extends StageMenu {
      * @param previousMenu
      */
     public AddCategoryMenu(Menu previousMenu) {
-        super("Add Category", previousMenu);
+        super("Add Category", previousMenu, image);
     }
 
     @Override

@@ -3,9 +3,8 @@ package me.csed2.moneymanager.transactions.menu.cmdline.stage.update;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.transactions.TransactionArgType;
 import me.csed2.moneymanager.transactions.commands.UpdateTransactionCommand;
-import me.csed2.moneymanager.ui.Menu;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
-import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
+import me.csed2.moneymanager.ui.model.Stage;
+import me.csed2.moneymanager.ui.model.StageMenu;
 
 public class UpdateNotesMenu extends StageMenu {
     /**
@@ -14,7 +13,7 @@ public class UpdateNotesMenu extends StageMenu {
      * @param previousMenu
      */
     public UpdateNotesMenu(Menu previousMenu) {
-        super("Update Notes", previousMenu);
+        super("Update Notes", previousMenu, image);
     }
 
     @Override

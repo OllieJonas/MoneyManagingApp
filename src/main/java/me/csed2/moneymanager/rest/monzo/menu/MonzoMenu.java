@@ -7,7 +7,6 @@ import me.csed2.moneymanager.rest.monzo.commands.MonzoCheckAuthCommand;
 import me.csed2.moneymanager.rest.monzo.commands.MonzoGetAccountsCommand;
 import me.csed2.moneymanager.rest.monzo.commands.MonzoGetTransactionsCommand;
 import me.csed2.moneymanager.ui.Button;
-import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
 
 public class MonzoMenu extends CMDMenu {

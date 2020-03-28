@@ -3,9 +3,8 @@ package me.csed2.moneymanager.subscriptions.menu.cmdline.stage;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.subscriptions.commands.AddSubscriptionCommand;
-import me.csed2.moneymanager.ui.Menu;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
-import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
+import me.csed2.moneymanager.ui.model.Stage;
+import me.csed2.moneymanager.ui.model.StageMenu;
 
 public class AddSubscriptionMenu extends StageMenu {
 
@@ -13,7 +12,7 @@ public class AddSubscriptionMenu extends StageMenu {
      * Constructor for CMDMenu. Responsible for adding the buttons to the list.
      */
     public AddSubscriptionMenu(Menu previousMenu) {
-        super("Add Subscription", previousMenu);
+        super("Add Subscription", previousMenu, image);
     }
 
     @Override

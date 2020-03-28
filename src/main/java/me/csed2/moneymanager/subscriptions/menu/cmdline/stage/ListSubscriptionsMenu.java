@@ -3,9 +3,8 @@ package me.csed2.moneymanager.subscriptions.menu.cmdline.stage;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.subscriptions.commands.ListSubscriptionsCommand;
-import me.csed2.moneymanager.ui.Menu;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
-import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
+import me.csed2.moneymanager.ui.model.Stage;
+import me.csed2.moneymanager.ui.model.StageMenu;
 
 import java.util.List;
 
@@ -17,7 +16,7 @@ public class ListSubscriptionsMenu extends StageMenu {
      * @param previousMenu
      */
     public ListSubscriptionsMenu(Menu previousMenu) {
-        super("List Subscriptions", previousMenu);
+        super("List Subscriptions", previousMenu, image);
     }
 
     @Override

@@ -2,7 +2,7 @@ package me.csed2.moneymanager.ui.gui.stage;
 
 import me.csed2.moneymanager.exceptions.InvalidTypeException;
 import me.csed2.moneymanager.main.App;
-import me.csed2.moneymanager.ui.cmdline.stage.Stage;
+import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.gui.ButtonListener;
 import me.csed2.moneymanager.ui.gui.DisplayMenu;
 import me.csed2.moneymanager.utils.StringReaderFactory;

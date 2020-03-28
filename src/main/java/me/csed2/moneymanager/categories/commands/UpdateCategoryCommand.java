@@ -1,6 +1,6 @@
 package me.csed2.moneymanager.categories.commands;
 
-import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.main.App;
@@ -24,7 +24,7 @@ public class UpdateCategoryCommand<T> implements Function<App, Boolean> {
 
     @Override
     public Boolean apply(App app) {
-        Cache<Category> repository = app.getCategoryCache();
+        CachedList<Category> repository = app.getCategoryCache();
 
         Optional<Category> catOptional = repository.search(categoryName);
 

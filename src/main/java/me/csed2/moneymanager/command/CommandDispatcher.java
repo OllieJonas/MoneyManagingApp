@@ -6,9 +6,7 @@ import me.csed2.moneymanager.main.App;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 /**
  * This is a singleton class which allows for the dispatching of commands in both a synchronous and asynchronous fashion.
@@ -42,12 +40,28 @@ public class CommandDispatcher {
         return command.apply(App.getInstance());
     }
 
+    public static <T, S> S dispatchSync(Function<T, S> command, T value) {
+        return command.apply(value);
+    }
+
+    public static <T, S, U> U dispatchSync(BiFunction<T, S, U> command, T value1, S value2) {
+        return command.apply(value1, value2);
+    }
+
     public static <T> void dispatchSync(Consumer<T> command, T value) {
         command.accept(value);
     }
 
     public static void dispatchSync(Consumer<App> command) {
         command.accept(App.getInstance());
+    }
+
+    public static <T> boolean dispatchSync(Predicate<T> command, T value) {
+        return command.test(value);
+    }
+
+    public static boolean dispatchSync(Predicate<App> command) {
+        return command.test(App.getInstance());
     }
 
     /**

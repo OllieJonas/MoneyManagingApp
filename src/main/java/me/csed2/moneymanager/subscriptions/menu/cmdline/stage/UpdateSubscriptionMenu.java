@@ -1,9 +1,7 @@
 package me.csed2.moneymanager.subscriptions.menu.cmdline.stage;
 
-import me.csed2.moneymanager.subscriptions.SubscriptionArgType;
 import me.csed2.moneymanager.subscriptions.menu.cmdline.stage.update.*;
 import me.csed2.moneymanager.ui.Button;
-import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
 
 public class UpdateSubscriptionMenu extends CMDMenu {

@@ -1,15 +1,12 @@
 package me.csed2.moneymanager.cache;
 
 import com.google.common.collect.ImmutableList;
-import me.csed2.moneymanager.cache.commands.LoadFromDBCommand;
+import me.csed2.moneymanager.cache.commands.LoadFromJsonAsListCommand;
 import me.csed2.moneymanager.cache.commands.SaveToDBCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
@@ -28,26 +25,31 @@ import java.util.stream.Collectors;
  * @author Ollie
  * @since 16/3/20
  *
- * @param <T> The type of object stored in the repository
+ * @param <E> The type of object stored in the repository
  *
  */
 @SuppressWarnings("unused")
-public class Cache<T extends Cacheable> {
+public class CachedList<E extends Cacheable> {
 
     /**
      * The wrapped list of items.
      */
-    private List<T> items;
+    private List<E> items;
 
     /**
      * Default constructor, used to initialise the variables.
      */
-    public Cache() {
+    public CachedList() {
         this.items = new ArrayList<>();
     }
 
-    public Cache(ArrayList<T> list) {
-        this.items = new ArrayList<>();
+    /**
+     * Constructor passing in a list of pre-existing items
+     *
+     * @param list A list of items
+     */
+    public CachedList(List<E> list) {
+        this.items = list;
     }
 
     /**
@@ -55,7 +57,7 @@ public class Cache<T extends Cacheable> {
      *
      * @param entity The item in question.
      */
-    public boolean add(T entity) {
+    public boolean add(E entity) {
         return items.add(entity);
     }
 
@@ -64,9 +66,9 @@ public class Cache<T extends Cacheable> {
      *
      * @param entity The entity in the list
      */
-    public void update(T entity) {
-        ((Consumer<T>) t -> items.removeIf(item -> item.getId() == t.getId()))
-                .andThen(t -> items.add(t))
+    public void update(E entity) {
+        ((Consumer<E>) e -> items.removeIf(item -> item.getId() == e.getId()))
+                .andThen(e -> items.add(e))
                 .accept(entity);
     }
 
@@ -76,7 +78,7 @@ public class Cache<T extends Cacheable> {
      * @param entity The entity from the list
      * @return Whether it was successful
      */
-    public boolean remove(T entity) {
+    public boolean remove(E entity) {
         return items.remove(entity);
     }
 
@@ -87,7 +89,7 @@ public class Cache<T extends Cacheable> {
      * @return Whether it was successfully removed
      */
     public boolean remove(String entity) {
-        AtomicBoolean removed = new AtomicBoolean(false);
+        AtomicBoolean removed = new AtomicBoolean(false); // Atomic because async
         items.stream()
                 .filter(item -> item.getName().equalsIgnoreCase(entity))
                 .findFirst()
@@ -101,7 +103,7 @@ public class Cache<T extends Cacheable> {
      * @param predicate The predicate to filter for.
      * @return Whether this item exists in the list
      */
-    public boolean exists(Predicate<T> predicate) {
+    public boolean exists(Predicate<E> predicate) {
         return asList()
                 .parallelStream()
                 .anyMatch(predicate);
@@ -110,7 +112,7 @@ public class Cache<T extends Cacheable> {
     /**
      * Checks whether an item exists in the list based on its name asynchronously.
      *
-     * This just calls the exists(Predicate<T> predicate) method, just automatically filling out the appropriate details.
+     * This just calls the exists(Predicate<E> predicate) method, just automatically filling out the appropriate details.
      *
      * @param name The name to search for
      * @return Whether this item exists in the list
@@ -128,9 +130,9 @@ public class Cache<T extends Cacheable> {
      */
     public int nextId() {
         int id = 1; // Initial value of 1.
-        sort(Comparator.comparingInt(T::getId)); // Ensure the list is sorted by ID, with the last ID at the back
-        if (items.size() > 0)
-            id = items.get(items.size() - 1).getId() + 1;
+        sort(Comparator.comparingInt(E::getId)); // Ensure the list is sorted by ID, with the last ID at the end of the list
+        if (items.size() > 0) // If the list is empty, return the default id of 1.
+            id = items.get(items.size() - 1).getId() + 1; // Gets the ID of the last item of the list then adds 1
         return id;
     }
 
@@ -140,7 +142,7 @@ public class Cache<T extends Cacheable> {
      * @param predicate The predicate to filter by.
      * @return An immutable (unchangeable) list containing any items that matched the predicate given.
      */
-    public ImmutableList<T> search(Predicate<T> predicate) {
+    public ImmutableList<E> search(Predicate<E> predicate) {
         return ImmutableList.copyOf(asList()
                 .stream()
                 .filter(predicate)
@@ -153,7 +155,7 @@ public class Cache<T extends Cacheable> {
      * @param predicate The predicate to filter by.
      * @return An immutable (unchangeable) list containing any items that matched the predicate given.
      */
-    public ImmutableList<T> parallelSearch(Predicate<T> predicate) {
+    public ImmutableList<E> parallelSearch(Predicate<E> predicate) {
         return ImmutableList.copyOf(asList()
                 .parallelStream()
                 .filter(predicate)
@@ -166,7 +168,7 @@ public class Cache<T extends Cacheable> {
      * @param predicate The predicate to search for
      * @return The optional containing the value.
      */
-    public Optional<T> searchFirst(Predicate<T> predicate) {
+    public Optional<E> searchFirst(Predicate<E> predicate) {
         return asList()
                 .stream()
                 .filter(predicate)
@@ -179,7 +181,7 @@ public class Cache<T extends Cacheable> {
      * @param name The name to search for
      * @return The first item it finds with this name.
      */
-    public Optional<T> search(String name) {
+    public Optional<E> search(String name) {
         return searchFirst(item -> item.getName().equalsIgnoreCase(name));
     }
 
@@ -189,7 +191,7 @@ public class Cache<T extends Cacheable> {
      * @param name The name to search for
      * @return A list containing the matching items.
      */
-    public ImmutableList<T> searchMatching(String name) {
+    public ImmutableList<E> searchMatching(String name) {
         return search(item -> item.getName().startsWith(name));
     }
 
@@ -202,7 +204,7 @@ public class Cache<T extends Cacheable> {
      * @param comparator The comparator to sort by.
      * @return An immutable (unchangeable) sorted list using the comparator given.
      */
-    public ImmutableList<T> sort(Comparator<T> comparator) {
+    public ImmutableList<E> sort(Comparator<E> comparator) {
         return ImmutableList.copyOf(asList()
                 .stream()
                 .sorted(comparator)
@@ -214,7 +216,7 @@ public class Cache<T extends Cacheable> {
      */
     public void print() {
         items.iterator()
-                .forEachRemaining(t -> System.out.println(t.toFormattedString()));
+                .forEachRemaining(item -> System.out.println(item.toFormattedString()));
     }
 
     /**
@@ -225,7 +227,7 @@ public class Cache<T extends Cacheable> {
     public String getReport() {
         StringBuilder builder = new StringBuilder();
         items.iterator()
-                .forEachRemaining(t -> builder.append(t.toFormattedString()).append("\n"));
+                .forEachRemaining(item -> builder.append(item.toFormattedString()).append("\n"));
         return builder.toString();
     }
 
@@ -238,8 +240,8 @@ public class Cache<T extends Cacheable> {
      * @param fileName The filename in question
      * @throws FileNotFoundException If the file can't be found
      */
-    public void load(Class<T> clazz, String fileName) throws FileNotFoundException {
-        this.items = CommandDispatcher.dispatchSync(new LoadFromDBCommand<>(clazz, fileName));
+    public void load(Class<E> clazz, String fileName) throws FileNotFoundException {
+        this.items = CommandDispatcher.dispatchSync(new LoadFromJsonAsListCommand<>(fileName, clazz));
     }
 
     /**
@@ -248,7 +250,7 @@ public class Cache<T extends Cacheable> {
      * @param fileName The filename in question
      */
     public boolean save(String fileName) {
-        return CommandDispatcher.dispatchSync(new SaveToDBCommand<>(fileName, items));
+        return CommandDispatcher.dispatchSync(new SaveToDBCommand<>(), fileName, items);
     }
 
     /**
@@ -256,7 +258,7 @@ public class Cache<T extends Cacheable> {
      *
      * @return The items as an Immutable List
      */
-    public ImmutableList<T> asImmutableList() {
+    public ImmutableList<E> asImmutableList() {
         return ImmutableList.copyOf(items);
     }
 
@@ -265,7 +267,7 @@ public class Cache<T extends Cacheable> {
      *
      * @return The items
      */
-    public List<T> asList() {
+    public List<E> asList() {
         return items;
     }
 }

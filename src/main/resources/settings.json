@@ -1,0 +1,11 @@
+{
+  "hi": {
+    "value": "hi",
+    "active": true
+  },
+
+  "hello": {
+    "value": "hey there",
+    "active": true
+  }
+}

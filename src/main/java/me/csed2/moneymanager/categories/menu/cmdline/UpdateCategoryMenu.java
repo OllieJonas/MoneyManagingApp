@@ -3,7 +3,6 @@ package me.csed2.moneymanager.categories.menu.cmdline;
 import me.csed2.moneymanager.categories.menu.cmdline.stage.UpdateBudgetMenu;
 import me.csed2.moneymanager.categories.menu.cmdline.stage.UpdateNameMenu;
 import me.csed2.moneymanager.ui.Button;
-import me.csed2.moneymanager.ui.Menu;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
 
 public class UpdateCategoryMenu extends CMDMenu {

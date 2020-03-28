@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import me.csed2.moneymanager.cache.Cacheable;
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.main.Main;
 import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.transactions.Transaction;
@@ -16,13 +15,13 @@ import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
+import java.util.function.Supplier;
 
 /**
  * This class contains the Command to Load from a Database.
  * @param <T>
  */
-public class LoadFromDBCommand<T extends Cacheable> implements Function<App, List<T>> {
+public class LoadFromJsonAsListCommand<T extends Cacheable> implements Supplier<List<T>> {
 
     private final Type type;
 
@@ -30,8 +29,8 @@ public class LoadFromDBCommand<T extends Cacheable> implements Function<App, Lis
 
     private JsonReader reader;
 
-    public LoadFromDBCommand(Class<T> klass, String fileName) throws FileNotFoundException {
-        this.type = CacheTypeFactory.getType(klass);
+    public LoadFromJsonAsListCommand(String fileName, Class<T> clazz) throws FileNotFoundException {
+        this.type = TypeFactory.getType(clazz);
         this.gson = new Gson();
         URL fileUrl = Main.class.getClassLoader().getResource(fileName);
 
@@ -41,7 +40,7 @@ public class LoadFromDBCommand<T extends Cacheable> implements Function<App, Lis
     }
 
     @Override
-    public List<T> apply(App app) {
+    public List<T> get() {
         return gson.fromJson(reader, type);
     }
 
@@ -51,7 +50,7 @@ public class LoadFromDBCommand<T extends Cacheable> implements Function<App, Lis
      *
      * This class is used to get the type of ArrayList to map the JSON file into.
      */
-    private static class CacheTypeFactory {
+    private static class TypeFactory {
 
         /**
          * Main method. Takes the class of the cacheable item and returns a Type to be used for GSON.
@@ -64,9 +63,9 @@ public class LoadFromDBCommand<T extends Cacheable> implements Function<App, Lis
                 return new TypeToken<ArrayList<Transaction>>(){}.getType();
             } else if (clazz == Category.class) {
                 return new TypeToken<ArrayList<Category>>(){}.getType();
-            } else if (clazz ==Subscription.class){
+            } else if (clazz == Subscription.class) {
                 return new TypeToken<ArrayList<Subscription>>(){}.getType();
-            }  else {
+            } else {
                 return null;
             }
         }
