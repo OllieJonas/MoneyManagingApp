@@ -11,11 +11,10 @@ import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.ui.controller.InputReader;
 import me.csed2.moneymanager.ui.model.UINode;
 import me.csed2.moneymanager.ui.view.CMDRenderer;
-import me.csed2.moneymanager.ui.view.SwingRenderer;
 import me.csed2.moneymanager.ui.view.UIRenderer;
 
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -24,10 +23,10 @@ import java.util.concurrent.TimeUnit;
  */
 public class App {
 
-
-
+    @Getter
     private UINode currentNode;
 
+    @Getter
     private UIRenderer renderer = new CMDRenderer();
 
     // Threads
@@ -78,7 +77,7 @@ public class App {
         instance = this;
     }
 
-    public void openMenu(UINode node) {
+    public void render(UINode node) {
         this.currentNode = node;
         renderer.render(node);
     }

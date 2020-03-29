@@ -3,9 +3,7 @@ package me.csed2.moneymanager.ui.gui;
 import me.csed2.moneymanager.exceptions.InvalidTypeException;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.ui.model.Stage;
-import me.csed2.moneymanager.ui.gui.ButtonListener;
-import me.csed2.moneymanager.ui.gui.DisplayMenu;
-import me.csed2.moneymanager.utils.StringReaderFactory;
+import me.csed2.moneymanager.utils.StringParserFactory;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -80,7 +78,7 @@ public abstract class DisplayStageMenu extends DisplayMenu {
             try {
                 //Run all Stage Execution Phases
                 for (Stage<?> s : stages) {
-                    Object result = StringReaderFactory.parse(stagesWithTextFields.get(s).getText(), s.getResultType());
+                    Object result = StringParserFactory.parse(stagesWithTextFields.get(s).getText(), s.getResultType());
                     s.setResult(result);
                     s.executionPhase();
                 }

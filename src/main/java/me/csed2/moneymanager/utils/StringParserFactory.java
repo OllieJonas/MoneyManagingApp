@@ -26,10 +26,10 @@ import me.csed2.moneymanager.ui.model.StageMenu;
  * @author Ollie
  * @since 11/03/2020
  */
-public class StringReaderFactory {
+public class StringParserFactory {
 
     /**
-     * Main method for StringReaderFactory. Turns the string input an object with the appropriate subclass.
+     * Main method for StringparseerFactory. Turns the string input an object with the appropriate subclass.
      *
      * @param text The text the user inputted
      * @param type The type you'd like to turn this text into
@@ -40,15 +40,15 @@ public class StringReaderFactory {
      */
     public static Object parse(String text, Class<?> type) throws InvalidTypeException {
         if (type == Integer.class) {
-            return readInt(text);
+            return parseInt(text);
         } else if (type == Double.class) {
-            return readDouble(text);
+            return parseDouble(text);
         } else if (type == Long.class) {
-            return readLong(text);
+            return parseLong(text);
         } else if (type == Float.class) {
-            return readFloat(text);
+            return parseFloat(text);
         } else if (type == Boolean.class) {
-            return readBoolean(text);
+            return parseBoolean(text);
         } else if (type == String.class) {
             return text;
         } else {
@@ -65,7 +65,7 @@ public class StringReaderFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    private static int readInt(String text) throws InvalidTypeException {
+    public static int parseInt(String text) throws InvalidTypeException {
         try {
             return Integer.parseInt(text);
         } catch (NumberFormatException e) {
@@ -82,7 +82,7 @@ public class StringReaderFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    private static long readLong(String text) throws InvalidTypeException {
+    private static long parseLong(String text) throws InvalidTypeException {
         try {
             return Long.parseLong(text);
         } catch (NumberFormatException e) {
@@ -99,7 +99,7 @@ public class StringReaderFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    private static double readDouble(String text) throws InvalidTypeException {
+    private static double parseDouble(String text) throws InvalidTypeException {
         try {
             return Double.parseDouble(text);
         } catch (NumberFormatException e) {
@@ -115,7 +115,7 @@ public class StringReaderFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    private static float readFloat(String text) throws InvalidTypeException {
+    private static float parseFloat(String text) throws InvalidTypeException {
         try {
             return Float.parseFloat(text);
         } catch (NumberFormatException e) {
@@ -132,7 +132,7 @@ public class StringReaderFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    private static boolean readBoolean(String text) throws InvalidTypeException {
+    private static boolean parseBoolean(String text) throws InvalidTypeException {
         try {
             return Boolean.parseBoolean(text);
         } catch (NumberFormatException e) {

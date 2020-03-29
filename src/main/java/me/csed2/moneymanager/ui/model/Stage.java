@@ -5,7 +5,7 @@ import me.csed2.moneymanager.exceptions.InvalidTypeException;
 import me.csed2.moneymanager.ui.controller.InputProcessor;
 import me.csed2.moneymanager.ui.controller.InputReader;
 import me.csed2.moneymanager.utils.ClassUtils;
-import me.csed2.moneymanager.utils.StringReaderFactory;
+import me.csed2.moneymanager.utils.StringParserFactory;
 
 /**
  * This class contains the implementation of a Stage in the StageMenu {@link StageMenu}.
@@ -14,7 +14,7 @@ import me.csed2.moneymanager.utils.StringReaderFactory;
  * printed when on this stage. When on this stage, the InputProcessor {@link InputProcessor} will then print out the
  * text specified. After this, the InputReader {@link InputReader} will then wait for the reply from the user.
  *
- * From this, the StringReaderFactory {@link StringReaderFactory} and then use a utility will be used from
+ * From this, the StringReaderFactory {@link StringParserFactory} and then use a utility will be used from
  * ClassUtils {@link ClassUtils} to then check if this is a valid input based on the Class specified in here.
  *
  * If this is unsuccessful, an InvalidTypeException {@link InvalidTypeException} will be thrown, where the StageMenu
@@ -50,12 +50,6 @@ public class Stage<T> {
 
     public void setResult(Object result) {
         this.result = ClassUtils.cast(result, resultType);
-    }
-
-    public void print() {
-        for (String line : text) {
-            System.out.println(line);
-        }
     }
 
     public Stage<T> withExecutionPhase(ExecutionPhase phase) {

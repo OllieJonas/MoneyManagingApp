@@ -16,7 +16,7 @@ public class Main {
         new AuthServerManager();
 
         //Testing Frame
-        App.getInstance().openMenu(MenuList.MAIN);
+        App.getInstance().render(MenuList.MAIN);
         //End of Testing
     }
 
