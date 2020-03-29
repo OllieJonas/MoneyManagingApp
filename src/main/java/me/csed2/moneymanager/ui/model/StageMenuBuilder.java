@@ -1,22 +1,16 @@
 package me.csed2.moneymanager.ui.model;
 
-import lombok.Getter;
-
 import java.util.Arrays;
 import java.util.List;
 
 public class StageMenuBuilder {
 
-    @Getter
     protected final String name;
 
-    @Getter
     protected Menu parent;
 
-    @Getter
     protected String image;
 
-    @Getter
     protected List<Stage<?>> stages;
 
     private StageMenu.Phase beginPhase;

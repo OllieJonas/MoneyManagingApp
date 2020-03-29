@@ -3,8 +3,6 @@ package me.csed2.moneymanager.ui.model;
 import lombok.Getter;
 import me.csed2.moneymanager.main.App;
 
-import java.io.Serializable;
-import java.util.Deque;
 import java.util.List;
 
 /**
@@ -45,6 +43,7 @@ public class StageMenu implements UINode {
         this.exitPhase = exitPhase;
 
         if (parent != null) {
+            System.out.println("parent not null");
             parent.getChildren().add(this);
         }
     }
@@ -62,7 +61,7 @@ public class StageMenu implements UINode {
     }
     // no children for StageMenu
     @Override
-    public Deque<UINode> getChildren() {
+    public List<UINode> getChildren() {
         return null;
     }
 
@@ -70,14 +69,15 @@ public class StageMenu implements UINode {
         stages.add(stage);
     }
 
-    public void nextStage() {
+    public Stage<?> nextStage() {
         count++;
         if (count >= stages.size()) {
             exitPhase();
+            return null;
         } else {
             Stage<?> nextStage = stages.get(count);
             nextStage.executionPhase();
-            nextStage.print();
+            return nextStage;
         }
     }
 

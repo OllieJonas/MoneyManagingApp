@@ -8,9 +8,6 @@ import me.csed2.moneymanager.ui.model.UINode;
 import me.csed2.moneymanager.utils.ConsoleUtils;
 import me.csed2.moneymanager.utils.StringAlignUtils;
 
-import java.util.Collections;
-import java.util.Deque;
-import java.util.Iterator;
 import java.util.List;
 
 public class CMDRenderer implements UIRenderer {
@@ -28,7 +25,7 @@ public class CMDRenderer implements UIRenderer {
 
             menu.beginPhase();
             initialStage.executionPhase();
-            initialStage.print();
+            printStage(initialStage);
 
         } else {
 
@@ -37,15 +34,13 @@ public class CMDRenderer implements UIRenderer {
             System.out.println(util.format(node.getName()));
             System.out.print("\n");
 
-            Deque<UINode> children = node.getChildren();
+            List<UINode> children = node.getChildren();
 
             int count = 1;
-            Iterator<UINode> iterator = children.descendingIterator();
-            while (iterator.hasNext()) {
-                System.out.println(util.format(count + ": " + iterator.next().getName()));
+            for (UINode child : children) {
+                System.out.println(util.format(count + ": " + child.getName()));
                 count++;
             }
-
             ConsoleUtils.printBorder(ConsoleUtils.BorderType.BOTTOM);
         }
     }
@@ -53,5 +48,16 @@ public class CMDRenderer implements UIRenderer {
     @Override
     public void sendMessage(String message) {
         System.out.println(message);
+    }
+
+    @Override
+    public void renderStage(Stage<?> stage) {
+        printStage(stage);
+    }
+
+    private void printStage(Stage<?> stage) {
+        for (String line : stage.getText()) {
+            System.out.println(line);
+        }
     }
 }

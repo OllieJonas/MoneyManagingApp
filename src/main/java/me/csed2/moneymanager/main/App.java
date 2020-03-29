@@ -9,6 +9,7 @@ import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.ui.controller.InputReader;
+import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.UINode;
 import me.csed2.moneymanager.ui.view.CMDRenderer;
 import me.csed2.moneymanager.ui.view.UIRenderer;
@@ -80,6 +81,10 @@ public class App {
     public void render(UINode node) {
         this.currentNode = node;
         renderer.render(node);
+    }
+
+    public void render(Stage<?> stage) {
+        renderer.renderStage(stage);
     }
 
     public void sendMessage(String message) {

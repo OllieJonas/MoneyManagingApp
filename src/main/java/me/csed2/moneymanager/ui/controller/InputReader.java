@@ -1,5 +1,7 @@
 package me.csed2.moneymanager.ui.controller;
 
+import me.csed2.moneymanager.main.App;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -41,7 +43,7 @@ public class InputReader extends Thread {
 
                 String input = reader.readLine();
 
-                // InputProcessor.process(App.getInstance(), input);
+                InputProcessor.process(App.getInstance(), input);
 
             } catch (IOException e) {
                 e.printStackTrace();

@@ -39,12 +39,11 @@ public class InputProcessor {
                 UINode target = children.get(option - 1);
 
                 if (target instanceof Action) {
-                    Action action = (Action) node;
+                    Action action = (Action) target;
                     action.execute(app);
-                    app.render(node); // Render the parent node again, you don't actually need to traverse to an action.
-                } else if (target instanceof StageMenu) {
-                    StageMenu menu = (StageMenu) node;
-                    app.render(menu);
+                    app.render(node.getParent()); // Render the parent node again, you don't actually need to traverse to an action.
+                } else {
+                    app.render(target);
                 }
             }
         } catch (InvalidTypeException e) {
@@ -59,20 +58,18 @@ public class InputProcessor {
 
         } else {
             Stage<?> currentStage = menu.currentStage();
-
             try {
+                Object result = StringParserFactory.parse(input, currentStage.getResultType()); // Convert text to object
+                currentStage.setResult(result); // Set result to stage
 
-                Object result = StringParserFactory.parse(input, currentStage.getResultType());
-                currentStage.setResult(result);
-                menu.nextStage();
+                Stage<?> nextStage = menu.nextStage();
+
+                app.render(nextStage);
 
             } catch (InvalidTypeException e) {
-
                 System.out.println(e.getMessage());
 
-                for (String line : currentStage.getText()) {
-                    System.out.println(line);
-                }
+                app.render(currentStage);
             }
         }
     }

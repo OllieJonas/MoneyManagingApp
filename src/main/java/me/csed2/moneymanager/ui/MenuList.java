@@ -55,6 +55,6 @@ public class MenuList {
     }
 
     public static Action backAction(Menu parent) {
-        return new Action("Go back", parent, "images/back_0", (Consumer<App>) app -> app.render(parent));
+        return new Action("Go Back", parent, "images/back_0", (Consumer<App>) app -> app.render(parent));
     }
 }
