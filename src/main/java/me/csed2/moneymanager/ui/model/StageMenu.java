@@ -2,14 +2,13 @@ package me.csed2.moneymanager.ui.model;
 
 import lombok.Getter;
 
-import java.awt.*;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Abstract implementation of a step menu.
  */
-public abstract class StageMenu implements UINode {
+public class StageMenu implements UINode {
 
     @Getter
     protected final String name;
@@ -18,10 +17,14 @@ public abstract class StageMenu implements UINode {
     protected final UINode parent;
 
     @Getter
-    protected final Image image;
+    protected final String image;
 
     @Getter
-    protected List<Stage<?>> stages = new ArrayList<>();
+    protected List<Stage<?>> stages;
+
+    private Phase beginPhase;
+
+    private Phase exitPhase;
 
     private int count = 0;
 
@@ -31,27 +34,26 @@ public abstract class StageMenu implements UINode {
      * @param name
      * @param image
      */
-    public StageMenu(String name, UINode parent, Image image) {
+    public StageMenu(String name, UINode parent, String image, List<Stage<?>> stages, Phase beginPhase, Phase exitPhase) {
         this.name = name;
         this.parent = parent;
         this.image = image;
-
-
+        this.stages = stages;
+        this.beginPhase = beginPhase;
+        this.exitPhase = exitPhase;
     }
-
-    public StageMenu build() {
-        addStages();
-        return this;
-    }
-
-    public abstract void addStages();
-
-    public abstract void exitPhase();
 
     public void beginPhase() {
-
+        if (beginPhase != null) {
+            beginPhase.execute();
+        }
     }
 
+    private void exitPhase() {
+        if (exitPhase != null) {
+            exitPhase.execute();
+        }
+    }
     // no children for StageMenu
     @Override
     public List<UINode> getChildren() {
@@ -75,6 +77,10 @@ public abstract class StageMenu implements UINode {
 
     public Stage<?> currentStage() {
         return stages.get(count);
+    }
+
+    public interface Phase {
+        void execute();
     }
 
 }

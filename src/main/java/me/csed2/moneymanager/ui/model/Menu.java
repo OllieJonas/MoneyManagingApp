@@ -1,36 +1,32 @@
 package me.csed2.moneymanager.ui.model;
 
 import lombok.Getter;
+import me.csed2.moneymanager.ui.MenuList;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Getter
-public abstract class Menu implements UINode {
+public class Menu implements UINode {
 
     protected final String name;
 
-    protected final UINode parent;
+    protected final Menu parent;
 
-    protected final Image image;
+    protected final String image;
 
-    protected List<UINode> children = new ArrayList<>();
+    protected Stack<UINode> children = new Stack<>();
 
-    public Menu(String name, UINode parent, Image image) {
+    public Menu(String name, Menu parent, String image) {
         this.name = name;
         this.parent = parent;
         this.image = image;
-    }
 
-    public Menu build() {
-        addChildren();
-        return this;
-    }
+        children.forEach(node -> System.out.println(node.getName()));
 
-    protected abstract void addChildren();
-
-    protected boolean addChild(UINode node) {
-        return children.add(node);
+        children.add(MenuList.exitAction(this));
+        if (parent != null) {
+            children.add(MenuList.backAction(this));
+            parent.getChildren().add(this);
+        }
     }
 }

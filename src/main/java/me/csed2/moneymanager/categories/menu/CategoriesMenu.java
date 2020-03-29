@@ -1,9 +1,8 @@
-package me.csed2.moneymanager.categories.menu.cmdline;
+package me.csed2.moneymanager.categories.menu;
 
-import me.csed2.moneymanager.categories.menu.cmdline.stage.AddCategoryMenu;
-import me.csed2.moneymanager.categories.menu.cmdline.stage.RemoveCategoryMenu;
+import me.csed2.moneymanager.categories.menu.stage.AddCategoryMenu;
+import me.csed2.moneymanager.categories.menu.stage.RemoveCategoryMenu;
 import me.csed2.moneymanager.main.App;
-import me.csed2.moneymanager.main.MainMenu;
 import me.csed2.moneymanager.ui.Button;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
 

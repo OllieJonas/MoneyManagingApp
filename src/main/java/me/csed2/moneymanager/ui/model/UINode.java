@@ -11,5 +11,5 @@ public interface UINode {
 
     List<UINode> getChildren();
 
-    Image getImage();
+    String getImage();
 }

@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.categories.menu.cmdline.stage;
+package me.csed2.moneymanager.categories.menu.stage;
 
 import me.csed2.moneymanager.categories.commands.AddCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;

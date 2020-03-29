@@ -28,7 +28,7 @@
     <node x="301.0" y="1297.0">me.csed2.moneymanager.categories.commands.AddCategoryCommand</node>
     <node x="0.0" y="256.0">me.csed2.moneymanager.categories.CategoryRepository</node>
     <node x="0.0" y="725.0">me.csed2.moneymanager.categories.CategoryBuilder</node>
-    <node x="560.0" y="467.0">me.csed2.moneymanager.categories.menu.cmdline.CategoriesMenu</node>
+    <node x="560.0" y="467.0">me.csed2.moneymanager.categories.menu.CategoriesMenu</node>
     <node x="0.0" y="1775.0">me.csed2.moneymanager.categories.CategoryHandler</node>
     <node x="541.5" y="981.0">me.csed2.moneymanager.utils.ConsoleUtils.BorderType</node>
     <node x="885.9375" y="1107.0">me.csed2.moneymanager.categories.commands.CategoriesCommand</node>
@@ -96,7 +96,7 @@
       <point x="1050.1875" y="1277.0" />
       <point x="54.75" y="70.0" />
     </edge>
-    <edge source="me.csed2.moneymanager.categories.menu.cmdline.CategoriesMenu" target="me.csed2.moneymanager.ui.cmdline.CMDMenu">
+    <edge source="me.csed2.moneymanager.categories.menu.CategoriesMenu" target="me.csed2.moneymanager.ui.cmdline.CMDMenu">
       <point x="0.0" y="-69.5" />
       <point x="668.0" y="442.0" />
       <point x="625.0" y="442.0" />

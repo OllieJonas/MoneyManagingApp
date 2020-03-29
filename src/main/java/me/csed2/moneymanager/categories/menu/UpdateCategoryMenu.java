@@ -1,7 +1,7 @@
-package me.csed2.moneymanager.categories.menu.cmdline;
+package me.csed2.moneymanager.categories.menu;
 
-import me.csed2.moneymanager.categories.menu.cmdline.stage.UpdateBudgetMenu;
-import me.csed2.moneymanager.categories.menu.cmdline.stage.UpdateNameMenu;
+import me.csed2.moneymanager.categories.menu.stage.UpdateBudgetMenu;
+import me.csed2.moneymanager.categories.menu.stage.UpdateNameMenu;
 import me.csed2.moneymanager.ui.Button;
 import me.csed2.moneymanager.ui.cmdline.CMDMenu;
 
