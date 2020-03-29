@@ -62,7 +62,7 @@ public class StageMenu implements UINode {
     }
     // no children for StageMenu
     @Override
-    public Deque<UINode> getChildren() {
+    public List<UINode> getChildren() {
         return null;
     }
 

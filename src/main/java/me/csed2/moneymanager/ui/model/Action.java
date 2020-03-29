@@ -38,7 +38,7 @@ public class Action implements UINode {
 
     // Action isn't going to have children.
     @Override
-    public Deque<UINode> getChildren() {
+    public List<UINode> getChildren() {
         return null;
     }
 
