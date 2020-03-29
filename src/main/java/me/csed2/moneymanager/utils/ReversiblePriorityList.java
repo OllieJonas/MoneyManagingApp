@@ -12,7 +12,7 @@ import java.util.*;
 @SuppressWarnings("unused")
 public class ReversiblePriorityList<E> extends AbstractList<E> implements List<E>, Cloneable, Serializable {
 
-    private static final int DEFAULT_PRIORITY_SIZE = 10;
+    private static final int DEFAULT_PRIORITY_SIZE = 9;
 
     private transient ArrayList<E> priority;
 
