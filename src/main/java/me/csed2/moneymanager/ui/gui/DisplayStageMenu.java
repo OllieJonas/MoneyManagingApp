@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.ui.gui.stage;
+package me.csed2.moneymanager.ui.gui;
 
 import me.csed2.moneymanager.exceptions.InvalidTypeException;
 import me.csed2.moneymanager.main.App;

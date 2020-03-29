@@ -1,8 +1,10 @@
 package me.csed2.moneymanager.ui.model;
 
 import lombok.Getter;
+import me.csed2.moneymanager.main.App;
 
 import java.io.Serializable;
+import java.util.Deque;
 import java.util.List;
 
 /**
@@ -14,7 +16,7 @@ public class StageMenu implements UINode {
     protected final String name;
 
     @Getter
-    protected final UINode parent;
+    protected final Menu parent;
 
     @Getter
     protected final String image;
@@ -34,29 +36,33 @@ public class StageMenu implements UINode {
      * @param name
      * @param image
      */
-    public StageMenu(String name, UINode parent, String image, List<Stage<?>> stages, Phase beginPhase, Phase exitPhase) {
+    public StageMenu(String name, Menu parent, String image, List<Stage<?>> stages, Phase beginPhase, Phase exitPhase) {
         this.name = name;
         this.parent = parent;
         this.image = image;
         this.stages = stages;
         this.beginPhase = beginPhase;
         this.exitPhase = exitPhase;
+
+        if (parent != null) {
+            parent.getChildren().add(this);
+        }
     }
 
     public void beginPhase() {
         if (beginPhase != null) {
-            beginPhase.execute();
+            beginPhase.execute(App.getInstance(), stages);
         }
     }
 
     private void exitPhase() {
         if (exitPhase != null) {
-            exitPhase.execute();
+            exitPhase.execute(App.getInstance(), stages);
         }
     }
     // no children for StageMenu
     @Override
-    public List<UINode> getChildren() {
+    public Deque<UINode> getChildren() {
         return null;
     }
 
@@ -80,7 +86,7 @@ public class StageMenu implements UINode {
     }
 
     public interface Phase {
-        void execute();
+        void execute(App app, List<Stage<?>> stages);
     }
 
 }

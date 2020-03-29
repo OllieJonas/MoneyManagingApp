@@ -8,6 +8,11 @@ import me.csed2.moneymanager.ui.model.UINode;
 import me.csed2.moneymanager.utils.ConsoleUtils;
 import me.csed2.moneymanager.utils.StringAlignUtils;
 
+import java.util.Collections;
+import java.util.Deque;
+import java.util.Iterator;
+import java.util.List;
+
 public class CMDRenderer implements UIRenderer {
 
     @Override
@@ -26,21 +31,27 @@ public class CMDRenderer implements UIRenderer {
             initialStage.print();
 
         } else {
+
             StringAlignUtils util = new StringAlignUtils(50, StringAlignUtils.Alignment.CENTRE);
             ConsoleUtils.printBorder(ConsoleUtils.BorderType.TOP, false);
             System.out.println(util.format(node.getName()));
             System.out.print("\n");
 
-            for (int i = 1; i <= node.getChildren().size(); i++) {
-                String toPrint = i + ": " + node.getChildren().get(i - 1).getName();
-                System.out.println(util.format(toPrint));
+            Deque<UINode> children = node.getChildren();
+
+            int count = 1;
+            Iterator<UINode> iterator = children.descendingIterator();
+            while (iterator.hasNext()) {
+                System.out.println(util.format(count + ": " + iterator.next().getName()));
+                count++;
             }
+
             ConsoleUtils.printBorder(ConsoleUtils.BorderType.BOTTOM);
         }
     }
 
     @Override
-    public void showMessage(String message) {
+    public void sendMessage(String message) {
         System.out.println(message);
     }
 }

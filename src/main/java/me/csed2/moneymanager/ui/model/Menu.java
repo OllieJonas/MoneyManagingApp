@@ -14,19 +14,18 @@ public class Menu implements UINode {
 
     protected final String image;
 
-    protected Stack<UINode> children = new Stack<>();
+    protected Deque<UINode> children = new ArrayDeque<>();
 
     public Menu(String name, Menu parent, String image) {
         this.name = name;
         this.parent = parent;
         this.image = image;
 
-        children.forEach(node -> System.out.println(node.getName()));
+        children.addLast(MenuList.exitAction(this));
 
-        children.add(MenuList.exitAction(this));
         if (parent != null) {
-            children.add(MenuList.backAction(this));
-            parent.getChildren().add(this);
+            children.addLast(MenuList.backAction(this));
+            parent.getChildren().addFirst(this);
         }
     }
 }

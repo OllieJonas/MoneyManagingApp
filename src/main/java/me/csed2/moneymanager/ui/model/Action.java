@@ -3,6 +3,7 @@ package me.csed2.moneymanager.ui.model;
 import lombok.Getter;
 import me.csed2.moneymanager.main.App;
 
+import java.util.Deque;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Function;
@@ -37,7 +38,7 @@ public class Action implements UINode {
 
     // Action isn't going to have children.
     @Override
-    public List<UINode> getChildren() {
+    public Deque<UINode> getChildren() {
         return null;
     }
 

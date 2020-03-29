@@ -10,7 +10,7 @@ public class SwingRenderer implements UIRenderer {
     }
 
     @Override
-    public void showMessage(String message) {
+    public void sendMessage(String message) {
 
     }
 }

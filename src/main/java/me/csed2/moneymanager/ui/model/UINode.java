@@ -1,7 +1,6 @@
 package me.csed2.moneymanager.ui.model;
 
-import java.awt.*;
-import java.util.List;
+import java.util.Deque;
 
 public interface UINode {
 
@@ -9,7 +8,7 @@ public interface UINode {
 
     UINode getParent();
 
-    List<UINode> getChildren();
+    Deque<UINode> getChildren();
 
     String getImage();
 }

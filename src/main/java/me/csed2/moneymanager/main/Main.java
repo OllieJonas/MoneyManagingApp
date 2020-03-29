@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.main;
 
 import me.csed2.moneymanager.rest.AuthServerManager;
+import me.csed2.moneymanager.ui.MenuList;
 
 /**
  * @author Ollie
@@ -15,7 +16,7 @@ public class Main {
         new AuthServerManager();
 
         //Testing Frame
-        App.getInstance().openMenu(new MainMenu());
+        App.getInstance().openMenu(MenuList.MAIN);
         //End of Testing
     }
 

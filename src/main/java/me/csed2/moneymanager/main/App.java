@@ -10,6 +10,7 @@ import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.ui.controller.InputReader;
 import me.csed2.moneymanager.ui.model.UINode;
+import me.csed2.moneymanager.ui.view.CMDRenderer;
 import me.csed2.moneymanager.ui.view.SwingRenderer;
 import me.csed2.moneymanager.ui.view.UIRenderer;
 
@@ -27,7 +28,7 @@ public class App {
 
     private UINode currentNode;
 
-    private UIRenderer renderer = new SwingRenderer();
+    private UIRenderer renderer = new CMDRenderer();
 
     // Threads
     private InputReader reader;
@@ -82,12 +83,12 @@ public class App {
         renderer.render(node);
     }
 
-    public void showMessage(String message) {
-        renderer.showMessage(message);
+    public void sendMessage(String message) {
+        renderer.sendMessage(message);
     }
 
     public synchronized void exit() {
-        renderer.showMessage("Exiting program...");
+        renderer.sendMessage("Exiting program...");
         App.getInstance().getCategoryCache().save("categories.json");
         autoSave.interrupt();
         reader.interrupt();

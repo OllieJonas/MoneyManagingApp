@@ -13,43 +13,42 @@ import java.util.function.Consumer;
 
 public class MenuList {
 
-    public static Menu MAIN = new Menu("Main Menu", null, null);
+    public static final Menu MAIN = new Menu("Main Menu", null, null);
 
     // Categories
-    public static Menu CATEGORIES = new Menu("Categories", MAIN, null);
+    public static final Menu CATEGORIES = new Menu("Categories", MAIN, null);
 
-    public static Action LIST_CATEGORIES = new Action("List All Categories", CATEGORIES, "icons/button_search_0.png", (Consumer<App>) app -> app.showMessage(app.getCategoryCache().getReport()));
-    public static Menu ADD_CATEGORY = new Menu("Add a New Category", CATEGORIES, "icons/button_add_0.png");
-    public static Menu REMOVE_CATEGORY = new Menu("Remove a Category", CATEGORIES, "icons/button_delete_0.png");
-    public static Menu UPADTE_CATEGORY = new Menu("Update a Category", CATEGORIES, "icons/button_update_0.png");
+    public static final Action LIST_CATEGORIES = new Action("List All Categories", CATEGORIES, "icons/button_search_0.png", (Consumer<App>) app -> app.sendMessage(app.getCategoryCache().getReport()));
+    public static final Menu UPDATE_CATEGORY = new Menu("Update a Category", CATEGORIES, "icons/button_update_0.png");
+
 
     // Transactions
-    public static Menu TRANSACTIONS = new Menu("Transactions", MAIN, null);
+    public static final Menu TRANSACTIONS = new Menu("Transactions", MAIN, null);
 
-    public static Action LIST_TRANSACTIONS = new Action("List All Transactions", TRANSACTIONS, "icons/button_search_0.png", (Consumer<App>) app -> app.showMessage(app.getTransactionCache().getReport()));
-    public static Menu ADD_TRANSACTION = new Menu("Add a New Transaction", TRANSACTIONS, "icons/button_add_0.png");
-    public static Menu REMOVE_TRANSACTION = new Menu("Remove a Transaction", TRANSACTIONS, "icons/button_delete_0.png");
-    public static Menu UPADTE_TRANSACTION = new Menu("Update a Transaction", TRANSACTIONS, "icons/button_update_0.png");
+    public static final Action LIST_TRANSACTIONS = new Action("List All Transactions", TRANSACTIONS, "icons/button_search_0.png", (Consumer<App>) app -> app.sendMessage(app.getTransactionCache().getReport()));
+    public static final Menu UPDATE_TRANSACTION = new Menu("Update a Transaction", TRANSACTIONS, "icons/button_update_0.png");
+
 
     // Subscriptions
-    public static Menu SUBSCRIPTIONS = new Menu("Subscriptions", MAIN, null);
+    public static final Menu SUBSCRIPTIONS = new Menu("Subscriptions", MAIN, null);
 
-    public static Action LIST_SUBSCRIPTIONS = new Action("List All Subscriptions", SUBSCRIPTIONS, "icons/button_search_0.png", (Consumer<App>) app -> app.showMessage(app.getSubscriptionCache().getReport()));
-    public static Menu ADD_SUBSCRIPTION = new Menu("Add a New Subscription", SUBSCRIPTIONS, "icons/button_add_0.png");
-    public static Menu REMOVE_SUBSCRIPTION = new Menu("Remove a Subscription", SUBSCRIPTIONS, "icons/button_delete_0.png");
-    public static Menu UPADTE_SUBSCRIPTION = new Menu("Update a Subscription", SUBSCRIPTIONS, "icons/button_update_0.png");
+    public static final Action LIST_SUBSCRIPTIONS = new Action("List All Subscriptions", SUBSCRIPTIONS, "icons/button_search_0.png", (Consumer<App>) app -> app.sendMessage(app.getSubscriptionCache().getReport()));
+    public static final Menu UPDATE_SUBSCRIPTION = new Menu("Update a Subscription", SUBSCRIPTIONS, "icons/button_update_0.png");
+
+
+    // Authenticate
+    public static final Menu AUTH_MENU = new Menu("Authenticate a Bank Account", MAIN, null);
 
     // Monzo
-    public static Menu AUTH_MENU = new Menu("Authenticate a Bank Account", MAIN, null);
+    public static final Menu MONZO = new Menu("Monzo", AUTH_MENU, null);
 
-    public static Menu MONZO = new Menu("Monzo", AUTH_MENU, null);
+    public static final Action MONZO_AUTH = new Action("Authenticate", MONZO, null, new MonzoAuthCommand());
+    public static final Action MONZO_UPDATE = new Action("Update", MONZO, null, (Consumer<App>) app -> System.out.println("Coming soon TM"));
+    public static final Action MONZO_LIST_ACCOUNTS = new Action("List Accounts", MONZO, null, new MonzoGetAccountsCommand());
+    public static final Action MONZO_GET_TRANSACTIONS = new Action("List Transactions", MONZO, null, new MonzoGetTransactionsCommand());
+    public static final Action MONZO_CHECK_AUTH = new Action("Check Authentication", MONZO, null, new MonzoCheckAuthCommand());
+    public static final Action MONZO_PRINT_TOKEN = new Action("Print Access Token", MONZO, null, (Consumer<App>) app -> System.out.println(MonzoHttpClient.getAccessToken()));
 
-    public static Action MONZO_AUTH = new Action("Authenticate", MONZO, null, new MonzoAuthCommand());
-    public static Action MONZO_UPDATE = new Action("Update", MONZO, null, (Consumer<App>) app -> System.out.println("Coming soon TM"));
-    public static Action MONZO_LIST_ACCOUNTS = new Action("List Accounts", MONZO, null, new MonzoGetAccountsCommand());
-    public static Action MONZO_GET_TRANSACTIONS = new Action("List Transactions", MONZO, null, new MonzoGetTransactionsCommand());
-    public static Action MONZO_CHECK_AUTH = new Action("Check Authentication", MONZO, null, new MonzoCheckAuthCommand());
-    public static Action MONZO_PRINT_TOKEN = new Action("Print Access Token", MONZO, null, (Consumer<App>) app -> System.out.println(MonzoHttpClient.getAccessToken()));
 
     public static Action exitAction(Menu parent) {
         return new Action("Exit the Application", parent, "images/exit_0", App::exit);
