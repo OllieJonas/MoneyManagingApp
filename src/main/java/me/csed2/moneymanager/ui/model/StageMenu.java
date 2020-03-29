@@ -43,7 +43,6 @@ public class StageMenu implements UINode {
         this.exitPhase = exitPhase;
 
         if (parent != null) {
-            System.out.println("parent not null");
             parent.getChildren().add(this);
         }
     }
