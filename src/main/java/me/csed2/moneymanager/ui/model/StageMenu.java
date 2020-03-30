@@ -22,8 +22,10 @@ public class StageMenu implements UINode {
     @Getter
     protected List<Stage<?>> stages;
 
+    @Getter
     private Phase beginPhase;
 
+    @Getter
     private Phase exitPhase;
 
     private int count = 0;
@@ -53,7 +55,7 @@ public class StageMenu implements UINode {
         }
     }
 
-    private void exitPhase() {
+    public void exitPhase() {
         if (exitPhase != null) {
             exitPhase.execute(App.getInstance(), stages);
         }

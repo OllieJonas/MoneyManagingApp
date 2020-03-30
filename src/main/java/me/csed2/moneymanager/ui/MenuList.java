@@ -55,6 +55,6 @@ public class MenuList {
     }
 
     public static void decorateBackAction(Menu parent) {
-        new Action("Go Back", parent, "images/back_0", (Consumer<App>) app -> app.render(parent));
+        new Action("Go Back", parent, "images/back_0", (Consumer<App>) app -> app.render(parent.getParent()));
     }
 }

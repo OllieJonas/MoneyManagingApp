@@ -12,6 +12,7 @@ import me.csed2.moneymanager.ui.controller.InputReader;
 import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.UINode;
 import me.csed2.moneymanager.ui.view.CMDRenderer;
+import me.csed2.moneymanager.ui.view.SwingRenderer;
 import me.csed2.moneymanager.ui.view.UIRenderer;
 
 import java.io.FileNotFoundException;
@@ -28,7 +29,7 @@ public class App {
     private UINode currentNode;
 
     @Getter
-    private UIRenderer renderer = new CMDRenderer();
+    private UIRenderer renderer = new SwingRenderer();
 
     // Threads
     private InputReader reader;
