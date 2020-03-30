@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 public class CircularArrayList<E> extends ArrayList<E> implements Iterable<E> {
 
-    public int varianceSize;
+    private int varianceSize;
 
     public CircularArrayList(boolean hasParent) {
         if (hasParent)
