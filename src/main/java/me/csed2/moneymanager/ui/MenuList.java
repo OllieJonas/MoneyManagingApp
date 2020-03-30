@@ -50,11 +50,11 @@ public class MenuList {
     public static final Action MONZO_PRINT_TOKEN = new Action("Print Access Token", MONZO, null, (Consumer<App>) app -> System.out.println(MonzoHttpClient.getAccessToken()));
 
 
-    public static Action exitAction(Menu parent) {
-        return new Action("Exit the Application", parent, "images/exit_0", App::exit);
+    public static void decorateExitAction(Menu parent) {
+        new Action("Exit the Application", parent, "images/exit_0", App::exit);
     }
 
-    public static Action backAction(Menu parent) {
-        return new Action("Go Back", parent, "images/back_0", (Consumer<App>) app -> app.render(parent));
+    public static void decorateBackAction(Menu parent) {
+        new Action("Go Back", parent, "images/back_0", (Consumer<App>) app -> app.render(parent));
     }
 }

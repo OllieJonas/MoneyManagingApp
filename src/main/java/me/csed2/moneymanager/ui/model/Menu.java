@@ -22,13 +22,13 @@ public class Menu implements UINode {
         this.parent = parent;
         this.image = image;
 
-        children = new CircularArrayList<>(parent != null);
+        boolean hasParent = parent != null;
+        children = new CircularArrayList<>(hasParent);
 
-
-        if (parent != null) {
-            children.add(MenuList.backAction(this));
+        if (hasParent) {
+            MenuList.decorateBackAction(this);
             parent.getChildren().add(this);
         }
-        children.add(MenuList.exitAction(this));
+        MenuList.decorateExitAction(this);
     }
 }

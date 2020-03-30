@@ -53,7 +53,7 @@ public class StageMenuList {
             .build();
 
     public static final StageMenu UPDATE_CATEGORY_NAME = new StageMenuBuilder("Update a Categories Name")
-            .withParent(MenuList.CATEGORIES)
+            .withParent(MenuList.UPDATE_CATEGORY)
             .withStages(
                     new Stage<>(String.class, "What category would you like to change the name for?"),
                     new Stage<>(String.class, "What would you like to change the name to?"))
@@ -72,7 +72,7 @@ public class StageMenuList {
 
 
     public static final StageMenu UPDATE_CATEGORY_BUDGET = new StageMenuBuilder("Update a Categories Budget")
-            .withParent(MenuList.CATEGORIES)
+            .withParent(MenuList.UPDATE_CATEGORY)
             .withStages(
                     new Stage<>(String.class, "What category would you like to change the budget for?"),
                     new Stage<>(Double.class, "What would you like to change the budget to?"))

@@ -33,6 +33,10 @@ public class Action implements UINode {
         this.parent = parent;
         this.image = image;
         this.consAction = action;
+
+        if (parent != null) {
+            parent.getChildren().add(this);
+        }
     }
 
     // Action isn't going to have children.
