@@ -29,7 +29,7 @@ public class App {
     private UINode currentNode;
 
     @Getter
-    private UIRenderer renderer = new CMDRenderer();
+    private UIRenderer renderer = new SwingRenderer();
 
     // Threads
     private InputReader reader;
