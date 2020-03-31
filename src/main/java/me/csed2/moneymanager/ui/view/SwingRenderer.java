@@ -145,9 +145,8 @@ public class SwingRenderer implements UIRenderer {
         }
     }
 
-
     @Override
-    public void sendMessage(String message) {
+    public void renderText(String message) {
         JOptionPane.showMessageDialog(null, message);
     }
 
