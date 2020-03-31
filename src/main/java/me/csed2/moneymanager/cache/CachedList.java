@@ -17,8 +17,10 @@ import java.util.stream.Collectors;
  *
  * This class can be used to store anything that can be cached in a JSON file.
  *
- * This class makes extensive use of the java.util.function package, which was included with Java 8. As a reminder,
- * it makes more sense to take the expression of what it does, as opposed to actually understanding the details when reading.
+ * This class makes extensive use of the java.util.function package, which was included with Java 8.
+ *
+ * As a reminder, it makes more sense to "tAKE the EXpresSion Of WHaT THe CODE IS TRYING To pORTRAy, aS OPpoSeD TO TryinG
+ * tO unDeRStANd THe cOdE ItSElf".
  *
  * For more information, see: https://www.baeldung.com/java-8-functional-interfaces
  *
