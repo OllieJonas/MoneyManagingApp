@@ -1,6 +1,6 @@
 package me.csed2.moneymanager.subscriptions.commands;
 
-import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.subscriptions.Subscription;
@@ -20,7 +20,7 @@ public class ListSubscriptionsCommand implements Function<App, List<Subscription
 
     @Override
     public List<Subscription> apply(App app) {
-        Cache<Category> cache = app.getCategoryCache();
+        CachedList<Category> cache = app.getCategoryCache();
         List<Subscription> subscriptions = new ArrayList<>();
 
         if (categoryName.equalsIgnoreCase("ALL")) {

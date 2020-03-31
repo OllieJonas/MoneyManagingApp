@@ -1,6 +1,6 @@
 package me.csed2.moneymanager.categories.commands;
 
-import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryBuilder;
 import me.csed2.moneymanager.main.App;
@@ -25,7 +25,7 @@ public class AddCategoryCommand implements Function<App, Boolean> {
     @Override
     public Boolean apply(App app) {
 
-        Cache<Category> cache = app.getCategoryCache();
+        CachedList<Category> cache = app.getCategoryCache();
 
         CategoryBuilder builder = new CategoryBuilder(name)
                 .withId(id)

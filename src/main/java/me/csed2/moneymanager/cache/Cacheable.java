@@ -2,7 +2,7 @@ package me.csed2.moneymanager.cache;
 
 
 /**
- * Interface implemented by anything that can be cached in the Cache {@link Cache } abstract class.
+ * Interface implemented by anything that can be cached in the CachedList {@link CachedList} abstract class.
  *
  * This class allows common implementation of searching the cache either by name or by the ID.
  *

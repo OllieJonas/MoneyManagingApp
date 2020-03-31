@@ -1,6 +1,6 @@
 package me.csed2.moneymanager.transactions.commands;
 
-import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.transactions.Transaction;
@@ -20,7 +20,7 @@ public class ListTransactionsCommand implements Function<App, List<Transaction>>
 
     @Override
     public List<Transaction> apply(App app) {
-        Cache<Category> cache = app.getCategoryCache();
+        CachedList<Category> cache = app.getCategoryCache();
         List<Transaction> transactions = new ArrayList<>();
 
         if (categoryName.equalsIgnoreCase("ALL")) {

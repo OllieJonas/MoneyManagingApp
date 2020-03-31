@@ -1,6 +1,6 @@
 package me.csed2.moneymanager.categories.commands;
 
-import me.csed2.moneymanager.cache.Cache;
+import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.main.App;
 
@@ -17,7 +17,7 @@ public class RemoveCategoryCommand implements Function<App, Boolean> {
 
     @Override
     public Boolean apply(App app) {
-        Cache<Category> cache = App.getInstance().getCategoryCache();
+        CachedList<Category> cache = App.getInstance().getCategoryCache();
 
         AtomicBoolean removed = new AtomicBoolean(false); // async boolean variable, see Atomic Variables
 

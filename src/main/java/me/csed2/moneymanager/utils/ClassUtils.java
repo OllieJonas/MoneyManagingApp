@@ -2,7 +2,7 @@ package me.csed2.moneymanager.utils;
 
 import com.google.gson.internal.Primitives;
 import me.csed2.moneymanager.exceptions.InvalidTypeException;
-import me.csed2.moneymanager.ui.cmdline.stage.StageMenu;
+import me.csed2.moneymanager.ui.model.StageMenu;
 
 import java.util.HashMap;
 
@@ -10,7 +10,7 @@ import java.util.HashMap;
  * This class contains some utility methods around classes.
  *
  * The most notable of which is the getResultFromObject() method which is used by the StageMenu {@link StageMenu} to
- * convert the object that has been converted from a string by the StringReaderFactory {@link StringReaderFactory} into
+ * convert the object that has been converted from a string by the StringReaderFactory {@link StringParserFactory} into
  * the correct class type.
  */
 @SuppressWarnings("unused")
@@ -56,7 +56,7 @@ public class ClassUtils {
     public static <T> T getResultFromString(String text, Class<T> clazz) {
         try {
 
-            Object result = StringReaderFactory.parse(text, clazz);
+            Object result = StringParserFactory.parse(text, clazz);
 
             return cast(result, clazz);
 

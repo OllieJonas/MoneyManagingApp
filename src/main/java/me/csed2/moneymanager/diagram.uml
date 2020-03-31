@@ -3,7 +3,7 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="751.0" y="1775.0">me.csed2.moneymanager.ui.cmdline.InputProcessor</node>
+    <node x="751.0" y="1775.0">me.csed2.moneymanager.ui.controller.InputProcessor</node>
     <node x="616.0" y="1318.5">me.csed2.moneymanager.categories.commands.LoadCategoriesCommand</node>
     <node x="0.0" y="1297.0">me.csed2.moneymanager.transactions.commands.AddTransactionCommand</node>
     <node x="796.0" y="477.5">me.csed2.moneymanager.ui.cmdline.step.TestStepMenu</node>
@@ -15,20 +15,20 @@
     <node x="1135.0" y="321.0">me.csed2.moneymanager.utils.StringAlignUtils.Alignment</node>
     <node x="1218.0" y="1481.0">me.csed2.moneymanager.command.CommandDispatcher</node>
     <node x="1422.0" y="0.0">me.csed2.moneymanager.transactions.TransactionBuilder</node>
-    <node x="638.125" y="0.0">me.csed2.moneymanager.ui.Menu</node>
+    <node x="638.125" y="0.0">me.csed2.moneymanager.ui.model.Menu</node>
     <node x="414.0" y="1775.0">me.csed2.moneymanager.exceptions.InvalidTypeException</node>
     <node x="97.5" y="0.0">me.csed2.moneymanager.IRepository</node>
     <node x="885.0" y="1297.0">me.csed2.moneymanager.categories.commands.SaveCategoriesCommand</node>
     <node x="763.0" y="1481.0">me.csed2.moneymanager.ui.cmdline.step.Step</node>
     <node x="1272.0" y="1107.0">me.csed2.moneymanager.ui.Button</node>
-    <node x="988.0" y="1481.0">me.csed2.moneymanager.ui.cmdline.InputReader</node>
+    <node x="988.0" y="1481.0">me.csed2.moneymanager.ui.controller.InputReader</node>
     <node x="210.0" y="1775.0">me.csed2.moneymanager.main.Main</node>
     <node x="996.0" y="1775.0">me.csed2.moneymanager.ui.IAction</node>
     <node x="373.0" y="1481.0">me.csed2.moneymanager.transactions.Transaction</node>
     <node x="301.0" y="1297.0">me.csed2.moneymanager.categories.commands.AddCategoryCommand</node>
     <node x="0.0" y="256.0">me.csed2.moneymanager.categories.CategoryRepository</node>
     <node x="0.0" y="725.0">me.csed2.moneymanager.categories.CategoryBuilder</node>
-    <node x="560.0" y="467.0">me.csed2.moneymanager.categories.menu.cmdline.CategoriesMenu</node>
+    <node x="560.0" y="467.0">me.csed2.moneymanager.categories.menu.CategoriesMenu</node>
     <node x="0.0" y="1775.0">me.csed2.moneymanager.categories.CategoryHandler</node>
     <node x="541.5" y="981.0">me.csed2.moneymanager.utils.ConsoleUtils.BorderType</node>
     <node x="885.9375" y="1107.0">me.csed2.moneymanager.categories.commands.CategoriesCommand</node>
@@ -48,7 +48,7 @@
       <point x="521.0" y="1267.0" />
       <point x="-42.375" y="26.5" />
     </edge>
-    <edge source="me.csed2.moneymanager.ui.cmdline.CMDMenu" target="me.csed2.moneymanager.ui.Menu">
+    <edge source="me.csed2.moneymanager.ui.cmdline.CMDMenu" target="me.csed2.moneymanager.ui.model.Menu">
       <point x="0.0" y="-135.0" />
       <point x="565.25" y="78.0" />
       <point x="666.625" y="78.0" />
@@ -84,7 +84,7 @@
       <point x="505.5" y="442.0" />
       <point x="-59.75" y="135.0" />
     </edge>
-    <edge source="me.csed2.moneymanager.ui.cmdline.step.StepMenu" target="me.csed2.moneymanager.ui.Menu">
+    <edge source="me.csed2.moneymanager.ui.cmdline.step.StepMenu" target="me.csed2.moneymanager.ui.model.Menu">
       <point x="0.0" y="-157.0" />
       <point x="868.0" y="78.0" />
       <point x="723.625" y="78.0" />
@@ -96,7 +96,7 @@
       <point x="1050.1875" y="1277.0" />
       <point x="54.75" y="70.0" />
     </edge>
-    <edge source="me.csed2.moneymanager.categories.menu.cmdline.CategoriesMenu" target="me.csed2.moneymanager.ui.cmdline.CMDMenu">
+    <edge source="me.csed2.moneymanager.categories.menu.CategoriesMenu" target="me.csed2.moneymanager.ui.cmdline.CMDMenu">
       <point x="0.0" y="-69.5" />
       <point x="668.0" y="442.0" />
       <point x="625.0" y="442.0" />

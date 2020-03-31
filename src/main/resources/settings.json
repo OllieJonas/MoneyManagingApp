@@ -1,0 +1,11 @@
+{
+  "renderer": {
+    "value": "CMD",
+    "active": true
+  },
+
+  "hello": {
+    "value": "hey there",
+    "active": true
+  }
+}
