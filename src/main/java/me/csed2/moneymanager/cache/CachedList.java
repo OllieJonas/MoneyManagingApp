@@ -194,7 +194,7 @@ public class CachedList<E extends Cacheable> {
      * @return A list containing the matching items.
      */
     public CachedList<E> searchMatching(String name) {
-        return new CachedList<>(search(item -> item.getName().startsWith(name)));
+        return new CachedList<>(search(item -> item.getName().toLowerCase().startsWith(name.toLowerCase())));
     }
 
     /**

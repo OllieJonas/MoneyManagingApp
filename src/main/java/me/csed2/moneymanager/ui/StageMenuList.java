@@ -94,7 +94,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu SEARCH_CATEGORIES = new StageMenuBuilder("Search by category")
+    public static final StageMenu SEARCH_CATEGORIES = new StageMenuBuilder("Search Categories")
             .withParent(MenuList.CATEGORIES)
             .withStages(
                     new Stage<>(String.class,"What would you like to search for?")

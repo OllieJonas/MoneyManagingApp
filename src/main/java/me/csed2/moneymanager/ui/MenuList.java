@@ -20,7 +20,6 @@ public class MenuList {
 
     public static final Action LIST_CATEGORIES = new Action("List All Categories", CATEGORIES, "icons/button_search_0.png", (Consumer<App>) app -> app.sendMessage(app.getCategoryCache().getReport()));
     public static final Menu UPDATE_CATEGORY = new Menu("Update a Category", CATEGORIES, "icons/button_update_0.png");
-    public static final Menu SEARCH_CATEGORIES= new Menu("Search Categories", CATEGORIES, null);
 
 
     // Transactions
