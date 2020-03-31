@@ -1,10 +1,13 @@
 package me.csed2.moneymanager.ui;
 
+import me.csed2.moneymanager.cache.CachedList;
+import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.categories.commands.AddCategoryCommand;
 import me.csed2.moneymanager.categories.commands.RemoveCategoryCommand;
 import me.csed2.moneymanager.categories.commands.UpdateCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.subscriptions.SubscriptionArgType;
 import me.csed2.moneymanager.subscriptions.commands.AddSubscriptionCommand;
 import me.csed2.moneymanager.subscriptions.commands.RemoveSubscriptionCommand;
@@ -16,6 +19,8 @@ import me.csed2.moneymanager.transactions.commands.UpdateTransactionCommand;
 import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.StageMenu;
 import me.csed2.moneymanager.ui.model.StageMenuBuilder;
+
+import java.util.List;
 
 public class StageMenuList {
 
@@ -88,6 +93,20 @@ public class StageMenuList {
                 }
             })
             .build();
+
+    public static final StageMenu SEARCH_CATEGORIES = new StageMenuBuilder("Search by category")
+            .withParent(MenuList.CATEGORIES)
+            .withStages(
+                    new Stage<>(String.class,"What would you like to search for?")
+            )
+            .withExitPhase(new StageMenu.Phase() {
+                @Override
+                public void execute(App app, List<Stage<?>> stages) {
+                    String searchTerm = (String) stages.get(0).getResult();
+                    CachedList<Category> items =app.getCategoryCache().searchMatching(searchTerm);
+                    app.sendMessage(items.getReport());
+                }
+            }).build();
 
     // Transactions
     public static final StageMenu ADD_TRANSACTION = new StageMenuBuilder("Add a Transaction")

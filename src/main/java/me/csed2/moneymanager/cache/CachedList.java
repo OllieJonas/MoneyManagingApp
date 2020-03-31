@@ -193,8 +193,8 @@ public class CachedList<E extends Cacheable> {
      * @param name The name to search for
      * @return A list containing the matching items.
      */
-    public ImmutableList<E> searchMatching(String name) {
-        return search(item -> item.getName().startsWith(name));
+    public CachedList<E> searchMatching(String name) {
+        return new CachedList<>(search(item -> item.getName().startsWith(name)));
     }
 
     /**
