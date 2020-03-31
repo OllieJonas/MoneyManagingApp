@@ -3,6 +3,7 @@ package me.csed2.moneymanager.ui.model;
 import lombok.Getter;
 import me.csed2.moneymanager.main.App;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -86,6 +87,7 @@ public class StageMenu implements UINode {
         return stages.get(count);
     }
 
+    @FunctionalInterface
     public interface Phase {
         void execute(App app, List<Stage<?>> stages);
     }

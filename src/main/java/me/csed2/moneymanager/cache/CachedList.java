@@ -5,6 +5,7 @@ import me.csed2.moneymanager.cache.commands.LoadFromJsonAsListCommand;
 import me.csed2.moneymanager.cache.commands.SaveListToDBCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 
+import javax.annotation.concurrent.Immutable;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
