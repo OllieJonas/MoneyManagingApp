@@ -64,8 +64,11 @@ public class InputProcessor {
 
                 Stage<?> nextStage = menu.nextStage();
 
-                app.render(nextStage);
-
+                if (nextStage != null) {
+                    app.render(nextStage);
+                } else {
+                    app.render(node.getParent());
+                }
             } catch (InvalidTypeException e) {
                 System.out.println(e.getMessage());
 

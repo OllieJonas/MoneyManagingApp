@@ -7,11 +7,11 @@ public class StageMenuBuilder {
 
     protected final String name;
 
-    protected Menu parent;
+    private Menu parent;
 
-    protected String image;
+    private String image;
 
-    protected List<Stage<?>> stages;
+    private List<Stage<?>> stages;
 
     private StageMenu.Phase beginPhase;
 

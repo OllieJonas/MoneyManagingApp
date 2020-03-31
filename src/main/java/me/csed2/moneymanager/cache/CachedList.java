@@ -5,6 +5,7 @@ import me.csed2.moneymanager.cache.commands.LoadFromJsonAsListCommand;
 import me.csed2.moneymanager.cache.commands.SaveListToDBCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 
+import javax.annotation.concurrent.Immutable;
 import java.io.FileNotFoundException;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -193,8 +194,8 @@ public class CachedList<E extends Cacheable> {
      * @param name The name to search for
      * @return A list containing the matching items.
      */
-    public ImmutableList<E> searchMatching(String name) {
-        return search(item -> item.getName().startsWith(name));
+    public CachedList<E> searchMatching(String name) {
+        return new CachedList<>(search(item -> item.getName().toLowerCase().startsWith(name.toLowerCase())));
     }
 
     /**
@@ -206,11 +207,11 @@ public class CachedList<E extends Cacheable> {
      * @param comparator The comparator to sort by.
      * @return An immutable (unchangeable) sorted list using the comparator given.
      */
-    public ImmutableList<E> sort(Comparator<E> comparator) {
-        return ImmutableList.copyOf(asList()
+    public CachedList<E> sort(Comparator<E> comparator) {
+        return new CachedList<>(ImmutableList.copyOf(asList()
                 .stream()
                 .sorted(comparator)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList())));
     }
 
     /**
