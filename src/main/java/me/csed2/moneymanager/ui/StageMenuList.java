@@ -99,13 +99,10 @@ public class StageMenuList {
             .withStages(
                     new Stage<>(String.class,"What would you like to search for?")
             )
-            .withExitPhase(new StageMenu.Phase() {
-                @Override
-                public void execute(App app, List<Stage<?>> stages) {
-                    String searchTerm = (String) stages.get(0).getResult();
-                    CachedList<Category> items =app.getCategoryCache().searchMatching(searchTerm);
-                    app.sendMessage(items.getReport());
-                }
+            .withExitPhase((app, stages) -> {
+                String searchTerm = (String) stages.get(0).getResult();
+                CachedList<Category> items =app.getCategoryCache().searchMatching(searchTerm);
+                app.sendMessage(items.getReport());
             }).build();
 
     // Transactions

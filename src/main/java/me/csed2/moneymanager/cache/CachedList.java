@@ -206,11 +206,11 @@ public class CachedList<E extends Cacheable> {
      * @param comparator The comparator to sort by.
      * @return An immutable (unchangeable) sorted list using the comparator given.
      */
-    public ImmutableList<E> sort(Comparator<E> comparator) {
-        return ImmutableList.copyOf(asList()
+    public CachedList<E> sort(Comparator<E> comparator) {
+        return new CachedList<>(ImmutableList.copyOf(asList()
                 .stream()
                 .sorted(comparator)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList())));
     }
 
     /**

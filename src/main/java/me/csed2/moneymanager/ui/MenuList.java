@@ -1,5 +1,7 @@
 package me.csed2.moneymanager.ui;
 
+import me.csed2.moneymanager.categories.CategoryArgType;
+import me.csed2.moneymanager.categories.commands.SortCategoriesCommand;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.rest.monzo.commands.MonzoAuthCommand;
@@ -20,13 +22,22 @@ public class MenuList {
 
     public static final Action LIST_CATEGORIES = new Action("List All Categories", CATEGORIES, "icons/button_search_0.png", (Consumer<App>) app -> app.sendMessage(app.getCategoryCache().getReport()));
     public static final Menu UPDATE_CATEGORY = new Menu("Update a Category", CATEGORIES, "icons/button_update_0.png");
-
+    public static final Menu SORT_CATEGORIES= new Menu ("Sort Categories", CATEGORIES, null);
+    public static final Action SORT_CATEGORIES_NAME= new Action("Sort by Name",SORT_CATEGORIES,null, new SortCategoriesCommand(CategoryArgType.NAME, false));
+    public static final Action SORT_CATEGORIES_ID= new Action ("Sort by ID", SORT_CATEGORIES,null,new SortCategoriesCommand(CategoryArgType.ID, false));
+    public static final Action SORT_CATEGORIES_BUDGET=new Action ("Sort by Budget", SORT_CATEGORIES, null,new SortCategoriesCommand(CategoryArgType.BUDGET, false));
+    public static final Action SORT_CATEGORIES_CREATED=new Action ("Sort by Date Created", SORT_CATEGORIES, null,new SortCategoriesCommand(CategoryArgType.CREATED, false));
 
     // Transactions
     public static final Menu TRANSACTIONS = new Menu("Transactions", MAIN, null);
 
     public static final Action LIST_TRANSACTIONS = new Action("List All Transactions", TRANSACTIONS, "icons/button_search_0.png", (Consumer<App>) app -> app.sendMessage(app.getTransactionCache().getReport()));
     public static final Menu UPDATE_TRANSACTION = new Menu("Update a Transaction", TRANSACTIONS, "icons/button_update_0.png");
+    public static final Menu SORT_TRANSACTIONS= new Menu ("Sort Transactions", TRANSACTIONS, null);
+//        new Action("Sort by Name", SORT_TRANSACTIONS,null)
+//        new Action ("Sort by ID", SORT_TRANSACTIONS,null)
+//        new Action ("Sort by Budget", SORT_TRANSACTIONS, null)
+//        new Action ("Sort by Date Created", SORT_TRANSACTIONS, null)
 
 
     // Subscriptions
@@ -34,7 +45,11 @@ public class MenuList {
 
     public static final Action LIST_SUBSCRIPTIONS = new Action("List All Subscriptions", SUBSCRIPTIONS, "icons/button_search_0.png", (Consumer<App>) app -> app.sendMessage(app.getSubscriptionCache().getReport()));
     public static final Menu UPDATE_SUBSCRIPTION = new Menu("Update a Subscription", SUBSCRIPTIONS, "icons/button_update_0.png");
-
+    public static final Menu SORT_SUBSCRIPTIONS= new Menu ("Sort Transactions", SUBSCRIPTIONS, null);
+//        new Action("Sort by Name", SORT_SUBSCRIPTIONS,null)
+//        new Action ("Sort by ID", SORT_SUBSCRIPTIONS,null)
+//        new Action ("Sort by Budget", SORT_SUBSCRIPTIONS, null)
+//        new Action ("Sort by Date Created", SORT_SUBSCRIPTIONS, null)
 
     // Authenticate
     public static final Menu AUTH_MENU = new Menu("Authenticate a Bank Account", MAIN, null);
