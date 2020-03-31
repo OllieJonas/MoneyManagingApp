@@ -1,6 +1,6 @@
 {
-  "hi": {
-    "value": "hi",
+  "renderer": {
+    "value": "CMD",
     "active": true
   },
 

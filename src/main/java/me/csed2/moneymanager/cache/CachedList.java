@@ -2,7 +2,7 @@ package me.csed2.moneymanager.cache;
 
 import com.google.common.collect.ImmutableList;
 import me.csed2.moneymanager.cache.commands.LoadFromJsonAsListCommand;
-import me.csed2.moneymanager.cache.commands.SaveToDBCommand;
+import me.csed2.moneymanager.cache.commands.SaveListToDBCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 
 import java.io.FileNotFoundException;
@@ -250,7 +250,7 @@ public class CachedList<E extends Cacheable> {
      * @param fileName The filename in question
      */
     public boolean save(String fileName) {
-        return CommandDispatcher.dispatchSync(new SaveToDBCommand<>(), fileName, items);
+        return CommandDispatcher.dispatchSync(new SaveListToDBCommand<>(fileName, items));
     }
 
     /**

@@ -12,6 +12,7 @@ import me.csed2.moneymanager.ui.controller.InputReader;
 import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.UINode;
 import me.csed2.moneymanager.ui.view.CMDRenderer;
+import me.csed2.moneymanager.ui.view.SwingRenderer;
 import me.csed2.moneymanager.ui.view.UIRenderer;
 
 import java.io.FileNotFoundException;
@@ -45,8 +46,7 @@ public class App {
     @Getter
     private CachedList<Subscription> subscriptionCache = new CachedList<>();
 
-    // Settings
-    private Map<String, Setting<?>> settings;
+    private SettingWrapper settings;
 
     @Getter
     private static App instance;
@@ -64,7 +64,10 @@ public class App {
         // Load caches
         try {
             // Load settings
-             this.settings = CommandDispatcher.dispatchSync(new LoadSettingsCommand("settings.json"));
+            this.settings = new SettingWrapper("settings.json");
+
+            this.renderer = ((String) settings.get("renderer").getValue()).equalsIgnoreCase("CMD") ? new CMDRenderer() : new SwingRenderer();
+
             // Load caches
             categoryCache.load(Category.class, "categories.json");
             transactionCache.load(Transaction.class, "transactions.json");
@@ -83,16 +86,20 @@ public class App {
         renderer.render(node);
     }
 
+    public void render(String text) {
+        renderer.renderText(text);
+    }
+
     public void render(Stage<?> stage) {
         renderer.renderStage(stage);
     }
 
     public void sendMessage(String message) {
-        renderer.sendMessage(message);
+        renderer.renderText(message);
     }
 
     public synchronized void exit() {
-        renderer.sendMessage("Exiting program...");
+        renderer.renderText("Exiting program...");
         App.getInstance().getCategoryCache().save("categories.json");
         autoSave.interrupt();
         reader.interrupt();

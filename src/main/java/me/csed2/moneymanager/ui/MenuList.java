@@ -47,7 +47,7 @@ public class MenuList {
     public static final Action MONZO_LIST_ACCOUNTS = new Action("List Accounts", MONZO, null, new MonzoGetAccountsCommand());
     public static final Action MONZO_GET_TRANSACTIONS = new Action("List Transactions", MONZO, null, new MonzoGetTransactionsCommand());
     public static final Action MONZO_CHECK_AUTH = new Action("Check Authentication", MONZO, null, new MonzoCheckAuthCommand());
-    public static final Action MONZO_PRINT_TOKEN = new Action("Print Access Token", MONZO, null, (Consumer<App>) app -> System.out.println(MonzoHttpClient.getAccessToken()));
+    public static final Action MONZO_PRINT_TOKEN = new Action("Print Access Token", MONZO, null, (Consumer<App>) app -> app.render(MonzoHttpClient.getAccessToken()));
 
 
     public static void decorateExitAction(Menu parent) {

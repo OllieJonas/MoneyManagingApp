@@ -6,7 +6,7 @@ import me.csed2.moneymanager.ui.model.UINode;
 public interface UIRenderer {
     void render(UINode node);
 
-    void sendMessage(String message);
+    void renderText(String message);
 
     void renderStage(Stage<?> stage);
 }

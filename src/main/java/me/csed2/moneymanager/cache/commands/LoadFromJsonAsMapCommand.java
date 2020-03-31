@@ -42,7 +42,7 @@ public class LoadFromJsonAsMapCommand<K, V extends Cacheable> implements Supplie
 
     private static class TypeFactory {
 
-        static Type getType(Class<?> keyClazz, Class<? extends Cacheable> valueClazz) {
+        static Type getType(Class<?> keyClazz, Class<?> valueClazz) {
             if (keyClazz == String.class && valueClazz == Setting.class) {
                 return new TypeToken<Map<String, Setting<?>>>() {
                 }.getType();

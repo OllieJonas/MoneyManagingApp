@@ -1,7 +1,6 @@
 package me.csed2.moneymanager.cache.commands;
 
 import com.google.gson.Gson;
-import me.csed2.moneymanager.cache.Cacheable;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.main.Main;
 
@@ -12,16 +11,23 @@ import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.Function;
+import java.util.function.Predicate;
 
-public class SaveToDBCommand<T extends Cacheable> implements BiFunction<String, List<T>, Boolean> {
+public class SaveListToDBCommand<E> implements Predicate<App> {
+
+    private String name;
+    private List<E> items;
+
+    public SaveListToDBCommand(String name, List<E> items) {
+        this.name = name;
+        this.items = items;
+    }
 
     @Override
-    public Boolean apply(String fileName, List<T> items) {
+    public boolean test(App app) {
         String jsonString = new Gson().toJson(items);
 
-        URL url = Main.class.getClassLoader().getResource(fileName);
+        URL url = Main.class.getClassLoader().getResource(name);
 
         try {
             assert url != null;
