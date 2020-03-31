@@ -5,15 +5,15 @@ import me.csed2.moneymanager.transactions.Transaction;
 
 import java.util.Arrays;
 import java.util.Date;
+import java.time.format.DateTimeFormatter;
 
 public class Subscription extends Transaction implements Cacheable{
 
     private int timeCycle;
-    private String timeCycleUnit;
-
     private Boolean cancelMe;
+    private Date startDate = date;
 
-    public Subscription(String name, int id, Date date, int amount, String category, String[] notes, String vendor) {
+    public Subscription(String name, int id, Date date, int amount, String category, Integer timeCycle, String timeCycleUnit, String[] notes, String vendor) {
         super(name, id, date, amount, category, notes, vendor);
     }
 
@@ -26,7 +26,7 @@ public class Subscription extends Transaction implements Cacheable{
         System.out.println("  amount: " + amount);
         System.out.println("  category: " + category);
         System.out.println("  vendor: " + vendor);
-        System.out.println("  Remews everu " + timeCycle + " " + timeCycleUnit);
+        System.out.println("  Remews every " + timeCycle + " ");
         System.out.println("  You want to be notified for cancellation: " + cancelMe);
         System.out.println("  notes: ");
         for (String note : notes) {

@@ -19,6 +19,8 @@ import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.StageMenu;
 import me.csed2.moneymanager.ui.model.StageMenuBuilder;
 
+import javax.swing.*;
+
 public class StageMenuList {
 
     // Categories
@@ -209,18 +211,22 @@ public class StageMenuList {
             .withStages(
                     new Stage<>(String.class, "What is the name of the category you'd like to add the subscription to?"),
                     new Stage<>(String.class, "What is the name of the subscription>"),
-                    new Stage<>(Double.class, "How much was spent here?"),
-                    new Stage<>(String.class, "Where did you spend this money?"),
+                    new Stage<>(Double.class, "How much is it?"),
+                    new Stage<>(String.class, "Who provides this service?"),
+                    new Stage<>(Integer.class, "How frequently does this repeat?"),
+                    new Stage<>(String.class, "days/months/years"),
                     new Stage<>(String.class, "Do you have any notes about this subscription?", "Please split all notes you have with: \", \""))
             .withExitPhase((app, stages) -> {
 
                 String categoryName = (String) stages.get(0).getResult();
                 String name = (String) stages.get(1).getResult();
-                Integer amount = (Integer) stages.get(2).getResult();
+                int amount = (int) (double)(Double)stages.get(2).getResult();
                 String vendor = (String) stages.get(3).getResult();
-                String[] notes = ((String) stages.get(4).getResult()).split(",");
+                int timeCycle = (Integer) stages.get(4).getResult();
+                String timeCycleUnit = (String) stages.get(5).getResult();
+                String[] notes = ((String) stages.get(6).getResult()).split(",");
 
-                if (CommandDispatcher.dispatchSync(new AddSubscriptionCommand(categoryName, name, amount, vendor, notes))) {
+                if (CommandDispatcher.dispatchSync(new AddSubscriptionCommand(categoryName, name, amount, vendor,timeCycle, timeCycleUnit, notes))) {
                     app.sendMessage("Subscription successfully added!");
                 } else {
                     app.sendMessage("Error: Unable to add subscription!");

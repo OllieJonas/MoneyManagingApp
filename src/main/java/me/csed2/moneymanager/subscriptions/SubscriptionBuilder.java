@@ -41,6 +41,10 @@ public class SubscriptionBuilder {
      */
     private String vendor;
 
+    private int timeCycle;
+
+    private String timeCycleUnit;
+
     private String categoryName;
 
     public SubscriptionBuilder(String name) {
@@ -71,9 +75,17 @@ public class SubscriptionBuilder {
         this.vendor = vendor;
         return this;
     }
+    public SubscriptionBuilder withTimeCycle(int timeCycle){
+        this.timeCycle=timeCycle;
+        return this;
+    }
+    public SubscriptionBuilder withTimeCycleUnit(String timeCycleUnit){
+        this.timeCycleUnit=timeCycleUnit;
+        return this;
+    }
 
     public Subscription build() {
-        return new Subscription(name, App.getInstance().getSubscriptionCache().nextId(), date, amount, categoryName, notes, vendor);
+        return new Subscription(name, App.getInstance().getSubscriptionCache().nextId(), date, amount, categoryName, timeCycle, timeCycleUnit, notes, vendor);
     }
 
 }
