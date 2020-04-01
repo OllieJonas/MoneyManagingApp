@@ -6,6 +6,7 @@ import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.cache.commands.LoadSettingsCommand;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.ui.controller.InputReader;
@@ -46,7 +47,12 @@ public class App {
     @Getter
     private CachedList<Subscription> subscriptionCache = new CachedList<>();
 
+    // Settings
     private SettingWrapper settings;
+
+    // Monzo
+    @Getter
+    private MonzoHttpClient monzoClient;
 
     @Getter
     private static App instance;
@@ -60,6 +66,8 @@ public class App {
         // Start autosave
         autoSave = new AutoSave(5, TimeUnit.MINUTES);
         autoSave.start();
+
+        monzoClient = new MonzoHttpClient();
 
         // Load caches
         try {

@@ -38,17 +38,16 @@ public class MonzoGetAccountsCommand implements Function<App, List<MonzoAccount>
             // Handling Monzo's weird JSON formatting...
             JsonArray array = initialObject.getAsJsonArray("accounts");
 
-            List<MonzoAccount> arrList = new ArrayList<>();
-
             Gson gson = new Gson();
 
             for (int i = 0; i < array.size(); i++) {
                 JsonObject newObject = array.get(i).getAsJsonObject();
-                arrList.add(new MonzoAccount(gson.fromJson(newObject, JsonObject.class)));
+                app.getMonzoClient().addAccount(new MonzoAccount(gson.fromJson(newObject, JsonObject.class)));
             }
-            MonzoHttpClient.setSelectedAccount(arrList.get(0)); // Set default Selected Account to the first one.
 
-            return arrList;
+            app.getMonzoClient().setSelectedAccount(app.getMonzoClient().getAccounts().get(0)); // Set default Selected Account to the first one.
+
+            return app.getMonzoClient().getAccounts();
 
         } catch (IOException e) {
             e.printStackTrace();

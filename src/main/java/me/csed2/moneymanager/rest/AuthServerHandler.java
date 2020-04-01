@@ -23,8 +23,11 @@ public abstract class AuthServerHandler implements HttpHandler {
         String fullReply = exchange.getRequestURI().toString();
         String reply = fullReply.split("\\?")[1].split("=")[0];
 
+        System.out.println(fullReply);
+
         for (String tag : responses.keySet()) {
             if (reply.contains(tag)) {
+                System.out.println("accepted");
                 responses.get(tag).accept(fullReply);
                 break;
             }
@@ -33,7 +36,7 @@ public abstract class AuthServerHandler implements HttpHandler {
 
     public abstract void addResponses();
 
-    public abstract void run();
+    public abstract AuthServerHandler run();
 
     public abstract List<NameValuePair> buildAuthenticationRequest();
 

@@ -24,9 +24,9 @@ public class MonzoGetTransactionsCommand implements Function<App, List<MonzoTran
 
     @Override
     public List<MonzoTransaction> apply(App app) {
-        HttpGet request = new HttpGet(MonzoDetails.MONZO_API + "/transactions");
+        HttpGet request = new HttpGet(MonzoDetails.MONZO_API + "/transactions?expand[]=merchant&account_id="
+                + app.getMonzoClient().getSelectedAccount().getId());
         request.addHeader("Authorization", "Bearer " + MonzoHttpClient.getAccessToken());
-        request.addHeader("account_id", MonzoHttpClient.getSelectedAccount().getId());
 
         try (CloseableHttpClient client = HttpClients.createDefault();
              CloseableHttpResponse response = client.execute(request)) {
@@ -34,6 +34,7 @@ public class MonzoGetTransactionsCommand implements Function<App, List<MonzoTran
             HttpEntity entity = response.getEntity();
 
             String fullJson = EntityUtils.toString(entity); // Convert to JSON string
+            System.out.println(fullJson);
             JsonObject initialObject = JSONUtils.getAsJsonObject(fullJson); // Convert String into JSON Object
 
             // Handling Monzo's weird JSON formatting...

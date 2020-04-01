@@ -21,7 +21,7 @@ public class AuthMonzoServer implements Server {
 
         server = HttpServer.create(new InetSocketAddress("localhost", port), 0); // Start a localhost server on port to listen to responses from Monzo
 
-        server.createContext("/oauth/callback", new AuthMonzoHandler()); // Set the listener to this path.
+        server.createContext("/oauth/callback", new AuthMonzoHandler().run()); // Set the listener to this path.
 
         server.setExecutor(service); // Set asynchronous
     }

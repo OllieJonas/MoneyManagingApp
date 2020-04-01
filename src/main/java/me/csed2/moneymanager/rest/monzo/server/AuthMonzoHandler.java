@@ -45,8 +45,9 @@ public class AuthMonzoHandler extends AuthServerHandler {
     }
 
     @Override
-    public void run() {
+    public AuthServerHandler run() {
         addResponses();
+        return this;
     }
 
     private void getAccessToken() throws IOException {

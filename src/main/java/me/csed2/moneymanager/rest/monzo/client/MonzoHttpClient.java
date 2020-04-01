@@ -14,9 +14,6 @@ public class MonzoHttpClient extends BankClient<MonzoAccount> {
 
     private String state;
 
-    @Getter @Setter
-    private static MonzoAccount selectedAccount;
-
     public MonzoHttpClient() {
 
     }
