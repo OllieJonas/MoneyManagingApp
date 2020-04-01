@@ -7,6 +7,7 @@ import me.csed2.moneymanager.cache.commands.LoadSettingsCommand;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.subscriptions.Subscription;
+import me.csed2.moneymanager.subscriptions.SubscriptionNotificationDispatcher;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.ui.controller.InputReader;
 import me.csed2.moneymanager.ui.model.Stage;
@@ -79,6 +80,9 @@ public class App {
 
         // Assign an instance, also ensures GC doesn't collect anything in here.
         instance = this;
+
+        Runnable subscriptionNotifications = new SubscriptionNotificationDispatcher(this, this.renderer);
+        new Thread(subscriptionNotifications).start();
     }
 
     public void render(UINode node) {

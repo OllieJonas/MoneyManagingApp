@@ -20,6 +20,8 @@ import me.csed2.moneymanager.ui.model.StageMenu;
 import me.csed2.moneymanager.ui.model.StageMenuBuilder;
 
 import javax.swing.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class StageMenuList {
 
@@ -211,10 +213,12 @@ public class StageMenuList {
             .withStages(
                     new Stage<>(String.class, "What is the name of the category you'd like to add the subscription to?"),
                     new Stage<>(String.class, "What is the name of the subscription>"),
-                    new Stage<>(Double.class, "How much is it?"),
+                    new Stage<>(Double.class, "How much is it per renewal?"),
                     new Stage<>(String.class, "Who provides this service?"),
-                    new Stage<>(Integer.class, "How frequently does this repeat?"),
+                    new Stage<>(Integer.class, "How frequently does this renew?"),
                     new Stage<>(String.class, "days/months/years"),
+                    new Stage<>(String.class, "Would you like to be notified when this subscription renews? (y/n)"),
+                    new Stage<>(String.class, "Date of commencement(DD/MM/YY)"),
                     new Stage<>(String.class, "Do you have any notes about this subscription?", "Please split all notes you have with: \", \""))
             .withExitPhase((app, stages) -> {
 
@@ -224,9 +228,11 @@ public class StageMenuList {
                 String vendor = (String) stages.get(3).getResult();
                 int timeCycle = (Integer) stages.get(4).getResult();
                 String timeCycleUnit = (String) stages.get(5).getResult();
-                String[] notes = ((String) stages.get(6).getResult()).split(",");
+                String cancelMe = (String) stages.get(6).getResult();
+                String commencement=(String) stages.get(7).getResult();
+                String[] notes = ((String) stages.get(8).getResult()).split(",");
 
-                if (CommandDispatcher.dispatchSync(new AddSubscriptionCommand(categoryName, name, amount, vendor,timeCycle, timeCycleUnit, notes))) {
+                if (CommandDispatcher.dispatchSync(new AddSubscriptionCommand(categoryName, name, amount, vendor, timeCycle, timeCycleUnit, notes, cancelMe, commencement))) {
                     app.sendMessage("Subscription successfully added!");
                 } else {
                     app.sendMessage("Error: Unable to add subscription!");
