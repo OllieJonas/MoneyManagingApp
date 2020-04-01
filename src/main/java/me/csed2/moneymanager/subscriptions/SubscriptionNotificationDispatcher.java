@@ -7,6 +7,7 @@ import me.csed2.moneymanager.subscriptions.commands.ListSubscriptionsCommand;
 import java.awt.*;
 import java.lang.reflect.Array;
 import java.text.ParseException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.text.SimpleDateFormat;
@@ -90,6 +91,8 @@ public class SubscriptionNotificationDispatcher implements Runnable{
                         renderer.renderText(i.getName() + " renewed at a cost of £" + i.getAmount());
                         notifiedID.add(i.getId());
                         new AddTransactionCommand(i.getCategory(), i.getName(),i.getAmount(),i.getVendor(), i.getNotes());
+                        System.out.println(nextRenewal);
+                        i.setCommencement(new SimpleDateFormat("dd/MM/yyyy").format(nextRenewal));
                     }
                     calendar.setTime(currentDate);
                     calendar.add(Calendar.DAY_OF_MONTH,1);

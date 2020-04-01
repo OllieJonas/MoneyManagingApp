@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.subscriptions;
 
 import lombok.Getter;
+import lombok.Setter;
 import me.csed2.moneymanager.cache.Cacheable;
 import me.csed2.moneymanager.transactions.Transaction;
 
@@ -8,6 +9,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.time.format.DateTimeFormatter;
 @Getter
+@Setter
 public class Subscription extends Transaction implements Cacheable{
 
     private int timeCycle;
@@ -60,7 +62,7 @@ public class Subscription extends Transaction implements Cacheable{
                 "  Vendor: " + vendor + "\n" +
                 "  Subscription interval: " + timeCycle + " " + timeCycleUnit +"\n"+
                 "  Notified upon renewal: " + cancelMeBool + "\n" +
-                "  Date of commencement: " + commencement + "\n" +
+                "  Date of last renewal: " + commencement + "\n" +
                 "  Notes: " + Arrays.toString(notes);
     }
 }
