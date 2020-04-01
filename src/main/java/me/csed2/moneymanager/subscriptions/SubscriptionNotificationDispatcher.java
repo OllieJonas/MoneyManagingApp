@@ -62,52 +62,47 @@ public class SubscriptionNotificationDispatcher implements Runnable{
         Date currentDate = new Date();
         Date testDate;
         Calendar calendar = Calendar.getInstance();
-        boolean notified;
 
-        try {
-            ArrayList<Subscription> list = app.getSubscriptionCache().getList();
-            for(Subscription i : list){
-                notified=false;
-                Date commencment=stringToDate(i.getCommencement());
-                calendar.setTime(commencment);
-                String cycleUnit=i.getTimeCycleUnit();
-                int cycle = i.getTimeCycle();
-
-                if(cycleUnit.contains("month")){
-                    calendar.add(Calendar.MONTH, cycle);
-                    nextRenewal=calendar.getTime();
-                }
-                else if (cycleUnit.contains("day")){
-                    calendar.add(Calendar.DAY_OF_MONTH, cycle);
-                    nextRenewal=calendar.getTime();
-                }
-                else if (cycleUnit.contains("year")){
-                    calendar.add(Calendar.YEAR, cycle);
-                    nextRenewal=calendar.getTime();
-                }
-                if(nextRenewal.compareTo(currentDate)<0){
-                    renderer.renderText(i.getName() + " renewed at a cost of £" + i.getAmount());
-                    notified=true;
-                    new AddTransactionCommand(i.getCategory(), i.getName(),i.getAmount(),i.getVendor(), i.getNotes());
-                }
-                calendar.setTime(currentDate);
-                calendar.add(Calendar.DAY_OF_MONTH,1);
-                testDate=calendar.getTime();
-
-                if(testDate.compareTo(nextRenewal)>0 && !notified){
-                    renderer.renderText(i.getName() + " will renew tomorrow at a cost of £" + i.getAmount());
-                }
-            }
-        }catch(NullPointerException e){
-            // Empty list returned
-        }
-
+        ArrayList<Integer> notifiedID = new ArrayList<>();
         while(!exitClause){
-            if (earliest==null){
-                hangThread(20000);
+            try {
+                ArrayList<Subscription> list = app.getSubscriptionCache().getList();
+                for(Subscription i : list){
+
+                    Date commencment=stringToDate(i.getCommencement());
+                    calendar.setTime(commencment);
+                    String cycleUnit=i.getTimeCycleUnit();
+                    int cycle = i.getTimeCycle();
+
+                    if(cycleUnit.contains("month")){
+                        calendar.add(Calendar.MONTH, cycle);
+                        nextRenewal=calendar.getTime();
+                    }
+                    else if (cycleUnit.contains("day")){
+                        calendar.add(Calendar.DAY_OF_MONTH, cycle);
+                        nextRenewal=calendar.getTime();
+                    }
+                    else if (cycleUnit.contains("year")){
+                        calendar.add(Calendar.YEAR, cycle);
+                        nextRenewal=calendar.getTime();
+                    }
+                    if(nextRenewal.compareTo(currentDate)<0 && !notifiedID.contains(i.getId())){
+                        renderer.renderText(i.getName() + " renewed at a cost of £" + i.getAmount());
+                        notifiedID.add(i.getId());
+                        new AddTransactionCommand(i.getCategory(), i.getName(),i.getAmount(),i.getVendor(), i.getNotes());
+                    }
+                    calendar.setTime(currentDate);
+                    calendar.add(Calendar.DAY_OF_MONTH,1);
+                    testDate=calendar.getTime();
+
+                    if(testDate.compareTo(nextRenewal)>0 && !notifiedID.contains(i.getId())){
+                        renderer.renderText(i.getName() + " will renew tomorrow at a cost of £" + i.getAmount());
+                        notifiedID.add(i.getId());
+                    }
+                }
+            }catch(NullPointerException e){
+                // Empty list returned
             }
-
-
         }
     }
 }
