@@ -60,7 +60,7 @@ public class StageMenu implements UINode {
         if (exitPhase != null) {
             exitPhase.execute(App.getInstance(), stages);
         }
-        count = 0;
+        clear();
     }
     // no children for StageMenu
     @Override
@@ -86,6 +86,13 @@ public class StageMenu implements UINode {
 
     public Stage<?> currentStage() {
         return stages.get(count);
+    }
+
+    private void clear() {
+        count = 0;
+        for (Stage<?> stage : stages) {
+            stage.setResult(null);
+        }
     }
 
     @FunctionalInterface
