@@ -20,8 +20,8 @@ public class LoadSettingsCommand implements Supplier<LinkedHashMap<String, Setti
     private JsonReader reader;
 
     public LoadSettingsCommand(String fileName) throws FileNotFoundException {
-        this.gson = new Gson();
 
+        this.gson = new Gson();
         this.type = new TypeToken<LinkedHashMap<String, Setting<?>>>(){}.getType();
 
         URL url = Main.class.getClassLoader().getResource(fileName);

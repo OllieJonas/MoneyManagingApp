@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.budget.Commands;
+package me.csed2.moneymanager.budget.commands;
 
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
@@ -9,19 +9,15 @@ import java.util.Optional;
 import java.util.function.Function;
 
 /**
- * This changes the budget for the overall catogory
- * @param <T>
+ * This changes the budget for the overall category
  */
-public class UpdateOverallBudget<T> implements Function<App, Boolean> {
+public class UpdateOverallBudget implements Function<App, Boolean> {
 
-    private String name = "Overall";
+    private final String NAME = "Overall";
 
-    private CategoryArgType argType;
+    private int result;
 
-    private T result;
-
-    public UpdateOverallBudget(CategoryArgType argType, T result) {
-        this.argType = argType;
+    public UpdateOverallBudget(int result) {
         this.result = result;
     }
 
@@ -29,11 +25,11 @@ public class UpdateOverallBudget<T> implements Function<App, Boolean> {
     public Boolean apply(App app) {
         CachedList<Category> repository = app.getCategoryCache();
 
-        Optional<Category> catOptional = repository.search(name);
+        Optional<Category> catOptional = repository.search(NAME);
 
         if (catOptional.isPresent()) {
             Category category = catOptional.get();
-            category.setBudget((Integer) result);
+            category.setBudget(result);
 
             repository.update(category);
             repository.save("categories.json");

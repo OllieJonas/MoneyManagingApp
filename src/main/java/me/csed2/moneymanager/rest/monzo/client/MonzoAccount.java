@@ -47,8 +47,8 @@ public class MonzoAccount implements Account, JsonWrapped {
     public String toFormattedString() {
         return "ID: " + id + "\n" +
                 "  Description: " + id + "\n"
-                + "  Created: " + created.toString()
-                + "  Account Number: " + wrappedObject.get("account_number").getAsInt()
+                + "  Created: " + created.toString() + "\n"
+                + "  Account Number: " + wrappedObject.get("account_number").getAsInt() + "\n"
                 + "  Sort Code: " + wrappedObject.get("sort_code").getAsInt();
     }
 }

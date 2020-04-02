@@ -41,7 +41,7 @@ public class InputProcessor {
                 if (target instanceof Action) {
                     Action action = (Action) target;
                     action.execute(app);
-                    app.render(node); // Render the parent node again, you don't actually need to traverse to an action.
+                    //app.render(node); // Render the parent node again, you don't actually need to traverse to an action.
                 } else {
                     app.render(target);
                 }

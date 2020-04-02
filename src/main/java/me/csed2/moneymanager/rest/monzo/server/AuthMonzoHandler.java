@@ -3,6 +3,7 @@ package me.csed2.moneymanager.rest.monzo.server;
 import lombok.Getter;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.rest.AuthServerHandler;
+import me.csed2.moneymanager.rest.BankClient;
 import me.csed2.moneymanager.rest.monzo.client.MonzoDetails;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.utils.JSONUtils;
@@ -58,7 +59,7 @@ public class AuthMonzoHandler extends AuthServerHandler {
             String repString = EntityUtils.toString(response.getEntity());
             String accessToken = JSONUtils.getAsJsonObject(repString).get("access_token").getAsString();
 
-            MonzoHttpClient.setAccessToken(accessToken);
+            BankClient.setAccessToken(accessToken);
             App.getInstance().render("Please check your Monzo app to complete authentication!");
         }
     }
