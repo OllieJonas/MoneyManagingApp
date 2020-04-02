@@ -90,9 +90,6 @@ public class StageMenu implements UINode {
 
     private void clear() {
         count = 0;
-        for (Stage<?> stage : stages) {
-            stage.setResult(null);
-        }
     }
 
     @FunctionalInterface
