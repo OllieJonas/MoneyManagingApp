@@ -2,9 +2,13 @@ package me.csed2.moneymanager.main;
 
 import lombok.Getter;
 import me.csed2.moneymanager.AutoSave;
+import me.csed2.moneymanager.budget.BudgetStore;
+import me.csed2.moneymanager.budget.BudgetTracker;
+import me.csed2.moneymanager.budget.Commands.UpdateOverallBudget;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.cache.commands.LoadSettingsCommand;
 import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.transactions.Transaction;
@@ -79,6 +83,8 @@ public class App {
 
         // Assign an instance, also ensures GC doesn't collect anything in here.
         instance = this;
+        //this loads the budget store, by taking information from the cache
+        BudgetTracker.LoadBugetStore();
     }
 
     public void render(UINode node) {
