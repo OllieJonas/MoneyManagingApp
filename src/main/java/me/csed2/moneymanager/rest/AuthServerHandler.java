@@ -4,8 +4,6 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.apache.http.NameValuePair;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Consumer;
@@ -33,7 +31,7 @@ public abstract class AuthServerHandler implements HttpHandler {
 
     public abstract void addResponses();
 
-    public abstract void run();
+    public abstract AuthServerHandler run();
 
     public abstract List<NameValuePair> buildAuthenticationRequest();
 

@@ -24,9 +24,9 @@ public class MonzoGetTransactionsCommand implements Function<App, List<MonzoTran
 
     @Override
     public List<MonzoTransaction> apply(App app) {
-        HttpGet request = new HttpGet(MonzoDetails.MONZO_API + "/transactions");
+        HttpGet request = new HttpGet(MonzoDetails.MONZO_API + "/transactions?expand[]=merchant&account_id="
+                + app.getMonzoClient().getSelectedAccount().getId());
         request.addHeader("Authorization", "Bearer " + MonzoHttpClient.getAccessToken());
-        request.addHeader("account_id", MonzoHttpClient.getSelectedAccount().getId());
 
         try (CloseableHttpClient client = HttpClients.createDefault();
              CloseableHttpResponse response = client.execute(request)) {
@@ -41,10 +41,17 @@ public class MonzoGetTransactionsCommand implements Function<App, List<MonzoTran
             JsonArray array = initialObject.getAsJsonArray("transactions"); // Get array transactions
             List<MonzoTransaction> arrList = new ArrayList<>();
 
+            StringBuilder builder = new StringBuilder();
+
             for (int i = 0; i < array.size(); i++) { // Add all objects inside array to a list
                 JsonObject newObject = array.get(i).getAsJsonObject(); // Convert each transaction into JsonObject
-                arrList.add(new MonzoTransaction(gson.fromJson(newObject, JsonObject.class), i+1)); // Convert JsonObject into wrapped MonzoTransaction
+                MonzoTransaction transaction = new MonzoTransaction(gson.fromJson(newObject, JsonObject.class), i+1);
+                builder.append(transaction.toFormattedString()).append("\n");
+                arrList.add(transaction); // Convert JsonObject into wrapped MonzoTransaction
             }
+
+            app.render(builder.toString());
+
             return arrList;
 
             } catch (IOException e) {

@@ -46,6 +46,7 @@ public class SaveListToDBCommand<E> implements Predicate<App> {
                     fOut.close();
                     return true;
                 }
+                System.out.println("hi");
             }
         } catch (Exception e) {
             return false;
