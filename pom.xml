@@ -88,6 +88,17 @@
         <defaultGoal>clean package</defaultGoal>
         <finalName>MoneyManager</finalName>
 
+        <resources>
+            <resource>
+                <targetPath>.</targetPath>
+                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*</include>
+                </includes>
+            </resource>
+        </resources>
+
         <plugins>
 
             <!-- Builds an executable jar files with the dependencies included -->

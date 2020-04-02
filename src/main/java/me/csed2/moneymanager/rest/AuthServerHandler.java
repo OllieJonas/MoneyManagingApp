@@ -4,8 +4,6 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import org.apache.http.NameValuePair;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.function.Consumer;
@@ -23,11 +21,8 @@ public abstract class AuthServerHandler implements HttpHandler {
         String fullReply = exchange.getRequestURI().toString();
         String reply = fullReply.split("\\?")[1].split("=")[0];
 
-        System.out.println(fullReply);
-
         for (String tag : responses.keySet()) {
             if (reply.contains(tag)) {
-                System.out.println("accepted");
                 responses.get(tag).accept(fullReply);
                 break;
             }
