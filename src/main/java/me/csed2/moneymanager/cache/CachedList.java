@@ -231,8 +231,9 @@ public class CachedList<E extends Cacheable> {
      */
     public String getReport() {
         StringBuilder builder = new StringBuilder();
-        items.iterator()
-                .forEachRemaining(item -> builder.append(item.toFormattedString()).append("\n"));
+        items.stream()
+                .filter(item -> !item.getName().equalsIgnoreCase("Overall"))
+                .forEach(item -> builder.append(item.toFormattedString()).append("\n"));
         return builder.toString();
     }
 
