@@ -53,13 +53,6 @@
             <version>5.5.2</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/com.plaid/plaid-java -->
-        <dependency>
-            <groupId>com.plaid</groupId>
-            <artifactId>plaid-java</artifactId>
-            <version>5.4.0</version>
-        </dependency>
-
         <!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>

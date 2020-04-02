@@ -1,5 +1,6 @@
 package me.csed2.moneymanager.ui;
 
+import me.csed2.moneymanager.budget.BudgetStore;
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.categories.commands.SortCategoriesCommand;
 import me.csed2.moneymanager.main.App;
@@ -21,9 +22,14 @@ public class MenuList {
 
     public static final Menu MAIN = new Menu("Main Menu", null, null);
 
+
+    //Budget
+
+    public static final Menu BUDGET = new Menu("Budget", MAIN, null);
+
+
     // Categories
     public static final Menu CATEGORIES = new Menu("Categories", MAIN, null);
-
     public static final Action LIST_CATEGORIES = new Action("List All Categories", CATEGORIES, "icons/button_search_0.png", (Consumer<App>) app -> app.sendMessage(app.getCategoryCache().getReport()));
     public static final Menu UPDATE_CATEGORY = new Menu("Update a Category", CATEGORIES, "icons/button_update_0.png");
 
