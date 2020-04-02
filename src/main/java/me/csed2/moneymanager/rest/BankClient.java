@@ -14,6 +14,9 @@ public abstract class BankClient<T extends Account> {
     @Getter
     private List<T> accounts = new ArrayList<>();
 
+    @Getter @Setter
+    private T selectedAccount;
+
     @Setter @Getter
     private static String accessToken;
 

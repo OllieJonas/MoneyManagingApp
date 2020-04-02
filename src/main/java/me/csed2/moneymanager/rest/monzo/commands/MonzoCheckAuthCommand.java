@@ -27,8 +27,12 @@ public class MonzoCheckAuthCommand implements Function<App, Boolean> {
             if (response != null) {
                 HttpEntity entity = response.getEntity();
                 String json = EntityUtils.toString(entity);
-                System.out.println(json);
                 JsonObject object = JSONUtils.getAsJsonObject(json); // Convert to JsonObject
+
+                boolean result = object.get("authenticated").getAsBoolean();
+
+                String resultString = result ? "You are authenticated!" : "You are not authenticated!";
+                app.render(resultString);
                 return object.get("authenticated").getAsBoolean(); // Get the value from the authenticated key, convert to boolean.
             } else {
                 return false;

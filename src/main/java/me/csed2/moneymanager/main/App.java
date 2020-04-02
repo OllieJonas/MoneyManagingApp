@@ -1,15 +1,17 @@
 package me.csed2.moneymanager.main;
 
 import lombok.Getter;
+import lombok.Setter;
 import me.csed2.moneymanager.AutoSave;
 import me.csed2.moneymanager.budget.BudgetStore;
 import me.csed2.moneymanager.budget.BudgetTracker;
 import me.csed2.moneymanager.budget.Commands.UpdateOverallBudget;
 import me.csed2.moneymanager.cache.CachedList;
-import me.csed2.moneymanager.cache.commands.LoadSettingsCommand;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.rest.AuthServerManager;
+import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.ui.controller.InputReader;
@@ -20,7 +22,6 @@ import me.csed2.moneymanager.ui.view.SwingRenderer;
 import me.csed2.moneymanager.ui.view.UIRenderer;
 
 import java.io.FileNotFoundException;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -44,13 +45,18 @@ public class App {
     @Getter
     private CachedList<Category> categoryCache = new CachedList<>();
 
-    @Getter
+    @Getter @Setter
     private CachedList<Transaction> transactionCache = new CachedList<>();
 
     @Getter
     private CachedList<Subscription> subscriptionCache = new CachedList<>();
 
+    // Settings
     private SettingWrapper settings;
+
+    // Monzo
+    @Getter
+    private MonzoHttpClient monzoClient;
 
     @Getter
     private static App instance;
@@ -64,6 +70,8 @@ public class App {
         // Start autosave
         autoSave = new AutoSave(5, TimeUnit.MINUTES);
         autoSave.start();
+
+        monzoClient = new MonzoHttpClient();
 
         // Load caches
         try {
@@ -105,7 +113,7 @@ public class App {
     }
 
     public synchronized void exit() {
-        renderer.renderText("Exiting program...");
+        AuthServerManager.getInstance().closeAll();
         App.getInstance().getCategoryCache().save("categories.json");
         autoSave.interrupt();
         reader.interrupt();

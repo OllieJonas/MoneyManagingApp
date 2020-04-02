@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.rest.monzo.server;
 
 import lombok.Getter;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.rest.AuthServerHandler;
 import me.csed2.moneymanager.rest.monzo.client.MonzoDetails;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
@@ -10,14 +11,11 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
 
 public class AuthMonzoHandler extends AuthServerHandler {
@@ -45,8 +43,9 @@ public class AuthMonzoHandler extends AuthServerHandler {
     }
 
     @Override
-    public void run() {
+    public AuthServerHandler run() {
         addResponses();
+        return this;
     }
 
     private void getAccessToken() throws IOException {
@@ -56,11 +55,11 @@ public class AuthMonzoHandler extends AuthServerHandler {
 
         try (CloseableHttpClient httpClient = HttpClients.createDefault();
              CloseableHttpResponse response = httpClient.execute(post)) {
-            
             String repString = EntityUtils.toString(response.getEntity());
             String accessToken = JSONUtils.getAsJsonObject(repString).get("access_token").getAsString();
 
             MonzoHttpClient.setAccessToken(accessToken);
+            App.getInstance().render("Please check your Monzo app to complete authentication!");
         }
     }
 
