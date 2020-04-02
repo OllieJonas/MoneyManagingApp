@@ -57,7 +57,7 @@ public class Subscription extends Transaction implements Cacheable{
         return "name: " + name + "\n" +
                 "  Id: " + id + "\n" +
                 "  Created: " + date.toString() + "\n" +
-                "  Amount: " + amount + "\n" +
+                "  Amount: " + amount/100 + "\n" +
                 "  Category: " + category + "\n" +
                 "  Vendor: " + vendor + "\n" +
                 "  Subscription interval: " + timeCycle + " " + timeCycleUnit +"\n"+
