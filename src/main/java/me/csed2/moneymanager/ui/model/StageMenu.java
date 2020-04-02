@@ -60,6 +60,7 @@ public class StageMenu implements UINode {
         if (exitPhase != null) {
             exitPhase.execute(App.getInstance(), stages);
         }
+        count = 0;
     }
     // no children for StageMenu
     @Override
