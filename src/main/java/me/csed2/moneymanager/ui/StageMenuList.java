@@ -1,9 +1,9 @@
 package me.csed2.moneymanager.ui;
 
-import me.csed2.moneymanager.budget.Commands.OverallBudget;
-import me.csed2.moneymanager.budget.Commands.SeeBudgets;
+import me.csed2.moneymanager.budget.commands.OverallBudget;
+import me.csed2.moneymanager.budget.commands.SeeBudgets;
 import me.csed2.moneymanager.budget.BudgetTracker;
-import me.csed2.moneymanager.budget.Commands.UpdateOverallBudget;
+import me.csed2.moneymanager.budget.commands.UpdateOverallBudget;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
@@ -12,12 +12,10 @@ import me.csed2.moneymanager.categories.commands.RemoveCategoryCommand;
 import me.csed2.moneymanager.categories.commands.UpdateCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.main.App;
-import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.subscriptions.SubscriptionArgType;
 import me.csed2.moneymanager.subscriptions.commands.AddSubscriptionCommand;
 import me.csed2.moneymanager.subscriptions.commands.RemoveSubscriptionCommand;
 import me.csed2.moneymanager.subscriptions.commands.UpdateSubscriptionCommand;
-import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.transactions.TransactionArgType;
 import me.csed2.moneymanager.transactions.commands.AddTransactionCommand;
 import me.csed2.moneymanager.transactions.commands.RemoveTransactionCommand;
@@ -40,12 +38,12 @@ public class StageMenuList {
 
                 Integer result = (Integer) stages.get(0).getResult();
 
-                if (CommandDispatcher.dispatchSync(new UpdateOverallBudget<>(CategoryArgType.NAME, result))) {
+                if (CommandDispatcher.dispatchSync(new UpdateOverallBudget(result))) {
                     app.sendMessage("Successfully updated the Budget for Overall");
                 } else {
                     app.sendMessage("Error: Unable to update this category!");
                 }
-                BudgetTracker.TrackCheck("Overall", new Date().getMonth() -1);
+                BudgetTracker.trackCheck("Overall", new Date().getMonth() -1);
             })
             .build();
 
@@ -59,8 +57,8 @@ public class StageMenuList {
             .withExitPhase((app, stages) -> {
                 String name = (String) stages.get(0).getResult();
                 int month = (Integer) stages.get(1).getResult();
-                SeeBudgets checkBudget = new SeeBudgets(name, month-1);
-                checkBudget.findBudget();
+
+                CommandDispatcher.dispatchSync(new SeeBudgets(name, month-1));
             })
             .build();
 
@@ -72,8 +70,8 @@ public class StageMenuList {
 
             .withExitPhase((app, stages) -> {
                 int month = (Integer) stages.get(0).getResult() -1;
-                OverallBudget checkOverall = new OverallBudget(month);
-                checkOverall.displayOverall();
+
+                CommandDispatcher.dispatchSync(new OverallBudget(month));
             })
             .build();
 
@@ -92,7 +90,7 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to update this category!");
                 }
-                BudgetTracker.TrackCheck(categoryName, new Date().getMonth() -1);
+                BudgetTracker.trackCheck(categoryName, new Date().getMonth() -1);
             })
             .build();
 
@@ -112,7 +110,7 @@ public class StageMenuList {
                 if (CommandDispatcher.dispatchSync(new AddCategoryCommand(name, budget))) {
                     app.sendMessage("Category successfully added!");
                 }
-                BudgetTracker.LoadBugetStore();
+                BudgetTracker.loadBugetStore();
             })
             .build();
 
@@ -128,7 +126,7 @@ public class StageMenuList {
                 if (CommandDispatcher.dispatchSync(new RemoveCategoryCommand(name))) {
                     app.sendMessage("Category successfully added!");
                 }
-                BudgetTracker.LoadBugetStore();
+                BudgetTracker.loadBugetStore();
             })
 
             .build();
@@ -148,7 +146,7 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to update this category!");
                 }
-                BudgetTracker.TrackCheck(categoryName, new Date().getMonth() -1);
+                BudgetTracker.trackCheck(categoryName, new Date().getMonth() -1);
             })
             .build();
 
@@ -168,7 +166,7 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to update this category!");
                 }
-                BudgetTracker.TrackCheck(categoryName, new Date().getMonth() -1);
+                BudgetTracker.trackCheck(categoryName, new Date().getMonth() -1);
             })
             .build();
 
@@ -206,7 +204,7 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to add transaction!");
                 }
-                BudgetTracker.TrackCheck(categoryName, new Date().getMonth() -1);
+                BudgetTracker.trackCheck(categoryName, new Date().getMonth() -1);
 
             })
             .build();
@@ -224,7 +222,7 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to remove transaction!");
                 }
-                BudgetTracker.TrackCheck(App.getInstance().getTransactionCache().search(name).get().getCategory(), new Date().getMonth() -1);
+                BudgetTracker.trackCheck(App.getInstance().getTransactionCache().search(name).get().getCategory(), new Date().getMonth() -1);
             })
             .build();
 
@@ -243,7 +241,7 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to update transaction!");
                 }
-                BudgetTracker.TrackCheck(App.getInstance().getTransactionCache().search(transactionName).get().getCategory(), new Date().getMonth() -1);
+                BudgetTracker.trackCheck(App.getInstance().getTransactionCache().search(transactionName).get().getCategory(), new Date().getMonth() -1);
             })
             .build();
 
@@ -309,7 +307,7 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to add subscription!");
                 }
-                BudgetTracker.TrackCheck(categoryName, new Date().getMonth() -1);
+                BudgetTracker.trackCheck(categoryName, new Date().getMonth() -1);
             })
             .build();
 
@@ -328,7 +326,7 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to remove subscription!");
                 }
-                BudgetTracker.TrackCheck(category, new Date().getMonth() -1);
+                BudgetTracker.trackCheck(category, new Date().getMonth() -1);
             })
             .build();
     
@@ -350,7 +348,7 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to update subscription!");
                 }
-                BudgetTracker.TrackCheck(category, new Date().getMonth() -1);
+                BudgetTracker.trackCheck(category, new Date().getMonth() -1);
             })
             .build();
 

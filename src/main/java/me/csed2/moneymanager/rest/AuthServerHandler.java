@@ -33,8 +33,6 @@ public abstract class AuthServerHandler implements HttpHandler {
 
     public abstract AuthServerHandler run();
 
-    public abstract List<NameValuePair> buildAuthenticationRequest();
-
     protected void addResponse(String name, Consumer<String> response) {
         responses.put(name, response);
     }

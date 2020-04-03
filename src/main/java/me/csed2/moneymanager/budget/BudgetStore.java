@@ -33,7 +33,6 @@ public class BudgetStore {
 
         for (Category item : cache.asList()) {
             budStore.add(new BudgetBuilder(item.getName()));
-            System.out.println(item);
         }
     }
 

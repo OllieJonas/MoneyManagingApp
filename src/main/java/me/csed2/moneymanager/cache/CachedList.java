@@ -84,7 +84,10 @@ public class CachedList<E extends Cacheable> {
      * @return Whether it was successful
      */
     public boolean remove(E entity) {
-        return items.remove(entity);
+        if (!entity.isInteractable())
+            return false;
+        else
+            return items.remove(entity);
     }
 
     /**
@@ -98,7 +101,7 @@ public class CachedList<E extends Cacheable> {
         items.stream()
                 .filter(item -> item.getName().equalsIgnoreCase(entity))
                 .findFirst()
-                .ifPresent(item -> removed.set(items.remove(item)));
+                .ifPresent(item -> removed.set(remove(item)));
         return removed.get();
     }
 
@@ -137,7 +140,7 @@ public class CachedList<E extends Cacheable> {
         int id = 1; // Initial value of 1.
         sort(Comparator.comparingInt(E::getId)); // Ensure the list is sorted by ID, with the last ID at the end of the list
         if (items.size() > 0) // If the list is empty, return the default id of 1.
-            id = items.get(items.size() - 1).getId() + 1; // Gets the ID of the last item of the list then adds 1
+            id = items.get(items.size() - 1).getId() + 1; // Gets the ID of the last item of the list, then adds one
         return id;
     }
 
@@ -231,8 +234,9 @@ public class CachedList<E extends Cacheable> {
      */
     public String getReport() {
         StringBuilder builder = new StringBuilder();
-        items.iterator()
-                .forEachRemaining(item -> builder.append(item.toFormattedString()).append("\n"));
+        items.stream()
+                .filter(Cacheable::isInteractable)
+                .forEach(item -> builder.append(item.toFormattedString()).append("\n"));
         return builder.toString();
     }
 

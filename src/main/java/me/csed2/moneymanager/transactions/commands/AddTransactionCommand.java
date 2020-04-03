@@ -20,7 +20,7 @@ public class AddTransactionCommand implements Function<App, Boolean> {
     public AddTransactionCommand(String categoryName, String name, int amount, String vendor, String[] notes) {
         this.categoryName = categoryName;
         this.name = name;
-        this.amount = amount;
+        this.amount = amount * 100;
         this.vendor = vendor;
         this.notes = notes;
     }

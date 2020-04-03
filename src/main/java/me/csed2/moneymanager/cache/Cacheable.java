@@ -19,6 +19,8 @@ public interface Cacheable {
 
     String toFormattedString();
 
+    boolean isInteractable();
+
     default boolean equals(Cacheable cacheable) {
         return this.getClass() == cacheable.getClass() && this.getId() == cacheable.getId();
     }

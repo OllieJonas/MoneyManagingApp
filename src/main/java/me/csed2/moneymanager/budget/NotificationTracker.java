@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.budget.Commands;
+package me.csed2.moneymanager.budget;
 
 import me.csed2.moneymanager.budget.BudgetBuilder;
 import me.csed2.moneymanager.budget.BudgetStore;
@@ -15,11 +15,11 @@ public class NotificationTracker {
 
 
     /**
-     * This checks to see if the user is close to over, or on their budget in the specific catogary that the user just interacted with category
+     * This checks to see if the user is close to over, or on their budget in the specific category that the user just interacted with category
      * If they are over then a notification is sent
      * @param Name
      */
-    public static void checkCat(String Name) {
+    static void checkCat(String Name) {
         budgetObj = BudgetStore.getBudStore();
         for (BudgetBuilder each : budgetObj) {
             if(each.getName().equals(Name)){
@@ -31,7 +31,7 @@ public class NotificationTracker {
                 } else if (catSpent >= catBud) {
                     Notifications.displayNotification("You are over your Budget limit in" + each.getName(), TrayIcon.MessageType.NONE);
                 } else if (catSpent >= warning) {
-                    Notifications.displayNotification("This is a warning, you are approching your budget in " + each.getName(), TrayIcon.MessageType.NONE);
+                    Notifications.displayNotification("This is a warning, you are approaching your budget in " + each.getName(), TrayIcon.MessageType.NONE);
                 }
             }
         }
