@@ -9,6 +9,7 @@ import java.util.Date;
 public class Subscription extends Transaction implements Cacheable{
 
     private int timeCycle;
+
     private String timeCycleUnit;
 
     private Boolean cancelMe;

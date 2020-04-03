@@ -53,6 +53,12 @@ public class Transaction implements Cacheable {
 
     protected String vendor;
 
+    protected boolean interactable;
+
+    public Transaction(String name, int id, Date date, int amount, String category, String[] notes, String vendor) {
+        this(name, id, date, amount, category, notes, vendor, true);
+    }
+
     public void print() {
         System.out.println("name: " + name);
         System.out.println("  id: " + id);
