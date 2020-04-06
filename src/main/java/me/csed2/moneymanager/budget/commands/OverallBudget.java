@@ -31,7 +31,7 @@ public class OverallBudget implements Consumer<App> {
 
     public void trackAll(){
         for(BudgetBuilder each: budgetArr){
-            allSpent += each.getTotalSpent();
+            allSpent += each.getTotalSpent(monthFor);
         }
     }
 

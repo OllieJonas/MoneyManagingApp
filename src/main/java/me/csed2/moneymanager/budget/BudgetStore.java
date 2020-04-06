@@ -48,23 +48,28 @@ public class BudgetStore {
      */
     public static void findBudget(String name, int month){
         for(BudgetBuilder each: budStore){
-            if(each.getName().equals(name) && each.getMonthFor() == month ){
+            System.out.println(each.getName());
+            if(each.getName().equals(name)){
+                System.out.println("heya");
                 catBud = each.getBudget();
-                catSpent = each.getTotalSpent();
+                catSpent = each.getTotalSpent(month);
                 catName = each.getName();
+                return;
             }
         }
+        catBud = 0;
+        catSpent = 0;
+        catName = " Not Found";
     }
 
 
     /**
-     * this reloads the budget for the catogory that has just been edited or has a transaction edited
+     * this reloads the budget for the category that has just been edited or has a transaction edited
      * @param name
-     * @param month
      */
-    public static void reloadSingleBudget(String name, int month){
+    public static void reloadSingleBudget(String name){
         for(BudgetBuilder each: budStore){
-            if(each.getName().equals(name) && each.getMonthFor() == month){
+            if(each.getName().equals(name)){
                 int index = budStore.indexOf(each);
                 budStore.set(index, new BudgetBuilder(each.getName()));
             }

@@ -1,4 +1,6 @@
-package me.csed2.moneymanager.budget;
+package me.csed2.moneymanager.budget.autoCommands;
+
+import me.csed2.moneymanager.budget.BudgetStore;
 
 public class BudgetTracker {
 
@@ -8,7 +10,7 @@ public class BudgetTracker {
      * @param month
      */
     public static void trackCheck(String name, int month){
-        BudgetStore.reloadSingleBudget(name, month);
+        BudgetStore.reloadSingleBudget(name);
         NotificationTracker.checkCat(name);
     }
 

@@ -3,7 +3,8 @@ package me.csed2.moneymanager.main;
 import lombok.Getter;
 import lombok.Setter;
 import me.csed2.moneymanager.AutoSave;
-import me.csed2.moneymanager.budget.BudgetTracker;
+import me.csed2.moneymanager.budget.autoCommands.BudgetTracker;
+import me.csed2.moneymanager.budget.autoCommands.EndOfMonthActions;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.rest.AuthServerManager;
@@ -89,6 +90,9 @@ public class App {
         instance = this;
         //this loads the budget store, by taking information from the cache
         BudgetTracker.loadBugetStore();
+        //this checks to see if the month has ended and iff so end of month actions are performed
+        EndOfMonthActions.checkMonth();
+
     }
 
     public void render(UINode node) {

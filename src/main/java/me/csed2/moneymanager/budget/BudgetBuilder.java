@@ -6,7 +6,11 @@ import lombok.Setter;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.main.App;
-import me.csed2.moneymanager.transactions.Transaction;
+
+import java.util.ArrayList;
+import java.util.Date;
+
+import static me.csed2.moneymanager.budget.MonthsTransactionsBuilder.Checker;
 
 @Getter
 @Setter
@@ -19,11 +23,23 @@ public class BudgetBuilder {
 
     private int budget;
 
-    private int totalSpent;
-
-    private int monthFor;
+    private ArrayList<MonthsTransactionsBuilder> transPerMonth = new ArrayList<>();
 
     private static CachedList<Category> item = App.getInstance().getCategoryCache();
+
+    /**
+     * this find the total spent for a certain category in a certain month by using the MonthsTransaction object
+     * @param monthFor
+     * @return total spent that month
+     */
+    public int getTotalSpent(int monthFor){
+        for(MonthsTransactionsBuilder each: transPerMonth){
+            if(each.getMonthFor() == monthFor){
+                return each.getTotalSpent();
+            }
+        }
+        return 0;
+    }
 
     /**
      * assigns values to variables in the budget
@@ -32,26 +48,18 @@ public class BudgetBuilder {
     BudgetBuilder(String name) {
         this.name = name;
         this.budget = item.search(name).get().getBudget();
-        this.totalSpent = Checker(this.name);
-        this.monthFor = item.search(name).get().getCreated().getMonth();
-    }
-
-    //This gets the transactions in a category
-    public static int Checker(String budgetToCheck){
-        int catID = item.search(budgetToCheck).get().getId();
-        return addTrans(catID);
-    }
-
-    //This adds all the transactions in a category to the budget object
-    public static int addTrans(int catID) {
-        int tranSum = 0;
-        for (Transaction item : App.getInstance().getTransactionCache().asList()) {
-            if (item.getId() == catID) {
-                tranSum += item.getAmount();
-            }
+        int currentMonth = new Date().getMonth();
+        int lastMonth;
+        if(currentMonth-1<0){
+            lastMonth = 11;
+        }else{
+            lastMonth = currentMonth-1;
         }
-        return tranSum;
+        //the transactions over the current month and last month are collected for the user to be able to see
+        transPerMonth.add(new MonthsTransactionsBuilder(name, lastMonth));
+        transPerMonth.add(new MonthsTransactionsBuilder(name,currentMonth));
     }
+
 }
 
 
