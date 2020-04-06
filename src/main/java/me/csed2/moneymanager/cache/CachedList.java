@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
  * @param <E> The type of object stored in the repository
  *
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class CachedList<E extends Cacheable> {
 
     /**

@@ -15,7 +15,7 @@ public class BudgetTracker {
     /**
      * This is called at the beginning of the program so that the budget store is loaded
      */
-    public static void loadBugetStore(){
+    public static void loadBudgetStore(){
         BudgetStore.BudgetStoreLoad();
     }
 }

@@ -78,11 +78,11 @@ public class MenuList {
     public static final Action MONZO_CHECK_AUTH = new Action("Check Authentication", MONZO, null, new MonzoCheckAuthCommand());
 
 
-    public static void decorateExitAction(Menu parent) {
+    public static void addExitAction(Menu parent) {
         new Action("Exit the Application", parent, "images/exit_0", App::exit);
     }
 
-    public static void decorateBackAction(Menu parent) {
+    public static void addBackAction(Menu parent) {
         new Action("Go Back", parent, "images/back_0", (Consumer<App>) app -> app.render(parent.getParent()));
     }
 }

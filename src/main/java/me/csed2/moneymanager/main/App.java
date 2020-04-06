@@ -88,7 +88,7 @@ public class App {
         // Assign an instance, also ensures GC doesn't collect anything in here.
         instance = this;
         //this loads the budget store, by taking information from the cache
-        BudgetTracker.loadBugetStore();
+        BudgetTracker.loadBudgetStore();
     }
 
     public void render(UINode node) {

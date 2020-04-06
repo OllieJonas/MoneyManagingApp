@@ -110,7 +110,7 @@ public class StageMenuList {
                 if (CommandDispatcher.dispatchSync(new AddCategoryCommand(name, budget))) {
                     app.sendMessage("Category successfully added!");
                 }
-                BudgetTracker.loadBugetStore();
+                BudgetTracker.loadBudgetStore();
             })
             .build();
 
@@ -126,7 +126,7 @@ public class StageMenuList {
                 if (CommandDispatcher.dispatchSync(new RemoveCategoryCommand(name))) {
                     app.sendMessage("Category successfully added!");
                 }
-                BudgetTracker.loadBugetStore();
+                BudgetTracker.loadBudgetStore();
             })
 
             .build();
