@@ -41,7 +41,13 @@ public class SubscriptionBuilder {
      */
     private String vendor;
 
+    private int timeCycle;
+
+    private String timeCycleUnit;
+
     private String categoryName;
+    private String cancelNe;
+    private String commencement;
 
     public SubscriptionBuilder(String name) {
         this.name = name;
@@ -71,9 +77,25 @@ public class SubscriptionBuilder {
         this.vendor = vendor;
         return this;
     }
+    public SubscriptionBuilder withTimeCycle(int timeCycle){
+        this.timeCycle=timeCycle;
+        return this;
+    }
+    public SubscriptionBuilder withTimeCycleUnit(String timeCycleUnit){
+        this.timeCycleUnit=timeCycleUnit;
+        return this;
+    }
+    public SubscriptionBuilder withCancelMe(String cancelNe){
+        this.cancelNe=cancelNe;
+        return this;
+    }
+    public SubscriptionBuilder withCommencement(String commencement){
+        this.commencement=commencement;
+        return this;
+    }
 
     public Subscription build() {
-        return new Subscription(name, App.getInstance().getSubscriptionCache().nextId(), date, amount, categoryName, notes, vendor);
+        return new Subscription(name, App.getInstance().getSubscriptionCache().nextId(), date, amount, categoryName, timeCycle, timeCycleUnit, notes, vendor, cancelNe, commencement);
     }
 
 }

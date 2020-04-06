@@ -9,6 +9,7 @@ import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.rest.AuthServerManager;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.subscriptions.Subscription;
+import me.csed2.moneymanager.subscriptions.SubscriptionNotificationDispatcher;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.ui.controller.InputReader;
 import me.csed2.moneymanager.ui.model.Stage;
@@ -84,11 +85,15 @@ public class App {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+      
+        Runnable subscriptionNotifications = new SubscriptionNotificationDispatcher(this, this.renderer);
+        new Thread(subscriptionNotifications).start();
+      
+        // Loads the budget store, by taking information from the cache
+        BudgetTracker.loadBugetStore();
 
         // Assign an instance, also ensures GC doesn't collect anything in here.
         instance = this;
-        //this loads the budget store, by taking information from the cache
-        BudgetTracker.loadBugetStore();
     }
 
     public void render(UINode node) {
@@ -111,6 +116,7 @@ public class App {
     public synchronized void exit() {
         AuthServerManager.getInstance().closeAll();
         App.getInstance().getCategoryCache().save("categories.json");
+        App.getInstance().getSubscriptionCahce().save("subscriptions.json);
         autoSave.interrupt();
         reader.interrupt();
         System.exit(0);

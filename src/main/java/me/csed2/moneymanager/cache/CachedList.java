@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableList;
 import me.csed2.moneymanager.cache.commands.LoadFromJsonAsListCommand;
 import me.csed2.moneymanager.cache.commands.SaveListToDBCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.subscriptions.Subscription;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -238,6 +239,12 @@ public class CachedList<E extends Cacheable> {
                 .filter(Cacheable::isInteractable)
                 .forEach(item -> builder.append(item.toFormattedString()).append("\n"));
         return builder.toString();
+    }
+
+    public ArrayList<E> getList(){
+        ArrayList<E> returnList = new ArrayList<>();
+        items.iterator().forEachRemaining(item -> returnList.add(item));
+        return returnList;
     }
 
     /**
