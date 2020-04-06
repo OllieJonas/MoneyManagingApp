@@ -39,15 +39,6 @@ public class SubscriptionNotificationDispatcher implements Runnable {
         this.renderer = renderer;
     }
 
-    private Date stringToDate(String inDate){
-        try {
-            return new SimpleDateFormat("dd/MM/yyyy").parse(inDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
     @Override
     public void run(){
         Date nextRenewal;
@@ -67,7 +58,7 @@ public class SubscriptionNotificationDispatcher implements Runnable {
                         int cycle = i.getTimeCycle();
 
                         if (commencement != null) {
-                            
+
                             calendar.setTime(commencement);
 
                             if (cycleUnit.contains("month")) {
@@ -105,5 +96,14 @@ public class SubscriptionNotificationDispatcher implements Runnable {
                 // Empty list returned
             }
         }
+    }
+
+    private Date stringToDate(String inDate){
+        try {
+            return new SimpleDateFormat("dd/MM/yyyy").parse(inDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

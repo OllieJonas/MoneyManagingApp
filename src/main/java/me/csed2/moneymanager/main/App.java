@@ -9,6 +9,7 @@ import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.rest.AuthServerManager;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.subscriptions.Subscription;
+import me.csed2.moneymanager.subscriptions.SubscriptionNotificationDispatcher;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.ui.controller.InputReader;
 import me.csed2.moneymanager.ui.model.Stage;
@@ -33,9 +34,11 @@ public class App {
     private UIRenderer renderer = new SwingRenderer();
 
     // Threads
-    private InputReader reader;
+    private final InputReader reader;
 
-    private AutoSave autoSave;
+    private final AutoSave autoSave;
+
+    private final Thread subscriptionNotifications;
 
     // Caches
     @Getter
@@ -67,6 +70,9 @@ public class App {
         autoSave = new AutoSave(5, TimeUnit.MINUTES);
         autoSave.start();
 
+        subscriptionNotifications = new Thread(new SubscriptionNotificationDispatcher(this, this.renderer));
+        subscriptionNotifications.start();
+
         monzoClient = new MonzoHttpClient();
 
         // Load caches
@@ -84,11 +90,10 @@ public class App {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-        // Assign an instance, also ensures GC doesn't collect anything in here.
-        instance = this;
         //this loads the budget store, by taking information from the cache
         BudgetTracker.loadBudgetStore();
+
+        instance = this;
     }
 
     public void render(UINode node) {
@@ -111,6 +116,7 @@ public class App {
     public synchronized void exit() {
         AuthServerManager.getInstance().closeAll();
         App.getInstance().getCategoryCache().save("categories.json");
+        subscriptionNotifications.interrupt();
         autoSave.interrupt();
         reader.interrupt();
         System.exit(0);

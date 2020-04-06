@@ -2,6 +2,7 @@ package me.csed2.moneymanager.utils;
 
 import com.google.gson.internal.Primitives;
 import me.csed2.moneymanager.exceptions.InvalidTypeException;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.ui.model.StageMenu;
 
 import java.util.HashMap;
@@ -61,7 +62,7 @@ public class ClassUtils {
             return cast(result, clazz);
 
         } catch (InvalidTypeException e) {
-            System.out.println(e.getMessage());
+            App.getInstance().render(e.getMessage());
         }
         return null;
     }

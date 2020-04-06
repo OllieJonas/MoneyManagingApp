@@ -16,12 +16,10 @@ public class Main {
         new MenuList();
         new StageMenuList();
 
-        App app = new App();
-
         new AuthServerManager();
 
         // Testing Frame
-        app.render(MenuList.MAIN);
+        App.getInstance().render(MenuList.MAIN);
         // End of Testing
     }
 
