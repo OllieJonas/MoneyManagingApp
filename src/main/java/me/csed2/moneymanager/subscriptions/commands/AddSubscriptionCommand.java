@@ -15,14 +15,22 @@ public class AddSubscriptionCommand implements Function<App, Boolean> {
     private final String name;
     private final int amount;
     private final String vendor;
+    private final int timeCycle;
+    private final String timeCycleUnit;
     private final String[] notes;
+    private final String cancelMe;
+    private final String commencement;
 
-    public AddSubscriptionCommand(String categoryName, String name, int amount, String vendor, String[] notes) {
+    public AddSubscriptionCommand(String categoryName, String name, int amount, String vendor, int timeCycle, String timeCycleUnit, String[] notes, String cancelMe, String commencement) {
         this.categoryName = categoryName;
         this.name = name;
         this.amount = amount;
         this.vendor = vendor;
+        this.timeCycle=timeCycle;
+        this.timeCycleUnit=timeCycleUnit;
         this.notes = notes;
+        this.cancelMe=cancelMe;
+        this.commencement=commencement;
     }
 
     @Override
@@ -38,8 +46,11 @@ public class AddSubscriptionCommand implements Function<App, Boolean> {
                     .withDate(new Date())
                     .withNotes(notes)
                     .withCategoryName(categoryName)
+                    .withTimeCycle(timeCycle)
+                    .withTimeCycleUnit(timeCycleUnit)
+                    .withCancelMe(cancelMe)
+                    .withCommencement(commencement)
                     .build());
-
             subscriptionCache.save("subscriptions.json");
             return true;
         }
