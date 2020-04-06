@@ -12,12 +12,12 @@ public class MonzoTransaction extends Transaction implements JsonWrapped {
     private JsonObject object;
 
     public MonzoTransaction(JsonObject object, int id) {
-        super(object.get("name").getAsString(),
+        super(object.get("description").getAsString(),
                 id,
                 Date.from(Instant.parse(object.get("created").getAsString())),
                 object.get("amount").getAsInt(), object.get("category").getAsString(),
                 object.get("notes").getAsString().split("\n"),
-                object.get("description").getAsString());
+                object.get("merchant").toString());
         this.object = object;
     }
 

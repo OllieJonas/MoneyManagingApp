@@ -2,7 +2,7 @@ package me.csed2.moneymanager.ui.model;
 
 import lombok.Getter;
 import me.csed2.moneymanager.ui.MenuList;
-import me.csed2.moneymanager.utils.CircularArrayList;
+import me.csed2.moneymanager.utils.VarianceCircularArrayList;
 
 import java.util.List;
 
@@ -22,10 +22,11 @@ public class Menu implements UINode {
         this.parent = parent;
         this.image = image;
 
-        boolean hasParent = parent != null;
-        children = new CircularArrayList<>(hasParent);
+        int variance = parent != null ? 2 : 1;
 
-        if (hasParent) {
+        children = new VarianceCircularArrayList<>(variance);
+
+        if (parent != null) {
             MenuList.decorateBackAction(this);
             parent.getChildren().add(this);
         }

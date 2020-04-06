@@ -16,7 +16,9 @@ public class Subscription extends Transaction implements Cacheable{
     private Boolean cancelMeBool;
     private String timeCycleUnit;
     private String commencement;
+  
     private String positiveList[]={"yes","y","true","t","affirm"};
+  
 
     public Subscription(String name, int id, Date date, int amount, String category, Integer timeCycle, String timeCycleUnit, String[] notes, String vendor, String cancelMe, String commencement) {
         super(name, id, date, amount, category, notes, vendor);

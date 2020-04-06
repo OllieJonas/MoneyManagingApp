@@ -21,7 +21,6 @@ public class AuthServerManager {
     public void addServer(Server server) {
         servers.add(server);
         server.start();
-        System.out.println("Now listening for connections...");
     }
 
     public synchronized void close(Server server) {

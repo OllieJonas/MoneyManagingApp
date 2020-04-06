@@ -20,10 +20,8 @@ public class RemoveCategoryCommand implements Function<App, Boolean> {
         CachedList<Category> cache = App.getInstance().getCategoryCache();
 
         AtomicBoolean removed = new AtomicBoolean(false); // async boolean variable, see Atomic Variables
-
         // Performs the null check
         cache.search(name).ifPresent(cat -> removed.set(cache.remove(cat))); // If not null, remove the category from the repo and set flag to true
-
         cache.save("categories.json");
         return removed.get();
     }

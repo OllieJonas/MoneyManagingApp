@@ -10,12 +10,11 @@ import me.csed2.moneymanager.subscriptions.SubscriptionNotificationDispatcher;
  * @since 03/03/2020
  */
 public class Main {
-
     public Main() {
+
         new MenuList();
         new StageMenuList();
         new App();
-
 
         new AuthServerManager();
 
