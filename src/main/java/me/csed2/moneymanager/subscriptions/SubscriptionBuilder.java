@@ -46,7 +46,7 @@ public class SubscriptionBuilder {
     private String timeCycleUnit;
 
     private String categoryName;
-    private String cancelNe;
+    private String cancelMe;
     private String commencement;
 
     public SubscriptionBuilder(String name) {
@@ -86,7 +86,7 @@ public class SubscriptionBuilder {
         return this;
     }
     public SubscriptionBuilder withCancelMe(String cancelNe){
-        this.cancelNe=cancelNe;
+        this.cancelMe =cancelNe;
         return this;
     }
     public SubscriptionBuilder withCommencement(String commencement){
@@ -95,7 +95,7 @@ public class SubscriptionBuilder {
     }
 
     public Subscription build() {
-        return new Subscription(name, App.getInstance().getSubscriptionCache().nextId(), date, amount, categoryName, timeCycle, timeCycleUnit, notes, vendor, cancelNe, commencement);
+        return new Subscription(name, App.getInstance().getSubscriptionCache().nextId(), date, amount, categoryName, timeCycle, timeCycleUnit, notes, vendor, cancelMe, commencement);
     }
 
 }

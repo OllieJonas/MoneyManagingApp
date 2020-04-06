@@ -10,17 +10,19 @@ import me.csed2.moneymanager.subscriptions.SubscriptionNotificationDispatcher;
  * @since 03/03/2020
  */
 public class Main {
+
     public Main() {
 
         new MenuList();
         new StageMenuList();
-        new App();
+
+        App app = new App();
 
         new AuthServerManager();
 
-        //Testing Frame
-        App.getInstance().render(MenuList.MAIN);
-        //End of Testing
+        // Testing Frame
+        app.render(MenuList.MAIN);
+        // End of Testing
     }
 
     public static void main(String[] args) {
