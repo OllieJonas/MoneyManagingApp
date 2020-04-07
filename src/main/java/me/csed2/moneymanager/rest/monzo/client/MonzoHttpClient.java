@@ -1,8 +1,7 @@
 package me.csed2.moneymanager.rest.monzo.client;
 
-import lombok.Getter;
-import lombok.Setter;
 import me.csed2.moneymanager.rest.BankClient;
+import me.csed2.moneymanager.rest.monzo.client.pojos.MonzoAccount;
 import me.csed2.moneymanager.utils.StateGenerator;
 
 import java.awt.*;
@@ -30,9 +29,9 @@ public class MonzoHttpClient extends BankClient<MonzoAccount> {
         StringBuilder builder = new StringBuilder("https://auth.monzo.com/?");
         state = StateGenerator.generate();
 
-        builder.append("client_id=").append(MonzoDetails.CLIENT_ID).append("&");
-        builder.append("redirect_uri=").append(MonzoDetails.REDIRECT_URI).append("&");
-        builder.append("response_type=code").append("&");
+        builder.append("client_id=").append(MonzoDetails.CLIENT_ID.VALUE).append("&");
+        builder.append("redirect_uri=").append(MonzoDetails.REDIRECT_URI.VALUE).append("&");
+        builder.append("response_type=").append("code").append("&");
         builder.append("state=").append(state);
 
         return new URI(builder.toString());

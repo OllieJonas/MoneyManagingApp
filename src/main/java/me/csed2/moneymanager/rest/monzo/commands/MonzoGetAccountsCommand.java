@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import me.csed2.moneymanager.main.App;
-import me.csed2.moneymanager.rest.monzo.client.MonzoAccount;
+import me.csed2.moneymanager.rest.monzo.client.pojos.MonzoAccount;
 import me.csed2.moneymanager.rest.monzo.client.MonzoDetails;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.utils.JSONUtils;

@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.rest.monzo.client.MonzoDetails;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
-import me.csed2.moneymanager.rest.monzo.client.MonzoTransaction;
+import me.csed2.moneymanager.rest.monzo.client.pojos.MonzoTransaction;
 import me.csed2.moneymanager.utils.JSONUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
