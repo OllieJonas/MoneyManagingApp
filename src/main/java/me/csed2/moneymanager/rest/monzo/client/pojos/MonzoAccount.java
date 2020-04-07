@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.rest.monzo.client;
+package me.csed2.moneymanager.rest.monzo.client.pojos;
 
 import com.google.gson.JsonObject;
 import lombok.Getter;

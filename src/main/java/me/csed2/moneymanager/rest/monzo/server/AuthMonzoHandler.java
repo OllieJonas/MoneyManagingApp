@@ -68,10 +68,10 @@ public class AuthMonzoHandler extends AuthServerHandler {
 
     public List<NameValuePair> buildAuthenticationRequest() {
         List<NameValuePair> pairs = new ArrayList<>();
-        pairs.add(new BasicNameValuePair("grant_type", "authorization_code"));
-        pairs.add(new BasicNameValuePair("client_id", MonzoDetails.CLIENT_ID));
-        pairs.add(new BasicNameValuePair("client_secret", MonzoDetails.CLIENT_SECRET));
-        pairs.add(new BasicNameValuePair("redirect_uri", MonzoDetails.REDIRECT_URI));
+        pairs.add(new BasicNameValuePair(MonzoDetails.GRANT_TYPE.KEY, MonzoDetails.GRANT_TYPE.VALUE));
+        pairs.add(new BasicNameValuePair(MonzoDetails.CLIENT_ID.KEY, MonzoDetails.CLIENT_ID.VALUE));
+        pairs.add(new BasicNameValuePair(MonzoDetails.CLIENT_SECRET.KEY, MonzoDetails.CLIENT_SECRET.VALUE));
+        pairs.add(new BasicNameValuePair(MonzoDetails.REDIRECT_URI.KEY, MonzoDetails.REDIRECT_URI.VALUE));
         pairs.add(new BasicNameValuePair("code", authenticationCode));
 
         return pairs;

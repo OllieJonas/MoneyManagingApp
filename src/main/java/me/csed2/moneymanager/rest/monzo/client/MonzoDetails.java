@@ -1,10 +1,19 @@
 package me.csed2.moneymanager.rest.monzo.client;
 
-import java.net.URI;
+import lombok.Getter;
 
-public class MonzoDetails {
-    public static final String CLIENT_ID = "oauth2client_00009tCzlbhKRvzmyNTqAz";
-    public static final String CLIENT_SECRET = "mnzpub.oOEY253Ors+PvYpBaPwWQ9wet9fLwcLtkT/eRMDpen4mw05lufj57eTq+RtZ6Uad4mKjZIekBvP+KCwa5FD6";
-    public static final String REDIRECT_URI = "http://localhost:8080/oauth/callback";
-    public static final String MONZO_API = "https://api.monzo.com";
+public enum MonzoDetails {
+    GRANT_TYPE("grant_type", "authorization_code"),
+    CLIENT_ID("client_id", "oauth2client_00009tCzlbhKRvzmyNTqAz"),
+    CLIENT_SECRET("client_secret", "mnzpub.oOEY253Ors+PvYpBaPwWQ9wet9fLwcLtkT/eRMDpen4mw05lufj57eTq+RtZ6Uad4mKjZIekBvP+KCwa5FD6"),
+    REDIRECT_URI("redirect_uri", "http://localhost:8080/oauth/callback");
+
+    public String KEY;
+
+    public String VALUE;
+
+    MonzoDetails(String key, String value) {
+        this.KEY = key;
+        this.VALUE = value;
+    }
 }
