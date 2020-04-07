@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.budget;
+package me.csed2.moneymanager.budget.autoCommands;
 
 import me.csed2.moneymanager.budget.BudgetBuilder;
 import me.csed2.moneymanager.budget.BudgetStore;
@@ -6,6 +6,7 @@ import me.csed2.moneymanager.utils.Notifications;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class NotificationTracker {
 
@@ -24,7 +25,7 @@ public class NotificationTracker {
         for (BudgetBuilder each : budgetObj) {
             if(each.getName().equals(Name)){
                 catBud = each.getBudget();
-                catSpent = each.getTotalSpent();
+                catSpent = each.getTotalSpent(new Date().getMonth());
                 double warning = catBud * 0.9;
                 if (catSpent == catBud) {
                     Notifications.displayNotification("You have reached your Budget limit in " + each.getName(), TrayIcon.MessageType.NONE);
