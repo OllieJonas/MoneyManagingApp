@@ -16,6 +16,8 @@ public class Main {
         new MenuList();
         new StageMenuList();
 
+        new App();
+
         new AuthServerManager();
 
         // Testing Frame

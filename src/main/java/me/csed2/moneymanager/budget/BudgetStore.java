@@ -19,19 +19,22 @@ import java.util.ArrayList;
 @Getter
 @Setter
 public class BudgetStore {
+
     public static String catName;
     public static int catBud;
     public static int catSpent;
     private static ArrayList<BudgetBuilder> budStore = new ArrayList<BudgetBuilder>();
-    private static CachedList<Category> cache = App.getInstance().getCategoryCache();
 
+
+    public BudgetStore() {
+
+    }
 
     /**
      * this creates all the budget objects by calling the builder class
      */
     public static void  BudgetStoreLoad() {
-
-        for (Category item : cache.asList()) {
+        for (Category item : App.getInstance().getCategoryCache().asList()) {
             budStore.add(new BudgetBuilder(item.getName()));
         }
     }

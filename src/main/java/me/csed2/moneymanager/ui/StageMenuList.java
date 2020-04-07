@@ -2,7 +2,7 @@ package me.csed2.moneymanager.ui;
 
 import me.csed2.moneymanager.budget.commands.OverallBudget;
 import me.csed2.moneymanager.budget.commands.SeeBudgets;
-import me.csed2.moneymanager.budget.autoCommands.BudgetTracker;
+import me.csed2.moneymanager.budget.autocommands.BudgetTracker;
 import me.csed2.moneymanager.budget.commands.UpdateOverallBudget;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
@@ -24,8 +24,6 @@ import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.StageMenu;
 import me.csed2.moneymanager.ui.model.StageMenuBuilder;
 
-import javax.swing.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class StageMenuList {

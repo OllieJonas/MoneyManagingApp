@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.budget.autoCommands;
+package me.csed2.moneymanager.budget.autocommands;
 
 import me.csed2.moneymanager.budget.BudgetBuilder;
 import me.csed2.moneymanager.budget.BudgetStore;

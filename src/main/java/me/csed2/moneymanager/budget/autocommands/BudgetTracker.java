@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.budget.autoCommands;
+package me.csed2.moneymanager.budget.autocommands;
 
 import me.csed2.moneymanager.budget.BudgetStore;
 
@@ -17,7 +17,7 @@ public class BudgetTracker {
     /**
      * This is called at the beginning of the program so that the budget store is loaded
      */
-    public static void loadBudgetStore(){
+    public static void loadBudgetStore() {
         BudgetStore.BudgetStoreLoad();
     }
 }

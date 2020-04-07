@@ -7,14 +7,12 @@ import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.subscriptions.Subscription;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Custom data type with additional searching and sorting features.
@@ -218,6 +216,14 @@ public class CachedList<E extends Cacheable> {
                 .stream()
                 .sorted(comparator)
                 .collect(Collectors.toList())));
+    }
+
+    public Stream<E> stream() {
+        return asList().stream();
+    }
+
+    public Stream<E> parallelStream() {
+        return asList().parallelStream();
     }
 
     /**
