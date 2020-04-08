@@ -1,0 +1,14 @@
+{
+  "Categories": {
+    "loadSound": "audio/categories.wav"
+  },
+
+  "Transactions": {
+    "loadSound": "audio/transactions.wav"
+  },
+
+  "Add a Category": {
+    "loadSound": "audio/categories.wav",
+    "submitSound": "audio/button_press.wav"
+  }
+}

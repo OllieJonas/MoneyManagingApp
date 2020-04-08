@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.ui.gui;
 
 import me.csed2.moneymanager.main.App;
+import me.csed2.moneymanager.sound.SoundHandler;
 
 import javax.swing.*;
 import java.awt.*;

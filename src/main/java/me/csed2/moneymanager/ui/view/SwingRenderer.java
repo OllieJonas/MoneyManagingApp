@@ -101,7 +101,6 @@ public class SwingRenderer implements UIRenderer {
         //Button
         for(UINode child : node.getChildren()){
             //Configure Button
-            System.out.println(child.getImage());
             JButton button;
 
             if(SwingUtils.getIconFromAddress(child.getImage()) == null){
