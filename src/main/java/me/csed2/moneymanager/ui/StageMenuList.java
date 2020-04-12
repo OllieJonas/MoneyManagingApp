@@ -69,7 +69,7 @@ public class StageMenuList {
                     new Stage<>(Integer.class, "What is the month you would like to check this budget for"))
 
             .withExitPhase((app, stages) -> {
-                int month = (Integer) stages.get(0).getResult() -1;
+                int month = (Integer) stages.get(0).getResult() -1 ;
 
                 CommandDispatcher.dispatchSync(new OverallBudget(month));
             })

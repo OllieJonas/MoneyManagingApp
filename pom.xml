@@ -77,14 +77,14 @@
     </dependencies>
 
     <build>
-        <defaultGoal>clean package</defaultGoal>
+        <defaultGoal>clean install</defaultGoal>
         <finalName>MoneyManager</finalName>
 
         <resources>
             <resource>
                 <targetPath>.</targetPath>
                 <filtering>true</filtering>
-                <directory>src/main/resources</directory>
+                <directory>/src/main/resources</directory>
                 <includes>
                     <include>**/*</include>
                 </includes>

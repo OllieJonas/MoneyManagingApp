@@ -6,6 +6,7 @@ import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.StageMenu;
 import me.csed2.moneymanager.ui.model.UINode;
 import me.csed2.moneymanager.ui.model.Action;
+import me.csed2.moneymanager.ui.model.graph.Graph;
 
 import javax.swing.*;
 import java.awt.*;
@@ -152,6 +153,11 @@ public class SwingRenderer implements UIRenderer {
 
     @Override
     public void renderStage(Stage<?> stage) {
+
+    }
+
+    @Override
+    public void renderGraph(Graph graph) {
 
     }
 }

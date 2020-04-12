@@ -7,6 +7,8 @@ import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.transactions.Transaction;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 
 //this Builds an object of the total transactions in a specific month, this means that the total spent for individual months are linked
 @Getter
@@ -30,9 +32,10 @@ public class MonthsTransactionsBuilder {
     }
 
     //This gets the transactions in a category
-    public static int Checker(String budgetToCheck, int monthFor){
-        int catID = item.search(budgetToCheck).get().getId();
-        return addTrans(catID, monthFor);
+    public static int Checker(String budgetToCheck, int monthFor) {
+        AtomicInteger catID = new AtomicInteger(-1);
+        item.search(budgetToCheck).ifPresent(item -> catID.set(item.getId()));
+        return addTrans(catID.get(), monthFor);
     }
 
     //This adds all the transactions in a category and month to the budget object

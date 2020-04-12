@@ -15,6 +15,7 @@ import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 /**
@@ -33,6 +34,8 @@ public class LoadFromJsonAsListCommand<T extends Cacheable> implements Supplier<
         this.type = TypeFactory.getType(clazz);
         this.gson = new Gson();
         URL fileUrl = Main.class.getClassLoader().getResource(fileName);
+
+        System.out.println(Objects.requireNonNull(fileUrl).getPath());
 
         if (fileUrl != null) {
             this.reader = new JsonReader(new FileReader(fileUrl.getPath()));

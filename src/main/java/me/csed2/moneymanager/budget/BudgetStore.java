@@ -33,7 +33,7 @@ public class BudgetStore {
     /**
      * this creates all the budget objects by calling the builder class
      */
-    public static void  BudgetStoreLoad() {
+    public static void BudgetStoreLoad() {
         for (Category item : App.getInstance().getCategoryCache().asList()) {
             budStore.add(new BudgetBuilder(item.getName()));
         }
