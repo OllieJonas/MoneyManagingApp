@@ -17,7 +17,7 @@ public class Main {
         new StageMenuList();
 
         new AuthServerManager();
-
+        new App();
         // Testing Frame
         App.getInstance().render(MenuList.MAIN);
         // End of Testing

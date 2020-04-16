@@ -92,11 +92,10 @@ public class App {
             e.printStackTrace();
         }
         //this loads the budget store, by taking information from the cache
-        BudgetTracker.loadBudgetStore();
 
         instance = this;
         //this loads the budget store, by taking information from the cache
-        BudgetTracker.loadBugetStore();
+        BudgetTracker.loadBudgetStore();
         //this checks to see if the month has ended and iff so end of month actions are performed
         EndOfMonthActions.checkMonth();
 
