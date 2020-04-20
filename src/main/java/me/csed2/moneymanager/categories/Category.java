@@ -40,12 +40,6 @@ public class Category implements Cacheable {
      */
     private int budget;
 
-    private boolean interactable;
-
-    public Category(String name, int id, Date created, int budget) {
-        this(name, id, created, budget, true);
-    }
-
     public String toFormattedString() {
         return "category: " + name + "  " + "\n  "
                 + " id: " + id + "\n  "

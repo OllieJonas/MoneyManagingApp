@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 @Getter @Setter
-public class Subscription extends Transaction implements Cacheable{
+public class Subscription extends Transaction implements Cacheable {
 
     private int timeCycle;
     private Boolean cancelMeBool;
@@ -29,23 +29,6 @@ public class Subscription extends Transaction implements Cacheable{
             cancelMeBool = StringParserFactory.parseBoolean(cancelMe);
         } catch (InvalidTypeException e) {
             App.getInstance().render(e.getMessage());
-        }
-    }
-
-
-    @Override
-    public void print(){
-        System.out.println("name: " + name);
-        System.out.println("  id: " + id);
-        System.out.println("  created: " + date.toString());
-        System.out.println("  amount: " + amount);
-        System.out.println("  category: " + category);
-        System.out.println("  vendor: " + vendor);
-        System.out.println("  Renews every " + timeCycle + " " + timeCycleUnit);
-        System.out.println("  You want to be notified for cancellation: " + cancelMeBool);
-        System.out.println("  notes: ");
-        for (String note : notes) {
-            System.out.println("    \"" + note + "\"");
         }
     }
 

@@ -26,8 +26,6 @@ public class Main {
         // Testing Frame
         App.getInstance().render(MenuList.MAIN);
         // End of Testing
-
-        Notifications.displayNotification("Hello World", TrayIcon.MessageType.NONE);
     }
 
     public static void main(String[] args) {

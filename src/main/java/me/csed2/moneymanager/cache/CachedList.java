@@ -83,10 +83,7 @@ public class CachedList<E extends Cacheable> {
      * @return Whether it was successful
      */
     public boolean remove(E entity) {
-        if (!entity.isInteractable())
-            return false;
-        else
-            return items.remove(entity);
+        return items.remove(entity);
     }
 
     /**
@@ -241,15 +238,13 @@ public class CachedList<E extends Cacheable> {
      */
     public String getReport() {
         StringBuilder builder = new StringBuilder();
-        items.stream()
-                .filter(Cacheable::isInteractable)
-                .forEach(item -> builder.append(item.toFormattedString()).append("\n"));
+        items.forEach(item -> builder.append(item.toFormattedString()).append("\n"));
         return builder.toString();
     }
 
     public ArrayList<E> getList(){
         ArrayList<E> returnList = new ArrayList<>();
-        items.iterator().forEachRemaining(item -> returnList.add(item));
+        items.iterator().forEachRemaining(returnList::add);
         return returnList;
     }
 

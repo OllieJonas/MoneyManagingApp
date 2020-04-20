@@ -4,20 +4,25 @@ package me.csed2.moneymanager.budget;
 import com.google.common.collect.ImmutableBiMap;
 import lombok.Getter;
 import lombok.Setter;
+import me.csed2.moneymanager.cache.Cacheable;
+import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.main.App;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * this builds the budget objects that are stored in the budget store
  */
 @Getter @Setter
-public class MonthlyBudget {
+public class MonthlyBudget implements Cacheable  {
 
     private String name;
 
     private int budget;
+
+    private Set<Category> relatedCategories;
 
     private ArrayList<MonthsTransactionsBuilder> transPerMonth = new ArrayList<>();
 
@@ -47,6 +52,16 @@ public class MonthlyBudget {
             }
         }
         return 0;
+    }
+
+    @Override
+    public int getId() {
+        return 0;
+    }
+
+    @Override
+    public String toFormattedString() {
+        return null;
     }
 }
 
