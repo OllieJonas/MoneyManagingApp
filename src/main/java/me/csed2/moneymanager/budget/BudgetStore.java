@@ -4,16 +4,11 @@ import lombok.Getter;
 import lombok.Setter;
 //import me.csed2.moneymanager.budget.Commands.OverallBudget;
 //import me.csed2.moneymanager.budget.Commands.SeeBudgets;
-import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 
 import me.csed2.moneymanager.main.App;
-import me.csed2.moneymanager.rest.AuthServerManager;
-import me.csed2.moneymanager.ui.MenuList;
-import me.csed2.moneymanager.ui.StageMenuList;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 @Getter
@@ -23,8 +18,7 @@ public class BudgetStore {
     public static String catName;
     public static int catBud;
     public static int catSpent;
-    private static ArrayList<BudgetBuilder> budStore = new ArrayList<BudgetBuilder>();
-
+    private static ArrayList<MonthlyBudget> budStore = new ArrayList<MonthlyBudget>();
 
     public BudgetStore() {
 
@@ -35,11 +29,11 @@ public class BudgetStore {
      */
     public static void BudgetStoreLoad() {
         for (Category item : App.getInstance().getCategoryCache().asList()) {
-            budStore.add(new BudgetBuilder(item.getName()));
+            budStore.add(new MonthlyBudget(item.getName()));
         }
     }
 
-    public static ArrayList<BudgetBuilder> getBudStore(){
+    public static ArrayList<MonthlyBudget> getBudStore(){
         return budStore;
     }
 
@@ -49,11 +43,10 @@ public class BudgetStore {
      * @param name
      * @param month
      */
-    public static void findBudget(String name, int month){
-        for(BudgetBuilder each: budStore){
+    public static void findBudget(String name, int month) {
+        for (MonthlyBudget each: budStore) {
             System.out.println(each.getName());
-            if(each.getName().equals(name)){
-                System.out.println("heya");
+            if (each.getName().equals(name)) {
                 catBud = each.getBudget();
                 catSpent = each.getTotalSpent(month);
                 catName = each.getName();
@@ -70,11 +63,11 @@ public class BudgetStore {
      * this reloads the budget for the category that has just been edited or has a transaction edited
      * @param name
      */
-    public static void reloadSingleBudget(String name){
-        for(BudgetBuilder each: budStore){
-            if(each.getName().equals(name)){
+    public static void reloadSingleBudget(String name) {
+        for(MonthlyBudget each: budStore){
+            if(each.getName().equals(name)) {
                 int index = budStore.indexOf(each);
-                budStore.set(index, new BudgetBuilder(each.getName()));
+                budStore.set(index, new MonthlyBudget(each.getName()));
             }
         }
     }

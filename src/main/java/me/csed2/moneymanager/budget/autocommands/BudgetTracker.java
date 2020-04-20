@@ -9,9 +9,9 @@ public class BudgetTracker {
      * @param name
      * @param month
      */
-    public static void trackCheck(String name, int month){
+    public static void trackCheck(String name, int month) {
         BudgetStore.reloadSingleBudget(name);
-        NotificationTracker.checkCat(name);
+        NotificationListener.checkCat(name);
     }
 
     /**

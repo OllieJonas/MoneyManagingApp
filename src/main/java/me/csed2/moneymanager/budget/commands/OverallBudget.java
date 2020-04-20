@@ -2,7 +2,7 @@ package me.csed2.moneymanager.budget.commands;
 
 import lombok.Getter;
 import lombok.Setter;
-import me.csed2.moneymanager.budget.BudgetBuilder;
+import me.csed2.moneymanager.budget.MonthlyBudget;
 import me.csed2.moneymanager.budget.BudgetStore;
 import me.csed2.moneymanager.main.App;
 
@@ -20,7 +20,7 @@ public class OverallBudget implements Consumer<App> {
     int allSpent;
     int allBudget;
 
-    ArrayList<BudgetBuilder> budgetArr;
+    ArrayList<MonthlyBudget> budgetArr;
 
     public OverallBudget(int monthFor){
         this.monthFor = monthFor;
@@ -30,7 +30,7 @@ public class OverallBudget implements Consumer<App> {
     }
 
     public void trackAll(){
-        for(BudgetBuilder each: budgetArr){
+        for(MonthlyBudget each: budgetArr){
             allSpent += each.getTotalSpent(monthFor);
         }
     }

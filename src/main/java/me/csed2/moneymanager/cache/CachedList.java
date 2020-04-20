@@ -262,8 +262,9 @@ public class CachedList<E extends Cacheable> {
      * @param fileName The filename in question
      * @throws FileNotFoundException If the file can't be found
      */
-    public void load(Class<E> clazz, String fileName) throws FileNotFoundException {
+    public CachedList<E> load(Class<E> clazz, String fileName) throws FileNotFoundException {
         this.items = CommandDispatcher.dispatchSync(new LoadFromJsonAsListCommand<>(fileName, clazz));
+        return this;
     }
 
     /**
