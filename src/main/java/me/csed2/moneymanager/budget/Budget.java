@@ -1,26 +1,26 @@
 package me.csed2.moneymanager.budget;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import me.csed2.moneymanager.cache.Cacheable;
+import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.main.App;
 
-@Getter @Setter
+import java.util.HashSet;
+import java.util.Set;
+
+@Getter @Setter @AllArgsConstructor
 public class Budget implements Cacheable {
 
     private String name;
     private int id;
-    private BudgetDate date;
     private int totalSpent;
     private int budgetSize;
-    private boolean interactable = true;
-
-    public Budget(String name, int id, BudgetDate date, int totalSpent, int budgetSize) {
-        this.name = name;
-        this.id = id;
-        this.date = date;
-        this.totalSpent = totalSpent;
-        this.budgetSize = budgetSize;
-    }
+    private BudgetDate date;
+    private Set<String> relatedCategories;
 
     public BudgetDate.Month getMonth() {
         return date.getMonth();

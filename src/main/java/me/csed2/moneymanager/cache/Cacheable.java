@@ -17,7 +17,9 @@ public interface Cacheable {
 
     String getName();
 
-    String toFormattedString();
+    default String toFormattedString() {
+        return toString();
+    }
 
     default boolean equals(Cacheable cacheable) {
         return this.getClass() == cacheable.getClass() && this.getId() == cacheable.getId();

@@ -11,16 +11,16 @@ public class BudgetCachedList extends CachedList<Budget> {
 
     private Budget currentBudget;
 
-    private NotificationListener listener;
-
     @Override
     public BudgetCachedList load(Class<Budget> clazz, String fileName) throws FileNotFoundException {
-
         return this;
     }
 
-    public BudgetCachedList attachListener(NotificationListener listener) {
-        this.listener = listener;
-        return this;
+    public void setOverallBudget(int overallBudget) {
+        this.overallBudget = overallBudget;
+    }
+
+    public void setCurrentBudget(Budget currentBudget) {
+        this.currentBudget = currentBudget;
     }
 }

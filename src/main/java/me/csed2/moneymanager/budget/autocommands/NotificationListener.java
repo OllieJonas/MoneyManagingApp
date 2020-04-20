@@ -4,8 +4,6 @@ import me.csed2.moneymanager.budget.*;
 import me.csed2.moneymanager.utils.Notifications;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Date;
 
 @SuppressWarnings("WeakerAccess")
 public class NotificationListener {
@@ -49,7 +47,7 @@ public class NotificationListener {
      */
     public void checkAll() {
         for (Budget each : list.asImmutableList()) {
-            checkCat(each.getName(), BudgetDate.CURRENT_DATE);
+            checkCat(each.getName(), BudgetDate.NOW);
         }
     }
 
