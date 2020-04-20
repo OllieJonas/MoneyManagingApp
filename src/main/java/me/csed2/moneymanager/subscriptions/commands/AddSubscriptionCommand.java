@@ -4,7 +4,6 @@ import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.subscriptions.Subscription;
-import me.csed2.moneymanager.subscriptions.SubscriptionBuilder;
 
 import java.util.Date;
 import java.util.function.Function;
@@ -40,7 +39,7 @@ public class AddSubscriptionCommand implements Function<App, Boolean> {
 
         if (categoryCache.exists(categoryName)) {
 
-            subscriptionCache.add(new SubscriptionBuilder(name)
+            subscriptionCache.add(new Subscription.Builder(name)
                     .withAmount(amount)
                     .withVendor(vendor)
                     .withDate(new Date())

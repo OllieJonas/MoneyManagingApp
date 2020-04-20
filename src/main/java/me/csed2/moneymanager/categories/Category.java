@@ -46,4 +46,51 @@ public class Category implements Cacheable {
                 + " created: " + created + "\n  "
                 + " budget: £" + Math.round(budget / 100);
     }
+
+    @SuppressWarnings("unused")
+    public static class Builder {
+
+        /**
+         * The name of the category
+         */
+        private String name;
+
+        /**
+         * The associated ID with the category
+         */
+        private int id;
+
+        /**
+         * Date of creation
+         */
+        private Date created;
+
+        /**
+         * The budget the user has set for this category
+         */
+        private int budget;
+
+        public Builder(String name) {
+            this.name = name;
+        }
+
+        public Builder withId(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder withCreationDate(Date date) {
+            this.created = date;
+            return this;
+        }
+
+        public Builder withBudget(int budget) {
+            this.budget = budget;
+            return this;
+        }
+
+        public Category build() {
+            return new Category(name, id, created, budget);
+        }
+    }
 }

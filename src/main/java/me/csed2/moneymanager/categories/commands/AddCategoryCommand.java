@@ -2,7 +2,6 @@ package me.csed2.moneymanager.categories.commands;
 
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.categories.CategoryBuilder;
 import me.csed2.moneymanager.main.App;
 
 import java.util.Date;
@@ -27,7 +26,7 @@ public class AddCategoryCommand implements Function<App, Boolean> {
 
         CachedList<Category> cache = app.getCategoryCache();
 
-        CategoryBuilder builder = new CategoryBuilder(name)
+        Category.Builder builder = new Category.Builder(name)
                 .withId(id)
                 .withCreationDate(created)
                 .withBudget(budget);

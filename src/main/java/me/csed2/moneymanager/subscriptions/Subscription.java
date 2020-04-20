@@ -45,4 +45,100 @@ public class Subscription extends Transaction implements Cacheable {
                 "  Date of last renewal: " + commencement + "\n" +
                 "  Notes: " + Arrays.toString(notes);
     }
+
+    /**
+     * Builder class for a Subscription.
+     *
+     * Example usage would be:
+     *
+     * Subscription trans = new SubscriptionBuilder("Score").withId(1).withDate(03/03/2020).withAmount(200)
+     * .withCategory(Category.FUN).withNotes("we do love to see this").withVendor("SU").build();
+     *
+     * @since 03/03/2020
+     */
+    public static class Builder {
+
+        /**
+         * Name of the Subscription
+         */
+        private String name;
+
+        /**
+         * Date Subscription occurred
+         */
+        private Date date;
+
+        /**
+         * How much the Subscription cost
+         */
+        private int amount;
+
+        /**
+         * Any notes the user may have about the Subscription
+         */
+        private String[] notes;
+
+        /**
+         * The name of the vendor
+         */
+        private String vendor;
+
+        private int timeCycle;
+
+        private String timeCycleUnit;
+
+        private String categoryName;
+        private String cancelMe;
+        private String commencement;
+
+        public Builder(String name) {
+            this.name = name;
+        }
+
+        public Builder withAmount(int amount) {
+            this.amount = amount;
+            return this;
+        }
+
+        public Builder withDate(Date date) {
+            this.date = date;
+            return this;
+        }
+
+        public Builder withCategoryName(String name) {
+            this.categoryName = name;
+            return this;
+        }
+
+        public Builder withNotes(String... notes) {
+            this.notes = notes;
+            return this;
+        }
+
+        public Builder withVendor(String vendor) {
+            this.vendor = vendor;
+            return this;
+        }
+        public Builder withTimeCycle(int timeCycle){
+            this.timeCycle=timeCycle;
+            return this;
+        }
+        public Builder withTimeCycleUnit(String timeCycleUnit){
+            this.timeCycleUnit=timeCycleUnit;
+            return this;
+        }
+        public Builder withCancelMe(String cancelNe){
+            this.cancelMe =cancelNe;
+            return this;
+        }
+        public Builder withCommencement(String commencement){
+            this.commencement=commencement;
+            return this;
+        }
+
+        public Subscription build() {
+            return new Subscription(name, App.getInstance().getSubscriptionCache().nextId(), date, amount, categoryName, timeCycle, timeCycleUnit, notes, vendor, cancelMe, commencement);
+        }
+
+    }
 }
