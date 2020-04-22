@@ -418,4 +418,23 @@ public class StageMenuList {
                 }
             })
             .build();
+
+    public static final StageMenu SETTINGS = new StageMenuBuilder("Settings")
+            .withParent(MenuList.MAIN)
+            .withStages(
+                    new Stage<>(String.class, "Renderer CMD: Command prompt, Blank: UI:"),
+                    new Stage<>(Double.class, "Test Settings \", \""))
+            .withExitPhase((app, stages) -> {
+
+                String subscriptionName = (String) stages.get(0).getResult();
+                int notes = (Integer) stages.get(1).getResult();
+
+                if (CommandDispatcher.dispatchSync(
+                        new UpdateSubscriptionCommand<>(subscriptionName, SubscriptionArgType.NOTES, notes))) {
+                    app.sendMessage("Subscription successfully updated!");
+                } else {
+                    app.sendMessage("Error: Unable to update subscription!");
+                }
+            })
+            .build();
 }
