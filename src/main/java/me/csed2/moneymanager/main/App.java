@@ -91,6 +91,7 @@ public class App {
     public void render(UINode node) {
         this.currentNode = node;
         renderer.render(node);
+        sound.playSound(sound.BUTTON_PRESS);
         sound.playSound(soundPack.getLoadClip(node.getName()));
     }
 
