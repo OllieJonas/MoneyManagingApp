@@ -1,22 +1,29 @@
 package me.csed2.moneymanager.settings;
-import me.csed2.moneymanager.main.App;
 
-import java.util.Optional;
-import java.util.function.Function;
+import me.csed2.moneymanager.main.SettingWrapper;
 
-public class UpdateSettingsCommand <T> implements Function<App, Boolean> {
+import java.io.FileNotFoundException;
+
+public class UpdateSettingsCommand{
     String renderer;
-    String hello;
-
-    public UpdateSettingsCommand(String renderer, String hello){
+    String test;
+    SettingWrapper wrapper;
+    public UpdateSettingsCommand(String renderer, String test){
         this.renderer=renderer;
-        this.hello=hello;
+        this.test=test;
+
+        try {
+            wrapper = new SettingWrapper("settings.json");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
-    @Override
-    public Boolean apply(App app) {
+    public boolean update(){
+
+        wrapper.save(renderer, test);
+
 
         return true;
     }
-
 }

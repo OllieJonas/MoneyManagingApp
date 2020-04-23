@@ -12,6 +12,7 @@ import me.csed2.moneymanager.categories.commands.RemoveCategoryCommand;
 import me.csed2.moneymanager.categories.commands.UpdateCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.main.App;
+import me.csed2.moneymanager.settings.UpdateSettingsCommand;
 import me.csed2.moneymanager.subscriptions.SubscriptionArgType;
 import me.csed2.moneymanager.subscriptions.commands.AddSubscriptionCommand;
 import me.csed2.moneymanager.subscriptions.commands.RemoveSubscriptionCommand;
@@ -423,17 +424,16 @@ public class StageMenuList {
             .withParent(MenuList.MAIN)
             .withStages(
                     new Stage<>(String.class, "Renderer CMD: Command prompt, Blank: UI:"),
-                    new Stage<>(Double.class, "Test Settings \", \""))
+                    new Stage<>(String.class, "Test Settings \", \""))
             .withExitPhase((app, stages) -> {
 
-                String subscriptionName = (String) stages.get(0).getResult();
-                int notes = (Integer) stages.get(1).getResult();
+                String renderer = (String) stages.get(0).getResult();
+                String test = (String) stages.get(1).getResult();
+                if (new UpdateSettingsCommand(renderer, test).update()){
+                    app.sendMessage("Success");
+                }else{
+                    app.sendMessage("Error");
 
-                if (CommandDispatcher.dispatchSync(
-                        new UpdateSubscriptionCommand<>(subscriptionName, SubscriptionArgType.NOTES, notes))) {
-                    app.sendMessage("Subscription successfully updated!");
-                } else {
-                    app.sendMessage("Error: Unable to update subscription!");
                 }
             })
             .build();
