@@ -26,12 +26,11 @@ public class AddCategoryCommand implements Function<App, Boolean> {
 
         CachedList<Category> cache = app.getCategoryCache();
 
-        Category.Builder builder = new Category.Builder(name)
+        Category category = new Category.Builder(name)
                 .withId(id)
                 .withCreationDate(created)
-                .withBudget(budget);
-
-        Category category = builder.build();
+                .withBudget(budget)
+                .build();
 
         cache.add(category);
 

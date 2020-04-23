@@ -2,7 +2,6 @@ package me.csed2.moneymanager.budget;
 
 import com.google.gson.*;
 import com.google.gson.annotations.JsonAdapter;
-import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import lombok.AllArgsConstructor;
@@ -10,9 +9,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -21,19 +17,23 @@ import java.util.Date;
 @JsonAdapter(BudgetDate.Adapter.class)
 public class BudgetDate {
 
-    public static final BudgetDate NOW = new BudgetDate(LocalDate.now().getYear(), Month.of(LocalDate.now()));
+    public static final BudgetDate NOW = new BudgetDate(LocalDate.now().getYear(), Month.of(LocalDate.now().getMonthValue()));
 
     private int year;
 
     private Month month;
 
+    public static BudgetDate of(Date created) {
+        return new BudgetDate(created.getYear(), Month.of(created.getMonth()));
+    }
+
+    public static BudgetDate of(LocalDate date) {
+        return new BudgetDate(date.getYear(), Month.of(date.getMonthValue()));
+    }
+
     @Override
     public String toString() {
         return month.getName() + " " + year;
-    }
-
-    public void writeObject(ObjectOutputStream s) throws IOException {
-        s.writeBytes(month.getName() + " " + year);
     }
 
     @Override
@@ -57,13 +57,13 @@ public class BudgetDate {
         DECEMBER("December", 11);
 
         private final String name;
-        private final int id;
+        private final int value;
 
         private static final int SIZE = 12;
         private static final Month[] values = values();
 
-        Month(String name, int id) {
-            this.id = id;
+        Month(String name, int value) {
+            this.value = value;
             this.name = name;
         }
 
@@ -71,8 +71,8 @@ public class BudgetDate {
             return name;
         }
 
-        public int getId() {
-            return id;
+        public int getValue() {
+            return value;
         }
 
         public static Month of(LocalDate date) {
@@ -81,6 +81,10 @@ public class BudgetDate {
 
         public static Month of(String string) {
             return valueOf(string);
+        }
+
+        public static Month of(int date) {
+            return values[date - 1];
         }
 
         public Month previousMonth() {

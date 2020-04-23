@@ -1,8 +1,10 @@
 package me.csed2.moneymanager.categories;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import me.csed2.moneymanager.budget.BudgetDate;
 import me.csed2.moneymanager.cache.Cacheable;
 
 import java.util.Date;
@@ -33,7 +35,8 @@ public class Category implements Cacheable {
     /**
      * Date of creation
      */
-    private Date created;
+    @SerializedName("created")
+    private Date date;
 
     /**
      * The budget the user has set for this category
@@ -43,8 +46,12 @@ public class Category implements Cacheable {
     public String toFormattedString() {
         return "category: " + name + "  " + "\n  "
                 + " id: " + id + "\n  "
-                + " created: " + created + "\n  "
+                + " created: " + date + "\n  "
                 + " budget: £" + Math.round(budget / 100);
+    }
+
+    public BudgetDate getBudgetDate() {
+        return BudgetDate.of(date);
     }
 
     @SuppressWarnings("unused")

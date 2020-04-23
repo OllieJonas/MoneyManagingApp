@@ -13,25 +13,12 @@ import me.csed2.moneymanager.transactions.TransactionArgType;
 import me.csed2.moneymanager.transactions.commands.SortTransactionsCommand;
 import me.csed2.moneymanager.ui.model.Action;
 import me.csed2.moneymanager.ui.model.Menu;
-import me.csed2.moneymanager.ui.model.graph.tokens.PointToken;
-import me.csed2.moneymanager.ui.model.graph.LineGraph;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.function.Consumer;
 
 public class MenuList {
 
     public static final Menu MAIN = new Menu("Main Menu", null, null);
-
-    private static final List<PointToken> points = new ArrayList<>();
-
-    static {
-        points.add(new PointToken(1, 1));
-        points.add(new PointToken(2, 5));
-    }
-
-    public static final Action GRAPH_TEST = new Action("Graph Test", MAIN, null, (Consumer<App>) app -> app.render(new LineGraph("Test", "x axis", "y axis").build()));
 
 
     //Budget

@@ -3,10 +3,14 @@ package me.csed2.moneymanager.main;
 import lombok.Getter;
 import lombok.Setter;
 import me.csed2.moneymanager.AutoSave;
+import me.csed2.moneymanager.budget.BudgetCachedList;
 import me.csed2.moneymanager.budget.autocommands.BudgetTracker;
 import me.csed2.moneymanager.budget.autocommands.EndOfMonthActions;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.charts.TimeScale;
+import me.csed2.moneymanager.charts.adapters.Graph;
+import me.csed2.moneymanager.charts.adapters.LineGraph;
 import me.csed2.moneymanager.rest.AuthServerManager;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.subscriptions.Subscription;
@@ -15,7 +19,6 @@ import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.ui.controller.InputReader;
 import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.UINode;
-import me.csed2.moneymanager.ui.model.graph.Graph;
 import me.csed2.moneymanager.ui.view.CMDRenderer;
 import me.csed2.moneymanager.ui.view.SwingRenderer;
 import me.csed2.moneymanager.ui.view.UIRenderer;
@@ -28,6 +31,8 @@ import java.util.concurrent.TimeUnit;
  * @since 08/03/2020
  */
 public class App {
+
+    public static final String DEFAULT_DIRECTORY = "Documents";
 
     private static final long AUTOSAVE_TIME = 5L;
 
@@ -56,7 +61,11 @@ public class App {
     @Getter
     private CachedList<Subscription> subscriptionCache = new CachedList<>();
 
+    @Getter
+    private BudgetCachedList budgetCache;
+
     // Settings
+    @Getter
     private SettingWrapper settings;
 
     // Monzo
@@ -78,15 +87,19 @@ public class App {
 
         try {
             this.settings = new SettingWrapper("settings.json");
-            this.renderer = ((String) settings.get("renderer").getValue()).equalsIgnoreCase("CMD") ? new CMDRenderer() : new SwingRenderer();
+            this.renderer = settings.getValue("renderer", String.class)
+                    .orElse("Swing").equals("CMD") ? new CMDRenderer() : new SwingRenderer();
 
             categoryCache.load(Category.class, "categories.json");
             transactionCache.load(Transaction.class, "transactions.json");
             subscriptionCache.load(Subscription.class, "subscriptions.json");
+//            budgetCache.load("budgets.json");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         instance = this;
+
+        render(new LineGraph.Builder().withTitle("test").withData(categoryCache).withTimescale(TimeScale.MONTH).withXAxisLabel("test").withYAxisLabel("test2").withYField("budget").build());
         //this loads the budget store, by taking information from the cache
         BudgetTracker.loadBudgetStore();
         EndOfMonthActions.checkMonth();

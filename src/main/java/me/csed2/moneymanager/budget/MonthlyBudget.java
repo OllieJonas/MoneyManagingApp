@@ -60,6 +60,11 @@ public class MonthlyBudget implements Cacheable  {
     }
 
     @Override
+    public Date getDate() {
+        return null;
+    }
+
+    @Override
     public String toFormattedString() {
         return null;
     }

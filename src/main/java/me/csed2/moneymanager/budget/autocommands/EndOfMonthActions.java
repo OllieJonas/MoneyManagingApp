@@ -9,8 +9,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
 
 
 /**
@@ -60,10 +58,14 @@ public class EndOfMonthActions implements Consumer<App> {
      * if the overall budget is a month behind then the other end of month actions are performed and the date the overall budget was created is changed
      */
     public static void checkMonth() {
-        if (App.getInstance().getCategoryCache().search("Overall").get().getCreated().getMonth() != new Date().getMonth()){
-            withinBudgetCheck();
-            allowOverflow();
-            App.getInstance().getCategoryCache().search("Overall").get().setCreated(new Date());
-        }
+        App.getInstance().getCategoryCache().search("Overall").ifPresent(category -> {
+            if (category.getDate().getMonth() != new Date().getMonth()){
+                withinBudgetCheck();
+                allowOverflow();
+                category.setDate(new Date());
+            }
+        });
+
+
     }
 }

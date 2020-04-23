@@ -1,10 +1,12 @@
 package me.csed2.moneymanager.cache;
 
 import com.google.common.collect.ImmutableList;
+import com.google.gson.annotations.SerializedName;
 import me.csed2.moneymanager.cache.commands.LoadFromJsonAsListCommand;
 import me.csed2.moneymanager.cache.commands.SaveListToDBCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.subscriptions.Subscription;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -33,11 +35,12 @@ import java.util.stream.Stream;
  *
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
-public class CachedList<E extends Cacheable> {
+public class CachedList<E extends Cacheable> implements Collection<E> {
 
     /**
      * The wrapped list of items.
      */
+    @SerializedName("list")
     private List<E> items;
 
     /**
@@ -54,15 +57,6 @@ public class CachedList<E extends Cacheable> {
      */
     public CachedList(List<E> list) {
         this.items = list;
-    }
-
-    /**
-     * Add an item to the list.
-     *
-     * @param entity The item in question.
-     */
-    public boolean add(E entity) {
-        return items.add(entity);
     }
 
     /**
@@ -294,5 +288,68 @@ public class CachedList<E extends Cacheable> {
      */
     public List<E> asList() {
         return items;
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return items.contains(o);
+    }
+
+    @NotNull
+    @Override
+    public Iterator<E> iterator() {
+        return items.iterator();
+    }
+
+    @NotNull
+    @Override
+    public Object[] toArray() {
+        return items.toArray();
+    }
+
+    @NotNull
+    @Override
+    public <T> T[] toArray(@NotNull T[] a) {
+        return items.toArray(a);
+    }
+
+    @Override
+    public boolean add(E e) {
+        return items.add(e);
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return items.remove(o);
+    }
+
+    @Override
+    public boolean containsAll(@NotNull Collection<?> c) {
+        return items.containsAll(c);
+    }
+
+    @Override
+    public boolean addAll(@NotNull Collection<? extends E> c) {
+        return items.addAll(c);
+    }
+
+    @Override
+    public boolean removeAll(@NotNull Collection<?> c) {
+        return items.removeAll(c);
+    }
+
+    @Override
+    public boolean retainAll(@NotNull Collection<?> c) {
+        return items.retainAll(c);
     }
 }

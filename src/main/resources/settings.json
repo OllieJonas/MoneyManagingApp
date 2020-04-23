@@ -1,11 +1,16 @@
 {
   "renderer": {
-    "value": "CMD",
+    "value": "t",
     "active": true
   },
 
   "hello": {
     "value": "hey there",
+    "active": true
+  },
+
+  "directory": {
+    "value": "~/Downloads",
     "active": true
   }
 }

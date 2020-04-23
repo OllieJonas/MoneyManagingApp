@@ -1,8 +1,8 @@
 package me.csed2.moneymanager.ui.view;
 
+import me.csed2.moneymanager.charts.adapters.Graph;
 import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.UINode;
-import me.csed2.moneymanager.ui.model.graph.Graph;
 
 public interface UIRenderer {
 

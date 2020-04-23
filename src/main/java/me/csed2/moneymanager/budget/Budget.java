@@ -9,6 +9,7 @@ import me.csed2.moneymanager.cache.Cacheable;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.main.App;
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,11 +20,11 @@ public class Budget implements Cacheable {
     private int id;
     private int totalSpent;
     private int budgetSize;
-    private BudgetDate date;
+    private Date date;
     private Set<String> relatedCategories;
 
     public BudgetDate.Month getMonth() {
-        return date.getMonth();
+        return BudgetDate.Month.of(date.getMonth());
     }
 
     public int getYear() {

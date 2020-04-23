@@ -1,6 +1,8 @@
 package me.csed2.moneymanager.cache;
 
 
+import java.util.Date;
+
 /**
  * Interface implemented by anything that can be cached in the CachedList {@link CachedList} abstract class.
  *
@@ -16,6 +18,8 @@ public interface Cacheable {
     int getId();
 
     String getName();
+
+    Date getDate();
 
     default String toFormattedString() {
         return toString();

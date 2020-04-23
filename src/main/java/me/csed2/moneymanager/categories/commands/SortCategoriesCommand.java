@@ -37,7 +37,7 @@ public class SortCategoriesCommand implements Function<App, CachedList<Category>
             return Comparator.comparingInt(Category::getId);
         }
         else if(argType == CategoryArgType.CREATED){
-            return Comparator.comparing(Category::getCreated);
+            return Comparator.comparing(Category::getDate);
         }
         else{
             return null;
