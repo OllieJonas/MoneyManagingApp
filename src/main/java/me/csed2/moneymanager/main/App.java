@@ -102,9 +102,6 @@ public class App {
         //this loads the budget store, by taking information from the cache
         BudgetTracker.loadBudgetStore();
         EndOfMonthActions.checkMonth();
-
-        //this checks to see if the month has ended and iff so end of month actions are performed
-
     }
 
     private AutoSave startAutoSave() {
