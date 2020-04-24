@@ -41,9 +41,9 @@ public class App {
     private SoundPack soundPack = new SoundPack("bruh");
 
     // Threads
-    private InputReader reader;
+    private final InputReader reader;
 
-    private AutoSave autoSave;
+    private final AutoSave autoSave;
 
     // Caches
     @Getter
