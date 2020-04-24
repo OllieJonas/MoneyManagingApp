@@ -4,8 +4,7 @@ import com.google.common.util.concurrent.*;
 import lombok.NonNull;
 import me.csed2.moneymanager.main.App;
 
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.function.*;
 
 /**
@@ -68,20 +67,10 @@ public class CommandDispatcher {
      * Responsible for dispatching asynchronous commands.
      *
      * @param command The command you'd like to execute
-     * @param callback The results of this computation
-     * @param timeout The timeout
-     * @param timeUnit The unit of time for the timeout
      *
      * @param <T> The return type of the command
      */
-    public static <T> ListenableFuture<T> dispatchAsync(Supplier<T> command, @NonNull FutureCallback<T> callback, long timeout, TimeUnit timeUnit) {
-        ListeningScheduledExecutorService service = MoreExecutors.listeningDecorator(Executors.newSingleThreadScheduledExecutor());
-        ListenableFuture<T> future = service.submit(command::get);
-
-        Futures.addCallback(future, callback, service);
-
-        Futures.withTimeout(future, timeout, timeUnit, service);
-
-        return future;
+    public static <T> CompletableFuture<T> dispatchAsync(Supplier<T> command) {
+        return CompletableFuture.supplyAsync(command);
     }
 }

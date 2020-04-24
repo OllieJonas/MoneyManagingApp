@@ -7,5 +7,10 @@
   "hello": {
     "value": "hey there",
     "active": true
+  },
+
+  "directory": {
+    "value": "~/Downloads",
+    "active": true
   }
 }

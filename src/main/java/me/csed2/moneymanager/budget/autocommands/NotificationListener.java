@@ -1,31 +1,35 @@
-package me.csed2.moneymanager.budget.autoCommands;
+package me.csed2.moneymanager.budget.autocommands;
 
-import me.csed2.moneymanager.budget.BudgetBuilder;
-import me.csed2.moneymanager.budget.BudgetStore;
+import me.csed2.moneymanager.budget.*;
 import me.csed2.moneymanager.utils.Notifications;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.Date;
 
-public class NotificationTracker {
+@SuppressWarnings("WeakerAccess")
+public class NotificationListener {
 
     private static int catBud;
     private static int catSpent;
-    private static ArrayList<BudgetBuilder> budgetObj;
+    private BudgetCachedList list;
 
+    public NotificationListener(BudgetCachedList list) {
+        this.list = list;
+    }
+
+    public static void checkCat(String name) {
+
+    }
 
     /**
      * This checks to see if the user is close to over, or on their budget in the specific category that the user just interacted with category
      * If they are over then a notification is sent
-     * @param Name
+     * @param name
      */
-    static void checkCat(String Name) {
-        budgetObj = BudgetStore.getBudStore();
-        for (BudgetBuilder each : budgetObj) {
-            if(each.getName().equals(Name)){
-                catBud = each.getBudget();
-                catSpent = each.getTotalSpent(new Date().getMonth());
+    public void checkCat(String name, BudgetDate date) {
+        for (Budget each : list.asImmutableList()) {
+            if (each.getName().equals(name) && each.getDate().equals(date)) {
+                catBud = each.getBudgetSize();
+                catSpent = each.getTotalSpent();
                 double warning = catBud * 0.9;
                 if (catSpent == catBud) {
                     Notifications.displayNotification("You have reached your Budget limit in " + each.getName(), TrayIcon.MessageType.NONE);
@@ -41,10 +45,9 @@ public class NotificationTracker {
     /**
      * this checks all categories to see if the user is over in any of them
      */
-    public void checkAll(){
-        budgetObj = BudgetStore.getBudStore();
-        for (BudgetBuilder each : budgetObj) {
-            checkCat(each.getName());
+    public void checkAll() {
+        for (Budget each : list.asImmutableList()) {
+            checkCat(each.getName(), BudgetDate.NOW);
         }
     }
 

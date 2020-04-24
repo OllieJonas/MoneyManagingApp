@@ -2,7 +2,7 @@ package me.csed2.moneymanager.ui;
 
 import me.csed2.moneymanager.budget.commands.OverallBudget;
 import me.csed2.moneymanager.budget.commands.SeeBudgets;
-import me.csed2.moneymanager.budget.autoCommands.BudgetTracker;
+import me.csed2.moneymanager.budget.autocommands.BudgetTracker;
 import me.csed2.moneymanager.budget.commands.UpdateOverallBudget;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
@@ -25,8 +25,6 @@ import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.StageMenu;
 import me.csed2.moneymanager.ui.model.StageMenuBuilder;
 
-import javax.swing.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class StageMenuList {
@@ -72,7 +70,7 @@ public class StageMenuList {
                     new Stage<>(Integer.class, "What is the month you would like to check this budget for"))
 
             .withExitPhase((app, stages) -> {
-                int month = (Integer) stages.get(0).getResult() -1;
+                int month = (Integer) stages.get(0).getResult() -1 ;
 
                 CommandDispatcher.dispatchSync(new OverallBudget(month));
             })

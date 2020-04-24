@@ -2,6 +2,7 @@ package me.csed2.moneymanager.ui.model;
 
 import lombok.Getter;
 import me.csed2.moneymanager.main.App;
+import me.csed2.moneymanager.utils.ClassUtils;
 
 import java.util.List;
 import java.util.function.Consumer;
@@ -45,9 +46,10 @@ public class Action implements UINode {
         return null;
     }
 
-    public Object execute(App app) {
+    @SuppressWarnings("unchecked")
+    public <T> T execute(App app) {
         if (funcAction != null) {
-            return funcAction.apply(app);
+            return (T) funcAction.apply(app);
         } else {
             consAction.accept(app);
             return null;

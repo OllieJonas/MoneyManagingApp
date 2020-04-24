@@ -1,20 +1,20 @@
 package me.csed2.moneymanager.cache;
 
 import com.google.common.collect.ImmutableList;
+import com.google.gson.annotations.SerializedName;
 import me.csed2.moneymanager.cache.commands.LoadFromJsonAsListCommand;
 import me.csed2.moneymanager.cache.commands.SaveListToDBCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.subscriptions.Subscription;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Custom data type with additional searching and sorting features.
@@ -35,11 +35,12 @@ import java.util.stream.Collectors;
  *
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
-public class CachedList<E extends Cacheable> {
+public class CachedList<E extends Cacheable> implements Collection<E> {
 
     /**
      * The wrapped list of items.
      */
+    @SerializedName("list")
     private List<E> items;
 
     /**
@@ -56,15 +57,6 @@ public class CachedList<E extends Cacheable> {
      */
     public CachedList(List<E> list) {
         this.items = list;
-    }
-
-    /**
-     * Add an item to the list.
-     *
-     * @param entity The item in question.
-     */
-    public boolean add(E entity) {
-        return items.add(entity);
     }
 
     /**
@@ -85,10 +77,7 @@ public class CachedList<E extends Cacheable> {
      * @return Whether it was successful
      */
     public boolean remove(E entity) {
-        if (!entity.isInteractable())
-            return false;
-        else
-            return items.remove(entity);
+        return items.remove(entity);
     }
 
     /**
@@ -220,6 +209,14 @@ public class CachedList<E extends Cacheable> {
                 .collect(Collectors.toList())));
     }
 
+    public Stream<E> stream() {
+        return asList().stream();
+    }
+
+    public Stream<E> parallelStream() {
+        return asList().parallelStream();
+    }
+
     /**
      * Iterates through the loop, printing each one as a formatted string.
      */
@@ -235,15 +232,13 @@ public class CachedList<E extends Cacheable> {
      */
     public String getReport() {
         StringBuilder builder = new StringBuilder();
-        items.stream()
-                .filter(Cacheable::isInteractable)
-                .forEach(item -> builder.append(item.toFormattedString()).append("\n"));
+        items.forEach(item -> builder.append(item.toFormattedString()).append("\n"));
         return builder.toString();
     }
 
     public ArrayList<E> getList(){
         ArrayList<E> returnList = new ArrayList<>();
-        items.iterator().forEachRemaining(item -> returnList.add(item));
+        items.iterator().forEachRemaining(returnList::add);
         return returnList;
     }
 
@@ -256,8 +251,9 @@ public class CachedList<E extends Cacheable> {
      * @param fileName The filename in question
      * @throws FileNotFoundException If the file can't be found
      */
-    public void load(Class<E> clazz, String fileName) throws FileNotFoundException {
+    public CachedList<E> load(Class<E> clazz, String fileName) throws FileNotFoundException {
         this.items = CommandDispatcher.dispatchSync(new LoadFromJsonAsListCommand<>(fileName, clazz));
+        return this;
     }
 
     /**
@@ -292,5 +288,68 @@ public class CachedList<E extends Cacheable> {
      */
     public List<E> asList() {
         return items;
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return items.contains(o);
+    }
+
+    @NotNull
+    @Override
+    public Iterator<E> iterator() {
+        return items.iterator();
+    }
+
+    @NotNull
+    @Override
+    public Object[] toArray() {
+        return items.toArray();
+    }
+
+    @NotNull
+    @Override
+    public <T> T[] toArray(@NotNull T[] a) {
+        return items.toArray(a);
+    }
+
+    @Override
+    public boolean add(E e) {
+        return items.add(e);
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return items.remove(o);
+    }
+
+    @Override
+    public boolean containsAll(@NotNull Collection<?> c) {
+        return items.containsAll(c);
+    }
+
+    @Override
+    public boolean addAll(@NotNull Collection<? extends E> c) {
+        return items.addAll(c);
+    }
+
+    @Override
+    public boolean removeAll(@NotNull Collection<?> c) {
+        return items.removeAll(c);
+    }
+
+    @Override
+    public boolean retainAll(@NotNull Collection<?> c) {
+        return items.retainAll(c);
     }
 }

@@ -11,6 +11,7 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.LinkedHashMap;
+import java.util.Objects;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -18,9 +19,12 @@ public class LoadSettingsCommand implements Supplier<LinkedHashMap<String, Setti
 
     private final Gson gson;
     private final Type type;
+  
     private JsonReader reader;
     private JsonWriter writer;
+    
     private URL url;
+  
     public LoadSettingsCommand(String fileName) throws FileNotFoundException {
 
         this.gson = new Gson();

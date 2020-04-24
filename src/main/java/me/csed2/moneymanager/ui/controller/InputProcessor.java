@@ -71,7 +71,6 @@ public class InputProcessor {
                 }
             } catch (InvalidTypeException e) {
                 System.out.println(e.getMessage());
-
                 app.render(currentStage);
             }
         }

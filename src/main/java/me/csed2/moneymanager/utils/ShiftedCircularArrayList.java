@@ -1,6 +1,9 @@
 package me.csed2.moneymanager.utils;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Implementation of ArrayList that circles around the items in the list, with an added shift.
@@ -47,5 +50,24 @@ public class ShiftedCircularArrayList<E> extends ArrayList<E> implements Iterabl
      */
     public E getUnshifted(int index) {
         return super.get(index);
+    }
+
+    @Override
+    @NotNull
+    public Iterator<E> iterator() {
+        return new Iterator<>() {
+
+            private int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                return index < size();
+            }
+
+            @Override
+            public E next() {
+                return get(index++);
+            }
+        };
     }
 }

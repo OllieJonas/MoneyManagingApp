@@ -1,6 +1,8 @@
 package me.csed2.moneymanager.cache;
 
 
+import java.util.Date;
+
 /**
  * Interface implemented by anything that can be cached in the CachedList {@link CachedList} abstract class.
  *
@@ -17,9 +19,11 @@ public interface Cacheable {
 
     String getName();
 
-    String toFormattedString();
+    Date getDate();
 
-    boolean isInteractable();
+    default String toFormattedString() {
+        return toString();
+    }
 
     default boolean equals(Cacheable cacheable) {
         return this.getClass() == cacheable.getClass() && this.getId() == cacheable.getId();

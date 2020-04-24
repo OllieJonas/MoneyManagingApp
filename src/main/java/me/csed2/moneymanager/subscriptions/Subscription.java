@@ -12,7 +12,7 @@ import java.util.Arrays;
 import java.util.Date;
 
 @Getter @Setter
-public class Subscription extends Transaction implements Cacheable{
+public class Subscription extends Transaction implements Cacheable {
 
     private int timeCycle;
     private Boolean cancelMeBool;
@@ -32,23 +32,6 @@ public class Subscription extends Transaction implements Cacheable{
         }
     }
 
-
-    @Override
-    public void print(){
-        System.out.println("name: " + name);
-        System.out.println("  id: " + id);
-        System.out.println("  created: " + date.toString());
-        System.out.println("  amount: " + amount);
-        System.out.println("  category: " + category);
-        System.out.println("  vendor: " + vendor);
-        System.out.println("  Renews every " + timeCycle + " " + timeCycleUnit);
-        System.out.println("  You want to be notified for cancellation: " + cancelMeBool);
-        System.out.println("  notes: ");
-        for (String note : notes) {
-            System.out.println("    \"" + note + "\"");
-        }
-    }
-
     @Override
     public String toFormattedString() {
         return "name: " + name + "\n" +
@@ -61,5 +44,101 @@ public class Subscription extends Transaction implements Cacheable{
                 "  Notified upon renewal: " + cancelMeBool + "\n" +
                 "  Date of last renewal: " + commencement + "\n" +
                 "  Notes: " + Arrays.toString(notes);
+    }
+
+    /**
+     * Builder class for a Subscription.
+     *
+     * Example usage would be:
+     *
+     * Subscription trans = new SubscriptionBuilder("Score").withId(1).withDate(03/03/2020).withAmount(200)
+     * .withCategory(Category.FUN).withNotes("we do love to see this").withVendor("SU").build();
+     *
+     * @since 03/03/2020
+     */
+    public static class Builder {
+
+        /**
+         * Name of the Subscription
+         */
+        private String name;
+
+        /**
+         * Date Subscription occurred
+         */
+        private Date date;
+
+        /**
+         * How much the Subscription cost
+         */
+        private int amount;
+
+        /**
+         * Any notes the user may have about the Subscription
+         */
+        private String[] notes;
+
+        /**
+         * The name of the vendor
+         */
+        private String vendor;
+
+        private int timeCycle;
+
+        private String timeCycleUnit;
+
+        private String categoryName;
+        private String cancelMe;
+        private String commencement;
+
+        public Builder(String name) {
+            this.name = name;
+        }
+
+        public Builder withAmount(int amount) {
+            this.amount = amount;
+            return this;
+        }
+
+        public Builder withDate(Date date) {
+            this.date = date;
+            return this;
+        }
+
+        public Builder withCategoryName(String name) {
+            this.categoryName = name;
+            return this;
+        }
+
+        public Builder withNotes(String... notes) {
+            this.notes = notes;
+            return this;
+        }
+
+        public Builder withVendor(String vendor) {
+            this.vendor = vendor;
+            return this;
+        }
+        public Builder withTimeCycle(int timeCycle){
+            this.timeCycle=timeCycle;
+            return this;
+        }
+        public Builder withTimeCycleUnit(String timeCycleUnit){
+            this.timeCycleUnit=timeCycleUnit;
+            return this;
+        }
+        public Builder withCancelMe(String cancelNe){
+            this.cancelMe =cancelNe;
+            return this;
+        }
+        public Builder withCommencement(String commencement){
+            this.commencement=commencement;
+            return this;
+        }
+
+        public Subscription build() {
+            return new Subscription(name, App.getInstance().getSubscriptionCache().nextId(), date, amount, categoryName, timeCycle, timeCycleUnit, notes, vendor, cancelMe, commencement);
+        }
+
     }
 }
