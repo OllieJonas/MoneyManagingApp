@@ -8,11 +8,9 @@ import me.csed2.moneymanager.budget.autocommands.BudgetTracker;
 import me.csed2.moneymanager.budget.autocommands.EndOfMonthActions;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.charts.TimeScale;
-import me.csed2.moneymanager.charts.adapters.Graph;
-import me.csed2.moneymanager.charts.adapters.LineGraph;
-import me.csed2.moneymanager.rest.AuthServerManager;
-import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
+import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.sound.SoundHandler;
+import me.csed2.moneymanager.sound.SoundPack;
 import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.subscriptions.SubscriptionNotificationDispatcher;
 import me.csed2.moneymanager.transactions.Transaction;
@@ -23,6 +21,7 @@ import me.csed2.moneymanager.ui.view.CMDRenderer;
 import me.csed2.moneymanager.ui.view.SwingRenderer;
 import me.csed2.moneymanager.ui.view.UIRenderer;
 
+import javax.sound.sampled.Clip;
 import java.io.FileNotFoundException;
 import java.util.concurrent.TimeUnit;
 
@@ -43,6 +42,12 @@ public class App {
 
     @Getter
     private UIRenderer renderer = new SwingRenderer();
+
+    //Sound
+    private SoundHandler sound = new SoundHandler();
+
+    @Getter
+    private SoundPack soundPack = new SoundPack("bruh");
 
     // Threads
     private final InputReader reader;
@@ -119,6 +124,8 @@ public class App {
     public void render(UINode node) {
         this.currentNode = node;
         renderer.render(node);
+        sound.playSound(sound.BUTTON_PRESS);
+        sound.playSound(soundPack.getLoadClip(node.getName()));
     }
 
     public void render(Graph graph) {
@@ -131,6 +138,10 @@ public class App {
 
     public void render(Stage<?> stage) {
         renderer.renderStage(stage);
+    }
+
+    public void playSound(Clip clip){
+        sound.playSound(clip);
     }
 
     public void sendMessage(String message) {

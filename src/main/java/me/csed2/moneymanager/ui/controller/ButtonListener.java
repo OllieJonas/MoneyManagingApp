@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.ui.controller;
 
 import me.csed2.moneymanager.main.App;
+import me.csed2.moneymanager.sound.SoundHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -23,6 +24,7 @@ public class ButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e){
         String title = ((JFrame)SwingUtilities.getRoot(((Component)e.getSource()))).getTitle(); //Get the title of the pane that this button is on.
         buttonsAndActions.get(title + ":" + e.getActionCommand()).accept(App.getInstance());
+
     }
 
     public static ButtonListener getInstance(){

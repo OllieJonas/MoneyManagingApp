@@ -57,6 +57,7 @@ public class StageMenu implements UINode {
     }
 
     public void exitPhase() {
+        App.getInstance().playSound(App.getInstance().getSoundPack().getSubmitClip(name));
         if (exitPhase != null) {
             exitPhase.execute(App.getInstance(), stages);
         }
