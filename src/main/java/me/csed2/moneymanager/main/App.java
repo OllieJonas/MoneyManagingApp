@@ -99,7 +99,6 @@ public class App {
         }
         instance = this;
 
-        render(new LineGraph.Builder().withTitle("test").withData(categoryCache).withTimescale(TimeScale.MONTH).withXAxisLabel("test").withYAxisLabel("test2").withYField("budget").build());
         //this loads the budget store, by taking information from the cache
         BudgetTracker.loadBudgetStore();
         EndOfMonthActions.checkMonth();

@@ -2,7 +2,7 @@
   {
   "name": "Score",
   "id": 1,
-  "date": "Mar 9, 2020, 3:22:39 AM",
+  "date": "Feb 9, 2020, 3:22:39 AM",
   "amount": 100,
   "category": "Fun",
   "notes": ["Test","Test2"],
@@ -11,7 +11,7 @@
   {
     "name": "Cinema",
     "id": 1,
-    "date": "Mar 9, 2020, 3:22:39 AM",
+    "date": "Mar 5, 2020, 3:22:39 AM",
     "amount": 3000,
     "category": "Fun",
     "notes": ["Test","Test2"],
@@ -20,7 +20,7 @@
   {
     "name": "weekly shop",
     "id": 2,
-    "date": "Mar 9, 2020, 3:22:39 AM",
+    "date": "Feb 28, 2020, 3:22:39 AM",
     "amount": 100,
     "category": "Shop",
     "notes": ["Test","Test2"],
@@ -29,7 +29,7 @@
   {
     "name": "Pool",
     "id": 1,
-    "date": "Mar 9, 2020, 3:22:39 AM",
+    "date": "Feb 10, 2020, 3:22:39 AM",
     "amount": 500,
     "category": "Fun",
     "notes": ["Test","Test2"],
@@ -38,7 +38,7 @@
   {
     "name": "Spoons",
     "id": 3,
-    "date": "Apr 9, 2020, 3:22:39 AM",
+    "date": "April 5, 2020, 3:22:39 AM",
     "amount": 50,
     "category": "Drinks",
     "notes": ["Test","Test2"],
@@ -47,7 +47,7 @@
   {
     "name": "Spoons",
     "id": 1,
-    "date": "Apr 9, 2020, 3:22:39 AM",
+    "date": "Apr 2, 2020, 3:22:39 AM",
     "amount": 500,
     "category": "Fun",
     "notes": ["Test","Test2"],

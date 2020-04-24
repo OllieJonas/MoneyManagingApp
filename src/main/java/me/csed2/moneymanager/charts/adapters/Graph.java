@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
+@SuppressWarnings("WeakerAccess")
 public abstract class Graph {
 
     protected String title;
@@ -29,11 +30,10 @@ public abstract class Graph {
 
     protected List<Date> getDates() {
         List<Date> dates = new ArrayList<>();
-        data.forEach(item -> {System.out.println(item.getDate()); dates.add(item.getDate());});
+        data.forEach(item -> dates.add(item.getDate()));
         return dates;
     }
 
-    @SuppressWarnings("unchecked")
     protected List<Number> getDataFromField(String field) {
         List<Number> list = new ArrayList<>();
 

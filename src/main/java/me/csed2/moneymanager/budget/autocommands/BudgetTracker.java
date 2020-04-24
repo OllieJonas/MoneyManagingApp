@@ -11,7 +11,6 @@ public class BudgetTracker {
      */
     public static void trackCheck(String name, int month) {
         BudgetStore.reloadSingleBudget(name);
-        NotificationListener.checkCat(name);
     }
 
     /**

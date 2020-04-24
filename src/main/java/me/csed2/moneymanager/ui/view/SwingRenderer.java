@@ -99,7 +99,6 @@ public class SwingRenderer implements UIRenderer {
         //Button
         for(UINode child : node.getChildren()){
             //Configure Button
-            System.out.println(child.getImage());
             JButton button;
 
             if(SwingUtils.getIconFromAddress(child.getImage()) == null){
@@ -159,7 +158,7 @@ public class SwingRenderer implements UIRenderer {
     @Override
     public void renderGraph(Graph graph) {
         JFreeChart chart = graph.makeChart();
-        JPanel panel = SwingUtils.generateMenuPanel(800, 600, "Test");
+        JPanel panel = SwingUtils.generateMenuPanel(800, 600, "Graph");
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setBorder(BorderFactory.createEmptyBorder());
         chartPanel.setBackground(Color.WHITE);

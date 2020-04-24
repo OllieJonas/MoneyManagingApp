@@ -8,14 +8,14 @@ import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
+import org.jfree.data.general.Series;
 import org.jfree.data.time.RegularTimePeriod;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 
 import java.awt.*;
-import java.util.Collection;
-import java.util.Date;
+import java.util.*;
 import java.util.List;
 
 public class LineGraph extends Graph {
@@ -41,7 +41,7 @@ public class LineGraph extends Graph {
     }
 
     private XYDataset buildDataset() {
-        TimeSeries series = new TimeSeries("2016");
+        TimeSeries series = new TimeSeries("Data");
 
         for (int i = 0; i < xRawData.size(); i++) {
             RegularTimePeriod period = scale.construct(xRawData.get(i));

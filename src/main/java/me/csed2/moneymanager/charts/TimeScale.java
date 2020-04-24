@@ -4,8 +4,7 @@ import org.jfree.data.time.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.*;
 
 public enum TimeScale {
     HOUR("Hours", Hour.class),
@@ -27,11 +26,10 @@ public enum TimeScale {
 
     public RegularTimePeriod construct(Date date) {
         try {
-            Constructor<?> constructor = clazz.getConstructors()[4];
-            System.out.println(Arrays.toString(constructor.getParameters()));
+            Constructor constructor = clazz.getConstructor(Date.class);
             constructor.setAccessible(true);
             return (RegularTimePeriod) constructor.newInstance(date);
-        } catch (InstantiationException | IllegalAccessException | InvocationTargetException e) {
+        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
         return null;

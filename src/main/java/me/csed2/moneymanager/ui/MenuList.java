@@ -2,6 +2,8 @@ package me.csed2.moneymanager.ui;
 
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.categories.commands.SortCategoriesCommand;
+import me.csed2.moneymanager.charts.TimeScale;
+import me.csed2.moneymanager.charts.adapters.LineGraph;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.rest.monzo.commands.MonzoAuthCommand;
 import me.csed2.moneymanager.rest.monzo.commands.MonzoCheckAuthCommand;
@@ -23,6 +25,20 @@ public class MenuList {
 
     //Budget
     public static final Menu BUDGET = new Menu("Budget", MAIN, null);
+
+    public static final Menu GRAPHS = new Menu("Graphs", MAIN, null);
+
+    public static final Menu TRANSACTIONS_GRAPH = new Menu("Transactions", GRAPHS, null);
+
+    public static final Action TRANS_GRAPH_AMNT = new Action("Line Graph", TRANSACTIONS_GRAPH, null,
+            (Consumer<App>) app -> app.render(new LineGraph.Builder()
+                    .withTitle("Transaction Line Graph")
+                    .withData(app.getTransactionCache())
+                    .withTimescale(TimeScale.DAY)
+                    .withXAxisLabel("Time")
+                    .withYAxisLabel("Budget Size")
+                    .withYField("amount")
+                    .build()));
 
     // Categories
     public static final Menu CATEGORIES = new Menu("Categories", MAIN, null);
