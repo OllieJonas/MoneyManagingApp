@@ -4,7 +4,6 @@ import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.transactions.Transaction;
-import me.csed2.moneymanager.transactions.TransactionBuilder;
 
 import java.util.Date;
 import java.util.function.Function;
@@ -20,7 +19,7 @@ public class AddTransactionCommand implements Function<App, Boolean> {
     public AddTransactionCommand(String categoryName, String name, int amount, String vendor, String[] notes) {
         this.categoryName = categoryName;
         this.name = name;
-        this.amount = amount;
+        this.amount = amount * 100;
         this.vendor = vendor;
         this.notes = notes;
     }
@@ -32,7 +31,7 @@ public class AddTransactionCommand implements Function<App, Boolean> {
         
         if (categoryCache.exists(categoryName)) {
 
-            transactionCache.add(new TransactionBuilder(name)
+            transactionCache.add(new Transaction.Builder(name)
             .withAmount(amount)
             .withVendor(vendor)
             .withDate(new Date())

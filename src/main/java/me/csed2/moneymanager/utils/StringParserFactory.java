@@ -5,6 +5,9 @@ import me.csed2.moneymanager.ui.controller.InputProcessor;
 import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.StageMenu;
 
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 /**
  * This class is responsible for turning a String into an Object.
  *
@@ -82,7 +85,7 @@ public class StringParserFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    private static long parseLong(String text) throws InvalidTypeException {
+    public static long parseLong(String text) throws InvalidTypeException {
         try {
             return Long.parseLong(text);
         } catch (NumberFormatException e) {
@@ -99,7 +102,7 @@ public class StringParserFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    private static double parseDouble(String text) throws InvalidTypeException {
+    public static double parseDouble(String text) throws InvalidTypeException {
         try {
             return Double.parseDouble(text);
         } catch (NumberFormatException e) {
@@ -115,7 +118,7 @@ public class StringParserFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    private static float parseFloat(String text) throws InvalidTypeException {
+    public static float parseFloat(String text) throws InvalidTypeException {
         try {
             return Float.parseFloat(text);
         } catch (NumberFormatException e) {
@@ -132,11 +135,21 @@ public class StringParserFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    private static boolean parseBoolean(String text) throws InvalidTypeException {
-        try {
-            return Boolean.parseBoolean(text);
-        } catch (NumberFormatException e) {
-            throw new InvalidTypeException(Boolean.class, String.class);
+    public static boolean parseBoolean(String text) throws InvalidTypeException {
+        String[] positiveList = {"yes", "y", "t", "affirm"};
+        String[] negativeList = {"no", "n", "t", "deny"};
+        Predicate<String> predicate = item -> item.toLowerCase().contains(text.toLowerCase());
+
+        if (Arrays.stream(positiveList).anyMatch(predicate)) {
+            return true;
+        } else if (Arrays.stream(negativeList).anyMatch(predicate)) {
+            return false;
+        } else {
+            try {
+                return Boolean.parseBoolean(text.toLowerCase());
+            } catch (NumberFormatException e) {
+                throw new InvalidTypeException(Boolean.class, String.class);
+            }
         }
     }
 }

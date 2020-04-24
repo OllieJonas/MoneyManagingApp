@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.rest.monzo.server;
 
 import com.sun.net.httpserver.HttpServer;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.rest.Server;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class AuthMonzoServer implements Server {
 
         server = HttpServer.create(new InetSocketAddress("localhost", port), 0); // Start a localhost server on port to listen to responses from Monzo
 
-        server.createContext("/oauth/callback", new AuthMonzoHandler()); // Set the listener to this path.
+        server.createContext("/oauth/callback", new AuthMonzoHandler().run()); // Set the listener to this path.
 
         server.setExecutor(service); // Set asynchronous
     }
@@ -45,6 +46,6 @@ public class AuthMonzoServer implements Server {
     @Override
     public void start() {
         server.start(); // Start the server
-        System.out.println("Listening for connections...");
+        App.getInstance().render("Please type in your email address on the Monzo webpage");
     }
 }

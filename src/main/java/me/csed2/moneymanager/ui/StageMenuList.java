@@ -1,10 +1,18 @@
 package me.csed2.moneymanager.ui;
 
+import me.csed2.moneymanager.budget.commands.OverallBudget;
+import me.csed2.moneymanager.budget.commands.SeeBudgets;
+import me.csed2.moneymanager.budget.autocommands.BudgetTracker;
+import me.csed2.moneymanager.budget.commands.UpdateOverallBudget;
+import me.csed2.moneymanager.cache.CachedList;
+import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.categories.commands.AddCategoryCommand;
 import me.csed2.moneymanager.categories.commands.RemoveCategoryCommand;
 import me.csed2.moneymanager.categories.commands.UpdateCategoryCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.main.App;
+import me.csed2.moneymanager.settings.UpdateSettingsCommand;
 import me.csed2.moneymanager.subscriptions.SubscriptionArgType;
 import me.csed2.moneymanager.subscriptions.commands.AddSubscriptionCommand;
 import me.csed2.moneymanager.subscriptions.commands.RemoveSubscriptionCommand;
@@ -17,7 +25,76 @@ import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.StageMenu;
 import me.csed2.moneymanager.ui.model.StageMenuBuilder;
 
+import java.util.Date;
+
 public class StageMenuList {
+
+    //Budget
+    public static final StageMenu MODIFY_OVERALL = new StageMenuBuilder("Update The Overall Budget")
+            .withParent(MenuList.BUDGET)
+            .withImage(null)
+            .withStages(
+                    new Stage<>(Integer.class, "What would you like to set the Overall Budget to?"))
+            .withExitPhase((app, stages) ->{
+
+                Integer result = (Integer) stages.get(0).getResult();
+
+                if (CommandDispatcher.dispatchSync(new UpdateOverallBudget(result))) {
+                    app.sendMessage("Successfully updated the Budget for Overall");
+                } else {
+                    app.sendMessage("Error: Unable to update this category!");
+                }
+                BudgetTracker.trackCheck("Overall", new Date().getMonth() -1);
+            })
+            .build();
+
+    public static final StageMenu SEE_BUDGET = new StageMenuBuilder("Check A Budget")
+            .withParent(MenuList.BUDGET)
+            .withImage(null)
+            .withStages(
+                    new Stage<>(String.class, "What is the name of the budget you would like to check?"),
+                    new Stage<>(Integer.class, "What is the month you would like to check this budget for"))
+
+            .withExitPhase((app, stages) -> {
+                String name = (String) stages.get(0).getResult();
+                int month = (Integer) stages.get(1).getResult();
+
+                CommandDispatcher.dispatchSync(new SeeBudgets(name, month-1));
+            })
+            .build();
+
+    public static final StageMenu SEE_OVERALL_BUDGET = new StageMenuBuilder("Check Overall Budget")
+            .withParent(MenuList.BUDGET)
+            .withImage(null)
+            .withStages(
+                    new Stage<>(Integer.class, "What is the month you would like to check this budget for"))
+
+            .withExitPhase((app, stages) -> {
+                int month = (Integer) stages.get(0).getResult() -1 ;
+
+                CommandDispatcher.dispatchSync(new OverallBudget(month));
+            })
+            .build();
+
+    public static final StageMenu UPDATE_CATEGORY_BUDGET = new StageMenuBuilder("Update A Categories Budget")
+            .withParent(MenuList.BUDGET)
+            .withStages(
+                    new Stage<>(String.class, "What category would you like to change the budget for?"),
+                    new Stage<>(Integer.class, "What would you like to change the budget to?"))
+            .withExitPhase((app, stages) -> {
+
+                String categoryName = (String) stages.get(0).getResult();
+                Integer result = (Integer) stages.get(1).getResult();
+
+                if (CommandDispatcher.dispatchSync(new UpdateCategoryCommand<>(categoryName, CategoryArgType.BUDGET, result))) {
+                    app.sendMessage("Successfully updated the name for this category!");
+                } else {
+                    app.sendMessage("Error: Unable to update this category!");
+                }
+                BudgetTracker.trackCheck(categoryName, new Date().getMonth() -1);
+            })
+            .build();
+
 
     // Categories
     public static final StageMenu ADD_CATEGORY = new StageMenuBuilder("Add a Category")
@@ -34,6 +111,7 @@ public class StageMenuList {
                 if (CommandDispatcher.dispatchSync(new AddCategoryCommand(name, budget))) {
                     app.sendMessage("Category successfully added!");
                 }
+                BudgetTracker.loadBudgetStore();
             })
             .build();
 
@@ -49,7 +127,9 @@ public class StageMenuList {
                 if (CommandDispatcher.dispatchSync(new RemoveCategoryCommand(name))) {
                     app.sendMessage("Category successfully added!");
                 }
+                BudgetTracker.loadBudgetStore();
             })
+
             .build();
 
     public static final StageMenu UPDATE_CATEGORY_NAME = new StageMenuBuilder("Update a Categories Name")
@@ -67,11 +147,12 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to update this category!");
                 }
+                BudgetTracker.trackCheck(categoryName, new Date().getMonth() -1);
             })
             .build();
 
 
-    public static final StageMenu UPDATE_CATEGORY_BUDGET = new StageMenuBuilder("Update a Categories Budget")
+    public static final StageMenu UPDATE_BUDGET = new StageMenuBuilder("Update a Categories Budget")
             .withParent(MenuList.UPDATE_CATEGORY)
             .withStages(
                     new Stage<>(String.class, "What category would you like to change the budget for?"),
@@ -86,8 +167,20 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to update this category!");
                 }
+                BudgetTracker.trackCheck(categoryName, new Date().getMonth() -1);
             })
             .build();
+
+    public static final StageMenu SEARCH_CATEGORIES = new StageMenuBuilder("Search Categories")
+            .withParent(MenuList.CATEGORIES)
+            .withStages(
+                    new Stage<>(String.class,"What would you like to search for?")
+            )
+            .withExitPhase((app, stages) -> {
+                String searchTerm = (String) stages.get(0).getResult();
+                CachedList<Category> items =app.getCategoryCache().searchMatching(searchTerm);
+                app.sendMessage(items.getReport());
+            }).build();
 
     // Transactions
     public static final StageMenu ADD_TRANSACTION = new StageMenuBuilder("Add a Transaction")
@@ -112,6 +205,7 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to add transaction!");
                 }
+                BudgetTracker.trackCheck(categoryName, new Date().getMonth() -1);
 
             })
             .build();
@@ -129,6 +223,7 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to remove transaction!");
                 }
+                BudgetTracker.trackCheck(App.getInstance().getTransactionCache().search(name).get().getCategory(), new Date().getMonth() -1);
             })
             .build();
 
@@ -147,6 +242,7 @@ public class StageMenuList {
                 } else {
                     app.sendMessage("Error: Unable to update transaction!");
                 }
+                BudgetTracker.trackCheck(App.getInstance().getTransactionCache().search(transactionName).get().getCategory(), new Date().getMonth() -1);
             })
             .build();
 
@@ -195,24 +291,32 @@ public class StageMenuList {
             .withImage("icons/button_add_0.png")
             .withStages(
                     new Stage<>(String.class, "What is the name of the category you'd like to add the subscription to?"),
-                    new Stage<>(String.class, "What is the name of the subscription>"),
-                    new Stage<>(Double.class, "How much was spent here?"),
-                    new Stage<>(String.class, "Where did you spend this money?"),
+                    new Stage<>(String.class, "What is the name of the subscription?"),
+                    new Stage<>(Double.class, "How much is it per renewal?(£)"),
+                    new Stage<>(String.class, "Who provides this service?"),
+                    new Stage<>(Integer.class, "How frequently does this renew?"),
+                    new Stage<>(String.class, "days/months/years"),
+                    new Stage<>(String.class, "Would you like to be notified when this subscription renews? (y/n)"),
+                    new Stage<>(String.class, "Date of commencement(DD/MM/YY)"),
                     new Stage<>(String.class, "Do you have any notes about this subscription?", "Please split all notes you have with: \", \""))
             .withExitPhase((app, stages) -> {
 
                 String categoryName = (String) stages.get(0).getResult();
                 String name = (String) stages.get(1).getResult();
-                Integer amount = (Integer) stages.get(2).getResult();
+                int amount = (int)(double)((Double)stages.get(2).getResult());
                 String vendor = (String) stages.get(3).getResult();
-                String[] notes = ((String) stages.get(4).getResult()).split(",");
+                int timeCycle = (Integer) stages.get(4).getResult();
+                String timeCycleUnit = (String) stages.get(5).getResult();
+                String cancelMe = (String) stages.get(6).getResult();
+                String commencement=(String) stages.get(7).getResult();
+                String[] notes = ((String) stages.get(8).getResult()).split(",");
 
-                if (CommandDispatcher.dispatchSync(new AddSubscriptionCommand(categoryName, name, amount, vendor, notes))) {
+                if (CommandDispatcher.dispatchSync(new AddSubscriptionCommand(categoryName, name, amount, vendor, timeCycle, timeCycleUnit, notes, cancelMe, commencement))) {
                     app.sendMessage("Subscription successfully added!");
                 } else {
                     app.sendMessage("Error: Unable to add subscription!");
                 }
-
+                BudgetTracker.trackCheck(categoryName, new Date().getMonth() -1);
             })
             .build();
 
@@ -224,11 +328,14 @@ public class StageMenuList {
 
                 String name = (String) stages.get(0).getResult();
 
+                String category = App.getInstance().getSubscriptionCache().search(name).get().getCategory();
+
                 if (CommandDispatcher.dispatchSync(new RemoveSubscriptionCommand(name))) {
                     app.sendMessage("Subscription successfully removed!");
                 } else {
                     app.sendMessage("Error: Unable to remove subscription!");
                 }
+                BudgetTracker.trackCheck(category, new Date().getMonth() -1);
             })
             .build();
     
@@ -242,12 +349,15 @@ public class StageMenuList {
                 String subscriptionName = (String) stages.get(0).getResult();
                 int amount = (Integer) stages.get(1).getResult();
 
+                String category = App.getInstance().getSubscriptionCache().search(subscriptionName).get().getCategory();
+
                 if (CommandDispatcher.dispatchSync(
                         new UpdateSubscriptionCommand<>(subscriptionName, SubscriptionArgType.AMOUNT, amount))) {
                     app.sendMessage("Subscription successfully updated!");
                 } else {
                     app.sendMessage("Error: Unable to update subscription!");
                 }
+                BudgetTracker.trackCheck(category, new Date().getMonth() -1);
             })
             .build();
 
@@ -304,6 +414,24 @@ public class StageMenuList {
                     app.sendMessage("Subscription successfully updated!");
                 } else {
                     app.sendMessage("Error: Unable to update subscription!");
+                }
+            })
+            .build();
+
+    public static final StageMenu SETTINGS = new StageMenuBuilder("Settings")
+            .withParent(MenuList.MAIN)
+            .withStages(
+                    new Stage<>(String.class, "Renderer CMD: Command prompt, Blank: UI:"),
+                    new Stage<>(String.class, "Test Settings \", \""))
+            .withExitPhase((app, stages) -> {
+
+                String renderer = (String) stages.get(0).getResult();
+                String test = (String) stages.get(1).getResult();
+                if (new UpdateSettingsCommand(renderer, test).update()){
+                    app.sendMessage("Success");
+                }else{
+                    app.sendMessage("Error");
+
                 }
             })
             .build();

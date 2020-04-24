@@ -1,9 +1,12 @@
 package me.csed2.moneymanager.cache;
 
 import com.google.common.collect.ImmutableList;
+import com.google.gson.annotations.SerializedName;
 import me.csed2.moneymanager.cache.commands.LoadFromJsonAsListCommand;
-import me.csed2.moneymanager.cache.commands.SaveToDBCommand;
+import me.csed2.moneymanager.cache.commands.SaveListToDBCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.subscriptions.Subscription;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -11,14 +14,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Custom data type with additional searching and sorting features.
  *
  * This class can be used to store anything that can be cached in a JSON file.
  *
- * This class makes extensive use of the java.util.function package, which was included with Java 8. As a reminder,
- * it makes more sense to take the expression of what it does, as opposed to actually understanding the details when reading.
+ * This class makes extensive use of the java.util.function package, which was included with Java 8.
+ *
+ * As a reminder, it makes more sense to "tAKE the EXpresSion Of WHaT THe CODE IS TRYING To pORTRAy, aS OPpoSeD TO TryinG
+ * tO unDeRStANd THe cOdE ItSElf".
  *
  * For more information, see: https://www.baeldung.com/java-8-functional-interfaces
  *
@@ -28,12 +34,13 @@ import java.util.stream.Collectors;
  * @param <E> The type of object stored in the repository
  *
  */
-@SuppressWarnings("unused")
-public class CachedList<E extends Cacheable> {
+@SuppressWarnings({"unused", "WeakerAccess"})
+public class CachedList<E extends Cacheable> implements Collection<E> {
 
     /**
      * The wrapped list of items.
      */
+    @SerializedName("list")
     private List<E> items;
 
     /**
@@ -50,15 +57,6 @@ public class CachedList<E extends Cacheable> {
      */
     public CachedList(List<E> list) {
         this.items = list;
-    }
-
-    /**
-     * Add an item to the list.
-     *
-     * @param entity The item in question.
-     */
-    public boolean add(E entity) {
-        return items.add(entity);
     }
 
     /**
@@ -93,7 +91,7 @@ public class CachedList<E extends Cacheable> {
         items.stream()
                 .filter(item -> item.getName().equalsIgnoreCase(entity))
                 .findFirst()
-                .ifPresent(item -> removed.set(items.remove(item)));
+                .ifPresent(item -> removed.set(remove(item)));
         return removed.get();
     }
 
@@ -132,7 +130,7 @@ public class CachedList<E extends Cacheable> {
         int id = 1; // Initial value of 1.
         sort(Comparator.comparingInt(E::getId)); // Ensure the list is sorted by ID, with the last ID at the end of the list
         if (items.size() > 0) // If the list is empty, return the default id of 1.
-            id = items.get(items.size() - 1).getId() + 1; // Gets the ID of the last item of the list then adds 1
+            id = items.get(items.size() - 1).getId() + 1; // Gets the ID of the last item of the list, then adds one
         return id;
     }
 
@@ -191,8 +189,8 @@ public class CachedList<E extends Cacheable> {
      * @param name The name to search for
      * @return A list containing the matching items.
      */
-    public ImmutableList<E> searchMatching(String name) {
-        return search(item -> item.getName().startsWith(name));
+    public CachedList<E> searchMatching(String name) {
+        return new CachedList<>(search(item -> item.getName().toLowerCase().startsWith(name.toLowerCase())));
     }
 
     /**
@@ -204,11 +202,19 @@ public class CachedList<E extends Cacheable> {
      * @param comparator The comparator to sort by.
      * @return An immutable (unchangeable) sorted list using the comparator given.
      */
-    public ImmutableList<E> sort(Comparator<E> comparator) {
-        return ImmutableList.copyOf(asList()
+    public CachedList<E> sort(Comparator<E> comparator) {
+        return new CachedList<>(ImmutableList.copyOf(asList()
                 .stream()
                 .sorted(comparator)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList())));
+    }
+
+    public Stream<E> stream() {
+        return asList().stream();
+    }
+
+    public Stream<E> parallelStream() {
+        return asList().parallelStream();
     }
 
     /**
@@ -226,9 +232,14 @@ public class CachedList<E extends Cacheable> {
      */
     public String getReport() {
         StringBuilder builder = new StringBuilder();
-        items.iterator()
-                .forEachRemaining(item -> builder.append(item.toFormattedString()).append("\n"));
+        items.forEach(item -> builder.append(item.toFormattedString()).append("\n"));
         return builder.toString();
+    }
+
+    public ArrayList<E> getList(){
+        ArrayList<E> returnList = new ArrayList<>();
+        items.iterator().forEachRemaining(returnList::add);
+        return returnList;
     }
 
     /**
@@ -240,8 +251,9 @@ public class CachedList<E extends Cacheable> {
      * @param fileName The filename in question
      * @throws FileNotFoundException If the file can't be found
      */
-    public void load(Class<E> clazz, String fileName) throws FileNotFoundException {
+    public CachedList<E> load(Class<E> clazz, String fileName) throws FileNotFoundException {
         this.items = CommandDispatcher.dispatchSync(new LoadFromJsonAsListCommand<>(fileName, clazz));
+        return this;
     }
 
     /**
@@ -250,7 +262,14 @@ public class CachedList<E extends Cacheable> {
      * @param fileName The filename in question
      */
     public boolean save(String fileName) {
-        return CommandDispatcher.dispatchSync(new SaveToDBCommand<>(), fileName, items);
+        return CommandDispatcher.dispatchSync(new SaveListToDBCommand<>(fileName, items));
+    }
+
+    /**
+     * Clears the cache to be reused.
+     */
+    public void clear() {
+        this.items = new ArrayList<>();
     }
 
     /**
@@ -269,5 +288,68 @@ public class CachedList<E extends Cacheable> {
      */
     public List<E> asList() {
         return items;
+    }
+
+    @Override
+    public int size() {
+        return items.size();
+    }
+
+    @Override
+    public boolean isEmpty() {
+        return items.isEmpty();
+    }
+
+    @Override
+    public boolean contains(Object o) {
+        return items.contains(o);
+    }
+
+    @NotNull
+    @Override
+    public Iterator<E> iterator() {
+        return items.iterator();
+    }
+
+    @NotNull
+    @Override
+    public Object[] toArray() {
+        return items.toArray();
+    }
+
+    @NotNull
+    @Override
+    public <T> T[] toArray(@NotNull T[] a) {
+        return items.toArray(a);
+    }
+
+    @Override
+    public boolean add(E e) {
+        return items.add(e);
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        return items.remove(o);
+    }
+
+    @Override
+    public boolean containsAll(@NotNull Collection<?> c) {
+        return items.containsAll(c);
+    }
+
+    @Override
+    public boolean addAll(@NotNull Collection<? extends E> c) {
+        return items.addAll(c);
+    }
+
+    @Override
+    public boolean removeAll(@NotNull Collection<?> c) {
+        return items.removeAll(c);
+    }
+
+    @Override
+    public boolean retainAll(@NotNull Collection<?> c) {
+        return items.retainAll(c);
     }
 }

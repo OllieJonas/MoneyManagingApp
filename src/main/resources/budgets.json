@@ -1,10 +1,16 @@
-[
-  {
-    "name": "Test",
-    "categories": {
-      "fun": 50,
-      "rent": 100
+{
+  "overallBudget": 0,
 
-    }
-  }
-]
+  "currentBudget": {
+    "name": "test",
+    "id": 1,
+    "totalSpent": 100,
+    "budgetSize": 100,
+    "date": {
+      "month": "April",
+      "year": 2020
+    },
+    "relatedCategories": []
+  },
+  "items": []
+}

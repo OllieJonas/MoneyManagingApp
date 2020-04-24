@@ -3,6 +3,7 @@ package me.csed2.moneymanager.ui.model;
 import lombok.Getter;
 import me.csed2.moneymanager.main.App;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -60,6 +61,7 @@ public class StageMenu implements UINode {
         if (exitPhase != null) {
             exitPhase.execute(App.getInstance(), stages);
         }
+        clear();
     }
     // no children for StageMenu
     @Override
@@ -87,6 +89,11 @@ public class StageMenu implements UINode {
         return stages.get(count);
     }
 
+    private void clear() {
+        count = 0;
+    }
+
+    @FunctionalInterface
     public interface Phase {
         void execute(App app, List<Stage<?>> stages);
     }

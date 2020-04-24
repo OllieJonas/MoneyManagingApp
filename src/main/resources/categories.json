@@ -1,15 +1,23 @@
 [
   {
+    "name": "Overall",
+    "id": 0,
+    "created": "Apr 9, 2020, 3:25:03 AM",
+    "budget": 100000,
+    "interactable": false
+  },
+  {
     "name": "Fun",
     "id": 1,
-    "created": "Mar 9, 2020, 3:25:03 AM",
-    "budget": 10000
+    "created": "Mar 7, 2020, 3:25:03 AM",
+    "budget": 10000,
+    "interactable": true
   },
-
   {
     "name": "Rent",
     "id": 2,
-    "created": "Mar 9, 2020, 3:25:03 AM",
-    "budget": 50000
+    "created": "Feb 4, 2020, 3:25:03 AM",
+    "budget": 50000,
+    "interactable": true
   }
 ]

@@ -1,14 +1,12 @@
 package me.csed2.moneymanager.ui.view;
 
-import me.csed2.moneymanager.exceptions.InvalidTypeException;
+import me.csed2.moneymanager.charts.adapters.Graph;
 import me.csed2.moneymanager.main.App;
-import me.csed2.moneymanager.ui.Button;
-import me.csed2.moneymanager.ui.gui.ButtonListener;
-import me.csed2.moneymanager.ui.model.Stage;
-import me.csed2.moneymanager.ui.model.StageMenu;
-import me.csed2.moneymanager.ui.model.UINode;
+import me.csed2.moneymanager.ui.controller.ButtonListener;
+import me.csed2.moneymanager.ui.model.*;
 import me.csed2.moneymanager.ui.model.Action;
-import me.csed2.moneymanager.utils.StringParserFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,9 +22,9 @@ public class SwingRenderer implements UIRenderer {
 
     @Override
     public void render(UINode node) {
-        if(node instanceof Action) {
+        if (node instanceof Action) {
             ((Action) node).execute(App.getInstance());
-        }else {
+        } else {
             renderMenu(node);
         }
     }
@@ -82,7 +80,7 @@ public class SwingRenderer implements UIRenderer {
         submitButton.addActionListener(ButtonListener.getInstance());
 
         JButton backButton = new JButton("Back");
-        ButtonListener.getButtonsAndActions().put(node.getName() + ":" + backButton.getActionCommand(), (Consumer<App>) app -> app.render(node.getParent()));
+        ButtonListener.getButtonsAndActions().put(node.getName() + ":" + backButton.getActionCommand(), app -> app.render(node.getParent()));
         backButton.addActionListener(ButtonListener.getInstance());
 
         buttonPanel.add(backButton);
@@ -147,14 +145,32 @@ public class SwingRenderer implements UIRenderer {
         }
     }
 
-
     @Override
-    public void sendMessage(String message) {
+    public void renderText(String message) {
         JOptionPane.showMessageDialog(null, message);
     }
 
     @Override
     public void renderStage(Stage<?> stage) {
+
+    }
+
+    @Override
+    public void renderGraph(Graph graph) {
+        JFreeChart chart = graph.makeChart();
+        JPanel panel = SwingUtils.generateMenuPanel(800, 600, "Graph");
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setBorder(BorderFactory.createEmptyBorder());
+        chartPanel.setBackground(Color.WHITE);
+
+        panel.add(chartPanel);
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(panel);
+
+        frame.pack();
+        frame.setLocationRelativeTo(null);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        frame.setVisible(true);
 
     }
 }

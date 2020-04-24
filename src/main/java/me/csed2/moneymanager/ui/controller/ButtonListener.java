@@ -1,4 +1,4 @@
-package me.csed2.moneymanager.ui.gui;
+package me.csed2.moneymanager.ui.controller;
 
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.sound.SoundHandler;

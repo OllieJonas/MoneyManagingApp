@@ -1,29 +1,17 @@
 package me.csed2.moneymanager.main;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import me.csed2.moneymanager.cache.Cacheable;
 
-@Getter
-@Setter
-public class Setting<T> implements Cacheable {
+/**
+ * TODO: Get rid of active
+ * @param <T>
+ */
+@Setter @Getter @AllArgsConstructor
+public class Setting<T> {
 
-    private String name;
     private T value;
     private boolean active;
 
-    public Setting(String name, T value) {
-        this.name = name;
-        this.value = value;
-    }
-
-    @Override
-    public int getId() {
-        return 0;
-    }
-
-    @Override
-    public String toFormattedString() {
-        return null;
-    }
 }

@@ -1,14 +1,18 @@
 package me.csed2.moneymanager.main;
 
 import lombok.Getter;
+import lombok.Setter;
 import me.csed2.moneymanager.AutoSave;
+import me.csed2.moneymanager.budget.BudgetCachedList;
+import me.csed2.moneymanager.budget.autocommands.BudgetTracker;
+import me.csed2.moneymanager.budget.autocommands.EndOfMonthActions;
 import me.csed2.moneymanager.cache.CachedList;
-import me.csed2.moneymanager.cache.commands.LoadSettingsCommand;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.sound.SoundHandler;
 import me.csed2.moneymanager.sound.SoundPack;
 import me.csed2.moneymanager.subscriptions.Subscription;
+import me.csed2.moneymanager.subscriptions.SubscriptionNotificationDispatcher;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.ui.controller.InputReader;
 import me.csed2.moneymanager.ui.model.Stage;
@@ -19,7 +23,6 @@ import me.csed2.moneymanager.ui.view.UIRenderer;
 
 import javax.sound.sampled.Clip;
 import java.io.FileNotFoundException;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -27,6 +30,12 @@ import java.util.concurrent.TimeUnit;
  * @since 08/03/2020
  */
 public class App {
+
+    public static final String DEFAULT_DIRECTORY = "Documents";
+
+    private static final long AUTOSAVE_TIME = 5L;
+
+    private static final TimeUnit AUTOSAVE_TIMEUNIT = TimeUnit.MINUTES;
 
     @Getter
     private UINode currentNode;
@@ -45,47 +54,71 @@ public class App {
 
     private final AutoSave autoSave;
 
+    private final Thread subscriptionNotifications;
+
     // Caches
     @Getter
     private CachedList<Category> categoryCache = new CachedList<>();
 
-    @Getter
+    @Getter @Setter
     private CachedList<Transaction> transactionCache = new CachedList<>();
 
     @Getter
     private CachedList<Subscription> subscriptionCache = new CachedList<>();
 
+    @Getter
+    private BudgetCachedList budgetCache;
+
     // Settings
-    private Map<String, Setting<?>> settings;
+    @Getter
+    private SettingWrapper settings;
+
+    // Monzo
+    @Getter
+    private MonzoHttpClient monzoClient;
 
     @Getter
     private static App instance;
 
     public App() {
 
-        // Start reading input
-        reader = new InputReader();
-        reader.start();
+        this.reader = startInputReader();
+        this.autoSave = startAutoSave();
 
-        // Start autosave
-        autoSave = new AutoSave(5, TimeUnit.MINUTES);
-        autoSave.start();
+        subscriptionNotifications = new Thread(new SubscriptionNotificationDispatcher(this, this.renderer));
+        subscriptionNotifications.start();
 
-        // Load caches
+        monzoClient = new MonzoHttpClient();
+
         try {
-            // Load settings
-             this.settings = CommandDispatcher.dispatchSync(new LoadSettingsCommand("settings.json"));
-            // Load caches
+            this.settings = new SettingWrapper("settings.json");
+            this.renderer = settings.getValue("renderer", String.class)
+                    .orElse("Swing").equals("CMD") ? new CMDRenderer() : new SwingRenderer();
+
             categoryCache.load(Category.class, "categories.json");
             transactionCache.load(Transaction.class, "transactions.json");
             subscriptionCache.load(Subscription.class, "subscriptions.json");
-
+//            budgetCache.load("budgets.json");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-        // Assign an instance, also ensures GC doesn't collect anything in here.
         instance = this;
+
+        //this loads the budget store, by taking information from the cache
+        BudgetTracker.loadBudgetStore();
+        EndOfMonthActions.checkMonth();
+    }
+
+    private AutoSave startAutoSave() {
+        AutoSave autoSave = new AutoSave(AUTOSAVE_TIME, AUTOSAVE_TIMEUNIT);
+        autoSave.start();
+        return autoSave;
+    }
+
+    private InputReader startInputReader() {
+        InputReader reader = new InputReader();
+        reader.start();
+        return reader;
     }
 
     public void render(UINode node) {
@@ -93,6 +126,14 @@ public class App {
         renderer.render(node);
         sound.playSound(sound.BUTTON_PRESS);
         sound.playSound(soundPack.getLoadClip(node.getName()));
+    }
+
+    public void render(Graph graph) {
+        renderer.renderGraph(graph);
+    }
+
+    public void render(String text) {
+        renderer.renderText(text);
     }
 
     public void render(Stage<?> stage) {
@@ -104,12 +145,13 @@ public class App {
     }
 
     public void sendMessage(String message) {
-        renderer.sendMessage(message);
+        renderer.renderText(message);
     }
 
     public synchronized void exit() {
-        renderer.sendMessage("Exiting program...");
+        AuthServerManager.getInstance().closeAll();
         App.getInstance().getCategoryCache().save("categories.json");
+        subscriptionNotifications.interrupt();
         autoSave.interrupt();
         reader.interrupt();
         System.exit(0);

@@ -1,13 +1,14 @@
 package me.csed2.moneymanager.ui.view;
 
+import me.csed2.moneymanager.charts.adapters.Graph;
 import me.csed2.moneymanager.main.App;
-import me.csed2.moneymanager.ui.model.Action;
-import me.csed2.moneymanager.ui.model.Stage;
-import me.csed2.moneymanager.ui.model.StageMenu;
-import me.csed2.moneymanager.ui.model.UINode;
+import me.csed2.moneymanager.ui.model.*;
 import me.csed2.moneymanager.utils.ConsoleUtils;
 import me.csed2.moneymanager.utils.StringAlignUtils;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 import java.util.List;
 
 public class CMDRenderer implements UIRenderer {
@@ -46,13 +47,34 @@ public class CMDRenderer implements UIRenderer {
     }
 
     @Override
-    public void sendMessage(String message) {
+    public void renderText(String message) {
         System.out.println(message);
     }
 
     @Override
     public void renderStage(Stage<?> stage) {
         printStage(stage);
+    }
+
+    @Override
+    public void renderGraph(Graph graph) {
+        BufferedImage createdImage = graph.getChart().createBufferedImage(600, 800);
+        ByteArrayOutputStream bas = new ByteArrayOutputStream();
+        try {
+            ImageIO.write(createdImage, "png", bas);
+            byte[] byteArray = bas.toByteArray();
+            InputStream in = new ByteArrayInputStream(byteArray);
+            BufferedImage image = ImageIO.read(in);
+            String path = App.getInstance().getSettings().getValue("directory", String.class)
+                    .orElse(App.DEFAULT_DIRECTORY);
+
+            File outputFile = new File(path + "/graphs/" + graph.getChart().getTitle().toString());
+            ImageIO.write(image, "png", outputFile);
+            System.out.println("Success! File has been saved ");
+        } catch (IOException e) {
+            System.out.println("Error: Unable to create graph! Please contact a developer!");
+        }
+
     }
 
     private void printStage(Stage<?> stage) {

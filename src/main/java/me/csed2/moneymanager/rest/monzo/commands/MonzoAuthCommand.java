@@ -17,8 +17,7 @@ public class MonzoAuthCommand implements Function<App, String> {
             AuthServerManager manager = AuthServerManager.getInstance();
             manager.addServer(new AuthMonzoServer(8080)); // Start the server to listen for responses from Monzo
 
-            MonzoHttpClient client = new MonzoHttpClient(); // Start Monzo Client
-            client.accessPage(); // Access auth webpage
+            app.getMonzoClient().accessPage(); // Access auth webpage
 
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();

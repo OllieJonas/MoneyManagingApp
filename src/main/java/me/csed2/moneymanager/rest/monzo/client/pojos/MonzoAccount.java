@@ -1,9 +1,12 @@
-package me.csed2.moneymanager.rest.monzo.client;
+package me.csed2.moneymanager.rest.monzo.client.pojos;
 
 import com.google.gson.JsonObject;
 import lombok.Getter;
 import me.csed2.moneymanager.rest.Account;
 import me.csed2.moneymanager.rest.JsonWrapped;
+
+import java.time.Instant;
+import java.util.Date;
 
 /**
  *
@@ -32,12 +35,20 @@ public class MonzoAccount implements Account, JsonWrapped {
 
     private String description;
 
-    private String created;
+    private Date created;
 
     public MonzoAccount(JsonObject object) {
         this.wrappedObject = object;
         this.id = object.get("id").getAsString();
         this.description = object.get("description").getAsString();
-        this.created = object.get("created").getAsString();
+        this.created = Date.from(Instant.parse(object.get("created").getAsString()));
+    }
+
+    public String toFormattedString() {
+        return "ID: " + id + "\n" +
+                "  Description: " + id + "\n"
+                + "  Created: " + created.toString() + "\n"
+                + "  Account Number: " + wrappedObject.get("account_number").getAsInt() + "\n"
+                + "  Sort Code: " + wrappedObject.get("sort_code").getAsInt();
     }
 }

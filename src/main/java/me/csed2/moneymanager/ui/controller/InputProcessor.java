@@ -41,7 +41,7 @@ public class InputProcessor {
                 if (target instanceof Action) {
                     Action action = (Action) target;
                     action.execute(app);
-                    app.render(node.getParent()); // Render the parent node again, you don't actually need to traverse to an action.
+                    //app.render(node); // Render the parent node again, you don't actually need to traverse to an action.
                 } else {
                     app.render(target);
                 }
@@ -64,11 +64,13 @@ public class InputProcessor {
 
                 Stage<?> nextStage = menu.nextStage();
 
-                app.render(nextStage);
-
+                if (nextStage != null) {
+                    app.render(nextStage);
+                } else {
+                    app.render(node.getParent());
+                }
             } catch (InvalidTypeException e) {
                 System.out.println(e.getMessage());
-
                 app.render(currentStage);
             }
         }
