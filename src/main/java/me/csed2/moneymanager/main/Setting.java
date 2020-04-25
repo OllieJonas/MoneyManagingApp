@@ -10,7 +10,6 @@ import lombok.Setter;
  */
 @Setter @Getter @AllArgsConstructor
 public class Setting<T> {
-
     private T value;
     private boolean active;
 

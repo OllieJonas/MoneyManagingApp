@@ -19,12 +19,6 @@ import java.util.stream.Collectors;
 public class Main {
 
     public Main() {
-
-        new MenuList();
-        new StageMenuList();
-
-        new App();
-
         new AuthServerManager();
         new App();
         // Testing Frame

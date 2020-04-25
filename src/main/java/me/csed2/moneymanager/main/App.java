@@ -8,7 +8,10 @@ import me.csed2.moneymanager.budget.autocommands.BudgetTracker;
 import me.csed2.moneymanager.budget.autocommands.EndOfMonthActions;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.charts.adapters.Graph;
 import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.rest.AuthServerManager;
+import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.sound.SoundHandler;
 import me.csed2.moneymanager.sound.SoundPack;
 import me.csed2.moneymanager.subscriptions.Subscription;
@@ -124,7 +127,7 @@ public class App {
     public void render(UINode node) {
         this.currentNode = node;
         renderer.render(node);
-        sound.playSound(sound.BUTTON_PRESS);
+        sound.playSound(SoundHandler.BUTTON_PRESS);
         sound.playSound(soundPack.getLoadClip(node.getName()));
     }
 
