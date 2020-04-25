@@ -30,27 +30,32 @@ public abstract class Graph {
     public abstract JFreeChart makeChart();
 
     protected List<Date> getDates() {
-        List<Date> dates = new ArrayList<>();
-        data.forEach(item -> dates.add(item.getDate()));
-        return dates;
+        return data.parallelStream()
+                .collect(Collector.of(
+                        ArrayList::new,
+                        (list, item) -> list.add(item.getDate()),
+                        (left, right) -> {left.addAll(right); return left;},
+                        Collector.Characteristics.UNORDERED));
     }
 
     protected List<Number> getDataFromField(String field) {
         return data.parallelStream().collect(Collector.of(ArrayList::new,
-                (BiConsumer<List<Number>, Cacheable>) (list, item) -> {
-            try {
-                Field classField = item.getClass().getDeclaredField(field);
-                if (Number.class.isAssignableFrom(Primitives.wrap(classField.getType()))) {
-                    classField.setAccessible(true);
+                (list, item) -> addFieldDataToList(list, item, field),
+                (left, right) -> { left.addAll(right); return left; }, Collector.Characteristics.UNORDERED));
+    }
 
-                    list.add((Number) classField.get(item));
-                } else {
-                    throw new InvalidTypeException(Number.class, classField.getType());
-                }
-            } catch (IllegalAccessException | NoSuchFieldException e) {
-                e.printStackTrace();
+    private void addFieldDataToList(List<Number> list, Cacheable item, String field) {
+        try {
+            Field classField = item.getClass().getDeclaredField(field);
+            if (Number.class.isAssignableFrom(Primitives.wrap(classField.getType()))) {
+                classField.setAccessible(true);
+                list.add((Number) classField.get(item));
+            } else {
+                throw new InvalidTypeException(Number.class, classField.getType());
             }
-        }, (left, right) -> { left.addAll(right); return left; }, Collector.Characteristics.IDENTITY_FINISH));
+        } catch (IllegalAccessException | NoSuchFieldException e) {
+            e.printStackTrace();
+        }
     }
 
     public JFreeChart getChart() {
