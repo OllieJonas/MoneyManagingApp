@@ -8,8 +8,7 @@ import me.csed2.moneymanager.budget.autocommands.BudgetTracker;
 import me.csed2.moneymanager.budget.autocommands.EndOfMonthActions;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.charts.adapters.Graph;
-import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.charts.adapters.Chart;
 import me.csed2.moneymanager.rest.AuthServerManager;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.sound.SoundHandler;
@@ -131,7 +130,7 @@ public class App {
         sound.playSound(soundPack.getLoadClip(node.getName()));
     }
 
-    public void render(Graph graph) {
+    public void render(Chart graph) {
         renderer.renderGraph(graph);
     }
 

@@ -83,4 +83,8 @@ public class ClassUtils {
             return null;
         }
     }
+
+    public static boolean canCast(Object result, Class<?> clazz) {
+        return Primitives.wrap(clazz).isAssignableFrom(result.getClass());
+    }
 }

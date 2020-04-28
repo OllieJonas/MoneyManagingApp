@@ -1,9 +1,11 @@
 package me.csed2.moneymanager.ui;
 
+import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.categories.commands.SortCategoriesCommand;
 import me.csed2.moneymanager.charts.TimeScale;
-import me.csed2.moneymanager.charts.adapters.LineGraph;
+import me.csed2.moneymanager.charts.adapters.PieChart;
+import me.csed2.moneymanager.charts.adapters.TimeLineChart;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.rest.monzo.commands.MonzoAuthCommand;
 import me.csed2.moneymanager.rest.monzo.commands.MonzoCheckAuthCommand;
@@ -11,9 +13,11 @@ import me.csed2.moneymanager.rest.monzo.commands.MonzoGetAccountsCommand;
 import me.csed2.moneymanager.rest.monzo.commands.MonzoGetTransactionsCommand;
 import me.csed2.moneymanager.subscriptions.SubscriptionArgType;
 import me.csed2.moneymanager.subscriptions.commands.SortSubscriptionsCommand;
+import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.transactions.TransactionArgType;
 import me.csed2.moneymanager.transactions.commands.SortTransactionsCommand;
 import me.csed2.moneymanager.ui.model.Action;
+import me.csed2.moneymanager.ui.model.ChartNode;
 import me.csed2.moneymanager.ui.model.Menu;
 
 import java.util.function.Consumer;
@@ -22,6 +26,7 @@ public class MenuList {
 
     public static final Menu MAIN = new Menu("Main Menu", null, null);
 
+    public static final Action GRAPH_ACTION = new Action("Graph Test", MAIN, null, (Consumer<App>) app -> app.render(new PieChart<>("Graph Test", "budget", app.getCategoryCache()).build()));
 
     //Budget
     public static final Menu BUDGET = new Menu("Budget", MAIN, null);
@@ -30,10 +35,9 @@ public class MenuList {
 
     public static final Menu TRANSACTIONS_GRAPH = new Menu("Transactions", GRAPHS, null);
 
-    public static final Action TRANS_GRAPH_AMNT = new Action("Line Graph", TRANSACTIONS_GRAPH, null,
-            (Consumer<App>) app -> app.render(new LineGraph.Builder()
-                    .withTitle("Transaction Line Graph")
-                    .withData(app.getTransactionCache())
+    public static final Action TRANS_GRAPH_AMNT = new Action("Line ChartImpl", TRANSACTIONS_GRAPH, null,
+            (Consumer<App>) app -> app.render(new TimeLineChart.Builder<>(app.getTransactionCache())
+                    .withTitle("Transaction Line Chart")
                     .withTimescale(TimeScale.DAY)
                     .withXAxisLabel("Time")
                     .withYAxisLabel("Budget Size")

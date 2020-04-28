@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.ui.view;
 
-import me.csed2.moneymanager.charts.adapters.Graph;
+import me.csed2.moneymanager.charts.adapters.Chart;
+import me.csed2.moneymanager.charts.adapters.ChartImpl;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.ui.model.*;
 import me.csed2.moneymanager.utils.ConsoleUtils;
@@ -57,7 +58,8 @@ public class CMDRenderer implements UIRenderer {
     }
 
     @Override
-    public void renderGraph(Graph graph) {
+    public void renderGraph(Chart graph) {
+        graph.makeChart();
         BufferedImage createdImage = graph.getChart().createBufferedImage(600, 800);
         ByteArrayOutputStream bas = new ByteArrayOutputStream();
         try {
