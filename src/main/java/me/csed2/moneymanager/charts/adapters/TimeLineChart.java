@@ -8,7 +8,6 @@ import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.chart.title.TextTitle;
-import org.jfree.data.general.Series;
 import org.jfree.data.time.RegularTimePeriod;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
@@ -17,21 +16,21 @@ import org.jfree.data.xy.XYDataset;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
+import java.util.function.Predicate;
 
-public class LineGraph extends Graph {
+public class TimeLineChart<T extends Cacheable> extends TimeChart<T> {
 
     private final String xAxisLabel;
     private final String yAxisLabel;
     private final String yField;
     private final TimeScale scale;
     
-    private List<Date> xRawData;
     private List<Number> yRawData;
 
     private XYDataset dataset;
 
-    private LineGraph(String title, String xAxisLabel, String yAxisLabel, String yField,
-                      TimeScale scale, Collection<? extends Cacheable> data) {
+    private TimeLineChart(String title, String xAxisLabel, String yAxisLabel, String yField,
+                          TimeScale scale, Collection<T> data) {
         super(title, data);
         this.title = title;
         this.xAxisLabel = xAxisLabel;
@@ -53,10 +52,9 @@ public class LineGraph extends Graph {
         return dataset;
     }
 
-    private LineGraph build() {
-        this.xRawData = getDates();
-        xRawData.forEach(item -> System.out.println(item.toString()));
-        this.yRawData = getDataFromField(yField);
+    public TimeLineChart<T> build() {
+        super.build();
+        this.yRawData = getYDataFromAllFields(yField);
         this.dataset = buildDataset();
         return this;
     }
@@ -94,47 +92,52 @@ public class LineGraph extends Graph {
         return chart;
     }
 
-    public static class Builder {
+    public static class Builder<T extends Cacheable> {
         private String title;
         private String xAxisLabel;
         private String yAxisLabel;
         private String yField;
         private TimeScale scale;
+        private Predicate<? super T> filter = null;
 
-        private Collection<? extends Cacheable> data;
+        private Collection<T> data;
 
-        public Builder withTitle(String title) {
+        public Builder(Collection<T> data) {
+            this.data = data;
+        }
+
+        public Builder<T> withTitle(String title) {
             this.title = title;
             return this;
         }
 
-        public Builder withXAxisLabel(String xAxisLabel) {
+        public Builder<T> withXAxisLabel(String xAxisLabel) {
             this.xAxisLabel = xAxisLabel;
             return this;
         }
 
-        public Builder withYAxisLabel(String yAxisLabel) {
+        public Builder<T> withYAxisLabel(String yAxisLabel) {
             this.yAxisLabel = yAxisLabel;
             return this;
         }
 
-        public Builder withYField(String yField) {
+        public Builder<T> withYField(String yField) {
             this.yField = yField;
             return this;
         }
 
-        public Builder withTimescale(TimeScale scale) {
+        public Builder<T> withTimescale(TimeScale scale) {
             this.scale = scale;
             return this;
         }
 
-        public Builder withData(Collection<? extends Cacheable> data) {
-            this.data = data;
+        public Builder<T> applyFilter(Predicate<T> filter) {
+            this.filter = filter;
             return this;
         }
 
-        public LineGraph build() {
-            return new LineGraph(title, xAxisLabel, yAxisLabel, yField, scale, data).build();
+        public TimeLineChart<T> build() {
+            return (TimeLineChart<T>) new TimeLineChart<>(title, xAxisLabel, yAxisLabel, yField, scale, data).applyFilter(filter).build();
         }
     }
 }

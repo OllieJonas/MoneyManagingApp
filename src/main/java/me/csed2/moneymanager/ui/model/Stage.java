@@ -39,12 +39,20 @@ public class Stage<T> {
     private final String[] text;
 
     @Getter
+    private final T[] expectedInput;
+
+    @Getter
     private T result;
 
     private ExecutionPhase phase;
 
     public Stage(Class<T> resultType, String... text) {
+        this(resultType, null, text);
+    }
+
+    public Stage(Class<T> resultType, T[] expectedInput, String... text) {
         this.resultType = resultType;
+        this.expectedInput = expectedInput;
         this.text = text;
     }
 

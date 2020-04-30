@@ -8,6 +8,7 @@ import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.rest.AuthServerManager;
 import me.csed2.moneymanager.ui.MenuList;
 import me.csed2.moneymanager.ui.StageMenuList;
+import me.csed2.moneymanager.ui.model.StageMenu;
 
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -22,9 +23,6 @@ public class Main {
 
         new MenuList();
         new StageMenuList();
-
-        new App();
-
         new AuthServerManager();
         new App();
         // Testing Frame

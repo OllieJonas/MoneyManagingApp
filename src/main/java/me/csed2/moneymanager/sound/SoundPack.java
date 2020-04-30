@@ -42,12 +42,12 @@ public class SoundPack {
     }
 
     public Clip getLoadClip(String nodeName){
-        if(nodeSounds.get(nodeName) == null) return null;
+        if (nodeSounds.get(nodeName) == null) return null;
         return nodeSounds.get(nodeName).getLoadClip();
     }
 
     public Clip getSubmitClip(String nodeName){
-        if(nodeSounds.get(nodeName) == null) return null;
+        if (nodeSounds.get(nodeName) == null) return null;
         return nodeSounds.get(nodeName).getSubmitClip();
     }
 }

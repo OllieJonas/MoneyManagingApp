@@ -8,7 +8,9 @@ import me.csed2.moneymanager.budget.autocommands.BudgetTracker;
 import me.csed2.moneymanager.budget.autocommands.EndOfMonthActions;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.command.CommandDispatcher;
+import me.csed2.moneymanager.charts.adapters.Chart;
+import me.csed2.moneymanager.rest.AuthServerManager;
+import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.sound.SoundHandler;
 import me.csed2.moneymanager.sound.SoundPack;
 import me.csed2.moneymanager.subscriptions.Subscription;
@@ -43,8 +45,8 @@ public class App {
     @Getter
     private UIRenderer renderer = new SwingRenderer();
 
-    //Sound
-    private SoundHandler sound = new SoundHandler();
+    // Sound
+     private SoundHandler sound = new SoundHandler();
 
     @Getter
     private SoundPack soundPack = new SoundPack("bruh");
@@ -124,11 +126,11 @@ public class App {
     public void render(UINode node) {
         this.currentNode = node;
         renderer.render(node);
-        sound.playSound(sound.BUTTON_PRESS);
-        sound.playSound(soundPack.getLoadClip(node.getName()));
+//        sound.playSound(SoundHandler.BUTTON_PRESS);
+//        sound.playSound(soundPack.getLoadClip(node.getName()));
     }
 
-    public void render(Graph graph) {
+    public void render(Chart graph) {
         renderer.renderGraph(graph);
     }
 
@@ -140,9 +142,9 @@ public class App {
         renderer.renderStage(stage);
     }
 
-    public void playSound(Clip clip){
-        sound.playSound(clip);
-    }
+//    public void playSound(Clip clip){
+//        sound.playSound(clip);
+//    }
 
     public void sendMessage(String message) {
         renderer.renderText(message);

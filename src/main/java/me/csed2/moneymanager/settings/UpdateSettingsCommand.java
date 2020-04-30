@@ -4,13 +4,16 @@ import me.csed2.moneymanager.main.SettingWrapper;
 
 import java.io.FileNotFoundException;
 
-public class UpdateSettingsCommand{
-    String renderer;
-    String test;
-    SettingWrapper wrapper;
-    public UpdateSettingsCommand(String renderer, String test){
-        this.renderer=renderer;
-        this.test=test;
+public class UpdateSettingsCommand {
+
+    private final String renderer;
+    private final String test;
+
+    private SettingWrapper wrapper;
+
+    public UpdateSettingsCommand(String renderer, String test) {
+        this.renderer = renderer;
+        this.test = test;
 
         try {
             wrapper = new SettingWrapper("settings.json");
@@ -19,11 +22,8 @@ public class UpdateSettingsCommand{
         }
     }
 
-    public boolean update(){
-
+    public boolean update() {
         wrapper.save(renderer, test);
-
-
         return true;
     }
 }

@@ -26,12 +26,16 @@ public enum TimeScale {
 
     public RegularTimePeriod construct(Date date) {
         try {
-            Constructor constructor = clazz.getConstructor(Date.class);
+            Constructor<?> constructor = clazz.getConstructor(Date.class);
             constructor.setAccessible(true);
             return (RegularTimePeriod) constructor.newInstance(date);
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public static TimeScale getFromOrdinal(int value) {
+        return values()[value];
     }
 }

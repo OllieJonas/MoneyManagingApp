@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.ui.view;
 
-import me.csed2.moneymanager.charts.adapters.Graph;
+import me.csed2.moneymanager.charts.adapters.Chart;
+import me.csed2.moneymanager.charts.adapters.ChartImpl;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.ui.controller.ButtonListener;
 import me.csed2.moneymanager.ui.model.*;
@@ -12,7 +13,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Stack;
-import java.util.function.Consumer;
 
 public class SwingRenderer implements UIRenderer {
 
@@ -156,9 +156,9 @@ public class SwingRenderer implements UIRenderer {
     }
 
     @Override
-    public void renderGraph(Graph graph) {
+    public void renderGraph(Chart graph) {
         JFreeChart chart = graph.makeChart();
-        JPanel panel = SwingUtils.generateMenuPanel(800, 600, "Graph");
+        JPanel panel = SwingUtils.generateMenuPanel(800, 600, "CSED");
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setBorder(BorderFactory.createEmptyBorder());
         chartPanel.setBackground(Color.WHITE);

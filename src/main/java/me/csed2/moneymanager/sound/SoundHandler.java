@@ -6,29 +6,36 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
+import java.util.Optional;
 
-public class SoundHandler implements Runnable{
+public class SoundHandler implements Runnable {
 
     public static final Clip BUTTON_PRESS = loadClip("audio/button_press.wav");
 
-    public static Clip loadClip(String s){
+    public static Clip loadClip(String s) {
         try {
-            File file = SoundFileUtils.getFileFromString(s);
-            AudioInputStream ais = AudioSystem.getAudioInputStream(file);
-            Clip clip = AudioSystem.getClip();
-            clip.open(ais);
-            return clip;
-        }catch(NullPointerException e){
-            //Allow null sounds to return null
-        }catch(Exception e){
+            Optional<File> fileOptional = Optional.ofNullable(SoundFileUtils.getFileFromString(s));
+            if (fileOptional.isPresent()) {
+
+                File file = fileOptional.get();
+                AudioInputStream ais = AudioSystem.getAudioInputStream(file);
+                Clip clip = AudioSystem.getClip();
+
+                clip.open(ais);
+                return clip;
+
+            } else {
+                return null;
+            }
+        } catch(Exception e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public SoundHandler(){
+    public SoundHandler() {
         Thread soundThread = new Thread(this);
-        soundThread.run();
+        soundThread.start();
     }
 
     public void run(){
@@ -37,7 +44,6 @@ public class SoundHandler implements Runnable{
 
     public void playSound(Clip clip){
         if(clip == null) return;
-
         clip.setFramePosition(0);
         clip.start();
     }
