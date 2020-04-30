@@ -4,6 +4,7 @@ import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.categories.commands.SortCategoriesCommand;
 import me.csed2.moneymanager.charts.TimeScale;
+import me.csed2.moneymanager.charts.adapters.BarGraph;
 import me.csed2.moneymanager.charts.adapters.PieChart;
 import me.csed2.moneymanager.charts.adapters.TimeLineChart;
 import me.csed2.moneymanager.main.App;
@@ -21,30 +22,30 @@ import me.csed2.moneymanager.ui.model.ChartNode;
 import me.csed2.moneymanager.ui.model.Menu;
 
 import java.util.function.Consumer;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class MenuList {
 
     public static final Menu MAIN = new Menu("Main Menu", null, null);
-
-    public static final Action GRAPH_ACTION = new Action("Graph Test", MAIN, null, (Consumer<App>) app -> app.render(new PieChart<>("Graph Test", "budget", app.getCategoryCache()).build()));
 
     //Budget
     public static final Menu BUDGET = new Menu("Budget", MAIN, null);
 
     public static final Menu GRAPHS = new Menu("Graphs", MAIN, null);
 
-    public static final Menu TRANSACTIONS_GRAPH = new Menu("Transactions", GRAPHS, null);
+    public static final Action TOTAL_SPENDING = new Action("View Total Spending", GRAPHS, null, (Consumer<App>) app -> app.render("Total Spent: " + (Integer) app.getTransactionCache().parallelStream().mapToInt(Transaction::getAmount).sum()));
+    public static final Action TRANS_SPENDING = new Action("View Transactional Spending", GRAPHS, null, (Consumer<App>) app -> app.render(new TimeLineChart.Builder<>(app.getTransactionCache())
+        .withTimescale(TimeScale.DAY)
+        .withTitle("Amount Spent")
+        .withXAxisLabel("Time")
+        .withYAxisLabel("Amount")
+        .withYField("amount")
+        .build()));
 
-    public static final Action TRANS_GRAPH_AMNT = new Action("Line ChartImpl", TRANSACTIONS_GRAPH, null,
-            (Consumer<App>) app -> app.render(new TimeLineChart.Builder<>(app.getTransactionCache())
-                    .withTitle("Transaction Line Chart")
-                    .withTimescale(TimeScale.DAY)
-                    .withXAxisLabel("Time")
-                    .withYAxisLabel("Budget Size")
-                    .withYField("amount")
-                    .build()));
+    public static final Action CAT_DISTRO = new Action("View Category Spending", GRAPHS, null, (Consumer <App>) app -> app.render(new PieChart<>("Category Budget Spread", "budget", app.getCategoryCache()).build()));
 
-    // Categories
+            // Categories
     public static final Menu CATEGORIES = new Menu("Categories", MAIN, null);
     public static final Action LIST_CATEGORIES = new Action("List All Categories", CATEGORIES, "icons/button_search_0.png", (Consumer<App>) app -> app.sendMessage(app.getCategoryCache().getReport()));
     public static final Menu UPDATE_CATEGORY = new Menu("Update a Category", CATEGORIES, "icons/button_update_0.png");

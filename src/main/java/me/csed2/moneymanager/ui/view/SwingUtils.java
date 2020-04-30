@@ -11,13 +11,12 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.function.Consumer;
 
+@SuppressWarnings("WeakerAccess")
 public class SwingUtils {
 
     public static JPanel generateMenuPanel(int width, int height, String title){
@@ -53,7 +52,9 @@ public class SwingUtils {
             try {
                 //Run all Stage Execution Phases
                 for (Stage<?> s : stageNode.getStages()) {
+                    String input = stageTextboxes.get(s).getText();
                     Object result = StringParserFactory.parse(stageTextboxes.get(s).getText(), s.getResultType());
+
                     s.setResult(result);
                     s.executionPhase();
                 }

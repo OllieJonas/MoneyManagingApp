@@ -10,6 +10,7 @@ import java.awt.*;
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collector;
 
 @SuppressWarnings("WeakerAccess")
@@ -25,7 +26,6 @@ public abstract class ChartImpl<T extends Cacheable> implements Chart<T> {
         this.title = title;
         this.data = data;
     }
-
 
     @Override
     public Collection<T> getData() {

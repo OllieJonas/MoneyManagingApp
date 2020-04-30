@@ -57,7 +57,7 @@ public class StageMenu implements UINode {
     }
 
     public void exitPhase() {
-        App.getInstance().playSound(App.getInstance().getSoundPack().getSubmitClip(name));
+//        App.getInstance().playSound(App.getInstance().getSoundPack().getSubmitClip(name));
         if (exitPhase != null) {
             exitPhase.execute(App.getInstance(), stages);
         }
@@ -98,4 +98,51 @@ public class StageMenu implements UINode {
         void execute(App app, List<Stage<?>> stages);
     }
 
+    public static class Builder {
+
+        protected final String name;
+
+        private Menu parent;
+
+        private String image;
+
+        private List<Stage<?>> stages;
+
+        private Phase beginPhase;
+
+        private Phase exitPhase;
+
+        public Builder(String name) {
+            this.name = name;
+        }
+
+        public Builder withParent(Menu parent) {
+            this.parent = parent;
+            return this;
+        }
+
+        public Builder withImage(String path) {
+            this.image = path;
+            return this;
+        }
+
+        public Builder withStages(Stage<?>... stages) {
+            this.stages = Arrays.asList(stages);
+            return this;
+        }
+
+        public Builder withBeginPhase(Phase beginPhase) {
+            this.beginPhase = beginPhase;
+            return this;
+        }
+
+        public Builder withExitPhase(Phase exitPhase) {
+            this.exitPhase = exitPhase;
+            return this;
+        }
+
+        public StageMenu build() {
+            return new StageMenu(name, parent, image, stages, beginPhase, exitPhase);
+        }
+    }
 }

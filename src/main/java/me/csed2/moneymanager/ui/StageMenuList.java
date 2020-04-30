@@ -10,6 +10,10 @@ import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.categories.commands.AddCategoryCommand;
 import me.csed2.moneymanager.categories.commands.RemoveCategoryCommand;
 import me.csed2.moneymanager.categories.commands.UpdateCategoryCommand;
+import me.csed2.moneymanager.charts.TimeScale;
+import me.csed2.moneymanager.charts.adapters.PieChart;
+import me.csed2.moneymanager.charts.adapters.TimeChart;
+import me.csed2.moneymanager.charts.adapters.TimeLineChart;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.settings.UpdateSettingsCommand;
@@ -17,20 +21,26 @@ import me.csed2.moneymanager.subscriptions.SubscriptionArgType;
 import me.csed2.moneymanager.subscriptions.commands.AddSubscriptionCommand;
 import me.csed2.moneymanager.subscriptions.commands.RemoveSubscriptionCommand;
 import me.csed2.moneymanager.subscriptions.commands.UpdateSubscriptionCommand;
+import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.transactions.TransactionArgType;
 import me.csed2.moneymanager.transactions.commands.AddTransactionCommand;
 import me.csed2.moneymanager.transactions.commands.RemoveTransactionCommand;
 import me.csed2.moneymanager.transactions.commands.UpdateTransactionCommand;
+import me.csed2.moneymanager.ui.model.Action;
 import me.csed2.moneymanager.ui.model.Stage;
 import me.csed2.moneymanager.ui.model.StageMenu;
-import me.csed2.moneymanager.ui.model.StageMenuBuilder;
 
 import java.util.Date;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+
+import static me.csed2.moneymanager.ui.MenuList.MAIN;
 
 public class StageMenuList {
 
     //Budget
-    public static final StageMenu MODIFY_OVERALL = new StageMenuBuilder("Update The Overall Budget")
+    public static final StageMenu MODIFY_OVERALL = new StageMenu.Builder("Update The Overall Budget")
             .withParent(MenuList.BUDGET)
             .withImage(null)
             .withStages(
@@ -48,7 +58,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu SEE_BUDGET = new StageMenuBuilder("Check A Budget")
+    public static final StageMenu SEE_BUDGET = new StageMenu.Builder("Check A Budget")
             .withParent(MenuList.BUDGET)
             .withImage(null)
             .withStages(
@@ -63,7 +73,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu SEE_OVERALL_BUDGET = new StageMenuBuilder("Check Overall Budget")
+    public static final StageMenu SEE_OVERALL_BUDGET = new StageMenu.Builder("Check Overall Budget")
             .withParent(MenuList.BUDGET)
             .withImage(null)
             .withStages(
@@ -76,7 +86,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu UPDATE_CATEGORY_BUDGET = new StageMenuBuilder("Update A Categories Budget")
+    public static final StageMenu UPDATE_CATEGORY_BUDGET = new StageMenu.Builder("Update A Categories Budget")
             .withParent(MenuList.BUDGET)
             .withStages(
                     new Stage<>(String.class, "What category would you like to change the budget for?"),
@@ -97,7 +107,7 @@ public class StageMenuList {
 
 
     // Categories
-    public static final StageMenu ADD_CATEGORY = new StageMenuBuilder("Add a Category")
+    public static final StageMenu ADD_CATEGORY = new StageMenu.Builder("Add a Category")
             .withParent(MenuList.CATEGORIES)
             .withImage("icons/button_add_0.png")
             .withStages(
@@ -115,7 +125,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu REMOVE_CATEGORY = new StageMenuBuilder("Remove a Category")
+    public static final StageMenu REMOVE_CATEGORY = new StageMenu.Builder("Remove a Category")
             .withParent(MenuList.CATEGORIES)
             .withImage("icons/button_delete_0.png")
             .withStages(
@@ -132,7 +142,7 @@ public class StageMenuList {
 
             .build();
 
-    public static final StageMenu UPDATE_CATEGORY_NAME = new StageMenuBuilder("Update a Categories Name")
+    public static final StageMenu UPDATE_CATEGORY_NAME = new StageMenu.Builder("Update a Categories Name")
             .withParent(MenuList.UPDATE_CATEGORY)
             .withStages(
                     new Stage<>(String.class, "What category would you like to change the name for?"),
@@ -152,7 +162,7 @@ public class StageMenuList {
             .build();
 
 
-    public static final StageMenu UPDATE_BUDGET = new StageMenuBuilder("Update a Categories Budget")
+    public static final StageMenu UPDATE_BUDGET = new StageMenu.Builder("Update a Categories Budget")
             .withParent(MenuList.UPDATE_CATEGORY)
             .withStages(
                     new Stage<>(String.class, "What category would you like to change the budget for?"),
@@ -171,7 +181,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu SEARCH_CATEGORIES = new StageMenuBuilder("Search Categories")
+    public static final StageMenu SEARCH_CATEGORIES = new StageMenu.Builder("Search Categories")
             .withParent(MenuList.CATEGORIES)
             .withStages(
                     new Stage<>(String.class,"What would you like to search for?")
@@ -183,7 +193,7 @@ public class StageMenuList {
             }).build();
 
     // Transactions
-    public static final StageMenu ADD_TRANSACTION = new StageMenuBuilder("Add a Transaction")
+    public static final StageMenu ADD_TRANSACTION = new StageMenu.Builder("Add a Transaction")
             .withParent(MenuList.TRANSACTIONS)
             .withImage("icons/button_add_0.png")
             .withStages(
@@ -210,7 +220,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu REMOVE_TRANSACTION = new StageMenuBuilder("Remove a Transaction")
+    public static final StageMenu REMOVE_TRANSACTION = new StageMenu.Builder("Remove a Transaction")
             .withParent(MenuList.TRANSACTIONS)
             .withImage("icons/button_delete_0.png")
             .withStages(new Stage<>(String.class, "Which transaction would you like to remove?"))
@@ -227,7 +237,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu UPDATE_TRANSACTION_AMOUNT = new StageMenuBuilder("Update Transaction Amount")
+    public static final StageMenu UPDATE_TRANSACTION_AMOUNT = new StageMenu.Builder("Update Transaction Amount")
             .withParent(MenuList.UPDATE_TRANSACTION)
             .withStages(
                     new Stage<>(String.class, "Which transaction would you like to update?"),
@@ -246,7 +256,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu UPDATE_TRANSACTION_VENDOR = new StageMenuBuilder("Update Transaction Vendor")
+    public static final StageMenu UPDATE_TRANSACTION_VENDOR = new StageMenu.Builder("Update Transaction Vendor")
             .withParent(MenuList.UPDATE_TRANSACTION)
             .withStages(
                     new Stage<>(String.class, "Which transaction would you like to update?"),
@@ -265,7 +275,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu UPDATE_TRANSACTION_NAME = new StageMenuBuilder("Update Transaction Name")
+    public static final StageMenu UPDATE_TRANSACTION_NAME = new StageMenu.Builder("Update Transaction Name")
             .withParent(MenuList.UPDATE_TRANSACTION)
             .withStages(
                     new Stage<>(String.class, "Which transaction would you like to update?"),
@@ -286,7 +296,7 @@ public class StageMenuList {
     
     
     // Subscriptions
-    public static final StageMenu ADD_SUBSCRIPTION = new StageMenuBuilder("Add a Subscription")
+    public static final StageMenu ADD_SUBSCRIPTION = new StageMenu.Builder("Add a Subscription")
             .withParent(MenuList.SUBSCRIPTIONS)
             .withImage("icons/button_add_0.png")
             .withStages(
@@ -320,7 +330,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu REMOVE_SUBSCRIPTION = new StageMenuBuilder("Remove a Subscription")
+    public static final StageMenu REMOVE_SUBSCRIPTION = new StageMenu.Builder("Remove a Subscription")
             .withParent(MenuList.SUBSCRIPTIONS)
             .withImage("icons/button_delete_0.png")
             .withStages(new Stage<>(String.class, "Which subscription would you like to remove?"))
@@ -339,7 +349,7 @@ public class StageMenuList {
             })
             .build();
     
-    public static final StageMenu UPDATE_SUBSCRIPTION_AMOUNT = new StageMenuBuilder("Update Subscription Amount")
+    public static final StageMenu UPDATE_SUBSCRIPTION_AMOUNT = new StageMenu.Builder("Update Subscription Amount")
             .withParent(MenuList.UPDATE_SUBSCRIPTION)
             .withStages(
                     new Stage<>(String.class, "Which subscription would you like to update?"),
@@ -361,7 +371,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu UPDATE_SUBSCRIPTION_VENDOR = new StageMenuBuilder("Update Subscription Vendor")
+    public static final StageMenu UPDATE_SUBSCRIPTION_VENDOR = new StageMenu.Builder("Update Subscription Vendor")
             .withParent(MenuList.UPDATE_SUBSCRIPTION)
             .withStages(
                     new Stage<>(String.class, "Which subscription would you like to update?"),
@@ -380,7 +390,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu UPDATE_SUBSCRIPTION_NAME = new StageMenuBuilder("Update Subscription Name")
+    public static final StageMenu UPDATE_SUBSCRIPTION_NAME = new StageMenu.Builder("Update Subscription Name")
             .withParent(MenuList.UPDATE_SUBSCRIPTION)
             .withStages(
                     new Stage<>(String.class, "Which subscription would you like to update?"),
@@ -399,7 +409,7 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu UPDATE_SUBSCRIPTION_NOTES = new StageMenuBuilder("Update Subscription Notes")
+    public static final StageMenu UPDATE_SUBSCRIPTION_NOTES = new StageMenu.Builder("Update Subscription Notes")
             .withParent(MenuList.UPDATE_SUBSCRIPTION)
             .withStages(
                     new Stage<>(String.class, "Which subscription would you like to update?"),
@@ -418,8 +428,8 @@ public class StageMenuList {
             })
             .build();
 
-    public static final StageMenu SETTINGS = new StageMenuBuilder("Settings")
-            .withParent(MenuList.MAIN)
+    public static final StageMenu SETTINGS = new StageMenu.Builder("Settings")
+            .withParent(MAIN)
             .withStages(
                     new Stage<>(String.class, "Renderer CMD: Command prompt, Blank: UI:"),
                     new Stage<>(String.class, "Test Settings \", \""))

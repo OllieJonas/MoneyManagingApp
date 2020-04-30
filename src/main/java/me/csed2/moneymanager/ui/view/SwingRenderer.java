@@ -158,7 +158,7 @@ public class SwingRenderer implements UIRenderer {
     @Override
     public void renderGraph(Chart graph) {
         JFreeChart chart = graph.makeChart();
-        JPanel panel = SwingUtils.generateMenuPanel(800, 600, "ChartImpl");
+        JPanel panel = SwingUtils.generateMenuPanel(800, 600, "CSED");
         ChartPanel chartPanel = new ChartPanel(chart);
         chartPanel.setBorder(BorderFactory.createEmptyBorder());
         chartPanel.setBackground(Color.WHITE);

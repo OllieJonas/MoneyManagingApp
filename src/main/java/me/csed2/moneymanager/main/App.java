@@ -45,8 +45,8 @@ public class App {
     @Getter
     private UIRenderer renderer = new SwingRenderer();
 
-    //Sound
-    private SoundHandler sound = new SoundHandler();
+    // Sound
+     private SoundHandler sound = new SoundHandler();
 
     @Getter
     private SoundPack soundPack = new SoundPack("bruh");
@@ -126,8 +126,8 @@ public class App {
     public void render(UINode node) {
         this.currentNode = node;
         renderer.render(node);
-        sound.playSound(SoundHandler.BUTTON_PRESS);
-        sound.playSound(soundPack.getLoadClip(node.getName()));
+//        sound.playSound(SoundHandler.BUTTON_PRESS);
+//        sound.playSound(soundPack.getLoadClip(node.getName()));
     }
 
     public void render(Chart graph) {
@@ -142,9 +142,9 @@ public class App {
         renderer.renderStage(stage);
     }
 
-    public void playSound(Clip clip){
-        sound.playSound(clip);
-    }
+//    public void playSound(Clip clip){
+//        sound.playSound(clip);
+//    }
 
     public void sendMessage(String message) {
         renderer.renderText(message);
