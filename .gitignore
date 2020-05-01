@@ -1,0 +1,7 @@
+dependency-reduced-pom.xml
+target/
+.idea/
+src/main/java/me/csed2/moneymanager/diagram.uml
+src/main/java/me/csed2/moneymanager/diagram.png
+/.idea/
+MoneyManagingApp.iml
