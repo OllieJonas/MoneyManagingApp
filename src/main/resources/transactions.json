@@ -1,0 +1,56 @@
+[
+  {
+  "name": "Score",
+  "id": 1,
+  "date": "Feb 9, 2020, 3:22:39 AM",
+  "amount": 100,
+  "category": "Fun",
+  "notes": ["Test","Test2"],
+  "vendor": "SU Bath"
+  },
+  {
+    "name": "Cinema",
+    "id": 1,
+    "date": "Mar 5, 2020, 3:22:39 AM",
+    "amount": 3000,
+    "category": "Fun",
+    "notes": ["Test","Test2"],
+    "vendor": "SU Bath"
+  },
+  {
+    "name": "weekly shop",
+    "id": 2,
+    "date": "Feb 28, 2020, 3:22:39 AM",
+    "amount": 100,
+    "category": "Shop",
+    "notes": ["Test","Test2"],
+    "vendor": "SU Bath"
+  },
+  {
+    "name": "Pool",
+    "id": 1,
+    "date": "Feb 10, 2020, 3:22:39 AM",
+    "amount": 500,
+    "category": "Fun",
+    "notes": ["Test","Test2"],
+    "vendor": "SU Bath"
+  },
+  {
+    "name": "Spoons",
+    "id": 3,
+    "date": "April 25, 2020, 3:22:39 AM",
+    "amount": 50,
+    "category": "Drinks",
+    "notes": ["Test","Test2"],
+    "vendor": "SU Bath"
+  },
+  {
+    "name": "Spoons",
+    "id": 1,
+    "date": "Apr 2, 2020, 3:22:39 AM",
+    "amount": 500,
+    "category": "Fun",
+    "notes": ["Test","Test2"],
+    "vendor": "SU Bath"
+  }
+]

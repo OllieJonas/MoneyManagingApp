@@ -1,0 +1,16 @@
+{
+  "overallBudget": 0,
+
+  "currentBudget": {
+    "name": "test",
+    "id": 1,
+    "totalSpent": 100,
+    "budgetSize": 100,
+    "date": {
+      "month": "April",
+      "year": 2020
+    },
+    "relatedCategories": []
+  },
+  "items": []
+}
