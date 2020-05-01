@@ -11,7 +11,8 @@ import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.charts.adapters.Chart;
 import me.csed2.moneymanager.rest.AuthServerManager;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
-import me.csed2.moneymanager.sound.SoundHandler;
+import me.csed2.moneymanager.sound.AudioDispatcher;
+import me.csed2.moneymanager.sound.Sound;
 import me.csed2.moneymanager.sound.SoundPack;
 import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.subscriptions.SubscriptionNotificationDispatcher;
@@ -23,8 +24,8 @@ import me.csed2.moneymanager.ui.view.CMDRenderer;
 import me.csed2.moneymanager.ui.view.SwingRenderer;
 import me.csed2.moneymanager.ui.view.UIRenderer;
 
-import javax.sound.sampled.Clip;
 import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -46,10 +47,7 @@ public class App {
     private UIRenderer renderer = new SwingRenderer();
 
     // Sound
-     private SoundHandler sound = new SoundHandler();
-
-    @Getter
-    private SoundPack soundPack = new SoundPack("bruh");
+    private AudioDispatcher audio = new AudioDispatcher();
 
     // Threads
     private final InputReader reader;
@@ -87,10 +85,13 @@ public class App {
         this.reader = startInputReader();
         this.autoSave = startAutoSave();
 
-        subscriptionNotifications = new Thread(new SubscriptionNotificationDispatcher(this, this.renderer));
-        subscriptionNotifications.start();
+        this.subscriptionNotifications = new Thread(new SubscriptionNotificationDispatcher(this, this.renderer));
+        this.subscriptionNotifications.start();
 
-        monzoClient = new MonzoHttpClient();
+        this.monzoClient = new MonzoHttpClient();
+
+
+
 
         try {
             this.settings = new SettingWrapper("settings.json");
@@ -104,11 +105,14 @@ public class App {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+        this.audio = new AudioDispatcher(new SoundPack(settings.getValue("soundpack", String.class).orElse("default")));
         instance = this;
 
         //this loads the budget store, by taking information from the cache
         BudgetTracker.loadBudgetStore();
         EndOfMonthActions.checkMonth();
+
+        audio.playSound(Sound.GREETING);
     }
 
     private AutoSave startAutoSave() {
@@ -126,8 +130,7 @@ public class App {
     public void render(UINode node) {
         this.currentNode = node;
         renderer.render(node);
-//        sound.playSound(SoundHandler.BUTTON_PRESS);
-//        sound.playSound(soundPack.getLoadClip(node.getName()));
+        playSound(node.getLoadSound());
     }
 
     public void render(Chart graph) {
@@ -142,9 +145,10 @@ public class App {
         renderer.renderStage(stage);
     }
 
-//    public void playSound(Clip clip){
-//        sound.playSound(clip);
-//    }
+    public void playSound(Sound sound) {
+        if (sound != null)
+            audio.playSound(sound);
+    }
 
     public void sendMessage(String message) {
         renderer.renderText(message);
@@ -152,6 +156,12 @@ public class App {
 
     public synchronized void exit() {
         AuthServerManager.getInstance().closeAll();
+        playSound(Sound.HAPPY_SAVING);
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         App.getInstance().getCategoryCache().save("categories.json");
         subscriptionNotifications.interrupt();
         autoSave.interrupt();

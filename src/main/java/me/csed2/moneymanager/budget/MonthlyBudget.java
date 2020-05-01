@@ -20,7 +20,7 @@ public class MonthlyBudget implements Cacheable  {
 
     private String name;
 
-    private int budget;
+    private double budget;
 
     private Set<Category> relatedCategories;
 

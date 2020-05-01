@@ -12,5 +12,11 @@
   "directory": {
     "value": "~/Downloads",
     "active": true
+  },
+
+
+  "soundpack": {
+    "value": "leon",
+    "active": true
   }
 }

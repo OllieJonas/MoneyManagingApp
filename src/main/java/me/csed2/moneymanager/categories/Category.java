@@ -41,7 +41,7 @@ public class Category implements Cacheable {
     /**
      * The budget the user has set for this category
      */
-    private int budget;
+    private double budget;
 
     public String toFormattedString() {
         return "category: " + name + "  " + "\n  "
@@ -75,7 +75,7 @@ public class Category implements Cacheable {
         /**
          * The budget the user has set for this category
          */
-        private int budget;
+        private double budget;
 
         public Builder(String name) {
             this.name = name;
@@ -91,7 +91,7 @@ public class Category implements Cacheable {
             return this;
         }
 
-        public Builder withBudget(int budget) {
+        public Builder withBudget(double budget) {
             this.budget = budget;
             return this;
         }

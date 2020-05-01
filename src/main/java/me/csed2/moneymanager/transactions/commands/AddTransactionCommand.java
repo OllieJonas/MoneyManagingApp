@@ -12,11 +12,11 @@ public class AddTransactionCommand implements Function<App, Boolean> {
 
     private final String categoryName;
     private final String name;
-    private final int amount;
+    private final double amount;
     private final String vendor;
     private final String[] notes;
 
-    public AddTransactionCommand(String categoryName, String name, int amount, String vendor, String[] notes) {
+    public AddTransactionCommand(String categoryName, String name, double amount, String vendor, String[] notes) {
         this.categoryName = categoryName;
         this.name = name;
         this.amount = amount * 100;

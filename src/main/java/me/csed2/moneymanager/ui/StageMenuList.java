@@ -17,6 +17,7 @@ import me.csed2.moneymanager.charts.adapters.TimeLineChart;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.settings.UpdateSettingsCommand;
+import me.csed2.moneymanager.sound.Sound;
 import me.csed2.moneymanager.subscriptions.SubscriptionArgType;
 import me.csed2.moneymanager.subscriptions.commands.AddSubscriptionCommand;
 import me.csed2.moneymanager.subscriptions.commands.RemoveSubscriptionCommand;
@@ -88,6 +89,7 @@ public class StageMenuList {
 
     public static final StageMenu UPDATE_CATEGORY_BUDGET = new StageMenu.Builder("Update A Categories Budget")
             .withParent(MenuList.BUDGET)
+            .withSubmitSound(Sound.UPDATED_CATEGORY)
             .withStages(
                     new Stage<>(String.class, "What category would you like to change the budget for?"),
                     new Stage<>(Integer.class, "What would you like to change the budget to?"))
@@ -109,6 +111,7 @@ public class StageMenuList {
     // Categories
     public static final StageMenu ADD_CATEGORY = new StageMenu.Builder("Add a Category")
             .withParent(MenuList.CATEGORIES)
+            .withSubmitSound(Sound.ADDED_CATEGORY)
             .withImage("icons/button_add_0.png")
             .withStages(
                     new Stage<>(String.class, "What is the name of the new category?"),
@@ -127,6 +130,7 @@ public class StageMenuList {
 
     public static final StageMenu REMOVE_CATEGORY = new StageMenu.Builder("Remove a Category")
             .withParent(MenuList.CATEGORIES)
+            .withSubmitSound(Sound.REMOVED_CATEGORY)
             .withImage("icons/button_delete_0.png")
             .withStages(
                     new Stage<>(String.class, "What is the name of the new category?"))
@@ -144,6 +148,7 @@ public class StageMenuList {
 
     public static final StageMenu UPDATE_CATEGORY_NAME = new StageMenu.Builder("Update a Categories Name")
             .withParent(MenuList.UPDATE_CATEGORY)
+            .withSubmitSound(Sound.UPDATED_CATEGORY)
             .withStages(
                     new Stage<>(String.class, "What category would you like to change the name for?"),
                     new Stage<>(String.class, "What would you like to change the name to?"))
@@ -164,6 +169,7 @@ public class StageMenuList {
 
     public static final StageMenu UPDATE_BUDGET = new StageMenu.Builder("Update a Categories Budget")
             .withParent(MenuList.UPDATE_CATEGORY)
+            .withSubmitSound(Sound.UPDATED_CATEGORY)
             .withStages(
                     new Stage<>(String.class, "What category would you like to change the budget for?"),
                     new Stage<>(Double.class, "What would you like to change the budget to?"))
@@ -195,6 +201,7 @@ public class StageMenuList {
     // Transactions
     public static final StageMenu ADD_TRANSACTION = new StageMenu.Builder("Add a Transaction")
             .withParent(MenuList.TRANSACTIONS)
+            .withSubmitSound(Sound.ADDED_TRANSACTION)
             .withImage("icons/button_add_0.png")
             .withStages(
                     new Stage<>(String.class, "What is the name of the category you'd like to add the transaction to?"),
@@ -206,7 +213,7 @@ public class StageMenuList {
 
                 String categoryName = (String) stages.get(0).getResult();
                 String name = (String) stages.get(1).getResult();
-                Integer amount = (Integer) stages.get(2).getResult();
+                Double amount = (Double) stages.get(2).getResult();
                 String vendor = (String) stages.get(3).getResult();
                 String[] notes = ((String) stages.get(4).getResult()).split(",");
 
@@ -222,6 +229,7 @@ public class StageMenuList {
 
     public static final StageMenu REMOVE_TRANSACTION = new StageMenu.Builder("Remove a Transaction")
             .withParent(MenuList.TRANSACTIONS)
+            .withSubmitSound(Sound.REMOVED_TRANSACTION)
             .withImage("icons/button_delete_0.png")
             .withStages(new Stage<>(String.class, "Which transaction would you like to remove?"))
             .withExitPhase((app, stages) -> {
@@ -239,6 +247,7 @@ public class StageMenuList {
 
     public static final StageMenu UPDATE_TRANSACTION_AMOUNT = new StageMenu.Builder("Update Transaction Amount")
             .withParent(MenuList.UPDATE_TRANSACTION)
+            .withSubmitSound(Sound.UPDATED_TRANSACTION)
             .withStages(
                     new Stage<>(String.class, "Which transaction would you like to update?"),
                     new Stage<>(Double.class, "What would you like to update the amount to?"))
@@ -258,6 +267,7 @@ public class StageMenuList {
 
     public static final StageMenu UPDATE_TRANSACTION_VENDOR = new StageMenu.Builder("Update Transaction Vendor")
             .withParent(MenuList.UPDATE_TRANSACTION)
+            .withSubmitSound(Sound.UPDATED_TRANSACTION)
             .withStages(
                     new Stage<>(String.class, "Which transaction would you like to update?"),
                     new Stage<>(Double.class, "What would you like to update the vendor to?"))
@@ -277,6 +287,7 @@ public class StageMenuList {
 
     public static final StageMenu UPDATE_TRANSACTION_NAME = new StageMenu.Builder("Update Transaction Name")
             .withParent(MenuList.UPDATE_TRANSACTION)
+            .withSubmitSound(Sound.UPDATED_TRANSACTION)
             .withStages(
                     new Stage<>(String.class, "Which transaction would you like to update?"),
                     new Stage<>(Double.class, "What would you like to update the name to?"))
@@ -298,6 +309,7 @@ public class StageMenuList {
     // Subscriptions
     public static final StageMenu ADD_SUBSCRIPTION = new StageMenu.Builder("Add a Subscription")
             .withParent(MenuList.SUBSCRIPTIONS)
+            .withSubmitSound(Sound.ADDED_SUBSCRIPTION)
             .withImage("icons/button_add_0.png")
             .withStages(
                     new Stage<>(String.class, "What is the name of the category you'd like to add the subscription to?"),
@@ -332,6 +344,7 @@ public class StageMenuList {
 
     public static final StageMenu REMOVE_SUBSCRIPTION = new StageMenu.Builder("Remove a Subscription")
             .withParent(MenuList.SUBSCRIPTIONS)
+            .withSubmitSound(Sound.REMOVED_SUBSCRIPTION)
             .withImage("icons/button_delete_0.png")
             .withStages(new Stage<>(String.class, "Which subscription would you like to remove?"))
             .withExitPhase((app, stages) -> {
@@ -351,6 +364,7 @@ public class StageMenuList {
     
     public static final StageMenu UPDATE_SUBSCRIPTION_AMOUNT = new StageMenu.Builder("Update Subscription Amount")
             .withParent(MenuList.UPDATE_SUBSCRIPTION)
+            .withSubmitSound(Sound.UPDATED_SUBSCRIPTION)
             .withStages(
                     new Stage<>(String.class, "Which subscription would you like to update?"),
                     new Stage<>(Double.class, "What would you like to update the amount to? (Please separate all amount with a \", \""))
@@ -373,6 +387,7 @@ public class StageMenuList {
 
     public static final StageMenu UPDATE_SUBSCRIPTION_VENDOR = new StageMenu.Builder("Update Subscription Vendor")
             .withParent(MenuList.UPDATE_SUBSCRIPTION)
+            .withSubmitSound(Sound.UPDATED_SUBSCRIPTION)
             .withStages(
                     new Stage<>(String.class, "Which subscription would you like to update?"),
                     new Stage<>(Double.class, "What would you like to update the vendor to?"))
@@ -392,6 +407,7 @@ public class StageMenuList {
 
     public static final StageMenu UPDATE_SUBSCRIPTION_NAME = new StageMenu.Builder("Update Subscription Name")
             .withParent(MenuList.UPDATE_SUBSCRIPTION)
+            .withSubmitSound(Sound.UPDATED_SUBSCRIPTION)
             .withStages(
                     new Stage<>(String.class, "Which subscription would you like to update?"),
                     new Stage<>(Double.class, "What would you like to update the name to?"))
@@ -411,6 +427,7 @@ public class StageMenuList {
 
     public static final StageMenu UPDATE_SUBSCRIPTION_NOTES = new StageMenu.Builder("Update Subscription Notes")
             .withParent(MenuList.UPDATE_SUBSCRIPTION)
+            .withSubmitSound(Sound.UPDATED_SUBSCRIPTION)
             .withStages(
                     new Stage<>(String.class, "Which subscription would you like to update?"),
                     new Stage<>(Double.class, "What would you like to update the notes to? (Please separate all notes with a \", \""))

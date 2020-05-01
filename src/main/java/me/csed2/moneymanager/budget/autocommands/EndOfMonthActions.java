@@ -29,10 +29,10 @@ public class EndOfMonthActions implements Consumer<App> {
     public static void allowOverflow() {
         for(MonthlyBudget each: arrOfBud) {
             int spent = each.getTotalSpent(new Date().getMonth() -1);
-            int budget = each.getBudget();
-            int amountUnder = budget - spent;
-            if(amountUnder>0){
-                int newBudget = budget+amountUnder;
+            double budget = each.getBudget();
+            double amountUnder = budget - spent;
+            if (amountUnder>0) {
+                double newBudget = budget+amountUnder;
                 App.getInstance().getCategoryCache().search(each.getName()).get().setBudget(newBudget);
                 BudgetStore.reloadSingleBudget(each.getName());
                 Notifications.displayNotification("A new budget of " + newBudget + " has been set for " + each.getName()+ " using an overflow from last month", TrayIcon.MessageType.NONE);
@@ -46,7 +46,7 @@ public class EndOfMonthActions implements Consumer<App> {
     public static void withinBudgetCheck() {
         for (MonthlyBudget each: arrOfBud) {
             int spent = each.getTotalSpent(new Date().getMonth() -1);
-            int budget = each.getBudget();
+            double budget = each.getBudget();
             if (budget > spent) {
                Notifications.displayNotification("Congratulations, for last month you were in budget for " + each.getName(), TrayIcon.MessageType.NONE);
             }

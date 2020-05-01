@@ -12,9 +12,9 @@ public class AddCategoryCommand implements Function<App, Boolean> {
     private final String name;
     private final int id;
     private final Date created;
-    private final int budget;
+    private final double budget;
 
-    public AddCategoryCommand(String name, int budget) {
+    public AddCategoryCommand(String name, double budget) {
         this.name = name;
         this.id = App.getInstance().getCategoryCache().nextId();
         this.created = new Date();

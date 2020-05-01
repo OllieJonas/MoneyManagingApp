@@ -16,8 +16,8 @@ import java.util.ArrayList;
 public class BudgetStore {
 
     public static String catName;
-    public static int catBud;
-    public static int catSpent;
+    public static double catBud;
+    public static double catSpent;
     private static ArrayList<MonthlyBudget> budStore = new ArrayList<MonthlyBudget>();
 
     public BudgetStore() {

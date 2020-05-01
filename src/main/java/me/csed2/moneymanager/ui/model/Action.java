@@ -2,6 +2,7 @@ package me.csed2.moneymanager.ui.model;
 
 import lombok.Getter;
 import me.csed2.moneymanager.main.App;
+import me.csed2.moneymanager.sound.Sound;
 import me.csed2.moneymanager.utils.ClassUtils;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public class Action implements UINode {
     private String image;
     private Function<App, ?> funcAction;
     private Consumer<App> consAction;
+
+    private Sound loadSound;
+    private Sound submitSound;
 
     public Action(String name, Menu parent, String image, Function<App, ?> action) {
         this.name = name;
@@ -44,6 +48,26 @@ public class Action implements UINode {
     @Override
     public List<UINode> getChildren() {
         return null;
+    }
+
+    @Override
+    public Sound getLoadSound() {
+        return loadSound;
+    }
+
+    @Override
+    public Sound getSubmitSound() {
+        return submitSound;
+    }
+
+    public Action withLoadSound(Sound sound) {
+        this.loadSound = sound;
+        return this;
+    }
+
+    public Action withSubmitSound(Sound sound) {
+        this.submitSound = sound;
+        return this;
     }
 
     @SuppressWarnings("unchecked")

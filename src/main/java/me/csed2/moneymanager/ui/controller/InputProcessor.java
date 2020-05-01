@@ -26,6 +26,9 @@ public class InputProcessor {
         } else {
             processMenu(app, input, node);
         }
+
+        if (node.getSubmitSound() != null)
+            app.playSound(node.getSubmitSound());
     }
 
     private static void processMenu(App app, String input, UINode node) {

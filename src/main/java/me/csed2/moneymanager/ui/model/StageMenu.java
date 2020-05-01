@@ -2,6 +2,7 @@ package me.csed2.moneymanager.ui.model;
 
 import lombok.Getter;
 import me.csed2.moneymanager.main.App;
+import me.csed2.moneymanager.sound.Sound;
 
 import java.util.Arrays;
 import java.util.List;
@@ -9,25 +10,24 @@ import java.util.List;
 /**
  * Abstract implementation of a step menu.
  */
+@Getter
 public class StageMenu implements UINode {
 
-    @Getter
     protected final String name;
 
-    @Getter
     protected final Menu parent;
 
-    @Getter
     protected final String image;
 
-    @Getter
     protected List<Stage<?>> stages;
 
-    @Getter
     private Phase beginPhase;
 
-    @Getter
     private Phase exitPhase;
+
+    private Sound loadSound;
+
+    private Sound submitSound;
 
     private int count = 0;
 
@@ -37,13 +37,15 @@ public class StageMenu implements UINode {
      * @param name
      * @param image
      */
-    public StageMenu(String name, Menu parent, String image, List<Stage<?>> stages, Phase beginPhase, Phase exitPhase) {
+    private StageMenu(String name, Menu parent, String image, List<Stage<?>> stages, Sound loadSound, Sound submitSound, Phase beginPhase, Phase exitPhase) {
         this.name = name;
         this.parent = parent;
         this.image = image;
         this.stages = stages;
         this.beginPhase = beginPhase;
         this.exitPhase = exitPhase;
+        this.loadSound = loadSound;
+        this.submitSound = submitSound;
 
         if (parent != null) {
             parent.getChildren().add(this);
@@ -69,14 +71,11 @@ public class StageMenu implements UINode {
         return null;
     }
 
-    public void addStage(Stage<?> stage) {
-        stages.add(stage);
-    }
-
     public Stage<?> nextStage() {
         count++;
         if (count >= stages.size()) {
             exitPhase();
+            App.getInstance().playSound(submitSound);
             return null;
         } else {
             Stage<?> nextStage = stages.get(count);
@@ -112,6 +111,10 @@ public class StageMenu implements UINode {
 
         private Phase exitPhase;
 
+        private Sound loadSound;
+
+        private Sound submitSound;
+
         public Builder(String name) {
             this.name = name;
         }
@@ -131,6 +134,16 @@ public class StageMenu implements UINode {
             return this;
         }
 
+        public Builder withLoadSound(Sound sound) {
+            this.loadSound = sound;
+            return this;
+        }
+
+        public Builder withSubmitSound(Sound sound) {
+            this.submitSound = sound;
+            return this;
+        }
+
         public Builder withBeginPhase(Phase beginPhase) {
             this.beginPhase = beginPhase;
             return this;
@@ -142,7 +155,7 @@ public class StageMenu implements UINode {
         }
 
         public StageMenu build() {
-            return new StageMenu(name, parent, image, stages, beginPhase, exitPhase);
+            return new StageMenu(name, parent, image, stages, loadSound, submitSound, beginPhase, exitPhase);
         }
     }
 }

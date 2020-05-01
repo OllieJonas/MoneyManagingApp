@@ -30,7 +30,7 @@ public class SortTransactionsCommand implements Function<App, CachedList<Transac
         if (argType == TransactionArgType.NAME) {
             return Comparator.comparing(Transaction::getName);
         } else if (argType == TransactionArgType.AMOUNT) {
-            return Comparator.comparingInt(Transaction::getAmount);
+            return Comparator.comparingDouble(Transaction::getAmount);
         } else if (argType == TransactionArgType.ID) {
             return Comparator.comparingInt(Transaction::getId);
         } else if (argType == TransactionArgType.CREATED) {

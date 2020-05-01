@@ -60,6 +60,7 @@ public class SwingUtils {
                 }
                 //Run this menu's Exit Phase
                 stageNode.exitPhase();
+                App.getInstance().playSound(stageNode.getSubmitSound());
 
             } catch (InvalidTypeException e) {
 

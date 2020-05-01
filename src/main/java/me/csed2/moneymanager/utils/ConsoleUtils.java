@@ -24,9 +24,7 @@ public class ConsoleUtils {
     }
 
     public static void repeatPrint(char repeat, int times) {
-        StringBuilder builder = new StringBuilder();
-        builder.append(String.valueOf(repeat).repeat(Math.max(0, times)));
-        System.out.println(builder.toString());
+        System.out.println(String.valueOf(repeat).repeat(Math.max(0, times)));
     }
 
     public static void printBorder(BorderType borderType, char border, int times, boolean newLine) {

@@ -21,8 +21,6 @@ import java.util.function.Function;
 
 public class MonzoGetAccountsCommand implements Function<App, List<MonzoAccount>> {
 
-    private HttpEntity entity;
-
     @Override
     public List<MonzoAccount> apply(App app) {
 

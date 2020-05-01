@@ -19,7 +19,7 @@ public class Subscription extends Transaction implements Cacheable {
     private String timeCycleUnit;
     private String commencement;
 
-    public Subscription(String name, int id, Date date, int amount, String category, Integer timeCycle, String timeCycleUnit, String[] notes, String vendor, String cancelMe, String commencement) {
+    public Subscription(String name, int id, Date date, double amount, String category, Integer timeCycle, String timeCycleUnit, String[] notes, String vendor, String cancelMe, String commencement) {
         super(name, id, date, amount, category, notes, vendor);
         this.timeCycle = timeCycle;
         this.timeCycleUnit = timeCycleUnit;
@@ -71,7 +71,7 @@ public class Subscription extends Transaction implements Cacheable {
         /**
          * How much the Subscription cost
          */
-        private int amount;
+        private double amount;
 
         /**
          * Any notes the user may have about the Subscription

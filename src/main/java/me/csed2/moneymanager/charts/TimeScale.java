@@ -34,8 +34,4 @@ public enum TimeScale {
         }
         return null;
     }
-
-    public static TimeScale getFromOrdinal(int value) {
-        return values()[value];
-    }
 }

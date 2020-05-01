@@ -1,53 +1,40 @@
 package me.csed2.moneymanager.sound;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import com.google.gson.stream.JsonReader;
+import lombok.Getter;
 import me.csed2.moneymanager.main.Main;
 
 import javax.sound.sampled.Clip;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.lang.reflect.Type;
-import java.net.URL;
-import java.util.HashMap;
+import java.io.File;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.stream.Collector;
 
+@Getter
 public class SoundPack {
 
-    private HashMap<String, NodeSounds> nodeSounds = new HashMap<String, NodeSounds>();
+    private File dir;
+    private String dirName;
 
-    private Gson gson;
+    private Map<Sound, Clip> clipMap;
 
-    private Type type;
-
-    private JsonReader reader;
-
-    public SoundPack(String name) {
-        try {
-
-            this.gson = new Gson();
-            this.type = new TypeToken<HashMap<String, NodeSounds>>() {
-            }.getType();
-
-            URL url = Main.class.getClassLoader().getResource("sounds.json");
-
-            if (url != null) {
-                this.reader = new JsonReader(new FileReader(url.getPath()));
-            }
-
-            nodeSounds = gson.fromJson(reader, type);
-        }catch(FileNotFoundException e){
-            e.printStackTrace();
-        }
+    public SoundPack(String dirName) {
+        this.dirName = dirName;
+        this.dir = getDir(dirName).orElse(null);
+        this.clipMap = buildMap();
     }
 
-    public Clip getLoadClip(String nodeName){
-        if (nodeSounds.get(nodeName) == null) return null;
-        return nodeSounds.get(nodeName).getLoadClip();
+    private Map<Sound, Clip> buildMap() {
+        return Arrays.asList(Sound.getValues()).parallelStream().collect(Collector.of(HashMap::new, (map, item) -> map.put(item, AudioDispatcher.loadClip( "audio/" + dirName + "/" + item.getFile())), (left, right) -> {left.putAll(right); return left;}, Collector.Characteristics.UNORDERED));
     }
 
-    public Clip getSubmitClip(String nodeName){
-        if (nodeSounds.get(nodeName) == null) return null;
-        return nodeSounds.get(nodeName).getSubmitClip();
+    private Optional<File> getDir(String name) {
+        return Optional.of(new File(SoundPack.class.getClassLoader().getResource("audio/" + name).getFile()));
     }
+
+    Clip getClip(Sound sound) {
+        return clipMap.get(sound);
+    }
+
+
 }

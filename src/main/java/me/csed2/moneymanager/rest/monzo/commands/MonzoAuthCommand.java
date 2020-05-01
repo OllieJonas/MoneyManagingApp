@@ -20,7 +20,7 @@ public class MonzoAuthCommand implements Function<App, String> {
             app.getMonzoClient().accessPage(); // Access auth webpage
 
         } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
+            app.render("");
         }
         return null;
     }

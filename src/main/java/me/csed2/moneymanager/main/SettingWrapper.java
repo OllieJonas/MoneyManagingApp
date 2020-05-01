@@ -39,8 +39,8 @@ public class SettingWrapper {
     }
 
     public boolean save(String renderer, String test) {
-        settings.put("renderer", new Setting(renderer, true));
-        settings.put("hello", new Setting(test,true));
+        settings.put("renderer", new Setting<>(renderer, true));
+        settings.put("hello", new Setting<>(test,true));
 
         System.out.println(settings.get("renderer").getValue());
         try {

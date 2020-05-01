@@ -30,7 +30,7 @@ public class SortSubscriptionsCommand implements Function<App, CachedList<Subscr
         if (argType == SubscriptionArgType.NAME) {
             return Comparator.comparing(Subscription::getName);
         } else if (argType == SubscriptionArgType.AMOUNT) {
-            return Comparator.comparingInt(Subscription::getAmount);
+            return Comparator.comparingDouble(Subscription::getAmount);
         } else if (argType == SubscriptionArgType.ID) {
             return Comparator.comparingInt(Subscription::getId);
         } else if (argType == SubscriptionArgType.CREATED) {

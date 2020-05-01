@@ -40,7 +40,7 @@ public class Transaction implements Cacheable {
     /**
      * How much the transaction cost
      */
-    protected int amount;
+    protected double amount;
 
     /**
      * The category in which the transaction belongs
@@ -91,7 +91,7 @@ public class Transaction implements Cacheable {
         /**
          * How much the transaction cost
          */
-        private int amount;
+        private double amount;
 
         /**
          * Any notes the user may have about the transaction
@@ -109,7 +109,7 @@ public class Transaction implements Cacheable {
             this.name = name;
         }
 
-        public Builder withAmount(int amount) {
+        public Builder withAmount(double amount) {
             this.amount = amount;
             return this;
         }

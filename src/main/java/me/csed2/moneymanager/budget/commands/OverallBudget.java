@@ -17,8 +17,8 @@ import java.util.function.Consumer;
 public class OverallBudget implements Consumer<App> {
 
     int monthFor;
-    int allSpent;
-    int allBudget;
+    double allSpent;
+    double allBudget;
 
     ArrayList<MonthlyBudget> budgetArr;
 

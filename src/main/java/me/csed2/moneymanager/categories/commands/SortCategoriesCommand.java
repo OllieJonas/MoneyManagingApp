@@ -31,7 +31,7 @@ public class SortCategoriesCommand implements Function<App, CachedList<Category>
             return Comparator.comparing(Category::getName);
         }
         else if(argType == CategoryArgType.BUDGET){
-            return Comparator.comparingInt(Category::getBudget);
+            return Comparator.comparingDouble(Category::getBudget);
         }
         else if(argType == CategoryArgType.ID){
             return Comparator.comparingInt(Category::getId);
