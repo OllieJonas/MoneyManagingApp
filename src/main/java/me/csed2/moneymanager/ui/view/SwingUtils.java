@@ -47,7 +47,7 @@ public class SwingUtils {
         return panel;
     }
 
-    public static Consumer<App> createSubmitAction(StageMenu stageNode, HashMap<Stage<?>, JTextField> stageTextboxes){
+    public static Consumer<App> createSubmitAction(StageMenu stageNode, HashMap<Stage<?>, JTextField> stageTextboxes) {
         return user -> {
             try {
                 //Run all Stage Execution Phases
@@ -69,12 +69,12 @@ public class SwingUtils {
     }
 
 
-    public static ImageIcon getIconFromAddress(String address){
+    public static ImageIcon getIconFromAddress(String address) {
         BufferedImage icon;
-        try{
+        try {
             URL res = SwingUtils.class.getClassLoader().getResource(address);
             icon = ImageIO.read(Paths.get(res.toURI()).toFile());
-        }catch(Exception e){
+        } catch(Exception e){
             return null;
         }
         return new ImageIcon(icon);

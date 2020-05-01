@@ -47,7 +47,7 @@ public class App {
     private UIRenderer renderer = new SwingRenderer();
 
     // Sound
-    private AudioDispatcher audio = new AudioDispatcher();
+    private AudioDispatcher audio;
 
     // Threads
     private final InputReader reader;
@@ -87,12 +87,7 @@ public class App {
 
         this.subscriptionNotifications = new Thread(new SubscriptionNotificationDispatcher(this, this.renderer));
         this.subscriptionNotifications.start();
-
         this.monzoClient = new MonzoHttpClient();
-
-
-
-
         try {
             this.settings = new SettingWrapper("settings.json");
             this.renderer = settings.getValue("renderer", String.class)
