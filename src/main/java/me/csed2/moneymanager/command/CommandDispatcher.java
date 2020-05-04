@@ -22,6 +22,7 @@ import java.util.function.*;
  * @author Ollie
  * @since 03/03/2020
  */
+@SuppressWarnings("unused")
 public class CommandDispatcher {
 
     /**

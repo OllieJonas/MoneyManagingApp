@@ -40,6 +40,8 @@ public class App {
 
     private static final TimeUnit AUTOSAVE_TIMEUNIT = TimeUnit.MINUTES;
 
+    private final Thread audioThread;
+
     @Getter
     private UINode currentNode;
 
@@ -101,6 +103,8 @@ public class App {
             e.printStackTrace();
         }
         this.audio = new AudioDispatcher(new SoundPack(settings.getValue("soundpack", String.class).orElse("default")));
+        this.audioThread = new Thread(audio);
+        audioThread.start();
         instance = this;
 
         //this loads the budget store, by taking information from the cache
@@ -158,6 +162,7 @@ public class App {
             e.printStackTrace();
         }
         App.getInstance().getCategoryCache().save("categories.json");
+        audioThread.interrupt();
         subscriptionNotifications.interrupt();
         autoSave.interrupt();
         reader.interrupt();

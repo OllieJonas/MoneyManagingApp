@@ -4,6 +4,7 @@ import me.csed2.moneymanager.cache.Cacheable;
 import me.csed2.moneymanager.charts.TimeScale;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
 import org.jfree.chart.block.BlockBorder;
 import org.jfree.chart.plot.XYPlot;
 import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
@@ -14,6 +15,9 @@ import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 
 import java.awt.*;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.util.*;
 import java.util.List;
 import java.util.function.Predicate;
@@ -44,7 +48,7 @@ public class TimeLineChart<T extends Cacheable> extends TimeChart<T> {
 
         for (int i = 0; i < xRawData.size(); i++) {
             RegularTimePeriod period = scale.construct(xRawData.get(i));
-            series.add(period, yRawData.get(i));
+            series.add(period, (double) yRawData.get(i) / 100.0D);
         }
 
         TimeSeriesCollection dataset = new TimeSeriesCollection();
@@ -76,6 +80,9 @@ public class TimeLineChart<T extends Cacheable> extends TimeChart<T> {
         renderer.setSeriesPaint(0, Color.RED);
         renderer.setSeriesStroke(0, new BasicStroke(2.0F));
 
+        NumberAxis axis = (NumberAxis) plot.getRangeAxis();
+        NumberFormat format = new DecimalFormat("00.00",new DecimalFormatSymbols(new Locale("gb")));
+        axis.setNumberFormatOverride(format);
         plot.setRenderer(renderer);
         plot.setBackgroundPaint(Color.WHITE);
 

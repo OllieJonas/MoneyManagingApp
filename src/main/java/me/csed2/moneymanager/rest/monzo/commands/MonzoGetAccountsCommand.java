@@ -33,7 +33,7 @@ public class MonzoGetAccountsCommand implements Function<App, List<MonzoAccount>
             try (CloseableHttpClient client = HttpClients.createDefault(); // Create client
                  CloseableHttpResponse response = client.execute(request)) { // Execute request
 
-                if (response.getStatusLine().getStatusCode() == 403) { // User has the access token but isn't authorized (ie. they haven't authorized in Monzo app.
+                if (response.getStatusLine().getStatusCode() == 403) { // User has the access token but isn't authorized (ie. they haven't authorized in Monzo app)
                     app.render("Error: Please ensure to authorize our app in your Monzo app!");
                     return null;
                 } else {

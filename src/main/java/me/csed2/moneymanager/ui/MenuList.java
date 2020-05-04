@@ -40,8 +40,8 @@ public class MenuList {
     public static final Action TRANS_SPENDING = new Action("View Transactional Spending", GRAPHS, null, (Consumer<App>) app -> app.render(new TimeLineChart.Builder<>(app.getTransactionCache())
         .withTimescale(TimeScale.DAY)
         .withTitle("Amount Spent")
-        .withXAxisLabel("Time")
-        .withYAxisLabel("Amount")
+        .withXAxisLabel("Time (Days)")
+        .withYAxisLabel("Amount (£)")
         .withYField("amount")
         .build())).withLoadSound(Sound.GRAPH);
 

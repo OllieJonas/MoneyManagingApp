@@ -50,7 +50,7 @@ public class SubscriptionNotificationDispatcher implements Runnable {
 
         while(!exitClause) {
             try {
-                ArrayList<Subscription> list = app.getSubscriptionCache().getList();
+                List<Subscription> list = app.getSubscriptionCache().asList();
                 for (Subscription i : list) {
                     if (i.getCancelMeBool()) {
                         Date commencement = stringToDate(i.getCommencement());

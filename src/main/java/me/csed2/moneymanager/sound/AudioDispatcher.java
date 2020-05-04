@@ -1,17 +1,11 @@
 package me.csed2.moneymanager.sound;
 
-import me.csed2.moneymanager.main.Main;
 import me.csed2.moneymanager.utils.SoundFileUtils;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
 import java.util.Optional;
 
 public class AudioDispatcher implements Runnable {

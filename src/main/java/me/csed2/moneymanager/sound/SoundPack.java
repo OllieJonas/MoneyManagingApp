@@ -25,7 +25,12 @@ public class SoundPack {
     }
 
     private Map<Sound, Clip> buildMap() {
-        return Arrays.asList(Sound.getValues()).parallelStream().collect(Collector.of(HashMap::new, (map, item) -> map.put(item, AudioDispatcher.loadClip( "audio/" + dirName + "/" + item.getFile())), (left, right) -> {left.putAll(right); return left;}, Collector.Characteristics.UNORDERED));
+        return Arrays.asList(Sound.getValues())
+                .parallelStream()
+                .collect(Collector.of(
+                        HashMap::new,
+                        (map, item) -> map.put(item, AudioDispatcher.loadClip( "audio/" + dirName + "/" + item.getFile())),
+                        (left, right) -> {left.putAll(right); return left;}, Collector.Characteristics.UNORDERED));
     }
 
     private Optional<File> getDir(String name) {

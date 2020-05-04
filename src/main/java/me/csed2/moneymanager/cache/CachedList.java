@@ -236,12 +236,6 @@ public class CachedList<E extends Cacheable> implements Collection<E> {
         return builder.toString();
     }
 
-    public ArrayList<E> getList(){
-        ArrayList<E> returnList = new ArrayList<>();
-        items.iterator().forEachRemaining(returnList::add);
-        return returnList;
-    }
-
     /**
      * Load a JSON file into the items list.
      *

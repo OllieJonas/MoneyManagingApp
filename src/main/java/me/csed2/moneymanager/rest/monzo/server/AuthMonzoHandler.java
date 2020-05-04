@@ -66,7 +66,7 @@ public class AuthMonzoHandler extends AuthServerHandler {
         }
     }
 
-    public List<NameValuePair> buildAuthenticationRequest() {
+    private List<NameValuePair> buildAuthenticationRequest() {
         List<NameValuePair> pairs = new ArrayList<>();
         pairs.add(new BasicNameValuePair(MonzoDetails.GRANT_TYPE.KEY, MonzoDetails.GRANT_TYPE.VALUE));
         pairs.add(new BasicNameValuePair(MonzoDetails.CLIENT_ID.KEY, MonzoDetails.CLIENT_ID.VALUE));
