@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 @SuppressWarnings("WeakerAccess")
 public abstract class ChartImpl<T extends Cacheable> implements Chart<T> {
@@ -38,9 +39,7 @@ public abstract class ChartImpl<T extends Cacheable> implements Chart<T> {
     }
 
     protected List<Number> getYDataFromAllFields(String field) {
-        return data.parallelStream().collect(Collector.of(ArrayList::new,
-                (list, item) -> list.add(getYDataFromField(item, field)),
-                (left, right) -> { left.addAll(right); return left; }, Collector.Characteristics.UNORDERED));
+        return data.stream().map(item -> getYDataFromField(item, field)).collect(Collectors.toList());
     }
 
     protected Number getYDataFromField(T item, String field) {

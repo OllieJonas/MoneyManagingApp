@@ -33,7 +33,6 @@ import java.util.stream.Stream;
  * @param <E> The type of object stored in the repository
  *
  */
-@SuppressWarnings({"unused", "WeakerAccess"})
 public class CachedList<E extends Cacheable> implements Collection<E> {
 
     /**
@@ -140,10 +139,10 @@ public class CachedList<E extends Cacheable> implements Collection<E> {
      * @return An immutable (unchangeable) list containing any items that matched the predicate given.
      */
     public ImmutableList<E> search(Predicate<E> predicate) {
-        return ImmutableList.copyOf(asList()
+        return asList()
                 .stream()
                 .filter(predicate)
-                .collect(Collectors.toList()));
+                .collect(ImmutableList.toImmutableList());
     }
 
     /**
@@ -153,10 +152,10 @@ public class CachedList<E extends Cacheable> implements Collection<E> {
      * @return An immutable (unchangeable) list containing any items that matched the predicate given.
      */
     public ImmutableList<E> parallelSearch(Predicate<E> predicate) {
-        return ImmutableList.copyOf(asList()
+        return asList()
                 .parallelStream()
                 .filter(predicate)
-                .collect(Collectors.toList()));
+                .collect(ImmutableList.toImmutableList());
     }
 
     /**
@@ -220,8 +219,7 @@ public class CachedList<E extends Cacheable> implements Collection<E> {
      * Iterates through the loop, printing each one as a formatted string.
      */
     public void print() {
-        items.iterator()
-                .forEachRemaining(item -> System.out.println(item.toFormattedString()));
+        items.stream().map(E::toFormattedString).forEachOrdered(System.out::println);
     }
 
     /**
@@ -230,15 +228,9 @@ public class CachedList<E extends Cacheable> implements Collection<E> {
      * @return The formatted string of all items in the list.
      */
     public String getReport() {
-        StringBuilder builder = new StringBuilder();
-        items.forEach(item -> builder.append(item.toFormattedString()).append("\n"));
-        return builder.toString();
-    }
-
-    public ArrayList<E> getList(){
-        ArrayList<E> returnList = new ArrayList<>();
-        items.iterator().forEachRemaining(returnList::add);
-        return returnList;
+        return items.stream()
+                .map(E::toFormattedString)
+                .collect(Collectors.joining("\n"));
     }
 
     /**
@@ -250,9 +242,8 @@ public class CachedList<E extends Cacheable> implements Collection<E> {
      * @param fileName The filename in question
      * @throws FileNotFoundException If the file can't be found
      */
-    public CachedList<E> load(Class<E> clazz, String fileName) throws FileNotFoundException {
+    public void load(Class<E> clazz, String fileName) throws FileNotFoundException {
         this.items = CommandDispatcher.dispatchSync(new LoadFromJsonAsListCommand<>(fileName, clazz));
-        return this;
     }
 
     /**

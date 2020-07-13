@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 
 public class SubscriptionNotificationDispatcher implements Runnable {
@@ -39,7 +40,7 @@ public class SubscriptionNotificationDispatcher implements Runnable {
 
         while(!exitClause) {
             try {
-                ArrayList<Subscription> list = app.getSubscriptionCache().getList();
+                List<Subscription> list = app.getSubscriptionCache().asImmutableList();
                 for (Subscription i : list) {
                     if (i.getCancelMeBool()) {
                         Date commencement = stringToDate(i.getCommencement());

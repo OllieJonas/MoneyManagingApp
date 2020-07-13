@@ -8,7 +8,7 @@ import java.util.Date;
  *
  * This class allows common implementation of searching the cache either by name or by the ID.
  *
- * It also allows for easy access to their formatted version, incase you need to print it.
+ * It also allows for easy access to their formatted version, in case you need to print it.
  *
  * @author Ollie
  * @since 16/3/20
@@ -24,9 +24,4 @@ public interface Cacheable {
     default String toFormattedString() {
         return toString();
     }
-
-    default boolean equals(Cacheable cacheable) {
-        return this.getClass() == cacheable.getClass() && this.getId() == cacheable.getId();
-    }
-
 }
