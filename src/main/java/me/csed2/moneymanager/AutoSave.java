@@ -51,7 +51,9 @@ public class AutoSave {
      */
     public void start() {
         future = service.scheduleAtFixedRate(() -> {
-//            App.getInstance().getCategoryCache().save("categories.json");
+        App.getInstance().getCategoryCache().save("categories.json");
+        App.getInstance().getTransactionCache().save("transactions.json");
+        App.getInstance().getSubscriptionCache().save("subscriptions.json");
         }, time, time, units);
     }
 
