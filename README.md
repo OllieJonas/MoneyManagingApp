@@ -1,5 +1,7 @@
 # MoneyManagingApp
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/15784c22bc9a4f308fea12f0609addb6)](https://app.codacy.com/manual/OllieJonas/MoneyManagingApp?utm_source=github.com&utm_medium=referral&utm_content=OllieJonas/MoneyManagingApp&utm_campaign=Badge_Grade_Dashboard)
+
 How to setup Maven (on IntelliJ):
 
 (1) Go to Run/Run... (or Alt+Shift+F10)
