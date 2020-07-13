@@ -5,7 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import me.csed2.moneymanager.cache.commands.LoadFromJsonAsListCommand;
 import me.csed2.moneymanager.cache.commands.SaveListToDBCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
-import me.csed2.moneymanager.subscriptions.Subscription;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.FileNotFoundException;

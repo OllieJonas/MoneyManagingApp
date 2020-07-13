@@ -1,7 +1,6 @@
 package me.csed2.moneymanager.charts.adapters;
 
 import me.csed2.moneymanager.cache.Cacheable;
-import me.csed2.moneymanager.charts.TimeScale;
 
 import java.util.*;
 import java.util.function.Predicate;

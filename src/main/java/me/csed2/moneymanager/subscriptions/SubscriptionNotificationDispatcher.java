@@ -1,28 +1,17 @@
 package me.csed2.moneymanager.subscriptions;
+
 import lombok.Getter;
 import lombok.Setter;
-import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.command.CommandDispatcher;
-import me.csed2.moneymanager.subscriptions.commands.ListSubscriptionsCommand;
-
-import java.awt.*;
-import java.lang.reflect.Array;
-import java.text.ParseException;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.List;
-import java.util.function.Consumer;
-
-import me.csed2.moneymanager.ui.view.UIRenderer;
-import me.csed2.moneymanager.utils.Notifications;
-import me.csed2.moneymanager.transactions.commands.AddTransactionCommand;
 import me.csed2.moneymanager.main.App;
-import org.w3c.dom.Text;
+import me.csed2.moneymanager.transactions.commands.AddTransactionCommand;
+import me.csed2.moneymanager.ui.view.UIRenderer;
 
-import javax.swing.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class SubscriptionNotificationDispatcher implements Runnable {

@@ -2,7 +2,6 @@ package me.csed2.moneymanager.budget.commands;
 
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
-import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.main.App;
 
 import java.util.Optional;

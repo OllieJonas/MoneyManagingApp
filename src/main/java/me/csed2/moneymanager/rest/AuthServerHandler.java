@@ -2,10 +2,8 @@ package me.csed2.moneymanager.rest;
 
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
-import org.apache.http.NameValuePair;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.function.Consumer;
 
 public abstract class AuthServerHandler implements HttpHandler {

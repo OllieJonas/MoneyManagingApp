@@ -1,11 +1,9 @@
 package me.csed2.moneymanager.ui;
 
 import lombok.experimental.UtilityClass;
-import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
 import me.csed2.moneymanager.categories.commands.SortCategoriesCommand;
 import me.csed2.moneymanager.charts.TimeScale;
-import me.csed2.moneymanager.charts.adapters.BarGraph;
 import me.csed2.moneymanager.charts.adapters.PieChart;
 import me.csed2.moneymanager.charts.adapters.TimeLineChart;
 import me.csed2.moneymanager.main.App;
@@ -19,12 +17,9 @@ import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.transactions.TransactionArgType;
 import me.csed2.moneymanager.transactions.commands.SortTransactionsCommand;
 import me.csed2.moneymanager.ui.model.Action;
-import me.csed2.moneymanager.ui.model.ChartNode;
 import me.csed2.moneymanager.ui.model.Menu;
 
 import java.util.function.Consumer;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 
 @UtilityClass
 public class MenuList {

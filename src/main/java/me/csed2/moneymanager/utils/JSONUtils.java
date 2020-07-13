@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.utils;
 
-import com.google.gson.*;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 public class JSONUtils {
 

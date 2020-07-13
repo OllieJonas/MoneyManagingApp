@@ -2,7 +2,6 @@ package me.csed2.moneymanager.ui.model;
 
 import lombok.Getter;
 import me.csed2.moneymanager.main.App;
-import me.csed2.moneymanager.utils.ClassUtils;
 
 import java.util.List;
 import java.util.function.Consumer;

@@ -1,7 +1,5 @@
 package me.csed2.moneymanager.sound;
 
-import lombok.Getter;
-
 import javax.sound.sampled.Clip;
 
 public class NodeSounds {

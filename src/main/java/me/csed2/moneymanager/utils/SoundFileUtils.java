@@ -1,9 +1,6 @@
 package me.csed2.moneymanager.utils;
 
-import me.csed2.moneymanager.main.App;
-
-import java.io.*;
-import java.net.URL;
+import java.io.File;
 
 public class SoundFileUtils {
 

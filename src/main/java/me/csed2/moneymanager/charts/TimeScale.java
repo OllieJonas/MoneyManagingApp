@@ -4,7 +4,7 @@ import org.jfree.data.time.*;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.Date;
 
 public enum TimeScale {
     HOUR("Hours", Hour.class),

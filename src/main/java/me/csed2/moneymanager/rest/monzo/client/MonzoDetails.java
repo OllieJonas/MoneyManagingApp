@@ -1,7 +1,5 @@
 package me.csed2.moneymanager.rest.monzo.client;
 
-import lombok.Getter;
-
 public enum MonzoDetails {
     GRANT_TYPE("grant_type", "authorization_code"),
     CLIENT_ID("client_id", "oauth2client_00009tCzlbhKRvzmyNTqAz"),

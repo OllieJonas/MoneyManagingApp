@@ -3,9 +3,7 @@ package me.csed2.moneymanager.budget.commands;
 import me.csed2.moneymanager.budget.BudgetStore;
 import me.csed2.moneymanager.main.App;
 
-import java.util.List;
 import java.util.function.Consumer;
-import java.util.function.Function;
 
 /**
  * this prints out the budget a user has chosen to see

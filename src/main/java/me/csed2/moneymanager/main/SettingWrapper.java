@@ -1,12 +1,9 @@
 package me.csed2.moneymanager.main;
 
 import me.csed2.moneymanager.cache.commands.LoadSettingsCommand;
-import me.csed2.moneymanager.cache.commands.SaveListToDBCommand;
-import me.csed2.moneymanager.cache.commands.SaveMapToDBCommand;
 import me.csed2.moneymanager.command.CommandDispatcher;
 import me.csed2.moneymanager.utils.ClassUtils;
 
-import java.awt.*;
 import java.io.FileNotFoundException;
 import java.util.Map;
 import java.util.Optional;

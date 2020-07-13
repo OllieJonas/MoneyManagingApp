@@ -2,7 +2,6 @@ package me.csed2.moneymanager.rest.monzo.commands;
 
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.rest.AuthServerManager;
-import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.rest.monzo.server.AuthMonzoServer;
 
 import java.io.IOException;

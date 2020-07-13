@@ -29,8 +29,4 @@ public class BudgetCachedList extends CachedList<Budget> {
     public void setCurrentBudget(Budget currentBudget) {
         this.currentBudget = currentBudget;
     }
-
-    public static void main(String[] args) {
-
-    }
 }

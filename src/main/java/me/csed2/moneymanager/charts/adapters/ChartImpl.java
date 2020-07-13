@@ -8,9 +8,9 @@ import org.jfree.chart.title.TextTitle;
 
 import java.awt.*;
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collector;
 
 @SuppressWarnings("WeakerAccess")

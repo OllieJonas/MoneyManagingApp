@@ -2,14 +2,13 @@ package me.csed2.moneymanager.budget;
 
 import lombok.Getter;
 import lombok.Setter;
-//import me.csed2.moneymanager.budget.Commands.OverallBudget;
-//import me.csed2.moneymanager.budget.Commands.SeeBudgets;
 import me.csed2.moneymanager.categories.Category;
-
 import me.csed2.moneymanager.main.App;
 
-
 import java.util.ArrayList;
+
+//import me.csed2.moneymanager.budget.Commands.OverallBudget;
+//import me.csed2.moneymanager.budget.Commands.SeeBudgets;
 
 @Getter
 @Setter

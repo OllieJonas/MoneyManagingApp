@@ -14,7 +14,7 @@ import org.jfree.data.time.TimeSeriesCollection;
 import org.jfree.data.xy.XYDataset;
 
 import java.awt.*;
-import java.util.*;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
 

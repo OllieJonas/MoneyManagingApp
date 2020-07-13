@@ -1,9 +1,11 @@
 package me.csed2.moneymanager.ui.view;
 
 import me.csed2.moneymanager.charts.adapters.Chart;
-import me.csed2.moneymanager.charts.adapters.ChartImpl;
 import me.csed2.moneymanager.main.App;
-import me.csed2.moneymanager.ui.model.*;
+import me.csed2.moneymanager.ui.model.Action;
+import me.csed2.moneymanager.ui.model.Stage;
+import me.csed2.moneymanager.ui.model.StageMenu;
+import me.csed2.moneymanager.ui.model.UINode;
 import me.csed2.moneymanager.utils.ConsoleUtils;
 import me.csed2.moneymanager.utils.StringAlignUtils;
 

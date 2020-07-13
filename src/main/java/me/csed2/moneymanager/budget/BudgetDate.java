@@ -1,26 +1,24 @@
 package me.csed2.moneymanager.budget;
 
-import com.google.gson.*;
+import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
 
 
-@Getter @Setter @AllArgsConstructor
+@Data @AllArgsConstructor
 @JsonAdapter(BudgetDate.Adapter.class)
 public class BudgetDate {
 
     public static final BudgetDate NOW = new BudgetDate(LocalDate.now().getYear(), Month.of(LocalDate.now().getMonthValue()));
 
     private int year;
-
     private Month month;
 
     public static BudgetDate of(Date created) {

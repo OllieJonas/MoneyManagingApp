@@ -11,8 +11,6 @@ import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.charts.adapters.Chart;
 import me.csed2.moneymanager.rest.AuthServerManager;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
-import me.csed2.moneymanager.sound.SoundHandler;
-import me.csed2.moneymanager.sound.SoundPack;
 import me.csed2.moneymanager.subscriptions.Subscription;
 import me.csed2.moneymanager.subscriptions.SubscriptionNotificationDispatcher;
 import me.csed2.moneymanager.transactions.Transaction;
@@ -23,7 +21,6 @@ import me.csed2.moneymanager.ui.view.CMDRenderer;
 import me.csed2.moneymanager.ui.view.SwingRenderer;
 import me.csed2.moneymanager.ui.view.UIRenderer;
 
-import javax.sound.sampled.Clip;
 import java.io.FileNotFoundException;
 import java.util.concurrent.TimeUnit;
 

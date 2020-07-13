@@ -7,8 +7,6 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
 import java.util.Collection;
-import java.util.stream.Collector;
-import java.util.stream.Stream;
 
 public class PieChart<T extends Cacheable> extends ChartImpl<T> implements Chart<T> {
 
