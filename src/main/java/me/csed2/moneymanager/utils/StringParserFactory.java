@@ -1,5 +1,6 @@
 package me.csed2.moneymanager.utils;
 
+import lombok.experimental.UtilityClass;
 import me.csed2.moneymanager.exceptions.InvalidTypeException;
 import me.csed2.moneymanager.ui.controller.InputProcessor;
 import me.csed2.moneymanager.ui.model.Stage;
@@ -29,10 +30,11 @@ import java.util.function.Predicate;
  * @author Ollie
  * @since 11/03/2020
  */
+@UtilityClass
 public class StringParserFactory {
 
     /**
-     * Main method for StringparseerFactory. Turns the string input an object with the appropriate subclass.
+     * Main method for StringParserFactory. Turns the string input an object with the appropriate subclass.
      *
      * @param text The text the user inputted
      * @param type The type you'd like to turn this text into
@@ -41,7 +43,7 @@ public class StringParserFactory {
      *
      * @throws InvalidTypeException If unable to convert the text into an object with the type
      */
-    public static Object parse(String text, Class<?> type) throws InvalidTypeException {
+    public Object parse(String text, Class<?> type) throws InvalidTypeException {
         if (type == Integer.class) {
             return parseInt(text);
         } else if (type == Double.class) {
@@ -68,7 +70,7 @@ public class StringParserFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    public static int parseInt(String text) throws InvalidTypeException {
+    public int parseInt(String text) throws InvalidTypeException {
         try {
             return Integer.parseInt(text);
         } catch (NumberFormatException e) {
@@ -85,7 +87,7 @@ public class StringParserFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    public static long parseLong(String text) throws InvalidTypeException {
+    public long parseLong(String text) throws InvalidTypeException {
         try {
             return Long.parseLong(text);
         } catch (NumberFormatException e) {
@@ -102,7 +104,7 @@ public class StringParserFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    public static double parseDouble(String text) throws InvalidTypeException {
+    public double parseDouble(String text) throws InvalidTypeException {
         try {
             return Double.parseDouble(text);
         } catch (NumberFormatException e) {
@@ -118,7 +120,7 @@ public class StringParserFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    public static float parseFloat(String text) throws InvalidTypeException {
+    public float parseFloat(String text) throws InvalidTypeException {
         try {
             return Float.parseFloat(text);
         } catch (NumberFormatException e) {
@@ -135,7 +137,7 @@ public class StringParserFactory {
      *
      * @throws InvalidTypeException If unable to complete this conversion
      */
-    public static boolean parseBoolean(String text) throws InvalidTypeException {
+    public boolean parseBoolean(String text) throws InvalidTypeException {
         String[] positiveList = {"yes", "y", "t", "affirm"};
         String[] negativeList = {"no", "n", "t", "deny"};
         Predicate<String> predicate = item -> item.toLowerCase().contains(text.toLowerCase());

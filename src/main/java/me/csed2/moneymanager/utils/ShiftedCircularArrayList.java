@@ -20,7 +20,7 @@ public class ShiftedCircularArrayList<E> extends ArrayList<E> implements Iterabl
     /**
      * The amount to shift the ArrayList over upon calling the get method.
      */
-    private int shift;
+    private final int shift;
 
     /**
      * Default constructor for ShiftedCircularArrayList. Used for initialising the fields.

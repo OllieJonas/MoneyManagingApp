@@ -11,18 +11,6 @@ public class ConsoleUtils {
     public static final char DEFAULT_BORDER = '=';
     public static final int DEFAULT_TIMES = 50;
 
-    public static void clearConsole() {
-        try {
-            // String os = System.getProperty("os.name");
-
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-
-        } catch (Exception e) {
-            System.out.println("Error clearing console!");
-        }
-    }
-
     public static void repeatPrint(char repeat, int times) {
         StringBuilder builder = new StringBuilder();
         builder.append(String.valueOf(repeat).repeat(Math.max(0, times)));
