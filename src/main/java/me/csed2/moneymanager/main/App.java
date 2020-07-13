@@ -46,10 +46,10 @@ public class App {
     private UIRenderer renderer = new SwingRenderer();
 
     // Sound
-     private SoundHandler sound = new SoundHandler();
+//     private SoundHandler sound = new SoundHandler();
 
-    @Getter
-    private SoundPack soundPack = new SoundPack("bruh");
+    //@Getter
+    //private SoundPack soundPack = new SoundPack("bruh");
 
     // Threads
     private final InputReader reader;
