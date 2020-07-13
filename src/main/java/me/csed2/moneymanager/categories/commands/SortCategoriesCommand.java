@@ -3,12 +3,13 @@ package me.csed2.moneymanager.categories.commands;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 
 import java.util.Comparator;
 import java.util.function.Function;
 
-public class SortCategoriesCommand implements Function<App, CachedList<Category>> {
+public class SortCategoriesCommand implements Command<CachedList<Category>> {
 
     private CategoryArgType argType;
     private boolean reversed;
@@ -19,7 +20,7 @@ public class SortCategoriesCommand implements Function<App, CachedList<Category>
     }
 
     @Override
-    public CachedList<Category> apply(App app) {
+    public CachedList<Category> execute(App app) {
         Comparator<Category> comparator = getComparator(argType);
         CachedList<Category> sortedList = app.getCategoryCache().sort(comparator);
         app.render(sortedList.getReport());

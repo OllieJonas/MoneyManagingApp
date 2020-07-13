@@ -2,6 +2,7 @@ package me.csed2.moneymanager.subscriptions.commands;
 
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.subscriptions.Subscription;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class ListSubscriptionsCommand implements Function<App, List<Subscription>> {
+public class ListSubscriptionsCommand implements Command<List<Subscription>> {
 
     private final String categoryName;
 
@@ -19,7 +20,7 @@ public class ListSubscriptionsCommand implements Function<App, List<Subscription
     }
 
     @Override
-    public List<Subscription> apply(App app) {
+    public List<Subscription> execute(App app) {
         CachedList<Category> cache = app.getCategoryCache();
         List<Subscription> subscriptions = new ArrayList<>();
 

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import me.csed2.moneymanager.budget.BudgetStore;
 import me.csed2.moneymanager.budget.MonthlyBudget;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ import java.util.function.Consumer;
 /**
  * this finds the overall budget and prints it out
  */
-public class OverallBudget implements Consumer<App> {
+public class OverallBudget implements Command<Void> {
 
     int monthFor;
     int allSpent;
@@ -43,8 +44,9 @@ public class OverallBudget implements Consumer<App> {
 
 
     @Override
-    public void accept(App app) {
+    public Void execute(App app) {
         trackAll();
         app.render(displayOverall());
+        return null;
     }
 }

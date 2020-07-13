@@ -3,12 +3,13 @@ package me.csed2.moneymanager.categories.commands;
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
 import me.csed2.moneymanager.categories.CategoryArgType;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 
 import java.util.Optional;
 import java.util.function.Function;
 
-public class UpdateCategoryCommand<T> implements Function<App, Boolean> {
+public class UpdateCategoryCommand<T> implements Command<Boolean> {
 
     private final String categoryName;
 
@@ -23,7 +24,7 @@ public class UpdateCategoryCommand<T> implements Function<App, Boolean> {
     }
 
     @Override
-    public Boolean apply(App app) {
+    public Boolean execute(App app) {
         CachedList<Category> repository = app.getCategoryCache();
 
         Optional<Category> catOptional = repository.search(categoryName);

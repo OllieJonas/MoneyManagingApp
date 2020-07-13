@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.budget.commands;
 
 import me.csed2.moneymanager.budget.BudgetStore;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 
 import java.util.function.Consumer;
@@ -8,7 +9,7 @@ import java.util.function.Consumer;
 /**
  * this prints out the budget a user has chosen to see
  */
-public class SeeBudgets implements Consumer<App> {
+public class SeeBudgets implements Command<Void> {
 
     String budName;
     int month;
@@ -22,7 +23,7 @@ public class SeeBudgets implements Consumer<App> {
      * finds the budget the user wants to see
      */
     @Override
-    public void accept(App app) {
+    public Void execute(App app) {
         BudgetStore.findBudget(budName, month);
 
         String response = "\n" +
@@ -33,5 +34,6 @@ public class SeeBudgets implements Consumer<App> {
                 "amount of budget left is: " + (BudgetStore.catBud - BudgetStore.catSpent) + "\n" +
                 "percentage of budget spent is: " + ((double) BudgetStore.catSpent / (double) BudgetStore.catBud) * 100 + "\n";
         app.render(response);
+        return null;
     }
 }

@@ -3,6 +3,7 @@ package me.csed2.moneymanager.rest.monzo.commands;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.rest.monzo.client.MonzoDetails;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
@@ -19,12 +20,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.function.Function;
 
-public class MonzoGetAccountsCommand implements Function<App, List<MonzoAccount>> {
+public class MonzoGetAccountsCommand implements Command<List<MonzoAccount>> {
 
     private HttpEntity entity;
 
     @Override
-    public List<MonzoAccount> apply(App app) {
+    public List<MonzoAccount> execute(App app) {
 
         String accessToken = MonzoHttpClient.getAccessToken();
 

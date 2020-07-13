@@ -4,6 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import me.csed2.moneymanager.command.Command;
+import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.main.Main;
 import me.csed2.moneymanager.main.Setting;
 
@@ -14,7 +16,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class LoadSettingsCommand implements Supplier<LinkedHashMap<String, Setting<?>>> {
+public class LoadSettingsCommand implements Command<LinkedHashMap<String, Setting<?>>> {
 
     private final Gson gson;
     private final Type type;
@@ -37,11 +39,11 @@ public class LoadSettingsCommand implements Supplier<LinkedHashMap<String, Setti
     }
 
     @Override
-    public LinkedHashMap<String, Setting<?>> get() {
+    public LinkedHashMap<String, Setting<?>> execute(App app) {
         return gson.fromJson(reader, type);
     }
 
-    public void set(Map<String,Setting<?>> hmap){
+    public void set(Map<String, Setting<?>> hmap) {
         try {
             Writer writer = new FileWriter(url.getPath());
             new Gson().toJson(hmap, type, writer);

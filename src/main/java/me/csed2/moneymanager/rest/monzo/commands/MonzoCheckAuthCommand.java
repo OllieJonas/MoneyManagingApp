@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.rest.monzo.commands;
 
 import com.google.gson.JsonObject;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.rest.monzo.client.MonzoHttpClient;
 import me.csed2.moneymanager.utils.JSONUtils;
@@ -14,10 +15,10 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.util.function.Function;
 
-public class MonzoCheckAuthCommand implements Function<App, Boolean> {
+public class MonzoCheckAuthCommand implements Command<Boolean> {
 
     @Override
-    public Boolean apply(App app) {
+    public Boolean execute(App app) {
         HttpGet request = new HttpGet("https://api.monzo.com/ping/whoami");
         request.addHeader("Authorization", "Bearer " + MonzoHttpClient.getAccessToken());
 

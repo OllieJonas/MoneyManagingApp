@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.cache.commands;
 
 import com.google.gson.Gson;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.main.Main;
 
@@ -13,7 +14,7 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class SaveListToDBCommand<E> implements Predicate<App> {
+public class SaveListToDBCommand<E> implements Command<Boolean> {
 
     private String name;
     private List<E> items;
@@ -24,7 +25,7 @@ public class SaveListToDBCommand<E> implements Predicate<App> {
     }
 
     @Override
-    public boolean test(App app) {
+    public Boolean execute(App app) {
         String jsonString = new Gson().toJson(items);
 
         URL url = Main.class.getClassLoader().getResource(name);

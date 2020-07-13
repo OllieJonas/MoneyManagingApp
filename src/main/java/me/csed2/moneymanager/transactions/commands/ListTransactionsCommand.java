@@ -2,6 +2,7 @@ package me.csed2.moneymanager.transactions.commands;
 
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.transactions.Transaction;
 
@@ -10,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class ListTransactionsCommand implements Function<App, List<Transaction>> {
+public class ListTransactionsCommand implements Command<List<Transaction>> {
 
     private final String categoryName;
 
@@ -19,7 +20,7 @@ public class ListTransactionsCommand implements Function<App, List<Transaction>>
     }
 
     @Override
-    public List<Transaction> apply(App app) {
+    public List<Transaction> execute(App app) {
         CachedList<Category> cache = app.getCategoryCache();
         List<Transaction> transactions = new ArrayList<>();
 

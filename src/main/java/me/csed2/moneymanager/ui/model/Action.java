@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.ui.model;
 
 import lombok.Getter;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 
 import java.util.List;
@@ -11,17 +12,16 @@ import java.util.function.Function;
 @Getter
 public class Action implements UINode {
 
-    private String name;
-    private UINode parent;
-    private String image;
-    private Function<App, ?> funcAction;
-    private Consumer<App> consAction;
+    private final String name;
+    private final UINode parent;
+    private final String image;
+    private Command<?> action;
 
-    public Action(String name, Menu parent, String image, Function<App, ?> action) {
+    public Action(String name, Menu parent, String image, Command<?> action) {
         this.name = name;
         this.parent = parent;
         this.image = image;
-        this.funcAction = action;
+        this.action = action;
 
         if (parent != null) {
             parent.getChildren().add(this);
@@ -32,11 +32,10 @@ public class Action implements UINode {
         this.name = name;
         this.parent = parent;
         this.image = image;
-        this.consAction = action;
-
-        if (parent != null) {
-            parent.getChildren().add(this);
-        }
+        this.action = (Command<Object>) app -> {
+            action.accept(app);
+            return null;
+        };
     }
 
     // Action isn't going to have children.
@@ -47,11 +46,6 @@ public class Action implements UINode {
 
     @SuppressWarnings("unchecked")
     public <T> T execute(App app) {
-        if (funcAction != null) {
-            return (T) funcAction.apply(app);
-        } else {
-            consAction.accept(app);
-            return null;
-        }
+        return (T) action.execute(app);
     }
 }

@@ -2,12 +2,13 @@ package me.csed2.moneymanager.categories.commands;
 
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 
 import java.util.Date;
 import java.util.function.Function;
 
-public class AddCategoryCommand implements Function<App, Boolean> {
+public class AddCategoryCommand implements Command<Boolean> {
 
     private final String name;
     private final int id;
@@ -22,7 +23,7 @@ public class AddCategoryCommand implements Function<App, Boolean> {
     }
 
     @Override
-    public Boolean apply(App app) {
+    public Boolean execute(App app) {
 
         CachedList<Category> cache = app.getCategoryCache();
 

@@ -1,6 +1,7 @@
 package me.csed2.moneymanager.transactions.commands;
 
 import me.csed2.moneymanager.cache.CachedList;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.transactions.TransactionArgType;
@@ -8,7 +9,7 @@ import me.csed2.moneymanager.transactions.TransactionArgType;
 import java.util.Comparator;
 import java.util.function.Function;
 
-public class SortTransactionsCommand implements Function<App, CachedList<Transaction>> {
+public class SortTransactionsCommand implements Command<CachedList<Transaction>> {
 
     private TransactionArgType argType;
     private boolean reversed;
@@ -19,7 +20,7 @@ public class SortTransactionsCommand implements Function<App, CachedList<Transac
     }
 
     @Override
-    public CachedList<Transaction> apply(App app) {
+    public CachedList<Transaction> execute(App app) {
         Comparator<Transaction> comparator = getComparator(argType);
         CachedList<Transaction> sortedList = app.getTransactionCache().sort(comparator);
         app.render(sortedList.getReport());

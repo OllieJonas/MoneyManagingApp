@@ -1,12 +1,13 @@
 package me.csed2.moneymanager.transactions.commands;
 
 import me.csed2.moneymanager.cache.CachedList;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.transactions.Transaction;
 
 import java.util.function.Function;
 
-public class RemoveTransactionCommand implements Function<App, Boolean> {
+public class RemoveTransactionCommand implements Command<Boolean> {
 
     private final String transactionName;
 
@@ -15,7 +16,7 @@ public class RemoveTransactionCommand implements Function<App, Boolean> {
 
     }
     @Override
-    public Boolean apply(App app) {
+    public Boolean execute(App app) {
         CachedList<Transaction> transactionCache = app.getTransactionCache();
 
         if (transactionCache.exists(transactionName)) {

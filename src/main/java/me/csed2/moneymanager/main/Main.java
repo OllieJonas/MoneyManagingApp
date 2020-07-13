@@ -2,6 +2,7 @@ package me.csed2.moneymanager.main;
 
 import me.csed2.moneymanager.rest.AuthServerManager;
 import me.csed2.moneymanager.ui.MenuList;
+import me.csed2.moneymanager.ui.StageMenuList;
 
 /**
  * @author Ollie
@@ -10,6 +11,10 @@ import me.csed2.moneymanager.ui.MenuList;
 public class Main {
 
     public Main() {
+
+        new MenuList();
+        new StageMenuList();
+
         new AuthServerManager();
 
         App app = new App();

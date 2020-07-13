@@ -2,6 +2,7 @@ package me.csed2.moneymanager.transactions.commands;
 
 import me.csed2.moneymanager.cache.CachedList;
 import me.csed2.moneymanager.categories.Category;
+import me.csed2.moneymanager.command.Command;
 import me.csed2.moneymanager.main.App;
 import me.csed2.moneymanager.transactions.Transaction;
 import me.csed2.moneymanager.transactions.TransactionArgType;
@@ -9,7 +10,7 @@ import me.csed2.moneymanager.transactions.TransactionArgType;
 import java.util.Optional;
 import java.util.function.Function;
 
-public class UpdateTransactionCommand<T> implements Function<App, Boolean> {
+public class UpdateTransactionCommand<T> implements Command<Boolean> {
 
     private final T result;
 
@@ -25,7 +26,7 @@ public class UpdateTransactionCommand<T> implements Function<App, Boolean> {
     }
 
     @Override
-    public Boolean apply(App app) {
+    public Boolean execute(App app) {
         CachedList<Transaction> cache = app.getTransactionCache();
 
         Optional<Transaction> transOptional = cache.search(transactionName);
