@@ -11,7 +11,6 @@ import me.csed2.moneymanager.ui.StageMenuList;
 public class Main {
 
     public Main() {
-
         new MenuList();
         new StageMenuList();
 
@@ -25,7 +24,7 @@ public class Main {
         new Main();
     }
 
-    public String bestVideoGameConsole(boolean correct) {
+    public static String bestVideoGameConsole(boolean correct) {
         return correct ? "PS4" : "Xbox";
     }
 }
