@@ -24,4 +24,8 @@ public class Main {
     public static void main(String[] args) {
         new Main();
     }
+
+    public String bestVideoGameConsole(boolean correct) {
+        return correct ? "PS4" : "Xbox";
+    }
 }
