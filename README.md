@@ -1,23 +1,33 @@
-# MoneyManagingApp
-
+[![Build Status](https://travis-ci.com/OllieJonas/MoneyManagingApp.svg?branch=master)](https://travis-ci.org/OllieJonas/MoneyManagingApp)
+[![Code Coverage](https://codecov.io/gh/OllieJonas/MoneyManagingApp/branch/master/graph/badge.svg)](https://codecov.io/gh/OllieJonas/MoneyManagingApp/branch/master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/15784c22bc9a4f308fea12f0609addb6)](https://app.codacy.com/manual/OllieJonas/MoneyManagingApp?utm_source=github.com&utm_medium=referral&utm_content=OllieJonas/MoneyManagingApp&utm_campaign=Badge_Grade_Dashboard)
 
-Money Managing Application (LeonStonks)
-
-Technologies Used:
+# MoneyManagingApp (LeonStonks)
 
 
-Java
-Libraries: (in order of prevalence):
-  Lombok
-  GSON
-  JFreeChart
-  HTTPClient
-  Guava
-  Jetbrains Annotations
+## Project
 
-Workflow:
-  Maven
-  Jira
-  Git
-  Trello
+First Year Second Semester Coursework for CM10251.
+
+## Technologies
+### UI: 
+  - Swing
+### Libraries:
+  - Lombok
+  - GSON
+  - JFreeChart
+  - HTTPClient
+  - Guava
+  - Jetbrains Annotations
+### Testing:
+  - JUnit
+  - AssertJ
+  - Mockito
+### CI:
+  - Travis CI
+  - JaCoCo
+### Workflow:
+  - Maven
+  - Jira
+  - Git
+  - Trello

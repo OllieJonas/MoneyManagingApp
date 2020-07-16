@@ -1,0 +1,13 @@
+language: java
+
+sudo: false # For faster builds
+
+os: linux
+
+dist: xenial # Ubuntu
+
+jdk:
+  - openjdk11
+  
+after_success:
+  - bash <(curl -s https://codecov.io/bash) # Code coverage
