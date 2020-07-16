@@ -21,10 +21,10 @@ First Year Second Semester Coursework for CM10251.
 ### Testing:
   - JUnit
   - AssertJ
+  - Mockito
 ### CI:
   - Travis CI
   - JaCoCo
-  
 ### Workflow:
   - Maven
   - Jira
