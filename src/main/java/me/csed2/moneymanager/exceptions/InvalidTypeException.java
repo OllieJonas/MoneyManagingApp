@@ -9,4 +9,8 @@ public class InvalidTypeException extends RuntimeException {
     public InvalidTypeException() {
         super("Error: Unable to convert input into valid input!");
     }
+
+    public InvalidTypeException(Object subject, Class<?> attemptedCast) {
+        super("Error: Unable to cast " + subject + " to " + attemptedCast.getSimpleName());
+    }
 }

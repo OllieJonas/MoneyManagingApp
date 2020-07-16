@@ -31,7 +31,7 @@ public class ClassUtils {
         if (Primitives.wrap(clazz).isAssignableFrom(result.getClass())) {
             return (T) result;
         } else {
-            return null;
+            throw new InvalidTypeException(result, clazz);
         }
     }
 
