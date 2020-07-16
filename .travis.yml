@@ -1,5 +1,7 @@
 language: java
 
+sudo: false # For faster builds
+
 os: linux
 
 dist: xenial # Ubuntu
