@@ -10,6 +10,8 @@
 First Year Second Semester Coursework for CM10251.
 
 ## Technologies
+### UI
+  - Swing
 ### Libraries:
   - Lombok
   - GSON
@@ -17,17 +19,13 @@ First Year Second Semester Coursework for CM10251.
   - HTTPClient
   - Guava
   - Jetbrains Annotations
-  
 ### Testing:
   - JUnit
   - AssertJ
-
 ### CI:
   - Travis CI
   - JaCoCo
- 
   
-
 ### Workflow:
   - Maven
   - Jira
