@@ -9,7 +9,7 @@
 First Year Second Semester Coursework for CM10251.
 
 ## Technologies
-### UI
+### UI: 
   - Swing
 ### Libraries:
   - Lombok
