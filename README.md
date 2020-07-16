@@ -24,7 +24,7 @@ First Year Second Semester Coursework for CM10251.
 
 ### CI:
   - Travis CI
-  - Coveralls
+  - JaCoCo
  
   
 
